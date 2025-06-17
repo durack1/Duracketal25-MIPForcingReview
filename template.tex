@@ -150,15 +150,34 @@ This paper describes the evolution of the CMIP6 project beyond that defined in \
 Climate “forcings” are natural and anthropogenic (human-sourced) agents that influence the sign and magnitude of global and regional climate variability and change. For the CMIP6 historical experiment, the natural forcing agents include the observed incoming shortwave/solar radiation from the sun and the natural emission of sulphate aerosols from volcanic eruptions that have occurred throughout Earth’s history. For the CMIP6 historical experiment, anthropogenic forcing agents included the increasing atmospheric carbon dioxide concentrations (and other greenhouse gas species) that have been observed primarily due to fossil fuel burning, land use changes associated with human development, ozone, and nitrogen, short-lived climate forcers (SLCFs). In addition to externally imposed forcings, there are several natural forcings represented interactively in the models depending on their complexity. For example, emissions of biogenic volatile compounds, precursor for ozone and secondary aerosols, are typically simulated within models with full representation of atmospheric chemistry \citep{thornhill_climate-driven_2021,young_pre-industrial_2013}. These additional forcings...
 
 
-\section{HEADING}
-TEXT
+An observationally based energy balance for the Earth since 1950 - D. M. Murphy, S. Solomon, R. W. Portmann, K. H. Rosenlof, P. M. Forster, T. Wong https://doi.org/10.1029/2009JD012105
+
+
+\section{What is climate forcing?}
+Climate change results from natural and human modulation of atmospheric constituents (aerosols, volcanic emissions, greenhouse gases, etc), land use, and changes to other Earth system components. These natural or anthropogenic climate drivers are termed “climate forcing” agents. Some forcing agents are themselves responses or feedbacks to observed changes underway, like terrestrial freshwater from the Greenland/Antarctic Ice Sheet or glacial melt added to the ocean as the Earth warms, amongst other “forced” changes.
+
+For most of the Anthropocene, Earth maintained a stable energy budget, with incoming and outgoing energy in balance. However, an imbalance began to emerge through human activities in the 20th century, driven by changes to climate forcing. The climate "forcing" agents can be identified by their sources, either "natural" due to influences of which humans have no direct influence or "anthropogenic" due to human activities. In addition, feedbacks in the Earth system can magnify the radiative impact of these forcing agents, either with positive (warming) or negative (dampening) impacts on Earth's observed global mean temperature, amongst numerous other Earth climate system markers.
+
+The source of these agents and their climate roles differ. In addition, where the agents get to in the atmosphere (or more broad climate system) can strongly affect their impact. For example, sulfate aerosols from volcanic eruptions have a strong climate effect, reflecting incoming solar radiation, and cooling the planet. But if these sulfate aerosols get into the stratosphere, they have a far more substantial and sustained climate impact. The impact and roles of forcing get more complicated as the simulated system becomes more realistic - not only the what but where the forcing agent is found in the system begins to matter.
+
+
+\section{Simulating Earth’s climate}
+
+The evolution of climate models as tools to simulate and better understand our climate extends back to the mid-20th century. General Circulation Models (GCMs), which were crude simulations of the atmosphere only, were first used to attempt to model the evolution of weather as short-term forecasting tools. Simulations of this kind were collated in the Atmospheric Model Intercomparison Project (AMIP). Over the subsequent decades, model complexity continued to advance, with the first "coupled" models developed in the late 1960s incorporating an active ocean, sea ice, and land, coupled to the atmosphere.
+
+The evolution continued in the 1990s, and by this stage, model complexity had improved to realize the first "historical" simulations, where time-varying climate forcing could be used as inputs to drive a model simulation to approximate our observed past. In addition, a broad international community had started collaborating to develop standardized experimental protocols, allowing individual model simulations to be collated and compared. The CMIP project collected these simulations, and this activity extends to the present day. As these activities matured, the experimental protocols evolved in their realism, from idealized to “historical” simulations that began to approximate Earth’s observed climate record. The third phase, CMIP3 and the "20th Century Climate in Coupled Models" 20C3M experiment was the first time a comprehensive set of observed climate forcing agents had been used as coupled model simulation inputs. Forcing needs and their complexity have evolved dramatically from this initial step, with atmospheric chemistry, active carbon cycling, and biogeochemistry augmenting what models are keeping track of and what they need to externally "force" them to reproduce Earth’s observed history.
+
+For early AMIP phases, models used fixed or climatological external forcing data, targeting present-day (then 1990) control simulations or simplistic idealized transient experiments (Durack et al., 2025). For CMIP3, modeling groups began collating external forcing datasets to drive their historical simulations, including the start of numerous time-varying greenhouse gas concentrations, ozone and sulfate aerosols, including those from volcanic eruptions, solar irradiance, land use changes, and biomass burning. As model complexity increased in CMIP5, additional aerosol and short-lived climate forced (SLCF) species were also generated, and this trend continues into CMIP6 with more chemical species, and anthropogenic gridded emissions also become available to drive climate models with interactive carbon cycles.
+
+In CMIP3 and CMIP5, the lack of forcing coordination across modeling groups created more community work, with modeling groups having to meet their own forcing needs, introducing inconsistencies across historical model simulations. For CMIP6, a coordinated approach to collecting forcing datasets was established, facilitating the interaction of the forcing dataset providers and the modeling groups using these data, and reducing the duplicated individual efforts. The Earth System Grid Federation (ESGF) input datasets for Model Intercomparison Projects (input4MIPs) activity was established, collating forcing data serving CMIP6 needs, and 15 of the CMIP6 endorsed MIPs that comprised the phase (Durack et al., 2018). This led to numerous improvements and enabled a project expansion that delivered more than 15 petabytes of the latest climate model datasets to a broad and growing international community (Durack et al., 2025).
+
 
 
 % all figures and data should live in standalone github repo
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{AR4WG1_Ch01-p7-Fig1p2_adapted.png}
-    \caption{Evolution of climate model complexity, the the early beginnings of atmosphere-only simulations (AGCM) in the 1970s, through more complex atmosphere-ocean coupled configurations (AOGCMs) in the late 1990s and early-to-mid 2000s, to Earth System Models (ESMs) in the 2010s onward. The increasing complexity approximates the evolution of climate model configurations, institutions, and countries contributing to completed Model Intercomparison Project (MIP) phases, from 1989 to today. As model complexity has increased, the number of external forcing agents required to best simulated our observed world and its changes have markedly increased}
+    \caption{Evolution of climate model complexity, the the early beginnings of atmosphere-only simulations (AGCM) in the 1970s, through more complex atmosphere-ocean coupled configurations (AOGCMs) in the late 1990s and early-to-mid 2000s, to Earth System Models (ESMs) in the 2010s onward. The increasing complexity approximates the evolution of climate model configurations, institutions, and countries contributing to completed Model Intercomparison Project (MIP) phases, from 1989 to today. As model complexity has increased, the number of external forcing agents required to best simulated our observed world and its changes have markedly increased.}
     \label{fig:fig1-ModelComplexityThroughTime}
 \end{figure}
 
@@ -175,7 +194,7 @@ TEXT
 \renewcommand{\arraystretch}{1.5}
 \scriptsize
 \centering
-\caption{Climate forcing across the Model Intercomparison Project (MIPs) phases, through time}
+\caption{Historical climate forcing across the Model Intercomparison Project (MIPs) phases, through time}
 \resizebox{\textwidth}{!} {
 \begin{tabularx}{0.9\textwidth} {
   | >{\raggedright\arraybackslash}X
@@ -209,6 +228,66 @@ See slides - Durack/Fasullo https://docs.google.com/presentation/d/1_51Oohg4unT_
 Also see /Users/durack1/sync/Docs/admin/LLNL/24/240918_CERESScienceTeamMeeting-Oct24/241002a_durack1-CERESScienceTeamMeeting-ForcingsWhereWeveComeFromAndWhereWereGoing.pptx
 }
 \end{table*}
+
+
+
+\begin{table*}[htp]
+\renewcommand{\arraystretch}{1.5}
+\scriptsize
+\centering
+\caption{Future scenario climate forcing across the Model Intercomparison Project (MIPs) phases, through time. Values represent 2100 simulation end concentrations for the four largest radiative impact species (see Table 6.14; Ramaswamy et al., 2001). For CMIP6 half of the 8 total scenarios are included (omitted ssp119, ssp370, ssp434, ssp534-over). For CMIP7 4 illustrative scenarios are selected, a subset of the full CMIP7 ScenarioMIP selection (van Vuuren et al., 2025).}
+\resizebox{\textwidth}{!} {
+\begin{tabularx}{0.9\textwidth} {
+  | >{\raggedright\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X
+  | >{\centering\arraybackslash}X | }
+\hline
+\textbf{MIP era/experiment} & \textbf{2100 Effective Radiative Forcing (ERF; W m$^{2}$)} & \textbf{CO$_{2}$ (ppm)} & \textbf{CH$_{4}$ (ppm)} & \textbf{N$_{2}$O (ppb)} & \textbf{O$_{3}$ (Dobson units)}\\ \hline
+\hline
+\textbf{CMIP3 SRESB1} & 3.55 & 540 & 1574 & 375 & 30.1\\ \hline
+\textbf{CMIP3 SRESA1B} & 4.96 & 703 & 1974 & 372 & 37.5\\ \hline
+\textbf{CMIP3 SRESA2} & 5.89 & 836 & 3731 & 447 & 54.8\\ \hline
+\hline
+\textbf{CMIP5 rcp26} & x & x & x & x & x\\ \hline
+\textbf{CMIP5 rcp45} & x & x & x & x & x\\ \hline
+\textbf{CMIP5 rcp60} & x & x & x & x & x\\ \hline
+\textbf{CMIP5 rcp85} & x & x & x & x & x\\ \hline
+\hline
+\textbf{CMIP6 ssp126} & x & x & x & x & x\\ \hline
+\textbf{CMIP6 ssp245} & x & x & x & x & x\\ \hline
+\textbf{CMIP6 ssp370} & x & x & x & x & x\\ \hline
+\textbf{CMIP6 ssp585} & x & x & x & x & x\\ \hline
+\hline
+\textbf{CMIP7 VLLO-ext} & x & x & x & x & x\\ \hline
+\textbf{CMIP7 ML-ext} & x & x & x & x & x\\ \hline
+\textbf{CMIP7 M-ext} & x & x & x & x & x\\ \hline
+\textbf{CMIP7 H-ext} & x & x & x & x & x\\ \hline
+\end{tabularx}
+} % /resizebox
+\label{tab:tab1-ForcingByMIPsThroughTime}
+\footnotesize{Note: for CMIP3, both ISAM and Bern-CC IAMs were used, each with reference, low and high, with corresponding climate sensitivities 2.5\degree, 1.5\degree and 4.5\degree celsius respectively. For illustrative purposes all CO$_{2}$ values represent the Bern-CC reference scenario values (Table II.2.1; Ramaswamy et al., 2001). CH$_{4}$ values (Table II.2.2; Ramaswamy et al., 2001). N$_{2}$O (Table II.2.3; Ramaswamy et al., 2001) and O$_{3}$ (Table II.2.5; Ramaswamy et al., 2001). For CMIP3, the Effective Radiative Forcing (ERF) values also follow the Bern-CC reference scenario (Table II.3.1; Ramaswamy et al., 2001).}
+\mycomment{
+See ARs
+CMIP3
+TAR future 2050/2100 radiative forcings Ramaswamy et al., 2001 table 6.14 https://www.ipcc.ch/site/assets/uploads/2018/03/TAR-06.pdf#page=55
+TAR abundances and burdens - https://www.ipcc.ch/site/assets/uploads/2018/03/TAR-APPENDICES.pdf#page=21
+TAR radiative forcing - https://www.ipcc.ch/site/assets/uploads/2018/03/TAR-APPENDICES.pdf#page=31
+CMIP5
+Etminan et al 2016 https://doi.org/10.1002/2016GL071930 - Myhre et al 2013, 1998
+CMIP6
+
+CMIP3 history lessons (Aug 2003 through Jan 2004)
+linked off https://pcmdi.llnl.gov/ipcc/info_for_modeling_groups.html
+https://pcmdi.llnl.gov/ipcc/GCMRunsLetterNew_final.pdf
+https://pcmdi.llnl.gov/ipcc/solomon_letter_08Dec03.pdf
+https://pcmdi.llnl.gov/ipcc/AR4.poll.pdf
+}
+\end{table*}
+
+
 
 
 \subsection{HEADING}
