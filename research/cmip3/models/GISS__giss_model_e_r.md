@@ -18,7 +18,7 @@ Backed by Schmidt et al. 2006 + Hansen et al. 2007 (primary), single-vote advers
 | G  | Well-mixed GHGs | Y | ✓ supports | TV | WMGHGs (direct) + stratospheric H₂O from CH₄ oxidation; concentrations from Hansen & Sato 2004 / Montzka et al. 1999 | Hansen et al. 2007 | hansen_climate_2007 *(add)* | |
 | O  | Ozone (tropo + strato) | Y | ✓ supports | TV | Tropospheric: Shindell et al. 2003 GISS chemistry-climate. Stratospheric: Labow 3D monthly climatology + Randel & Wu 1999 trend (1979–97) | Schmidt et al. 2006; Randel & Wu 1999 | schmidt_presentday_2006 *(add)*; randel_stratospheric_1999 | |
 | SD | Sulphate aerosol — direct | Y | ✓ supports | TV | Model-generated sulphate (SI2000; Koch 2001/Koch et al. 1999); industrial SO₂ from Lefohn et al. 1999 | Schmidt et al. 2006 | schmidt_presentday_2006 *(add)* | |
-| SI | Sulphate aerosol — indirect | Y | ✓ supports *(qualified)* | TV (parameterized) | Parameterized indirect effect on **cloud COVER** (Menon & Del Genio 2006), tuned to ≈−1 W/m² vs 1850; **no cloud-albedo/Twomey effect** | Hansen et al. 2007 §3.2.2; Menon & Del Genio 2006 | hansen_climate_2007 *(add)*; menon_2006 *(add)* | Real but a tuned proxy (uncertainty ≥50%), unusual among CMIP3. Not a resolved indirect effect. |
+| SI | Sulphate aerosol — indirect | Y | ✓ supports *(qualified)* | TV (parameterized) | Parameterized indirect effect on **cloud COVER** (Menon & Del Genio 2007), tuned to ≈−1 W/m² vs 1850; **no cloud-albedo/Twomey effect** | Hansen et al. 2007 §3.2.2; Menon & Del Genio 2007 | hansen_climate_2007 *(add)*; menon_2007 *(add)* | Real but a tuned proxy (uncertainty ≥50%), unusual among CMIP3. Not a resolved indirect effect. |
 | BC | Black carbon | Y | ✓ supports | TV | Fossil-fuel BC from Tegen et al. 2000 (UN energy stats) + Cooke et al. 1999 emission factors; Novakov et al. 2003 technology factors | Schmidt et al. 2006 | schmidt_presentday_2006 *(add)* | |
 | OC | Organic carbon | Y | ✓ supports | TV | OC = 4× (fossil) / 7.9× (biomass) BC (Liousse et al. 1996); biomass BC/OC ramp ½(1850)→full(1990) | Schmidt et al. 2006 | schmidt_presentday_2006 *(add)* | |
 | MD | Mineral dust | Y | ✗ conflicts *(fixed, not transient)* | **FX-clim** | Tegen et al. 1997 distribution; **fixed spatial field** (optical thickness, dimensionless) | Hansen et al. 2007 §3.2.1; Tegen et al. 1997 | tegen_contribution_1997 *(add)* | Present but **not time-varying** → Table S1 "Y" overstates as transient. "All aerosols except sea salt and soil dust are time-variable." |
@@ -30,7 +30,7 @@ Backed by Schmidt et al. 2006 + Hansen et al. 2007 (primary), single-vote advers
 
 ### Table S1 conflicts found
 - **MD=Y and SS=Y are misleading:** dust and sea salt were prescribed *fixed climatological* fields, not transient forcings. (Contrast: GFDL's identically-fixed dust/sea salt are marked "−" in Table S1 — an internal inconsistency.)
-- **SI=Y is real but a tuned cloud-cover proxy** (≈−1 W/m², Menon & Del Genio 2006), not a physically resolved Twomey/albedo effect.
+- **SI=Y is real but a tuned cloud-cover proxy** (≈−1 W/m², Menon & Del Genio 2007), not a physically resolved Twomey/albedo effect.
 
 ## Notes, uncertainties, and open questions
 - Identical to ModelE-H aside from ocean; see that file for shared open questions.

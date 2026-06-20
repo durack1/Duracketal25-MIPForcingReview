@@ -3,7 +3,7 @@
 - **CMIP phase:** CMIP3 (20C3M)
 - **Model name:** INGV-SXG / SINTEX-G (CMIP3 model ID: ingv_echam4; PCMDI registered as "INGV-SXG") — ECHAM4.6 atmosphere + ORCA2 ocean
 - **Model family / lineage:** ECHAM4.6 atmosphere (MPI lineage) + ORCA2 ocean; no direct CMIP5/6 successor listed
-- **Primary documentation paper(s):** PCMDI INGV-SXG documentation (20 Dec 2006); Gualdi et al. 2008 (*J. Climate* doi:10.1175/2007JCLI1824.1)
+- **Primary documentation paper(s):** PCMDI INGV-SXG documentation (20 Dec 2006); Gualdi et al. 2008 (*J. Climate* doi:10.1175/2008JCLI1921.1)
 - **Forcing-specific reference(s):** Boucher & Pham 2002 (*GRL* doi:10.1029/2001GL014048) — sulphate direct effect, 1870–2000; ENSEMBLES GHG protocol
 - **PCMDI doc URL (live):** https://pcmdi.llnl.gov/ipcc/model_documentation/INGV-SXG.htm *(INGV-ECHAM4.htm returns 404)*
 
@@ -15,7 +15,7 @@
 | Key | Forcing | Table S1 | Verdict | Temporal | Dataset / source (series or fixed field) | Citation | bib key | Notes |
 |-----|---------|----------|---------|----------|------------------------------------------|----------|---------|-------|
 | G  | Well-mixed GHGs | Y | ✓ supports | TV | ENSEMBLES project GHG concentrations; time-varying | PCMDI INGV-SXG.htm (Section V, 20C3M) | — | "annual global concentrations...ENSEMBLES" |
-| O  | Ozone (tropo + strato) | Y | ✗ CONFLICT | FX-clim | ECHAM4 prescribed ozone appears only as a **fixed band absorber** (14.6 μm band); not described as time-varying anywhere in primary doc. Section II.A: atmospheric chemistry = "No". | PCMDI INGV-SXG.htm (Section IV.A.4.d, II.A) | — | **Table S1 O=Y CONFLICTS** with primary doc — ozone is a fixed climatology absorber, not a time-varying forcing field |
+| O  | Ozone (tropo + strato) | Y | ✗ CONFLICT | FX-clim | ECHAM4 prescribed ozone appears only as a **fixed band absorber** (14.6 μm band); not described as time-varying anywhere in primary doc. Section II.A: atmospheric chemistry = "No". **ECHAM4 atmospheric component double-confirmed**: Gualdi 2008 p.9: *"ECHAM4 is basically the same as the one that we use as the atmospheric component in our coupled model"*. | PCMDI INGV-SXG.htm (Section IV.A.4.d, II.A); Gualdi et al. 2008 (*J. Climate* doi:10.1175/2008JCLI1921.1) | gualdi_tropical_2008 | **Table S1 O=Y CONFLICTS** — ozone is a fixed climatology absorber. ECHAM4 lineage confirmed by primary paper. |
 | SD | Sulphate aerosol — direct | Y | ✓ supports | TV | Boucher & Pham 2002 LOA data (http://www-loa.univ-lille1.fr/~boucher/sres/), 1870–2000; **direct effect only** | PCMDI INGV-SXG.htm (Section V, Section II.C); Boucher & Pham 2002 (*GRL* doi:10.1029/2001GL014048) | boucher_pham_2002 | "Sulfate aerosols are specified according to Boucher and Pham (2002) data... Results are given for the years 1870 to 2000." |
 | SI | Sulphate aerosol — indirect | - | ✓ supports | n/a | **"only direct effect of sulfate included"** (PCMDI verbatim, Section II.C); no indirect aerosol effect | PCMDI INGV-SXG.htm | — | Consistent with Table S1 SI=- |
 | BC | Black carbon | - | ✓ supports | n/a | Not documented; sulphate-direct-only scheme | PCMDI INGV-SXG.htm | — | |
@@ -33,7 +33,7 @@
 - **VL=Y → ✗ CONFLICT**: No volcanic forcing documented; same closed forcing list. Table S1 VL=Y is spurious.
 
 ### Open questions
-- Is the ECHAM4.6 ozone treatment genuinely a fixed annual-mean climatology, or does the INGV-SXG run use a time-varying prescribed ozone field (which would revise O from ✗ to ✓)? Roeckner et al. 1996 ECHAM4 documentation would clarify.
+- ECHAM4 ozone treatment: ~~Resolved~~ — Gualdi 2008 confirms ECHAM4 atmospheric component; ECHAM4 ozone is FX-clim (fixed band absorber). O=Y conflict confirmed HIGH confidence.
 - Note: the INGV model is registered in CMIP3 as "ingv_echam4" but the PCMDI documentation page is INGV-SXG.htm (SINTEX-G). Gualdi et al. 2008 is the primary coupled model paper.
 
 ## Provenance

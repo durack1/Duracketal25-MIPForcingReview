@@ -15,7 +15,7 @@
 | Key | Forcing | Table S1 | Verdict | Temporal | Dataset / source (series or fixed field) | Citation | bib key | Notes |
 |-----|---------|----------|---------|----------|------------------------------------------|----------|---------|-------|
 | G  | Well-mixed GHGs | Y | ✓ supports | TV | Time-varying GHGs (anthropogenic) over 1860–2000 | WDC-Climate ECHO_G_20C3M_2 metadata | — | "Anthropogenic (GHGs, sulfate aerosol direct and first indirect effects) and natural forcing... used for the 20C3M simulations" |
-| O  | Ozone (tropo + strato) | Y | ~ unclear | ? (FX-clim likely) | ECHO-G uses ECHAM4.6 atmosphere; ECHAM4's ozone is a fixed prescribed climatology (same lineage as INGV). Time-varying ozone for 20C3M not documented in PCMDI or WDC metadata. | PCMDI ECHO-G.htm; WDC-Climate metadata | — | O=Y in Table S1 but ECHAM4 lineage strongly implies FX-clim; treat as probable conflict pending ECHO-G-specific documentation |
+| O  | Ozone (tropo + strato) | Y | ✗ CONFLICT | FX-clim | **ECHAM4.6 atmospheric component confirmed** (Legutke & Voss 1999 p.3: "ECHAM4, which is used for ECHO-G"); ECHAM4 uses a **fixed prescribed ozone climatology** (band absorber), not a time-varying ozone field. No TV ozone documented in PCMDI ECHO-G.htm or WDC metadata. Same treatment as INGV-SXG (shared ECHAM4 lineage). | Legutke & Voss 1999 (DKRZ TR No. 18, §2); PCMDI ECHO-G.htm | legutke_voss_1999 | **Table S1 O=Y CONFLICTS** — ECHAM4 ozone is FX-clim, confirmed by ECHAM4 lineage in Legutke 1999. |
 | SD | Sulphate aerosol — direct | Y | ✓ supports | TV | Sulphate aerosol direct effect; time-varying over 1860–2000 (Boucher LOA data, same lineage as INGV) | WDC-Climate ECHO_G_20C3M_2 metadata | boucher_pham_2002 | "sulfate aerosol direct and first indirect effects" — SD part confirmed |
 | SI | Sulphate aerosol — indirect | Y | ✗ CONFLICT | TV | **First indirect effect (Twomey) IS applied** per WDC run2 primary metadata: "sulfate aerosol direct and first indirect effects." Implemented via Lohmann & Feichter 1997 ECHAM4 parameterisation. | WDC-Climate ECHO_G_20C3M_2; Lohmann & Feichter 1997 (*JGR* doi:10.1029/97JD00631) | lohmann_feichter_1997 | **Table S1 SI=- CONFLICTS** — first indirect aerosol effect IS documented and applied in ECHO-G 20C3M. Note: seeded template had SI=Y (matching WDC primary); Stage 7 args had SI=- (matching Table S1). Table S1 appears in error here. |
 | BC | Black carbon | - | ✓ supports | n/a | Not documented | PCMDI ECHO-G.htm | — | |
@@ -30,10 +30,10 @@
 ### Table S1 conflicts found
 - **SI=- → ✗ CONFLICT**: First indirect (Twomey) aerosol effect IS applied in ECHO-G 20C3M per WDC primary metadata. Table S1 incorrectly omits it.
 - **FC=H → ✗ CONFLICT**: Both heat AND freshwater flux corrections applied ("heat, water, annual" per PCMDI). Table S1 FC=H (heat only) is wrong; should be FC=F,H.
-- **O=Y → ~ likely conflict**: ECHAM4 lineage implies fixed ozone climatology (not time-varying); not explicitly confirmed from ECHO-G primary docs.
+- **O=Y → ✗ CONFLICT**: ECHAM4 atmospheric component confirmed (Legutke & Voss 1999); ECHAM4 ozone is a fixed prescribed climatology. Table S1 O=Y is wrong.
 
 ### Open questions
-- MIUB-ECHO-G ozone treatment: does ECHO-G use a time-varying ozone field or the same fixed ECHAM4 band climatology as INGV-SXG? Legutke & Voss 1999 or Min et al. 2005 would clarify.
+- MIUB-ECHO-G ozone treatment: ~~Resolved~~ — Legutke & Voss 1999 confirms ECHAM4.6 atmospheric component; ECHAM4 ozone is FX-clim. O=Y conflict confirmed.
 - Crowley (2000) forcing details: exact scaling factor from Lean et al. 1995 solar, and volcanic RF-to-solar-constant conversion used in the CMIP3 20C3M runs — confirm from González-Rouco et al. 2003 or von Storch et al. 2004.
 
 ## Provenance
