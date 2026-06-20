@@ -66,15 +66,15 @@ Filled as stages complete; seed citations from the project notes are marked *(gi
 |---|----------|-----------------|----------------------------|---------|--------|
 | 1 | gfdl_cm2_0 | GFDL, USA | Delworth et al. 2006 (doi:10.1175/JCLI3629.1) | delworth_gfdls_2006 *(add)* | ☑ |
 | 2 | gfdl_cm2_1 | GFDL, USA | Delworth et al. 2006 (doi:10.1175/JCLI3629.1) | delworth_gfdls_2006 *(add)* | ☑ |
-| 3 | giss_aom | GISS, USA | PCMDI CMIP3 doc (Russell AOM; no forcing paper found) | — | ◐ (SO=− firm; G/SD/SS need AOM primary source) |
+| 3 | giss_aom | GISS, USA | Russell et al. 1995 (*Atmos.–Ocean* 33, doi:10.1080/07055900.1995.9649550) — **PDF uploaded** | russell_coupled_1995 *(add)* | ◐ (primary source now available; G/SD/SO forcing details need read of Russell 1995) |
 | 4 | giss_model_e_h | GISS, USA | Schmidt et al. 2006 (doi:10.1175/JCLI3612.1); Hansen et al. 2007 | schmidt_presentday_2006 *(add)*; hansen_climate_2007 *(add)* | ☑ |
 | 5 | giss_model_e_r | GISS, USA | Schmidt et al. 2006 (doi:10.1175/JCLI3612.1); Hansen et al. 2007 | schmidt_presentday_2006 *(add)*; hansen_climate_2007 *(add)* | ☑ |
 | 6 | ncar_ccsm3_0 | NCAR, USA | Collins et al. 2006 (doi:10.1175/JCLI3761.1); Ammann et al. 2003 volcanic | collins_community_2006; ammann_volcanic_2003 *(add)* | ◐ (VL/SI/FC confirmed; BC/OC/SD temporal treatment open) |
 | 7 | ncar_pcm1 | NCAR, USA | Washington et al. 2000 (*Clim. Dyn.*); Meehl et al. 2003/2004 | meehl_solar_2003 *(add)*; meehl_combinations_2004 *(add)*; ammann_volcanic_2003 *(add)* | ☑ (all 12 forcings confirmed; FC notation open) |
-| 8 | cccma_cgcm3_1_t47 | CCCma, Canada | Scinocca et al. 2008 (doi:10.5194/acp-8-7055-2008); Flato & Boer 2001 (*needed*) | scinocca_technical_2008 *(add)* | ◐ (G/SD confirmed TV; O/BC/OC/MD/SS confirmed FX; SO/VL/FC unverified — need Flato & Boer 2001) |
-| 9 | cccma_cgcm3_1_t63 | CCCma, Canada | Scinocca et al. 2008 (identical to T47) | scinocca_technical_2008 *(add)* | ◐ (identical to T47) |
-| 10 | csiro_mk3_0 | CSIRO, Australia | *(to confirm)* | | ☐ |
-| 11 | csiro_mk3_5 | CSIRO, Australia | *(to confirm)* | | ☐ |
+| 8 | cccma_cgcm3_1_t47 | CCCma, Canada | Scinocca et al. 2008 (doi:10.5194/acp-8-7055-2008); **Flato et al. 2000** (*Clim. Dyn.*, doi:10.1007/s003820050339 — **PDF uploaded**); Flato & Boer 2001 (*GRL*, doi:10.1029/2000GL012121 — **PDF uploaded**) | scinocca_technical_2008 *(add)*; flato_canadian_2000 *(add)*; flato_boer_2001 *(add)* | ◐ (G/SD/O/BC/OC/MD/SS confirmed; SO/VL/FC/LU still open — **Flato 2000 now available to resolve**) |
+| 9 | cccma_cgcm3_1_t63 | CCCma, Canada | Scinocca et al. 2008 (identical to T47); Flato et al. 2000 | scinocca_technical_2008 *(add)* | ◐ (identical to T47) |
+| 10 | csiro_mk3_0 | CSIRO, Australia | Gordon et al. 2002 CSIRO Tech Paper No. 60 (gordon_2002a.pdf) | gordon_csiro_2002 *(add)* | ◐ (SD=Penner1994 TV confirmed; FC=na confirmed; O=Y ambiguous; SO/VL/G/LU unverified — Stage 5 partial) |
+| 11 | csiro_mk3_5 | CSIRO, Australia | Gordon et al. 2002 (inferred); Mk3.5 primary paper not located (Gordon 2010?) | gordon_csiro_2002 *(inferred)* | ◐ (all cells inferred from Mk3.0; PCMDI docs blank; needs Mk3.5-specific primary source) |
 | 12 | cnrm_cm3 | CNRM, France | *(to confirm)* | | ☐ |
 | 13 | ipsl_cm4 | IPSL, France | *(to confirm)* | | ☐ |
 | 14 | mpi_echam5 | MPI-M, Germany | *(to confirm)* | | ☐ |
@@ -97,6 +97,7 @@ Patterns that Table S1's binary Y/− obscures, surfacing as stages complete:
 - **PCMDI model documentation pages proved uninformative for NCAR.** CCSM3.htm explicitly says "Still working on this..." for all forcing specifications; PCM.htm leaves Section V blank and only points to Meehl et al. 2004. Primary forcing detail for NCAR models must come from Collins et al. 2006 (CCSM3) and Meehl et al. 2003/2004 (PCM), not PCMDI pages.
 - **CCCma sulphate implemented as surface-albedo proxy.** CGCM3.1's sulphate direct effect is applied as a change in surface albedo proportional to a time-evolving column burden (O. Boucher, LOA France — same dataset provider as GISS-AOM, but different implementation mechanism). This is a simplified approach distinct from the atmospheric optical-depth schemes used by GFDL, GISS ModelE, and NCAR — adding an important methodological dimension to the cross-model comparison.
 - **CCCma fixed aerosol background (Shettle & Fenn 1979) with documented values.** AGCM3 radiative transfer uses a static, homogeneous aerosol background (not a time-varying forcing): continental dust-like **57.71 mg m⁻²**, water-soluble **2.55 mg m⁻²**, soot **0.2 mg m⁻²**; maritime oceanic **18.82 mg m⁻²**, water-soluble **0.263 mg m⁻²**. Table S1's BC=-, OC=-, MD=-, SS=- are all consistent with these fixed-field treatments. This is the most detailed fixed-aerosol documentation found so far.
+- **CSIRO Mk3 uses a minimal aerosol scheme: sulphate direct only via Penner et al. 1994.** Gordon et al. 2002 is explicit — "Direct effect of aerosols only using monthly mean sulfate (Penner et al, 1994)" — with no indirect, no BC, no OC, no dust, no sea salt. Consistent with Table S1 for all aerosol columns. The sulphate dataset (Penner 1994) is distinct from the Boucher LOA dataset used by CCCma and GISS-AOM, and from the model-generated Koch/Hansen datasets used by GISS-ModelE. **PCMDI model documentation pages for CSIRO are incomplete** (same limitation found for NCAR): forcing sections are blank templates, making Gordon 2002 Tech Report the only workable primary source. Mk3.5 PCMDI docs were submitted in 2007 as "Not available yet" — primary source for Mk3.5 not yet located.
 - **PCM1's five-forcing design is unusually clean.** Meehl et al. (2003, 2004) give an explicit closed list — volcanoes, solar, GHGs, ozone (strato + tropo), sulfate direct effect — ruling out BC, OC, dust, sea salt, indirect effect, and land use unambiguously. No conflicts with Table S1. PCM1 is the simplest NCAR CMIP3 forcing set.
 
 ## Staging plan — grouped by modeling centre (CMIP3 first pass)
@@ -105,8 +106,8 @@ Patterns that Table S1's binary Y/− obscures, surfacing as stages complete:
 | 1 | GFDL (USA) | gfdl_cm2_0, gfdl_cm2_1 | ☑ complete — Table S1 fully supported; 1 ozone nuance open |
 | 2 | GISS (USA) | giss_aom, giss_model_e_h, giss_model_e_r | ☑ ModelE-H/R complete; AOM partial (needs primary source). Found: MD/SS fixed-not-transient; SI=cloud-cover proxy |
 | 3 | NCAR (USA) | ncar_ccsm3_0, ncar_pcm1 | ☑ PCM1 complete (all 12 confirmed); CCSM3 partial (VL/SI/FC/MD/SS confirmed; BC/OC/SD temporal treatment open) |
-| 4 | CCCma (Canada) | cccma_cgcm3_1_t47, cccma_cgcm3_1_t63 | ◐ G/SD/O/BC/OC/MD/SS confirmed; SO/VL/FC open (need Flato & Boer 2001) |
-| 5 | CSIRO (Australia) | csiro_mk3_0, csiro_mk3_5 | ☐ not started |
+| 4 | CCCma (Canada) | cccma_cgcm3_1_t47, cccma_cgcm3_1_t63 | ◐ G/SD/O/BC/OC/MD/SS confirmed; SO/VL/FC/LU open — **Flato et al. 2000 now uploaded, resolve in Stage 4b** |
+| 5 | CSIRO (Australia) | csiro_mk3_0, csiro_mk3_5 | ◐ SD=Penner1994 TV confirmed; FC=na confirmed; O=Y ambiguous; SO/VL unverified; Mk3.5 docs blank — Stage 5 partial (API limits hit) |
 | 6 | CNRM + IPSL (France) | cnrm_cm3, ipsl_cm4 | ☐ not started |
 | 7 | MPI + INGV + MIUB (Germany/Italy) | mpi_echam5, ingv_echam4, miub_echo_g | ☐ not started |
 | 8 | UKMO (UK) | ukmo_hadcm3, ukmo_hadgem1 | ☐ not started |

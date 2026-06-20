@@ -15,3 +15,5 @@ ncar_ccsm3_0,?,?,?,na,?,?,FXc(?),FXc(?),?,?,TV,na,"none confirmed; BC/OC/SD temp
 ncar_pcm1,TV,TV,TV,na,na,na,na,na,na,TV,TV,na,none
 cccma_cgcm3_1_t47,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),?,?,?,?,"SO/VL/FC unverified; BC/OC/MD/SS are Shettle&Fenn 1979 fixed background"
 cccma_cgcm3_1_t63,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),?,?,?,?,"identical to T47; SO/VL/FC unverified"
+csiro_mk3_0,?,?TV-or-FXc,TV(monthly),na,na,na,na,na,?,?,?,na,"SD=Penner1994 monthly sulphate confirmed; O=Y may conflict if FX-clim; SO/VL/G/LU unverified"
+csiro_mk3_5,?,?TV-or-FXc,TV(monthly inferred),na(inferred),na(inferred),na(inferred),na(inferred),na(inferred),?,?,?,?,"all inferred from Mk3.0; PCMDI docs blank; needs Mk3.5 primary source (Gordon 2010?)"

@@ -40,7 +40,24 @@ Secondary GISS-AOM sulphate reference to add if AOM is pursued: Boucher & Pham (
 |--------------|-----------|-----------|
 | scinocca_technical_2008 | Scinocca, J.F., et al. (2008). Technical Note: The CCCma third generation AGCM and its extension into the middle atmosphere. *Atmos. Chem. Phys.* 8, 7055–7074. | 10.5194/acp-8-7055-2008 |
 | boucher_anderson_1995 | Boucher, O. & Anderson, T.L. (1995). GCM assessment of the sensitivity of direct climate forcing by anthropogenic sulfate aerosols to aerosol size and chemistry. *J. Geophys. Res.* 100(D12), 26117–26134. | 10.1029/95JD02531 |
-| flato_boer_2001 | Flato, G.M. & Boer, G.J. (2001). Warming asymmetry in climate change simulations. *Geophys. Res. Lett.* 28(1), 195–198. [*Note: also check Flato et al. 2000, Clim. Dyn. — CGCM3 description paper; verify exact Flato & Boer 2001 ref for CGCM3.1 coupled model*] | verify |
+| flato_boer_2001 | Flato, G.M. & Boer, G.J. (2001). Warming asymmetry in climate change simulations. *Geophys. Res. Lett.* 28(1), 195–198. **PDF uploaded: `resources/Flato+Boer01GRL-*.pdf`** | **10.1029/2000GL012121** ✓ confirmed |
+| flato_canadian_2000 | Flato, G.M., et al. (2000). The Canadian Centre for Climate Modelling and Analysis Global Coupled Model and its Climate. *Clim. Dyn.* 16, 451–483. **PDF uploaded: `resources/Flatoetal00ClimDyn-*.pdf`** — **this is the CGCM3 model description paper** (key for CCCma SO/VL/FC/LU forcing treatment) | **10.1007/s003820050339** ✓ confirmed |
+| kim_coupled_2002 | Kim, S.-J., et al. (2002). *Clim. Dyn.* **PDF uploaded: `resources/Kimetal02ClimDyn-*.pdf`** ⚠️ **Note: filename indicates LGM simulation paper ("Last Glacial Maximum Part 1"), NOT a CCCma CGCM3.1 description paper** — verify whether this is the intended reference for CCCma forcing docs, or if a different Kim et al. 2002 is needed | **10.1007/s00382-002-0243-y** ✓ DOI confirmed; content relevance ⚠️ uncertain |
+
+## From Stage 5 (CSIRO)
+| Proposed key | Reference | DOI / URL |
+|--------------|-----------|-----------|
+| gordon_csiro_2002 | Gordon, H.B., et al. (2002). *The CSIRO Mk3 Climate System Model.* CSIRO Atmospheric Research Technical Paper No. 60, Aspendale. [Technical report — accessed via cmar.csiro.au/e-print/open/gordon_2002a.pdf] **Key quote: "Direct effect of aerosols only using monthly mean sulfate (Penner et al, 1994)."** | No DOI (tech report); URL: https://www.cmar.csiro.au/e-print/open/gordon_2002a.pdf |
+| penner_quantifying_1994 | Penner, J.E., et al. (1994). Quantifying and minimizing uncertainty of climate forcing by anthropogenic aerosols. *Bull. Amer. Meteor. Soc.* 75(3), 375–400. *(or alternate Penner 1994 sulphate dataset ref — verify exact citation from Gordon 2002 reference list)* | verify exact ref |
+
+## DOI corrections from user-uploaded PDFs (previously marked "verify")
+| Proposed key | Confirmed DOI | Note |
+|--------------|---------------|------|
+| ramachandran_radiative_2000 | **10.1029/2000JD900355** ✓ | Year confirmed 2000 (not 1999). PDF: `resources/Ramachandranetal00JGR-*.pdf` |
+| shindell_2003 | **10.5194/acp-3-1675-2003** ✓ | Full ref: Shindell, D.T., et al. (2003). Preindustrial to present-day radiative forcing by tropospheric ozone from GISS chemistry-climate GCM. *Atmos. Chem. Phys.* 3, 1675–1702. PDF: `resources/Shindelletal03AtmosChemPhys-*.pdf` |
+| tegen_contribution_1997 | **10.1029/97JD01864** ✓ | *Note: DOI differs from original entry (97JD01928 → 97JD01864)*. Full ref: Tegen, I., et al. (1997). Contribution of different aerosol species to the global aerosol extinction optical thickness. *J. Geophys. Res.* 102(D20). PDF: `resources/Tegenetal1997JGR-*.pdf` |
+| koch_2001 | **10.1029/2001JD900038** ✓ | Confirmed. Full ref: Koch, D. (2001). Transport and direct radiative forcing of carbonaceous and sulfate aerosols in the GISS GCM. *J. Geophys. Res.* 106(D17). PDF: `resources/Koch01JGR-*.pdf` |
+| russell_coupled_1995 | **10.1080/07055900.1995.9649550** ✓ | Full ref: Russell, G.L., et al. (1995). A coupled atmosphere–ocean model for transient climate change studies. *Atmos.–Ocean* 33(4), 683–730. **This is the GISS-AOM primary source** — resolves the GISS-AOM open citation. PDF: `resources/Russeletal1994Atmos-Ocean-*.pdf` *(Note: filename says 1994, DOI/journal suggests 1995 — verify exact year)* |
 
 ## Already present in 241114a.bib (reused in Stages 1–2)
 - hurtt_underpinnings_2006 — Hurtt et al. 2006 land-use reconstruction
