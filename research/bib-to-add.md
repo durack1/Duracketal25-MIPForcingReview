@@ -72,6 +72,17 @@ Secondary GISS-AOM sulphate reference to add if AOM is pursued: Boucher & Pham (
 | marti_new_2010 | Marti, O., et al. (2010). Key features of the IPSL ocean atmosphere model and its sensitivity to atmospheric resolution. *Clim. Dyn.* 34(1), 1–26. IPSL-CM4 primary documentation. | 10.1007/s00382-009-0598-2 |
 | salas_melia_2005 | Salas-Mélia, D., et al. (2005). Description and validation of the CNRM-CM3 global coupled model. *Note de Centre CNRM/GMGEC no. 103*. CNRM-CM3 primary documentation. | (tech report, no DOI) |
 
+## From Stage 7 (MPI-ECHAM5 + INGV-SXG + MIUB-ECHO-G)
+| Proposed key | Reference | DOI / URL |
+|--------------|-----------|-----------|
+| jungclaus_ocean_2006 | Jungclaus, J.H., et al. (2006). Ocean circulation and tropical variability in the coupled model ECHAM5/MPI-OM. *J. Climate* 19(16), 3952–3972. MPI-ECHAM5 primary documentation. | 10.1175/JCLI3827.1 |
+| crowley_causes_2000 | Crowley, T.J. (2000). Causes of climate change over the past 1000 years. *Science* 289(5477), 270–277. MIUB-ECHO-G solar+volcanic forcing — both bundled into a single varying solar-constant time series derived from Crowley (2000); scaled from Lean et al. 1995 variance. | 10.1126/science.289.5477.270 |
+| lohmann_feichter_1997 | Lohmann, U. & Feichter, J. (1997). Impact of sulfate aerosols on albedo and lifetime of clouds: A sensitivity study with the ECHAM4 GCM. *J. Geophys. Res.* 102(D12), 13685–13700. ECHO-G first indirect aerosol effect parameterisation. | 10.1029/97JD00631 |
+| legutke_voss_1999 | Legutke, S. & Voss, R. (1999). *The Hamburg atmosphere–ocean coupled circulation model ECHO-G.* DKRZ Technical Report No. 18. ECHO-G (MIUB) primary model description — flux correction (heat+water, annual, outside sea ice) confirmed. | (tech report, no DOI) |
+| kiehl_1999 | Kiehl, J.T., et al. (1999). [MPI-ECHAM5 ozone dataset — "Kiehl et al. 1999" as cited in PCMDI ECHAM5_MPI-OM.htm for anthropogenic ozone anomaly relative to 1870 baseline.] **Full citation to confirm.** | verify — likely a NCAR Technical Note or J. Geophys. Res. paper |
+| gualdi_tropical_2008 | Gualdi, S., et al. (2008). The INGV-CMCC seasonal prediction system: improved ocean initial conditions. *Mon. Wea. Rev.* or *J. Climate* — **verify exact ref**: PCMDI cites INGV-SXG documentation; Gualdi et al. papers from ~2003–2008 describe SINTEX-G. | verify — candidate: doi:10.1175/2007JCLI1824.1 |
+| stier_aerosol_2005 | Stier, P., et al. (2005). The aerosol-climate model ECHAM5-HAM. *Atmos. Chem. Phys.* 5(4), 1125–1156. ECHAM5 interactive aerosol module (BC/OC/sulphate/dust/sea salt) — NOT used in CMIP3 20C3M but establishes that MPI-ECHAM5 is capable of BC/OC in principle; clarifies why BC=Y/OC=Y in Table S1 may be a transcription error. | 10.5194/acp-5-1125-2005 |
+
 ## Already present in 241114a.bib (reused in Stages 1–2)
 - hurtt_underpinnings_2006 — Hurtt et al. 2006 land-use reconstruction
 - sato_stratospheric_1993 — Sato et al. 1993 volcanic AOD

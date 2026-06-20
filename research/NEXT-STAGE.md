@@ -170,7 +170,17 @@ DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (T
 
 ---
 
-## Stage 7 args (MPI + INGV + MIUB: mpi_echam5, ingv_echam4, miub_echo_g) — NEXT
+## Stage 7 (MPI + INGV + MIUB) — COMPLETE ✓ (2026-06-20)
+
+**Results written:** `MPI__mpi_echam5.md`, `INGV__ingv_echam4.md`, `MIUB__miub_echo_g.md`, CSV, README, bib-to-add.md.
+
+Key findings:
+- MPI: 3 confirmed conflicts (BC/OC/LU not in 20C3M forcing list) + 2 probable (SO/VL — "only anthropogenic forcings"); Boucher LOA SRES sulphate + Kiehl 1999 ozone anomaly confirmed
+- INGV (= INGV-SXG, not "INGV-ECHAM4"): 3 conflicts (O=Y FX-clim, SO=Y/VL=Y spurious — no natural forcings)
+- MIUB: 2 conflicts (SI=- wrong — first indirect IS applied; FC=H wrong — heat+water both applied); SO/VL=Y correct-but-bundled via Crowley 2000 single solar constant
+- Boucher LOA dataset now confirmed for 4+ centres; SO/VL Table S1 error pattern confirmed across 4 stages
+
+## Stage 7 args (MPI + INGV + MIUB: mpi_echam5, ingv_echam4, miub_echo_g) — COMPLETE, preserved for reference
 
 Stage files already seeded: `research/cmip3/models/MPI__mpi_echam5.md`, `INGV__ingv_echam4.md`, `MIUB__miub_echo_g.md`.
 
@@ -191,7 +201,33 @@ Pay attention to: MPI-ECHAM5 BC=Y, OC=Y, LU=Y — the most complex aerosol+LU se
 
 DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (TV/fixed + fixed value with units), dataset/source, exact citation. List all conflicts with Table S1.
 
-## After Stage 7: write results into the three seeded files, add rows to verified-forcing-matrix.csv, update README registry + staging + cross-cutting, append refs to bib-to-add.md. Then move to Stage 8 (UKMO: hadcm3, hadgem1).
+## After Stage 7: DONE ✓
+
+## Stage 8 args (UKMO: ukmo_hadcm3, ukmo_hadgem1) — NEXT
+
+Stage files already seeded: `research/cmip3/models/UKMO__ukmo_hadcm3.md`, `UKMO__ukmo_hadgem1.md`.
+
+Document and adversarially verify the climate forcing datasets used in the two UKMO CMIP3 models — HadCM3 (ukmo_hadcm3) and HadGEM1 (ukmo_hadgem1) — for their CMIP3 20C3M (historical) simulations.
+
+CONTEXT: Stage of a review anchored on Durack & Wijffels (2012) Table S1. SO/VL=Y codes have been wrong for 4 of 7 stages completed — test UKMO carefully. HadGEM1 is expected to be the most complete aerosol scheme so far (BC, OC, dust, sea salt all in Table S1).
+
+PRIMARY SOURCES: HadCM3 — Gordon et al. 2000 (J. Climate, doi:10.1175/1520-0442(2000)013<0728:TSMFTH>2.0.CO;2); Pope et al. 2000 (Clim. Dyn., doi:10.1007/s003820050010); PCMDI CMIP3 page. HadGEM1 — Johns et al. 2006 (J. Climate, doi:10.1175/JCLI3636.1); Martin et al. 2006 (J. Climate, doi:10.1175/JCLI3551.1); PCMDI CMIP3 page. Also check: Stott et al. 2000/2006 (HadCM3 20th-century attribution papers) for detailed forcing specification; Jones et al. 2003 (HadGEM aerosol).
+
+FOR EACH of 12 forcings, for EACH model: (a) applied in 20C3M? (b) WHICH dataset/source — whether TIME-VARYING or FIXED, with fixed values WITH UNITS; (c) VERDICT vs Table S1 with quote/citation.
+
+Table S1 claims:
+ukmo_hadcm3: G=Y, O=Y, SD=Y, SI=Y, BC=-, OC=-, MD=-, SS=-, LU=-, SO=Y, VL=Y, FC=-
+ukmo_hadgem1: G=Y, O=Y, SD=Y, SI=Y, BC=Y, OC=Y, MD=Y, SS=Y, LU=-, SO=Y, VL=Y, FC=-
+
+Pay attention to:
+- HadGEM1 MD=Y and SS=Y — only model so far with mineral dust AND sea salt as time-varying forcings (all others had these as fixed or absent); confirm datasets and whether TV or FX-clim
+- HadGEM1 BC=Y and OC=Y — same claims as MPI which proved wrong; verify from primary source
+- HadCM3 SI=Y vs HadGEM1 SI=Y — what is the indirect aerosol mechanism for each? HadCM3 uses a sulphate-only Aitken-mode scheme; HadGEM1 may use a more sophisticated scheme
+- SO=Y and VL=Y for both — given the systematic SO/VL error pattern, verify carefully; which solar and volcanic reconstructions (Lean? Sato?); HadCM3 Stott 2000 is likely the key 20th-century forcing paper
+- HadCM3 FC=- confirmed from literature (no flux corrections); HadGEM1 FC=- expected (newer generation)
+- GHG treatment for HadGEM1 — does it use a higher-fidelity GHG scheme than HadCM3?
+
+DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (TV/fixed + fixed value with units), dataset/source, exact citation. List all conflicts with Table S1.
 
 ---
 
