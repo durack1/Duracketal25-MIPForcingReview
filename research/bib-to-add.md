@@ -97,6 +97,20 @@ Secondary GISS-AOM sulphate reference to add if AOM is pursued: Boucher & Pham (
 | solanki_2003 | Solanki, S.K. & Krivova, N.A. (2003). Can solar variability explain global warming since 1970? *J. Geophys. Res.* 108(A5), 1200. HadGEM1 solar reconstruction (Run 2). | 10.1029/2002JA009753 |
 | goldewijk_2001 | Goldewijk, K.K. (2001). Estimating global land use change over the past 300 years: the HYDE database. *Global Biogeochem. Cycles* 15(2), 417–433. HadGEM1 land-use change forcing (Run 1) — may conflict with Table S1 LU=-. **PDF uploaded: `resources/Goldewijk01GlobBioCyc-*.pdf`** | **10.1029/1999GB001232** ✓ confirmed |
 
+## From Stage 9 (MIROC3.2 + MRI-CGCM2.3.2a)
+| Proposed key | Reference | DOI / URL |
+|--------------|-----------|-----------|
+| hasumi_emori_2004 | K-1 Model Developers (Hasumi, H. and Emori, S., eds.) (2004). *K-1 Coupled Model (MIROC) Description.* K-1 Technical Report 1, CCSR/NIES/FRCGC, 34 pp. Primary MIROC3.2 documentation — forcing three-category list (prescribed agents, prescribed emissions, diagnosed fields). | No DOI (tech report); URL: https://cger.nies.go.jp/publications/report/i073/I073e.html |
+| yukimoto_mri_2001 | Yukimoto, S., Noda, A., Kitoh, A., Sugi, M., Kitamura, Y., Hosaka, M., Shibata, K., Maeda, S., and Uchiyama, T. (2001). The new Meteorological Research Institute coupled GCM (MRI-CGCM2) — model climate and variability. *Papers in Meteorology and Geophysics* 51(2), 47–88. MRI-CGCM2.3.2a primary documentation — flux corrections, model architecture. | doi:10.2467/mripapers.51.47 (jStage) |
+| yukimoto_mri_2006 | Yukimoto, S., et al. (2006). Present-day climate and climate sensitivity in the Meteorological Research Institute coupled GCM, version 2.3 (MRI-CGCM2.3). *J. Meteor. Soc. Japan* 84(2), 333–363. MRI-CGCM2.3.2a 20C3M forcing agents (four-agent list); solar = Lean et al. 1995 confirmed; GHG fixed-value contrasts. Pre-submission manuscript at https://pcmdi.llnl.gov/ipcc/model_documentation/Yukimoto_2005_Papers-submit.pdf | doi:10.2151/jmsj.84.333 |
+
+## From Stage 10 (BCCR-BCM2.0 + IAP-FGOALS1.0 + INM-CM3.0)
+| Proposed key | Reference | DOI / URL |
+|--------------|-----------|-----------|
+| furevik_description_2003 | Furevik, T., Bentsen, M., Drange, H., Kindem, I.K.T., Kvamstø, N.G., and Sorteberg, A. (2003). Description and evaluation of the Bergen climate model: ARPEGE coupled with MICOM. *Clim. Dyn.* 21(1–2), 27–51. **Note: describes a 300-yr CONTROL integration (fixed forcing), not 20C3M transient — 20C3M forcing from PCMDI page. FC (heat+freshwater flux adjustment for stability) confirmed in this paper. Boucher & Pham 2002 shared-sulphate hypothesis REFUTED by this paper.** | doi:10.1007/s00382-003-0317-5 |
+| yu_flexible_2004 | Yu, Y.-Q., Zhang, X.-H., and Guo, Y.-F. (2004). A flexible coupled ocean-atmosphere general circulation model. *Adv. Atmos. Sci.* 21(3), 442–455. IAP-FGOALS1.0_g primary documentation. | doi:10.1007/BF02915723 |
+| volodin_elnino_2004 | Volodin, E.M. and Diansky, N.A. (2004). El-Niño reproduction in coupled general circulation model of atmosphere and ocean. *Russian Meteorology and Hydrology* 12, 5–14. INM-CM3.0 primary documentation (model description in Russian; English abstract available). | No DOI; journal: *Russian Meteorology and Hydrology* (Izvestiya) |
+
 ## Already present in 241114a.bib (reused in Stages 1–2)
 - hurtt_underpinnings_2006 — Hurtt et al. 2006 land-use reconstruction
 - sato_stratospheric_1993 — Sato et al. 1993 volcanic AOD

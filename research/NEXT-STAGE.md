@@ -241,7 +241,18 @@ DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (T
 
 ---
 
-## Stage 9 args (MIROC + MRI: miroc3_2_hires, miroc3_2_medres, mri_cgcm2_3_2a) — NEXT
+## Stage 9 (MIROC + MRI: miroc3_2_hires, miroc3_2_medres, mri_cgcm2_3_2a) — COMPLETE ✓ (2026-06-20)
+
+**Results written:** `MIROC__miroc3_2_hires.md`, `MIROC__miroc3_2_medres.md`, `MRI__mri_cgcm2_3_2a.md`, CSV, README, bib-to-add.md.
+
+Key findings:
+- MIROC3.2 hires and medres: identical forcing, richest aerosol suite in review (BC/OC/sulphate prescribed emissions + SPRINTARS interactive). MD=Y/SS=Y are diagnosed interactively, not prescribed — nuance not a hard conflict. SO/VL=Y confirmed genuine. No hard conflicts.
+- MRI-CGCM2.3.2a: 4-agent forcing (GHG/sulphate-direct/volcanic/solar); SI/BC/OC/MD/SS/LU all confirmed absent (Table S1 dashes correct). O=Y candidate error (medium confidence — ozone absent from PCMDI 4-agent list). SO=TV(Lean 1995) and VL=TV confirmed. FC=F,H confirmed (heat+water global + equatorial momentum).
+- PCMDI URL typo: MRI doc is at MRI-GCGM2.3.2.htm (not CGCM).
+
+Source: PCMDI model documentation pages (primary); WDC-Climate run metadata; Yukimoto 2006 pre-submission PDF (solar Lean 1995 confirmed); workflow wf_401d7787-4bc.
+
+## Stage 9 args (MIROC + MRI: miroc3_2_hires, miroc3_2_medres, mri_cgcm2_3_2a) — COMPLETE, preserved for reference
 
 Stage files already seeded: `research/cmip3/models/CCSR__miroc3_2_hires.md`, `CCSR__miroc3_2_medres.md`, `MRI__mri_cgcm2_3_2a.md`.
 
@@ -267,6 +278,50 @@ DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (T
 
 ## After Stage 9: write results, update all tracking files, add Stage 10 args (BCCR+IAP+INM).
 
+## Stage 10 (BCCR + IAP + INM: bccr_bcm2.0, iap_fgoals1_0, inmcm3_0) — COMPLETE ✓ (2026-06-20)
+
+**Results written:** `BCCR__bccr_bcm2.0.md`, `IAP__iap_fgoals1_0.md`, `INM__inmcm3_0.md`, CSV, README, bib-to-add.md.
+
+Key findings:
+- BCCR: SO=VL=- confirmed verbatim ("Solar forcing was set at 1368 W/m2 and no solar or volcanic variability were included"); G=TV(ENSEMBLES); SD=Y applied but dataset unknown; FC=heat+FW for stability (not forcing); no Table S1 conflicts confirmed
+- IAP: G/O/SD confirmed from PCMDI verbatim ("CO2, N2O, CH4, CFC11, CFC12; climatologic mean ozone; sulfate aerosol data from ftp://sprite.llnl.gov/pub/covey/IPCC_4AR_Forcing/"); SO/VL=- by absence; no conflicts confirmed
+- INM (NOT in Table S1): G=TV(CO2/CH4/N2O — CFCs excluded!); O=FXc(AMIP-II Wang 1995); SD=TV(2-D burden, 4ARForcing); SO=TV(PCM1_A1.nc same as GHGs); VL=~ unclear (volcanic file referenced in PDF but standalone claim refuted); 4ARForcing sprite.llnl.gov shared with IAP
+- Cross-cutting: fixed-solar group (BCCR 1368, CNRM 1370, IPSL 1365) confirmed; 4ARForcing FTP dataset shared by IAP and INM; Wang 1995 AMIP II ozone now third confirmed centre (after CCCma, CSIRO) for FXc ozone
+
+Source: PCMDI model documentation pages (primary — HTML + PDF); Volodin 2004 (INM); Furevik 2003 (BCCR control run, flux adjustment only); workflow wf_736d8594-819.
+
+## Stage 10 args (BCCR + IAP + INM: bccr_bcm2.0, iap_fgoals1_0, inmcm3_0) — archived for reference
+
+Stage files already seeded: `research/cmip3/models/BCCR__bccr_bcm2.0.md`, `IAP__iap_fgoals1_0.md`, `INM__inmcm3_0.md`.
+
+Document and adversarially verify the climate forcing datasets used in three CMIP3 models — BCCR-BCM2.0 (bccr_bcm2.0), IAP-FGOALS1.0_g (iap_fgoals1_0), and INM-CM3.0 (inmcm3_0) — for their CMIP3 20C3M (historical) simulations.
+
+CONTEXT: Stage of a review anchored on Durack & Wijffels (2012) Table S1. Stage 10 is the final CMIP3 first-pass stage. Key prior findings to test against: (1) SO/VL=- for BCCR and IAP — these are genuinely unusual (most CMIP3 models applied natural forcings); verify whether this reflects real omission or Table S1 undercount. (2) INM-CM3.0 is not in Table S1 — all 12 forcings must be found from primary sources (no Table S1 claims to test, only to document). (3) BCCR uses ARPEGE atmosphere (same as CNRM-CM3) — check whether it shares the Boucher & Pham 2002 LOA sulphate dataset.
+
+PRIMARY SOURCES:
+- BCCR-BCM2.0: Furevik, T., et al. (2003). Description and evaluation of the Bergen climate model: ARPEGE coupled with MICOM. *Clim. Dyn.* 21(1), 27–51. doi:10.1007/s00382-003-0317-5; PCMDI page https://pcmdi.llnl.gov/ipcc/model_documentation/BCCR-BCM2.0.htm
+- IAP-FGOALS1.0: Yu, Y., et al. (2004). A flexible global coupled climate model. *J. Atmos. Sci.* 61; Zhou, T., et al. (2005). IAP FGOALS; PCMDI page https://pcmdi.llnl.gov/ipcc/model_documentation/FGOALS1.0_g.htm
+- INM-CM3.0: Volodin, E.M. & Diansky, N.A. (2004). El Niño reproduction in coupled general circulation model of atmosphere and ocean. *Russian Meteorology and Hydrology* 12, 5–14; PCMDI page https://pcmdi.llnl.gov/ipcc/model_documentation/INM-CM3.0.htm
+
+FOR EACH of 12 forcings, for EACH model: (a) applied in 20C3M? (b) WHICH dataset/source — whether TIME-VARYING or FIXED, with fixed values WITH UNITS; (c) VERDICT vs Table S1 with quote/citation.
+
+Table S1 claims:
+bccr_bcm2.0:   G=Y, O=-, SD=Y, SI=-, BC=-, OC=-, MD=-, SS=-, LU=-, SO=-, VL=-, FC=-
+iap_fgoals1_0: G=Y, O=-, SD=Y, SI=-, BC=-, OC=-, MD=-, SS=-, LU=-, SO=-, VL=-, FC=-
+inmcm3_0:      G=?, O=?, SD=?, SI=?, BC=?, OC=?, MD=?, SS=?, LU=?, SO=?, VL=?, FC=? (NOT in Table S1 — document from primary sources)
+
+Pay attention to:
+- BCCR and IAP both have SO=- and VL=- — if these models genuinely omitted natural forcings, they join CCCma/CSIRO as the only others in this review to do so; confirm from primary docs
+- BCCR ARPEGE atmosphere: does it use same sulphate/ozone treatment as CNRM-CM3 (which also uses ARPEGE)? CNRM used Boucher & Pham 2002 sulphate direct only, no indirect — test whether BCCR inherited this
+- IAP-FGOALS1.0: Chinese model using GAMIL atmosphere — less widely documented; PCMDI page may be the primary accessible source
+- INM-CM3.0: Russian model, primary sources may be in Russian — find English-language documentation; confirm what GHG, aerosol, and natural forcing datasets were applied
+- For all three: confirm FC treatment (all Table S1 FC=- for BCCR/IAP; unknown for INM)
+
+DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (TV/fixed + fixed value with units), dataset/source, exact citation (author/year/DOI). List all confirmed conflicts with Table S1. For INM document all 12 forcings from scratch.
+
+## After Stage 10: write results, update all tracking files. Then proceed to synthesis and summary.
+
 ## Remaining queue (CMIP3 first pass)
-9 MIROC+MRI · 10 BCCR+IAP+INM
+10 BCCR+IAP+INM — NEXT
+Then synthesis + summary of all 24 models.
 Then later passes: CMIP5 lineage, CMIP6/input4MIPs.
