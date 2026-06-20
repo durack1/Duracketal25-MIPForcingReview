@@ -1,0 +1,17 @@
+# VERIFIED forcing matrix — compiled from per-model research files (research/models/*.md).
+# This is the corrected counterpart to cmip3-tableS1-forcing-matrix.csv: cells give the
+# TEMPORAL TREATMENT actually used (from primary docs), not Table S1's binary Y/-.
+# Codes: TV=time-varying · FXc=fixed climatology (seasonal, no interannual) · FXk=fixed constant
+#        (scalar value in parentheses, with units) · na=not applied · ?=unknown/unverified
+# A trailing "*" on a cell = CONFLICTS with Table S1's Y/- (see conflict column).
+# Verified so far: GFDL (Stage 1), GISS (Stage 2). Others pending.
+model_id,G,O,SD,SI,BC,OC,MD,SS,LU,SO,VL,FC,tableS1_conflicts
+gfdl_cm2_0,TV,TV,TV,na,TV,TV,FXc,FXc,TV,TV,TV,na,none (tropo-O3 time-variation open)
+gfdl_cm2_1,TV,TV,TV,na,TV,TV,FXc,FXc,TV,TV,TV,na,none (tropo-O3 time-variation open)
+giss_aom,?TV,na,TV,na,na,na,na,FXc?,na,FXk(1367 W m-2),na,na,none confirmed (G/SD/SS unverified)
+giss_model_e_h,TV,TV,TV,TV,TV,TV,FXc*,FXc*,TV,TV,TV,na,"MD,SS: Table S1=Y but fixed climatology (not transient)"
+giss_model_e_r,TV,TV,TV,TV,TV,TV,FXc*,FXc*,TV,TV,TV,na,"MD,SS: Table S1=Y but fixed climatology (not transient)"
+ncar_ccsm3_0,?,?,?,na,?,?,FXc(?),FXc(?),?,?,TV,na,"none confirmed; BC/OC/SD temporal treatment unresolved (FXc claim refuted — likely TV); MD/SS presumed FXc (Table S1 '-' consistent)"
+ncar_pcm1,TV,TV,TV,na,na,na,na,na,na,TV,TV,na,none
+cccma_cgcm3_1_t47,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),?,?,?,?,"SO/VL/FC unverified; BC/OC/MD/SS are Shettle&Fenn 1979 fixed background"
+cccma_cgcm3_1_t63,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),?,?,?,?,"identical to T47; SO/VL/FC unverified"

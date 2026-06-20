@@ -1,0 +1,32 @@
+# Source: Durack & Wijffels (2012) Science supplement, Table S1
+# "Forcings and flux corrections used in CMIP3 simulations of 20th century climate change [Updated from (39)]."
+# Y = forcing included; - = not included; blank/"" = not specified in source.
+# Forcing keys: G=well-mixed GHGs; O=tropospheric+stratospheric ozone; SD=sulphate aerosol direct;
+#   SI=sulphate aerosol indirect; BC=black carbon; OC=organic carbon; MD=mineral dust; SS=sea salt;
+#   LU=land-use change; SO=solar irradiance; VL=volcanic aerosols; FC=flux corrections (F=freshwater, H=heat/momentum)
+model_id,center,representative_runs,G,O,SD,SI,BC,OC,MD,SS,LU,SO,VL,FC
+bccr_bcm2.0,BCCR,1,Y,-,Y,-,-,-,-,-,-,-,-,-
+cccma_cgcm3_1_t47,CCCma,"2,3,4,5,6",Y,-,Y,-,-,-,-,-,-,-,-,"F,H"
+cccma_cgcm3_1_t63,CCCma,7,Y,-,Y,-,-,-,-,-,-,-,-,"F,H"
+cnrm_cm3,CNRM,8,Y,Y,Y,-,Y,-,-,-,-,-,-,-
+csiro_mk3_0,CSIRO,"9,10,11",Y,Y,Y,-,-,-,-,-,-,-,-,-
+csiro_mk3_5,CSIRO,"12,13,14",Y,Y,Y,-,-,-,-,-,-,-,-,-
+gfdl_cm2_0,GFDL,15,Y,Y,Y,-,Y,Y,-,-,Y,Y,Y,-
+gfdl_cm2_1,GFDL,16,Y,Y,Y,-,Y,Y,-,-,Y,Y,Y,-
+giss_aom,GISS,"17,18",Y,-,Y,-,-,-,-,Y,-,-,-,-
+giss_model_e_h,GISS,"19,20,21,22,23",Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,-
+giss_model_e_r,GISS,"24,25,26,27,28,29,30,31,32",Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,-
+iap_fgoals1_0,IAP,"33,34,35",Y,-,Y,-,-,-,-,-,-,-,-,-
+ingv_echam4,INGV,36,Y,Y,Y,-,-,-,-,-,-,-,-,-
+ipsl_cm4,IPSL,37,Y,-,Y,Y,-,-,-,-,-,-,-,-
+miroc3_2_hires,CCSR/NIES/FRCGC,38,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,-
+miroc3_2_medres,CCSR/NIES/FRCGC,39,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y,-
+miub_echo_g,MIUB/METRI/M&D,"40,41,42",Y,-,Y,Y,-,-,-,-,-,Y,Y,"F,H"
+mpi_echam5,MPI-M,"43,44,45",Y,Y,Y,Y,-,-,-,-,-,-,-,
+mri_cgcm2_3_2a,MRI,"46,47,48,49,50",Y,-,Y,-,-,-,-,-,-,Y,Y,"F,H"
+ncar_ccsm3_0,NCAR,"51,52",Y,Y,Y,-,Y,Y,-,-,-,Y,Y,
+ncar_pcm1,NCAR,"53,54,55",Y,Y,Y,-,-,-,-,-,-,Y,Y,
+ukmo_hadcm3,UKMO,"56,57",Y,Y,Y,Y,-,-,-,-,-,Y,-,
+ukmo_hadgem1,UKMO,58,Y,Y,Y,Y,Y,Y,-,-,Y,Y,-,
+# inmcm3_0 is NOT in Table S1; added as the 24th model. All cells "?" — to be built from primary literature.
+inmcm3_0,INM,?,?,?,?,?,?,?,?,?,?,?,?,?
