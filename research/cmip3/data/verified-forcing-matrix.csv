@@ -13,7 +13,9 @@ giss_model_e_h,TV,TV,TV,TV,TV,TV,FXc*,FXc*,TV,TV,TV,na,"MD,SS: Table S1=Y but fi
 giss_model_e_r,TV,TV,TV,TV,TV,TV,FXc*,FXc*,TV,TV,TV,na,"MD,SS: Table S1=Y but fixed climatology (not transient)"
 ncar_ccsm3_0,?,?,?,na,?,?,FXc(?),FXc(?),?,?,TV,na,"none confirmed; BC/OC/SD temporal treatment unresolved (FXc claim refuted — likely TV); MD/SS presumed FXc (Table S1 '-' consistent)"
 ncar_pcm1,TV,TV,TV,na,na,na,na,na,na,TV,TV,na,none
-cccma_cgcm3_1_t47,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),?,?,?,?,"SO/VL/FC unverified; BC/OC/MD/SS are Shettle&Fenn 1979 fixed background"
-cccma_cgcm3_1_t63,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),?,?,?,?,"identical to T47; SO/VL/FC unverified"
-csiro_mk3_0,?,?TV-or-FXc,TV(monthly),na,na,na,na,na,?,?,?,na,"SD=Penner1994 monthly sulphate confirmed; O=Y may conflict if FX-clim; SO/VL/G/LU unverified"
-csiro_mk3_5,?,?TV-or-FXc,TV(monthly inferred),na(inferred),na(inferred),na(inferred),na(inferred),na(inferred),?,?,?,?,"all inferred from Mk3.0; PCMDI docs blank; needs Mk3.5 primary source (Gordon 2010?)"
+cccma_cgcm3_1_t47,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),na,?(no-variability),na,FXc(heat+FW),"FC=F,H confirmed (heat+freshwater FX-clim corrections); SO/VL/LU supported by documented silence; no conflicts"
+cccma_cgcm3_1_t63,TV,FXc,TV,na,FXk(0.2 mg/m2 soot),FXk(2.55/0.263 mg/m2),FXk(57.71 mg/m2),FXk(18.82 mg/m2),na,?(no-variability),na,FXc(heat+FW),"identical to T47; FC=F,H confirmed"
+csiro_mk3_0,TV(equiv-CO2),~FXc-or-TV(Wang1995),TV(monthly Penner1994),na,na,na,na,na,na,?,na,na,"G=TV equiv-CO2; O=Y candidate conflict (Wang1995 AMIPII baseline but TV capability confirmed; 20C3M undocumented); SD/FC confirmed; SO/VL/LU by absence; synthesis complete"
+csiro_mk3_5,TV(equiv-CO2),~FXc-or-TV(inferred),TV(monthly Penner1994),na,na,na,na,na,na,?,na,na,"same treatment as Mk3.0 inferred; CTR_021 defers 20C3M details elsewhere; FC confirmed from PCMDI; O candidate conflict"
+cnrm_cm3,TV,?(FXc-or-omitted),TV(Boucher&Pham2002 annual),na*,na,na,na,na,na,FXk(1370 W m-2)*,na,na,"SI=Y conflict (direct sulphate only no indirect); SO=Y conflict (fixed 1370 W/m2); VL=Y conflict (no volcanic variability stated)"
+ipsl_cm4,TV,?(unconfirmed-TV?),TV(Boucher&Pham2002 LOA),TV(1st-indirect Boucher-Lohmann1995 POLDER),na,na,na,na,na,FXk(1365 W m-2)*,na,na,"SO=Y conflict (fixed 1365 W/m2 no variability); VL=Y conflict (no natural forcings); O=Y unconfirmed (possible FXc or TV)"

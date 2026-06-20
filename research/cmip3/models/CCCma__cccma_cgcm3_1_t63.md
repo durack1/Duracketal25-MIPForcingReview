@@ -21,18 +21,18 @@
 | OC | Organic carbon | - | ✓ supports | FX-const | Fixed Shettle & Fenn 1979 background; water-soluble: continental **2.55 mg m⁻²**, maritime **0.263 mg m⁻²** | Scinocca et al. 2008 | scinocca_technical_2008 | Identical to T47 |
 | MD | Mineral dust | - | ✓ supports | FX-const | Fixed Shettle & Fenn 1979 background; dust-like: continental **57.71 mg m⁻²** | Scinocca et al. 2008 | scinocca_technical_2008 | Identical to T47 |
 | SS | Sea salt | - | ✓ supports | FX-const | Fixed Shettle & Fenn 1979 background; oceanic: **18.82 mg m⁻²** | Scinocca et al. 2008 | scinocca_technical_2008 | Identical to T47 |
-| LU | Land-use change | - | ~ unclear | ? | Not documented; Table S1 "-" unverified | — | — | Identical open question to T47 |
-| SO | Solar irradiance | - | ~ unclear | ? | Not documented; SO=- unusual for 20C3M — requires Flato & Boer 2001 | — | — | Identical open question to T47 |
-| VL | Volcanic aerosols | - | ~ unclear | ? | Not documented; VL=- unusual for 20C3M — requires Flato & Boer 2001 | — | — | Identical open question to T47 |
-| FC | Flux corrections (F/H) | F,H | ~ unclear | ? | Not documented; requires Flato & Boer 2001 for confirmation and values | — | — | Identical open question to T47 |
+| LU | Land-use change | - | ~ supports | n/a (by absence) | Not mentioned in WDCC run metadata; consistent with minimal forcing set | WDCC/IPCC-DDC CGCM3.1_T63_20C3M_1 | — | Identical to T47 |
+| SO | Solar irradiance | - | ~ supports | ? (no variability) | Not mentioned in WDCC run metadata or any consulted source. No solar constant value found. | WDCC/IPCC-DDC metadata | — | Identical to T47; documented silence, medium confidence |
+| VL | Volcanic aerosols | - | ~ supports | n/a (by absence) | "Not mentioned in the document" (PCMDI). WDCC run metadata = GHG + sulphate only. | WDCC/IPCC-DDC metadata; PCMDI CMIP1 | — | Identical to T47 |
+| FC | Flux corrections (F/H) | F,H | ✓ supports | FX-clim (fixed correction fields) | Both heat AND freshwater flux corrections applied; calculated from uncoupled equilibria + 14-year adaptive run + 5-year drift correction. Heat (W m⁻²) and freshwater fields. Specific numeric values not published. | PCMDI CMIP1; CCCma model page; IPCC AR4 | flato_canadian_2000 | **FC=F,H confirmed** — identical to T47 |
 
 ### Table S1 conflicts found
-- **None confirmed.** Same as T47: G=Y and SD=Y supported; O=-, BC=-, OC=-, MD=-, SS=- consistent with fixed-field treatment. SO=-, VL=-, FC=F,H unresolved.
+- **None confirmed.** Identical to T47 — all forcings either directly supported or supported by documented silence. No conflicts with Table S1.
 
 ### Open questions
 - Identical to T47 — see `CCCma__cccma_cgcm3_1_t47.md` §Open questions.
 
 ## Provenance
 - Table S1 row: G Y · O - · SD Y · SI - · BC - · OC - · MD - · SS - · LU - · SO - · VL - · FC F,H
-- Sources consulted: identical to T47 — WDC-Climate metadata for CGCM3.1_T63_20C3M_1 confirmed word-for-word identical to T47 record for all forcing entries
-- Stage 4 adversarial workflow: 12/14 claims confirmed; both models analysed jointly
+- Sources consulted: identical to T47 — WDCC CGCM3.1_T63_20C3M_1 metadata word-for-word identical to T47 for all forcing entries
+- Stage 4b adversarial workflow: identical findings to T47 — see `CCCma__cccma_cgcm3_1_t47.md`

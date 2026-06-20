@@ -2,8 +2,8 @@
 
 - **CMIP phase:** CMIP3 (20C3M)
 - **Model family / lineage:** CSIRO Mk3 → Mk3.5 → Mk3.6 (CMIP5). Mk3.0 and Mk3.5 share the same aerosol treatment (Penner et al. 1994 sulphate); Mk3.5 is an updated version with enhanced physics.
-- **Primary documentation paper(s):** Gordon, H.B. et al. (2002). *The CSIRO Mk3 Climate System Model.* CSIRO Atmospheric Research Technical Paper No. 60. (`resources/` — locate or upload) — **key primary source, contains forcing details including aerosol quote**; PCMDI CMIP3 model documentation page for csiro_mk3_0 (incomplete for forcing specs).
-- **Forcing-specific reference(s):** Penner, J.E. et al. (1994) — sulphate aerosol monthly mean fields; *(exact journal ref to confirm — likely Bull. Amer. Meteor. Soc. 75(3) or Nature)*
+- **Primary documentation paper(s):** Gordon, H.B., Rotstayn, L.D., McGregor, J.L., Dix, M.R., Kowalczyk, E.A., O'Farrell, S.P., Waterman, L.J., Hirst, A.C., Wilson, S.G., Collier, M.A., Watterson, I.G., and Elliott, T.I. (2002). *The CSIRO Mk3 Climate System Model.* CSIRO Atmospheric Research Technical Paper No. 60. (URL: https://www.cmar.csiro.au/e-print/open/gordon_2002a.pdf) — confirmed primary source with verbatim forcing quotes; PCMDI CMIP3 model documentation page (incomplete — only template headers, no filled-in forcing specs).
+- **Forcing-specific reference(s):** Penner, J.E., Atherton, C.A., and Graedel, T.E. (1994) — sulphate aerosol monthly mean fields *(full title to confirm — authors confirmed from PCMDI reference list)*; Wang, W.-C. et al. (1995) — AMIP II ozone climatology (monthly mean, zonal mean)
 
 ## Forcing datasets used (historical / 20C3M) — with adversarial verification of Table S1
 
@@ -12,31 +12,31 @@
 
 | Key | Forcing | Table S1 | Verdict | Temporal | Dataset / source (series or fixed field) | Citation | bib key | Notes |
 |-----|---------|----------|---------|----------|------------------------------------------|----------|---------|-------|
-| G  | Well-mixed GHGs (CO2, CH4, N2O, CFCs) | Y | ~ unclear | ? | Not confirmed from Gordon 2002 or PCMDI doc; PCMDI section incomplete | Gordon et al. 2002 *(incomplete)* | gordon_csiro_2002 | Requires further read of Gordon 2002 Tech Report |
-| O  | Ozone (tropo + strato) | Y | ~ unclear | ? | PCMDI doc notes "No interactive atmospheric chemistry" — raises ambiguity about whether ozone is truly time-varying (TV) or a fixed climatology; if FX-clim, Table S1 Y would be ✗ conflict | PCMDI CMIP3 Mk3.0 doc | — | Critical open question — same potential fixed-clim pattern as CCCma |
-| SD | Sulphate aerosol — direct | Y | ✓ supports | TV (monthly mean) | "Direct effect of aerosols only using monthly mean sulfate (Penner et al, 1994)" — monthly mean fields, time-varying | Gordon et al. 2002 Tech Paper No. 60 | gordon_csiro_2002 | Quote is direct from gordon_2002a.pdf; confirms SD=Y as monthly-mean TV; Penner et al. 1994 is the source dataset |
-| SI | Sulphate aerosol — indirect | - | ✓ supports | n/a | "Direct effect of aerosols only" — no indirect effect applied | Gordon et al. 2002 | gordon_csiro_2002 | Explicit exclusion of indirect effect; Table S1 "-" confirmed |
-| BC | Black carbon | - | ✓ supports | n/a | Not applied; Gordon 2002 states sulphate direct effect only — no BC in aerosol scheme | Gordon et al. 2002 | gordon_csiro_2002 | Table S1 "-" confirmed |
-| OC | Organic carbon | - | ✓ supports | n/a | Not applied; same aerosol-only exclusion as BC | Gordon et al. 2002 | gordon_csiro_2002 | Table S1 "-" confirmed |
-| MD | Mineral dust | - | ✓ supports | n/a | Not applied; sulphate-direct-only aerosol scheme excludes dust | Gordon et al. 2002 | gordon_csiro_2002 | Table S1 "-" confirmed |
-| SS | Sea salt | - | ✓ supports | n/a | Not applied; sulphate-direct-only aerosol scheme excludes sea salt | Gordon et al. 2002 | gordon_csiro_2002 | Table S1 "-" confirmed |
-| LU | Land-use change | - | ~ unclear | ? | Not confirmed from any located source; PCMDI section blank | — | — | Requires full read of Gordon 2002 Tech Report |
-| SO | Solar irradiance | - | ~ unclear | ? | PCMDI forcing sections blank/incomplete; not confirmed from Gordon 2002 abstract; SO=- is unusual for a 20C3M run | Gordon et al. 2002 *(not confirmed)* | — | Same unusual pattern as CCCma CGCM3.1 — needs confirmation |
-| VL | Volcanic aerosols | - | ~ unclear | ? | PCMDI forcing sections blank/incomplete; not confirmed from any located source; VL=- is unusual for a 20C3M run | — | — | Requires full read of Gordon 2002 Tech Report; if confirmed absent, notable omission |
-| FC | Flux corrections (F/H) | - | ✓ supports | n/a | "None" for flux adjustment (heat, water, or momentum) — confirmed from PCMDI documentation | PCMDI CMIP3 Mk3.0 doc | — | FC=- confirmed; no flux corrections applied |
+| G  | Well-mixed GHGs (CO2, CH4, N2O, CFCs) | Y | ✓ supports | TV (equiv CO2) | "Effects of changes in [CH4, N2O, CFC] concentrations can be included approximately in climate change experiments by means of equivalent CO2." Control run: fixed 330 ppmv CO2. 20C3M: time-varying equivalent CO2. CH4/N2O/CFCs not represented explicitly — folded into equiv-CO2 scalar. | Gordon et al. 2002 Tech Paper No. 60 | gordon_csiro_2002 | Confirmed TV but note GHGs collapsed to single equiv-CO2 field (simpler than e.g. GFDL/GISS which represent species individually); exact obs-based time series not identified |
+| O  | Ozone (tropo + strato) | Y | ~ unclear | FX-clim (baseline) / TV (capability) | "Ozone concentrations are specified as a function of latitude, pressure and month from the AMIP II recommended dataset (Wang et al. 1995)… In experiments that include the effect of secular ozone changes a different input file can be used for each year." Baseline is FX-clim (Wang 1995 AMIP II); per-year ozone is an optional capability. The illustrative SRES-A2 transient DID vary ozone — but PCMDI perturbation sections are blank and 20C3M ozone treatment is undocumented. **Candidate conflict**: if 20C3M used fixed Wang 1995 baseline, Table S1 Y is a ✗ conflict. | Gordon et al. 2002 Tech Paper No. 60; PCMDI Mk3.0 doc (blank) | gordon_csiro_2002 | Upgraded from ✗ conflict to ~ unclear: model has TV ozone capability and used it in SRES-A2 run, so 20C3M *may* have applied transient ozone. Collier & Bi 2008 CMIP3 documentation report may resolve this. |
+| SD | Sulphate aerosol — direct | Y | ✓ supports | TV (monthly mean) | "Direct effect of aerosols only using monthly mean sulfate (Penner et al, 1994)" — confirmed verbatim from both Gordon 2002 PDF and PCMDI page | Gordon et al. 2002; PCMDI CMIP3 Mk3.0 | gordon_csiro_2002 | Confirmed independently from two sources; monthly-mean TV sulphate direct effect |
+| SI | Sulphate aerosol — indirect | - | ✓ supports | n/a | "Direct effect of aerosols only" — explicit exclusion of indirect effect | Gordon et al. 2002; PCMDI CMIP3 Mk3.0 | gordon_csiro_2002 | "Only" language directly rules out indirect effect |
+| BC | Black carbon | - | ✓ supports | n/a | Not applied; sulphate-direct-only scheme excludes BC | Gordon et al. 2002; PCMDI CMIP3 Mk3.0 | gordon_csiro_2002 | Table S1 "-" confirmed |
+| OC | Organic carbon | - | ✓ supports | n/a | Not applied; sulphate-direct-only scheme excludes OC | Gordon et al. 2002; PCMDI CMIP3 Mk3.0 | gordon_csiro_2002 | Table S1 "-" confirmed |
+| MD | Mineral dust | - | ✓ supports | n/a | Not applied; sulphate-direct-only scheme excludes dust | Gordon et al. 2002; PCMDI CMIP3 Mk3.0 | gordon_csiro_2002 | Table S1 "-" confirmed |
+| SS | Sea salt | - | ✓ supports | n/a | Not applied; sulphate-direct-only scheme excludes sea salt | Gordon et al. 2002; PCMDI CMIP3 Mk3.0 | gordon_csiro_2002 | Table S1 "-" confirmed |
+| LU | Land-use change | - | ~ supports | n/a (by absence) | Not mentioned in any primary source; land-use is not listed among forcings in Gordon 2002 or PCMDI pages | — | — | Support by absence; LU=- consistent with minimal forcing set |
+| SO | Solar irradiance | - | ~ supports | ? (no variability) | No solar variability mentioned in any primary source. The proposed fixed 1367 W m⁻² scalar was **adversarially refuted** — not confirmed as documented solar treatment. SO=- is supported by absence/silence (medium confidence only). | Gordon et al. 2002 *(solar not mentioned)*; Phipps et al. 2011 GMD (Mk3L solar = 1365 W m⁻² — refuting 1367) | — | No fixed solar scalar confirmed from 20C3M-specific docs; SO=- rests on absence of any solar variability in primary sources, not explicit "none" |
+| VL | Volcanic aerosols | - | ~ supports | n/a (by absence) | No volcanic forcing mentioned in any primary source for CSIRO CMIP3 runs; VL=- supported by absence/silence (medium confidence). | Gordon et al. 2002 *(volcanic not mentioned)* | — | Same unusual VL=- pattern as CCCma CGCM3.1; confirmed at same evidence level (silence) |
+| FC | Flux corrections (F/H) | - | ✓ supports | n/a | "Flux adjustment? (heat?, water?, momentum?, annual?, monthly?). None" — verbatim from PCMDI; "fully coupled ocean-atmosphere system, without the need for any adjustments of the interactive fluxes" from Gordon 2002/2010. Eliminating flux corrections (required by predecessor Mk2) was a stated Mk3 design goal. | PCMDI CMIP3 Mk3.0; Gordon et al. 2002; Gordon et al. 2010 (CTR_021) | gordon_csiro_2002 | FC=- strongly confirmed from multiple sources |
 
 ### Table S1 conflicts found
-- **None confirmed.** SD=Y (Penner monthly sulphate, TV) and SI=BC=OC=MD=SS=FC=- are all consistent with primary documentation.
-- **Open**: O=Y — if ozone is FX-clim (as PCMDI's "no interactive chemistry" note hints), this would be a ✗ conflict; unresolved pending full Gordon 2002 read.
-- **Unresolved**: G=Y, SO=-, VL=-, LU=- — not confirmed or denied from sources accessed.
+- **O=Y — candidate conflict (~unclear)**: The default ozone is the Wang et al. 1995 AMIP II fixed climatology, and whether the 20C3M run applied transient per-year ozone files is undocumented in primary sources (PCMDI forcing sections blank; Gordon 2002 documents an illustrative SRES-A2 transient, not the formal 20C3M). The model HAS per-year ozone capability and used it in the SRES-A2 run — so conflict is not confirmed. Marked ~ unclear pending Collier & Bi 2008 CMIP3 documentation review.
+- **No other confirmed conflicts.**
 
-### Open questions (Stage 5 residual)
-1. **O=Y**: Is ozone truly time-varying, or a fixed climatology? PCMDI notes "no interactive atmospheric chemistry" — could mean ozone is prescribed FX-clim, making Table S1 Y a conflict.
-2. **SO=- and VL=-**: Did CSIRO Mk3.0 truly omit solar and volcanic forcing? Requires Gordon 2002 Tech Report §forcing or 20C3M run description.
-3. **G=Y**: What GHG time series was used? Exact dataset not yet identified.
-4. **Penner et al. 1994**: Confirm exact journal/DOI for the sulphate dataset.
+### Open questions
+1. **O=Y transient vs. fixed**: Was Wang et al. 1995 AMIP II baseline used for 20C3M, or were per-year ozone files applied? Collier & Bi (2008) CSIRO CMIP3 documentation report may resolve this.
+2. **SO=- and VL=-**: Supported by silence — needs explicit confirmation (or the Collier & Bi 2008 report).
+3. **G=Y equivalent CO2**: Exact time series for the equiv-CO2 forcing not identified.
+4. **Penner et al. 1994**: Confirmed as an emissions-inventory paper (Penner, Atherton, Graedel 1994, "Global emissions and models of photochemically active compounds") — the monthly-mean sulphate field is attributed to it exactly as PCMDI states; full DOI still to confirm.
 
 ## Provenance
 - Table S1 row: G Y · O Y · SD Y · SI - · BC - · OC - · MD - · SS - · LU - · SO - · VL - · FC -
-- Primary sources consulted: Gordon et al. 2002 CSIRO Tech Paper No. 60 (gordon_2002a.pdf, accessed via cmar.csiro.au); PCMDI CMIP3 Mk3.0 model documentation page (pcmdi.llnl.gov/ipcc/model_documentation/CSIRO-Mk3.0.htm — forcing sections incomplete)
-- Stage 5 adversarial workflow: partial (synthesis step failed due to API rate limits); 5 claims confirmed 1-0; 9 verify agents failed due to session limit — see NEXT-STAGE.md for resume plan
+- Primary sources consulted: Gordon et al. 2002 CSIRO Tech Paper No. 60 (gordon_2002a.pdf — verbatim ozone and aerosol quotes confirmed); PCMDI CMIP3 Mk3.0 model documentation page (verbatim FC and aerosol quotes confirmed; forcing sections otherwise blank template); Phipps et al. 2011 GMD (corroborating Mk3 solar constant at 1365 W m⁻²); researchdata.edu.au Mk3.0 record
+- Stage 5 adversarial workflow: **COMPLETE** — 18/18 verify agents (17 confirmed, 1 refuted); synthesis step completed on third resume (wf_7d31707c-778); 8 findings retained after synthesis, 2 dropped
+- Key synthesis note: "Primary documentation of the ACTUAL 20C3M experiment is thin: Gordon et al. (2002) documents an illustrative SRES-A2 transient (NOT formal 20C3M); Gordon et al. (2010) for Mk3.5 explicitly defers historical-run details 'elsewhere'; PCMDI questionnaire pages leave perturbation/forcing sections blank for both models."

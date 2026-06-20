@@ -48,7 +48,7 @@ Stage 4 results written (2026-06-20):
 
 ---
 
-## Stage 5 (CSIRO: csiro_mk3_0, csiro_mk3_5) — PARTIAL ◐ (2026-06-20)
+## Stage 5 (CSIRO: csiro_mk3_0, csiro_mk3_5) — COMPLETE ✓ (2026-06-20)
 
 Stage 5 ran but hit API session limits during the verify + synthesis phase. 5 claims confirmed 1-0; 9 verify agents + synthesis failed. Partial results written.
 
@@ -65,11 +65,11 @@ Stage 5 ran but hit API session limits during the verify + synthesis phase. 5 cl
 - Mk3.5 specifics: all cells inferred from Mk3.0; Mk3.5 primary source (Gordon 2010?) not found
 - Penner et al. 1994: exact journal ref not confirmed
 
-**Stage 5 resume ID:** `wf_7d31707c-778` — use `Workflow({ scriptPath: "<lean script>", resumeFromRunId: "wf_7d31707c-778" })` to re-run failed verify agents without re-running completed ones.
+**Stage 5 synthesis completed** on third resume (wf_7d31707c-778). 8 findings after synthesis; all cells written to model files and CSV. No further action needed on Stage 5.
 
 ---
 
-## Stage 4b (CCCma SO/VL/FC/LU — NOW UNBLOCKED by new PDFs)
+## Stage 4b (CCCma SO/VL/FC/LU) — COMPLETE ✓ (2026-06-20)
 
 **NEW: Flato et al. 2000 (*Clim. Dyn.*) and Flato & Boer 2001 (*GRL*) uploaded to `resources/`.**
 These directly resolve the CCCma open questions for SO=-, VL=-, FC=F,H, LU=-.
@@ -111,7 +111,19 @@ DELIVERABLE: per forcing per model — verdict, temporal treatment, dataset, cit
 
 ---
 
-## Stage 6 args (CNRM + IPSL: cnrm_cm3, ipsl_cm4) — NEXT AFTER CSIRO
+## Stage 6 (CNRM-CM3 + IPSL-CM4) — COMPLETE ✓ (2026-06-20)
+
+**Results written:** `CNRM__cnrm_cm3.md`, `IPSL__ipsl_cm4.md`, `verified-forcing-matrix.csv`, `README.md`, `bib-to-add.md`.
+
+Key findings:
+- CNRM: 3 conflicts — SI=Y (direct-only, no indirect), SO=Y (fixed 1370 W m⁻²), VL=Y (no volcanic); Boucher & Pham 2002 sulphate confirmed from PCMDI verbatim quotes
+- IPSL: 2 conflicts — SO=Y (fixed 1365 W m⁻²), VL=Y (no natural forcings); SI=Y supported (1st indirect/Twomey, Boucher-Lohmann 1995 formula D, POLDER-tuned); O=Y unconfirmed
+- Boucher & Pham 2002 DOI **confirmed**: GRL doi:10.1029/2001GL014048 ("History of sulfate aerosol radiative forcings"). The JD doi:10.1029/2001JD000765 is a separate paper — Timmreck (2001) JGR on 3D background stratospheric aerosol (potentially relevant to ECHAM-family models in Stage 7). Both PDFs uploaded.
+- Both models: Booocher LOA dataset used for SD; same dataset lineage as CCCma (three centres confirmed)
+
+Source: PCMDI model documentation pages (primary; direct quotes obtained); workflow wf_9e81bc88-cfa
+
+## Stage 6 args (CNRM + IPSL: cnrm_cm3, ipsl_cm4) — COMPLETE, preserved for reference
 
 Stage files already seeded: `research/cmip3/models/CNRM__cnrm_cm3.md`, `IPSL__ipsl_cm4.md`.
 
@@ -158,6 +170,31 @@ DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (T
 
 ---
 
+## Stage 7 args (MPI + INGV + MIUB: mpi_echam5, ingv_echam4, miub_echo_g) — NEXT
+
+Stage files already seeded: `research/cmip3/models/MPI__mpi_echam5.md`, `INGV__ingv_echam4.md`, `MIUB__miub_echo_g.md`.
+
+Document and adversarially verify the climate forcing datasets used in three European CMIP3 models — MPI-ECHAM5 (mpi_echam5), INGV-ECHAM4 (ingv_echam4), and MIUB-ECHO-G (miub_echo_g) — for their CMIP3 20C3M (historical) simulations.
+
+CONTEXT: Stage of a review anchored on Durack & Wijffels (2012) Table S1, a SECONDARY compilation — treat every Y/- as a CLAIM TO TEST against each model's PRIMARY documentation. Stage 6 finding: Table S1 SO/VL codes appear unreliable — test whether MPI/INGV/MIUB also have spurious SO=Y or VL=Y entries.
+
+PRIMARY SOURCES: MPI-ECHAM5 — Jungclaus et al. 2006 (*J. Climate*, doi:10.1175/JCLI3827.1); Roeckner et al. 2006 ECHAM5 atmospheric model documentation. INGV-ECHAM4 — Gualdi et al. 2006 (INGV CMIP3 paper); Roeckner et al. 1996 ECHAM4 documentation. MIUB-ECHO-G — Min et al. 2005 (*Theor. Appl. Climatol.*); Legutke & Voss 1999 (ECHO-G model description). PCMDI CMIP3 pages: https://pcmdi.llnl.gov/ipcc/model_documentation/MPI-ECHAM5.htm, INGV-ECHAM4.htm, MIUB-ECHO-G.htm.
+
+FOR EACH of 12 forcings, for EACH model: (a) applied in 20C3M? (b) WHICH dataset/source — whether TIME-VARYING or FIXED, and WHAT the fixed value is (with units); (c) VERDICT vs Table S1 with quote/citation. Table S1's Y/- = time-varying applied.
+
+Table S1 claims:
+mpi_echam5:   G=Y, O=Y, SD=Y, SI=Y, BC=Y, OC=Y, MD=-, SS=-, LU=Y, SO=Y, VL=Y, FC=-
+ingv_echam4:  G=Y, O=Y, SD=Y, SI=-, BC=-, OC=-, MD=-, SS=-, LU=-, SO=Y, VL=Y, FC=-
+miub_echo_g:  G=Y, O=Y, SD=Y, SI=-, BC=-, OC=-, MD=-, SS=-, LU=-, SO=Y, VL=Y, FC=H
+
+Pay attention to: MPI-ECHAM5 BC=Y, OC=Y, LU=Y — the most complex aerosol+LU set so far; confirm each dataset; MPI aerosol likely from Dentener/Stier or Tanre et al.; INGV shares ECHAM4 lineage with MIUB (test whether forcing is shared); MIUB FC=H (heat only — no freshwater, unlike CCCma); SO=Y/VL=Y for all three — given Stage 6 finding of spurious SO/VL in Table S1, test especially carefully; which solar (Lean? which version?) and volcanic (Sato? other?) reconstructions.
+
+DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (TV/fixed + fixed value with units), dataset/source, exact citation. List all conflicts with Table S1.
+
+## After Stage 7: write results into the three seeded files, add rows to verified-forcing-matrix.csv, update README registry + staging + cross-cutting, append refs to bib-to-add.md. Then move to Stage 8 (UKMO: hadcm3, hadgem1).
+
+---
+
 ## Remaining queue (CMIP3 first pass)
-5 CSIRO · 6 CNRM+IPSL · 7 MPI+INGV+MIUB · 8 UKMO · 9 MIROC+MRI · 10 BCCR+IAP+INM
+7 MPI+INGV+MIUB · 8 UKMO · 9 MIROC+MRI · 10 BCCR+IAP+INM
 Then later passes: CMIP5 lineage, CMIP6/input4MIPs.
