@@ -203,7 +203,17 @@ DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (T
 
 ## After Stage 7: DONE ✓
 
-## Stage 8 args (UKMO: ukmo_hadcm3, ukmo_hadgem1) — NEXT
+## Stage 8 (UKMO: ukmo_hadcm3, ukmo_hadgem1) — COMPLETE ✓ (2026-06-20)
+
+**Results written:** `UKMO__ukmo_hadcm3.md`, `UKMO__ukmo_hadgem1.md`, CSV, README, bib-to-add.md.
+
+Key findings:
+- HadCM3: G/O/SD/SI/SO all confirmed; solar = Lean 1995; indirect = delta-albedo offline method (sulphate only); VL=Y **unverified** (adversarial refute — Sato 1993 in attribution ensemble but not confirmed for 20C3M submission)
+- HadGEM1: 1 conflict (MD=Y — mineral dust absent from CLASSIC); LU=- questionable (Goldewijk 2001 in Run 1); SO=Y/VL=Y confirmed (Solanki & Krivova 2003 solar; updated Sato 1993 volcanic); CLASSIC scheme = sulphate+SS+BC+biomass-smoke with 1st+2nd indirect (most complete SI so far)
+- Two-run design for HadGEM1: Run 1 = anthropogenic only; Run 2 = + natural forcings
+- Different solar reconstructions within UKMO: HadCM3 = Lean 1995; HadGEM1 = Solanki & Krivova 2003
+
+## Stage 8 args (UKMO: ukmo_hadcm3, ukmo_hadgem1) — COMPLETE, preserved for reference
 
 Stage files already seeded: `research/cmip3/models/UKMO__ukmo_hadcm3.md`, `UKMO__ukmo_hadgem1.md`.
 
@@ -231,6 +241,32 @@ DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (T
 
 ---
 
+## Stage 9 args (MIROC + MRI: miroc3_2_hires, miroc3_2_medres, mri_cgcm2_3_2a) — NEXT
+
+Stage files already seeded: `research/cmip3/models/CCSR__miroc3_2_hires.md`, `CCSR__miroc3_2_medres.md`, `MRI__mri_cgcm2_3_2a.md`.
+
+Document and adversarially verify the climate forcing datasets used in three Japanese CMIP3 models — MIROC3.2(hires) (miroc3_2_hires), MIROC3.2(medres) (miroc3_2_medres), and MRI-CGCM2.3.2a (mri_cgcm2_3_2a) — for their CMIP3 20C3M (historical) simulations.
+
+CONTEXT: Stage of a review anchored on Durack & Wijffels (2012) Table S1. Key prior findings: SO/VL=Y are unreliable in Table S1 (wrong for 4+ models); mineral dust and sea salt marked Y can be errors (HadGEM1 MD=Y wrong); BC/OC/LU marked Y can be unsupported (MPI). Test all these carefully.
+
+PRIMARY SOURCES: MIROC3.2 — Hasumi & Emori 2004 (CCSR/NIES/FRCGC Tech Report No. 1); K-1 model developers 2004; PCMDI pages https://pcmdi.llnl.gov/ipcc/model_documentation/MIROC3.2_hires.htm and MIROC3.2_medres.htm. MRI-CGCM2.3.2a — Yukimoto et al. 2001 (MRI Tech Reports); PCMDI page https://pcmdi.llnl.gov/ipcc/model_documentation/MRI-CGCM2.3.2.htm.
+
+Table S1 claims:
+miroc3_2_hires:  G=Y, O=Y, SD=Y, SI=Y, BC=Y, OC=Y, MD=Y, SS=Y, LU=-, SO=Y, VL=Y, FC=-
+miroc3_2_medres: G=Y, O=Y, SD=Y, SI=Y, BC=Y, OC=Y, MD=Y, SS=Y, LU=-, SO=Y, VL=Y, FC=-
+mri_cgcm2_3_2a:  G=Y, O=Y, SD=Y, SI=-, BC=-, OC=-, MD=-, SS=-, LU=-, SO=Y, VL=Y, FC=F,H
+
+Pay attention to:
+- MIROC3.2 has the fullest aerosol claim in Table S1 (BC/OC/MD/SS/SI all Y) — these were wrong for MPI and HadGEM1 (MD); verify each species independently from Hasumi & Emori 2004
+- MIROC hires vs medres: are forcing treatments identical or do they differ?
+- MRI FC=F,H — flux corrections (heat+water) like CCCma and MIUB; confirm from Yukimoto 2001
+- SO=Y/VL=Y for all three — given systematic Table S1 errors, verify especially carefully; Japanese models may use different solar/volcanic datasets from the European ones
+- MRI SI=- vs MIROC SI=Y — different indirect aerosol implementations between Japanese models?
+
+DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (TV/fixed + fixed value with units), dataset/source, exact citation. List all conflicts with Table S1.
+
+## After Stage 9: write results, update all tracking files, add Stage 10 args (BCCR+IAP+INM).
+
 ## Remaining queue (CMIP3 first pass)
-7 MPI+INGV+MIUB · 8 UKMO · 9 MIROC+MRI · 10 BCCR+IAP+INM
+9 MIROC+MRI · 10 BCCR+IAP+INM
 Then later passes: CMIP5 lineage, CMIP6/input4MIPs.

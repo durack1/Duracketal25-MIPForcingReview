@@ -83,6 +83,18 @@ Secondary GISS-AOM sulphate reference to add if AOM is pursued: Boucher & Pham (
 | gualdi_tropical_2008 | Gualdi, S., et al. (2008). The INGV-CMCC seasonal prediction system: improved ocean initial conditions. *Mon. Wea. Rev.* or *J. Climate* — **verify exact ref**: PCMDI cites INGV-SXG documentation; Gualdi et al. papers from ~2003–2008 describe SINTEX-G. | verify — candidate: doi:10.1175/2007JCLI1824.1 |
 | stier_aerosol_2005 | Stier, P., et al. (2005). The aerosol-climate model ECHAM5-HAM. *Atmos. Chem. Phys.* 5(4), 1125–1156. ECHAM5 interactive aerosol module (BC/OC/sulphate/dust/sea salt) — NOT used in CMIP3 20C3M but establishes that MPI-ECHAM5 is capable of BC/OC in principle; clarifies why BC=Y/OC=Y in Table S1 may be a transcription error. | 10.5194/acp-5-1125-2005 |
 
+## From Stage 8 (HadCM3 + HadGEM1)
+| Proposed key | Reference | DOI / URL |
+|--------------|-----------|-----------|
+| johns_hadcm3_2003 | Johns, T.C., et al. (2003). Anthropogenic climate change for 1860 to 2100 simulated with the HadCM3 model under updated emissions scenarios. *Clim. Dyn.* 20, 583–612. HadCM3 forcing table (Table 1a) — GHG + sulphate + ozone + solar + volcanic specification. | 10.1007/s00382-002-0296-y |
+| stott_external_2000 | Stott, P.A., et al. (2000). External control of 20th century temperature by natural and anthropogenic forcings. *Science* 290(5499), 2133–2137. HadCM3 20th-century attribution ensemble; solar = Lean 1995. | 10.1126/science.290.5499.2133 |
+| tett_estimation_2002 | Tett, S.F.B., et al. (2002). Estimation of natural and anthropogenic contributions to twentieth century temperature change. *J. Geophys. Res.* 107(D16). HadCM3 indirect sulphate (delta-albedo method). | 10.1029/2000JD000028 |
+| johns_hadgem1_2006 | Johns, T.C., et al. (2006). The new Hadley Centre Climate Model (HadGEM1): Evaluation of coupled simulations. *J. Climate* 19(7), 1327–1353. HadGEM1 primary coupled model paper. | 10.1175/JCLI3636.1 |
+| martin_physical_2006 | Martin, G.M., et al. (2006). The physical properties of the atmosphere in the new Hadley Centre Global Environmental Model (HadGEM1). *J. Climate* 19(7), 1274–1301. HadGEM1 CLASSIC aerosol scheme — confirms MD absent, BC/OC/SS/SI confirmed. | 10.1175/JCLI3551.1 |
+| stott_hadgem1_2006 | Stott, P.A., et al. (2006). Transient climate simulations with the HadGEM1 climate model: Causes of past warming and future climate change. *J. Climate* 19(12), 2763–2782. HadGEM1 20C3M forcing; Run 1/Run 2 design; Solanki & Krivova 2003 solar + Sato 1993 volcanic. | 10.1175/JCLI3731.1 |
+| solanki_2003 | Solanki, S.K. & Krivova, N.A. (2003). Can solar variability explain global warming since 1970? *J. Geophys. Res.* 108(A5), 1200. HadGEM1 solar reconstruction (Run 2). | 10.1029/2002JA009753 |
+| goldewijk_2001 | Goldewijk, K.K. (2001). Estimating global land use change over the past 300 years: the HYDE database. *Global Biogeochem. Cycles* 15(2), 417–433. HadGEM1 land-use change forcing (Run 1) — may conflict with Table S1 LU=-. | 10.1029/1999GB001232 |
+
 ## Already present in 241114a.bib (reused in Stages 1–2)
 - hurtt_underpinnings_2006 — Hurtt et al. 2006 land-use reconstruction
 - sato_stratospheric_1993 — Sato et al. 1993 volcanic AOD
