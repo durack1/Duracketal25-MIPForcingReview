@@ -9,38 +9,34 @@
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
 
-**STAGE 9 SCOPE LIMITATION (wf_9b467e91-606, 2026-06-21): Watanabe M., et al. (2010; J. Climate) — the primary MIROC5 reference — produced zero surviving forcing-level claims. The paper characterises MIROC5's mean state, variability, and climate sensitivity in AMIP-style and piControl runs; it does NOT document CMIP5 historical forcing protocols in the level of detail needed for per-cell verdicts. All 12 forcing cells remain "?". Inference (unconfirmed): SPRINTARS aerosols likely continue (given MIROC-ESM/CHEM Stage 9 confirmation), but NOT confirmed for the AOGCM-only MIROC5. Requires ES-DOC/PCMDI metadata or dedicated CMIP5 historical-run documentation.**
+**SECOND-PASS UPDATE (2026-06-21): Watanabe M. et al. (2010) Section 2e "Control experiment" (pp. 6317–6318) contains explicit CMIP5 historical forcing boundary condition statements — found in second-pass targeted read. All 11 active forcing cells now resolved.**
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? | ? | ? | — | — | Standard expected (Meinshausen2011) |
-| O  | Ozone | Cionni et al. 2011 | ? | ? | ? | — | — | No interactive chemistry → Cionni2011 expected (std); confirm |
-| SD | Sulphate direct | Lamarque et al. 2010 | ? | ? | ? | — | — | SPRINTARS (exc) or prescribed-OD (std)? New aerosol scheme in MIROC5? |
-| SI | Sulphate indirect | Model-dependent | ? | ? | ? | — | — | SPRINTARS 1st indirect (from CMIP3)? Test continuation or switch. |
-| BC | Black carbon | Lamarque et al. 2010 | ? | ? | ? | — | — | SPRINTARS interactive (exc) or prescribed Lamarque2010-OD (std)? |
-| OC | Organic carbon | Lamarque et al. 2010 | ? | ? | ? | — | — | As BC — SPRINTARS or prescribed? |
-| MD | Mineral dust | Model-dependent | ? | ? | ? | — | — | SPRINTARS interactive dust (exc)? Or excluded? |
-| SS | Sea salt | Model-dependent | ? | ? | ? | — | — | SPRINTARS interactive sea salt (exc)? Or excluded? |
-| LU | Land-use change | Hurtt et al. 2011 | ? | ? | ? | — | — | Standard expected (Hurtt2011) |
-| SO | Solar irradiance | Wang et al. 2005 | ? | ? | ? | — | — | Wang2005 (std) expected; CMIP3 MIROC3.2 had genuine SO. Confirm update. |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? | ? | ? | — | — | Sato-updated (std) expected; CMIP3 MIROC3.2 had genuine VL. Test Sato-updated vs original. |
-| FC | Flux corrections | Not expected | n/a | n/a | Not expected — CMIP5 generation free-running model | — | — | CMIP5 generation; no flux corrections expected |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | **✓ std** | TV | RCP task group / Meinshausen et al. 2011 via PIK Potsdam URL: "The atmospheric concentrations of well-mixed greenhouse gases and the surface emissions of tropospheric aerosols are provided by the international task group of the Representative Concentration Pathways (RCP) Concentration Calculations and Data (available online at http://www.pik-potsdam.de/~mmalte/rcps/index.htm)." CO2 set to 284.725 ppm for 1850 control. | meinshausen_rcp_2011 | meinshausen_rcp_2011 | Confirmed via PIK Potsdam URL (= Meinshausen 2011 dataset). Watanabe 2010 Sect. 2e. |
+| O  | Ozone | Cionni et al. 2011 | **✗ dev** | TV | CHASER chemistry model (Sudo et al. 2002) — internally generated 3D ozone: "The three-dimensional atmospheric concentrations of ozone are precalculated by a chemical AGCM for the study of atmospheric environment and radiative forcing (Sudo et al. 2002), driven with emissions of its precursors in the 1850 condition." NOT Cionni 2011. | sudo_chaser_2002 | sudo_chaser_2002 | Deviation: in-house CHASER pre-computed 3D ozone, NOT Cionni 2011. Same CHASER approach as MIROC4h (Nozawa 2005 lineage). All MIROC models use CHASER-derived ozone. |
+| SD | Sulphate direct | Lamarque et al. 2010 | **＋ exc** | TV | SPRINTARS (Spectral Radiation-Transport Model for Aerosol Species; Takemura et al. 2000) interactive online aerosol. Emissions from RCP/Lamarque et al. 2010 (same PIK Potsdam source). "SPRINTARS predicts the mass mixing ratios of the main tropospheric aerosols: carbonaceous (black carbon and organic matter), sulfate, soil dust, and sea salt." Coupled to radiation and cloud microphysics. | lamarque_historical_2010 | lamarque_historical_2010 | Exceeds: interactive SPRINTARS. Watanabe 2010 Sect. 2a(6) and 2e. |
+| SI | Sulphate indirect | Model-dependent | **＋ exc** | TV | SPRINTARS "coupled with the radiation and cloud microphysics schemes to calculate the direct and indirect effects of the aerosols. A prognostic scheme for determining the cloud droplet and ice crystal number concentrations is introduced for calculating the aerosol indirect effect." Both 1st and 2nd indirect effects. | takemura_simulation_2000 | takemura_simulation_2000 | Exceeds: explicit 1st and 2nd indirect via SPRINTARS-microphysics coupling. |
+| BC | Black carbon | Lamarque et al. 2010 | **＋ exc** | TV | SPRINTARS interactive (same as SD). "Carbonaceous (black carbon and organic matter)" predicted prognostically. | lamarque_historical_2010 | lamarque_historical_2010 | Exceeds: interactive online BC via SPRINTARS. |
+| OC | Organic carbon | Lamarque et al. 2010 | **＋ exc** | TV | SPRINTARS interactive (same as SD/BC). | lamarque_historical_2010 | lamarque_historical_2010 | Exceeds: interactive online OC via SPRINTARS. |
+| MD | Mineral dust | Model-dependent | **＋ exc** | TV | SPRINTARS interactive — "soil dust" predicted prognostically online. | takemura_simulation_2000 | takemura_simulation_2000 | Exceeds: interactive online dust via SPRINTARS. |
+| SS | Sea salt | Model-dependent | **＋ exc** | TV | SPRINTARS interactive — "sea salt" predicted prognostically online. | takemura_simulation_2000 | takemura_simulation_2000 | Exceeds: interactive online sea salt via SPRINTARS. |
+| LU | Land-use change | Hurtt et al. 2011 | **✓ std** | TV | Hurtt et al. (2009) harmonised land-use dataset: "The historical land use change is given by the land use harmonization data (Hurtt et al. 2009), in which the cropland fraction is fixed at the value in 1850 for the control simulation." | hurtt_harmonization_2011 | hurtt_harmonization_2011 | Confirmed. 2009 newsletter = Hurtt 2011 pre-publication version. |
+| SO | Solar irradiance | Wang et al. 2005 | **~** | TV | Lean et al. (2005) Solar Phys. 230:27–53: "The historical changes in the total solar irradiance... are given by Lean et al. (2005)." Citation is to SORCE paper (Solar Phys.), not Wang, Lean & Sheeley (2005) ApJ (Taylor 2012 standard). TSI set to 1365.7 W/m² for 1850 control. | wang_modeling_2005 | wang_modeling_2005 | Nuanced: "Lean 2005" cited but as Solar Phys. 230 (SORCE paper). May be the same underlying TSI reconstruction; citation equivalence with Wang/Lean/Sheeley (2005) unconfirmed. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✓ std** | TV | Sato et al. (1993) — "volcanic aerosol optical depth in the stratosphere... are given by... Sato et al. (1993)." Fixed at 1850 value for piControl. | sato_volcanic_1993 | sato_volcanic_1993 | Confirmed explicitly. Standard CMIP5 dataset. |
+| FC | Flux corrections | Not expected | n/a | n/a | Not applied — free-running coupled model. | — | — | CMIP5 generation; no flux corrections. |
 
 ### ESM-specific forcing inputs
 Not an ESM — MIROC5 is an AOGCM only (no active carbon cycle or interactive chemistry). Standard 12 keys only.
 
-### Key open questions (Stage 9 scope limitation — all 12 cells remain unresolved)
-1. Aerosol scheme: Does MIROC5 continue SPRINTARS (exc) or switch to prescribed Lamarque2010-OD (std)? [SPRINTARS confirmed for MIROC-ESM/CHEM; unclear if AOGCM-only MIROC5 differs]
-2. Ozone: Cionni2011 (std)? [No interactive chemistry — most likely; but not confirmed]
-3. Solar: Wang2005 (std)? [Lean2005 deviation refuted for MIROC-ESM in Stage 9; MIROC5 claim not separately tested]
-4. Volcanic: Sato1993+updates (std)? [Confirmed for MIROC-ESM; likely same for MIROC5]
-5. MIROC4h vs MIROC5: are the forcing datasets identical?
-6. Recommended next step: ES-DOC experiment detail for MIROC5 historical run, or PCMDI CMIP5 metadata
+### Open questions
+1. SO: "Lean et al. (2005) Solar Phys. 230" may be same TSI reconstruction as Wang, Lean & Sheeley (2005) ApJ (Taylor 2012 standard), but cited as SORCE paper — equivalence unconfirmed. Verdict held at ~ (nuanced).
 
 ### Notes on CMIP3 lineage
-CMIP3 MIROC3.2-medres used SPRINTARS interactive aerosols (BC/OC/dust/SS all interactive; SI=1st indirect). MIROC5 is a major architectural update — the aerosol scheme may have changed. Watanabe et al. 2010 is the primary paper to check.
+CMIP3 MIROC3.2-medres used SPRINTARS interactive aerosols (BC/OC/dust/SS interactive; SI=1st indirect). MIROC5 continues SPRINTARS — now with prognostic cloud droplet/ice crystal scheme for both indirect effects. Aerosol treatment confirmed ＋exc (exceeds standard). Ozone = CHASER-derived, also consistent with CMIP3 lineage.
 
 ## Provenance
 - Durack et al. 2016 model list: included
-- Sources consulted: Watanabe M. et al. 2010 (J. Climate; primary paper — mean state/variability focus, no CMIP5 historical forcing documentation); CMIP3 Stage 9 results for miroc3_2_medres
-- Stage 9 workflow: wf_9b467e91-606 (2026-06-21); zero surviving claims (scope limitation — Watanabe M. 2010 does not document CMIP5 historical forcings at per-cell resolution)
+- Sources consulted: Watanabe M. et al. 2010 (J. Climate 23(23), doi:10.1175/2010JCLI3679.1); Sect. 2e "Control experiment" and Sect. 2a(6) aerosol description
+- Stage 9 workflow: wf_9b467e91-606 (2026-06-21); scope limitation — Stage 9 did not extract forcing specifics from Sect. 2e
+- Second-pass update: 2026-06-21; all 11 active cells resolved

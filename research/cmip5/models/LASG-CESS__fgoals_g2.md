@@ -4,7 +4,7 @@
 - **CMIP3 predecessor:** iap_fgoals1_0 — IAP-FGOALS1.0_g (CMIP3 Stage 10). Key difference: CMIP3 ancestor omitted SO, VL, LU, and used flux corrections — all corrected in CMIP5.
 - **Model family / lineage:** FGOALS (Flexible Global Ocean-Atmosphere-Land System) grid-point version 2. Updated GAMIL2 (Grid-point Atmospheric Model of IAP/LASG v2) atmosphere replacing GAMIL1 in CMIP3. Same IAP/LASG modelling group, now jointly with CESS (Tsinghua University).
 - **Atmosphere / ocean components:** GAMIL2 (T42, L26) + LICOM2 (LASG/IAP Climate system Ocean Model, ~1°) + CLM3 land + CICE4 sea ice
-- **Primary documentation paper(s):** Li, L., et al. (2013). The Flexible Global Ocean-Atmosphere-Land System Model Grid-Point Version 2 (FGOALS-g2): Model Description and Evaluation. *Adv. Atmos. Sci.* 30(3), 543–560. doi:10.1007/s13351-013-0301-6 [li_flexible_2013 *(add)*]
+- **Primary documentation paper(s):** Li, L., et al. (2013). The Flexible Global Ocean-Atmosphere-Land System Model Grid-Point Version 2 (FGOALS-g2): Model Description and Evaluation. *Adv. Atmos. Sci.* 30(3), 543–560. doi:10.1007/s00376-012-2140-6 [li_flexible_2013 *(add)*]
 - **Forcing-specific reference(s):** Li et al. 2013; PCMDI CMIP5 documentation
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
@@ -41,5 +41,5 @@ CMIP3 FGOALS1.0_g (IAP-FGOALS1.0) had significant forcing deficiencies confirmed
 
 ## Provenance
 - Durack et al. 2016 model list: included (row 41)
-- Sources consulted: Li et al. 2013 (Adv. Atmos. Sci. 30:543-560, doi:10.1007/s13351-013-0301-6)
+- Sources consulted: Li et al. 2013 (Adv. Atmos. Sci. 30(3):543-560, doi:10.1007/s00376-012-2140-6) ← DOI corrected 2026-06-21
 - Stage 10 workflow: wf_36a86e20-c4b (2026-06-21); G/O/LU/SO/VL corrections all confirmed 1-0; SD/BC/OC dev methodology confirmed 1-0; MD/SS exc confirmed 1-0

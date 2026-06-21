@@ -11,7 +11,7 @@
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? std | TV | Meinshausen et al. 2011 (inherited from CCSM4; PRES mode = prescribed conc.) | meinshausen_rcp_2011 | meinshausen_rcp_2011 | PRES/PROG CO2 modes — see ESM section |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | **✗ dev** | TV | IPCC TAR GHG concentrations (inherited from CCSM4). Gent 2011 Sect. 3: "The CO2 and other greenhouse gases (methane and nitrous oxide) are specified as in the IPCC third assessment report." NOT Meinshausen 2011. CESM1-BGC uses same CAM4 atmosphere as CCSM4. PRES/PROG CO2 mode distinction is ESM-specific — see ESM section. | — | — | **Deviation inferred from Gent 2011.** Shared CCSM4 atmospheric infrastructure = IPCC TAR GHGs. Second-pass 2026-06-21. |
 | O  | Ozone | Cionni et al. 2011 | ? std | TV | Cionni et al. 2011 (inherited from CCSM4; CAM4 no interactive chem) | cionni_ozone_2011 | cionni_ozone_2011 | |
 | SD | Sulphate direct | Lamarque et al. 2010 | std | TV | Lamarque et al. 2010 (prescribed OD; inherited from CCSM4) | lamarque_historical_2010 | lamarque_historical_2010 | Direct effect only |
 | SI | Sulphate indirect | Model-dependent | n/a | n/a | — | — | — | CAM4 direct effect only (inherited from CCSM4) |
@@ -19,9 +19,9 @@
 | OC | Organic carbon | Lamarque et al. 2010 | std | TV | Lamarque et al. 2010 (prescribed OD) | lamarque_historical_2010 | lamarque_historical_2010 | |
 | MD | Mineral dust | Lamarque et al. 2010 | std | TV | Lamarque et al. 2010 (prescribed OD) | lamarque_historical_2010 | lamarque_historical_2010 | |
 | SS | Sea salt | Lamarque et al. 2010 | std | TV | Lamarque et al. 2010 (prescribed OD) | lamarque_historical_2010 | lamarque_historical_2010 | |
-| LU | Land-use change | Hurtt et al. 2011 | ? std | TV | Hurtt et al. 2011 (expected; CLM4-CN land carbon interacts with LU) | hurtt_harmonization_2011 | hurtt_harmonization_2011 | |
-| SO | Solar irradiance | Wang et al. 2005 | **✓ std** | TV | Wang & Lean 2005 (SOLAR_TSI_Lean_1610-2007_annual_c090324.nc; inherited from CCSM4) | wang_modeling_2005 | wang_modeling_2005 | Inherited from CCSM4; CCSM4 confirmed 1-0 |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | **? unresolved** | TV | Sato-updated OR NCAR-internal format? (inherited from CCSM4) | — | — | Same unresolved question as CCSM4; see that file |
+| LU | Land-use change | Hurtt et al. 2011 | **✗ dev** | TV | Hurtt et al. (2006) (inherited from CCSM4). Gent 2011 Sect. 3: "Land cover changes in the CLM are prescribed on an annual basis according to...Hurtt et al. 2006." NOT Hurtt 2011. | — | — | **Deviation inferred from Gent 2011.** CLM4-CN land is shared CCSM4 infrastructure = Hurtt 2006. Note: CLM4-CN land carbon interacts with LU change. Second-pass 2026-06-21. |
+| SO | Solar irradiance | Wang et al. 2005 | **✓ std** | TV | Wang & Lean 2005 (SOLAR_TSI_Lean_1610-2007_annual_c090324.nc; inherited from CCSM4) | wang_modeling_2005 | wang_modeling_2005 | Inherited from CCSM4; CCSM4 confirmed. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✗ dev** | TV | Ammann et al. (2003) (inherited from CCSM4). Gent 2011 Sect. 3: "exactly as in CCSM3 (Ammann et al. 2003)." NOT Sato 1993 updated. | ammann_monthly_2003 | ammann_monthly_2003 | **Deviation inferred from Gent 2011.** Shares CCSM4 infrastructure = Ammann 2003 volcanic OD. Second-pass 2026-06-21. |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### ESM-specific forcing inputs

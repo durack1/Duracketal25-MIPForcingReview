@@ -4,7 +4,7 @@
 - **CMIP3 predecessor:** none explicitly — FGOALS-s (spectral) did not have a CMIP3 submission; FGOALS-g2 (grid-point) is the closer CMIP5 companion.
 - **Model family / lineage:** FGOALS spectral version 2. SAMIL2 (Spectral Atmospheric Model of IAP/LASG v2) atmosphere with different dynamical core from FGOALS-g2 (spectral vs. grid-point). Shares LICOM2 ocean and CLM3 land components with FGOALS-g2. Forcing protocol confirmed identical to FGOALS-g2.
 - **Atmosphere / ocean components:** SAMIL2 (R42 spectral, L26) + LICOM2 (~1°) + CLM3 land + CICE4 sea ice
-- **Primary documentation paper(s):** Bao, Q., et al. (2013). The Flexible Global Ocean-Atmosphere-Land System Model, Spectral Version 2: FGOALS-s2. *J. Adv. Model. Earth Syst.* 5(3), 545–567. doi:10.1175/JCLI-D-12-00338.1 [bao_flexible_2013 *(add)*]
+- **Primary documentation paper(s):** Bao, Q., et al. (2013). The Flexible Global Ocean-Atmosphere-Land System Model, Spectral Version 2: FGOALS-s2. *Adv. Atmos. Sci.* 30(3), 561–576. **[journal corrected: was JAMES 5(3) — correct journal is Adv. Atmos. Sci. 30(3)]** doi:10.1007/s00376-012-2113-9 [bao_flexible_2013 *(add)*]
 - **Forcing-specific reference(s):** Bao et al. 2013; same forcing protocol as FGOALS-g2 (Li et al. 2013)
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
@@ -36,5 +36,5 @@ FGOALS-s2 has no direct CMIP3 predecessor. The FGOALS-g2 companion corrected CMI
 
 ## Provenance
 - Durack et al. 2016 model list: included (row 42)
-- Sources consulted: Bao et al. 2013 (J. Adv. Model. Earth Syst. 5:545-567, doi:10.1175/JCLI-D-12-00338.1); FGOALS-g2 inferences confirmed consistent (Bao2013 Section 2 confirms same forcing framework as Li2013)
+- Sources consulted: Bao et al. 2013 (Adv. Atmos. Sci. 30(3):561-576, doi:10.1007/s00376-012-2113-9) ← journal corrected from JAMES 5:545-567 to Adv. Atmos. Sci. 30(3):561-576 (2026-06-21); FGOALS-g2 inferences confirmed consistent (Bao2013 Section 2 confirms same forcing framework as Li2013)
 - Stage 10 workflow: wf_36a86e20-c4b (2026-06-21); inferred from FGOALS-g2 findings + Bao2013 cross-confirmation

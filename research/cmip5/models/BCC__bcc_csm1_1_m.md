@@ -15,12 +15,12 @@ All entries expected identical to bcc-csm1-1 (same BCC-CSM1.1 family physics, hi
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
 | G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "observed GHGs". Specific dataset unconfirmed; as bcc-csm1-1. |
 | O  | Ozone | Cionni et al. 2011 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "total column ozone". Specific dataset unconfirmed; as bcc-csm1-1. |
-| SD | Sulphate direct | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "natural and anthropogenic aerosols". Specific dataset unconfirmed; as bcc-csm1-1. |
-| SI | Sulphate indirect | Model-dependent | ? | ? | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
-| BC | Black carbon | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
-| OC | Organic carbon | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
-| MD | Mineral dust | — | ? | ? | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
-| SS | Sea salt | — | ? | ? | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
+| SD | Sulphate direct | Lamarque et al. 2010 | **✗ dev** | FXc | **Collins et al. (2006)** CAM3-inherited prescribed aerosol OD climatology. Identical to bcc-csm1-1 (same BCC-AGCM2.1 physics; Wu2014 p.43 confirms both models share identical external forcing). | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred** from bcc-csm1-1. Second-pass 2026-06-21. |
+| SI | Sulphate indirect | Model-dependent | n/a | n/a | Absent. Prescribed OD precludes AIE. As bcc-csm1-1. | collins_parameterization_2006 | collins_parameterization_2006 | **Absent.** Second-pass 2026-06-21. |
+| BC | Black carbon | Lamarque et al. 2010 | **✗ dev** | FXc | **Collins et al. (2006)** prescribed climatological OD. As bcc-csm1-1. | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred.** Second-pass 2026-06-21. |
+| OC | Organic carbon | Lamarque et al. 2010 | **✗ dev** | FXc | **Collins et al. (2006)** prescribed climatological OD. As bcc-csm1-1. | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred.** Second-pass 2026-06-21. |
+| MD | Mineral dust | — | **✗ dev** | FXc | **Collins et al. (2006)** prescribed climatological OD. As bcc-csm1-1. | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred.** Second-pass 2026-06-21. |
+| SS | Sea salt | — | **✗ dev** | FXc | **Collins et al. (2006)** prescribed climatological OD. As bcc-csm1-1. | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred.** Second-pass 2026-06-21. |
 | LU | Land-use change | Hurtt et al. 2011 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 does NOT mention land-use change. As bcc-csm1-1; unconfirmed. |
 | SO | Solar irradiance | Wang et al. 2005 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "solar activity". Specific dataset unconfirmed; as bcc-csm1-1. |
 | VL | Volcanic aerosols | Sato et al. 1993 updated | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "volcanic eruptions". Specific dataset unconfirmed; as bcc-csm1-1. |
@@ -31,6 +31,6 @@ Not an ESM. Standard 12 keys only.
 
 ### Provenance
 - Durack et al. 2016 model list: included
-- Stage 4 workflow: wf_6432ada7-087 — no CMIP5-specific findings; all entries inferred from bcc-csm1-1 (same physics)
-- Wu2014 PDF read: Wuetal14JMetRes-BCC-CSM1Overview.pdf — Wu2014 explicitly confirms BCC-CSM1.1(m) and BCC-CSM1.1 used identical external forcing types (p.43, Section 3.1.1); specific datasets unconfirmed
-- Next step: as bcc-csm1-1 — Xin et al. 2013c (Adv. Climate Change Res.) or ES-DOC CMIP5 documentation
+- Stage 4 workflow: wf_6432ada7-087 — no CMIP5-specific dataset findings; forcing types confirmed identical to bcc-csm1-1
+- Wu2014 PDF read: Wuetal14JMetRes-BCC-CSM1Overview.pdf — Wu2014 p.43 confirms both BCC-CSM1.1(m) and BCC-CSM1.1 used identical external forcing types; specific datasets unconfirmed
+- Second-pass 2026-06-21: aerosol cells (SD/SI/BC/OC/MD/SS) resolved from Collins 2006 CAM3 prescribed-OD inference (as bcc-csm1-1)

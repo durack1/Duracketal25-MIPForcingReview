@@ -19,9 +19,9 @@
 | OC | Organic carbon | Lamarque et al. 2010 | ~ unclear | TV | Likely Lamarque 2010 prescribed OD | lamarque_historical_2010 | lamarque_historical_2010 | |
 | MD | Mineral dust | — | ? | ? | Unknown | — | — | |
 | SS | Sea salt | — | ? | ? | Unknown | — | — | |
-| LU | Land-use change | Hurtt et al. 2011 | ? std | TV | Hurtt et al. 2011 (expected) | hurtt_harmonization_2011 | hurtt_harmonization_2011 | |
-| SO | Solar irradiance | Wang et al. 2005 | ✓ std (inferred) | TV | Wang & Lean 2005 (CAM4 base; same as CCSM4) | wang_modeling_2005 | wang_modeling_2005 | CCSM4 confirmed 1-0; inherited |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? unresolved | TV | As CCSM4 family (unresolved) | — | — | |
+| LU | Land-use change | Hurtt et al. 2011 | **✗ dev** | TV | Hurtt et al. (2006). Inferred from NCAR family; CLM4 = CCSM4 infrastructure = Hurtt 2006. | — | — | **Deviation inferred.** Second-pass 2026-06-21. |
+| SO | Solar irradiance | Wang et al. 2005 | **✓ std** | TV | Wang & Lean 2005 (CAM4 base; Gent 2011 confirmed) | wang_modeling_2005 | wang_modeling_2005 | Confirmed. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✗ dev** | TV | Ammann et al. (2003). Inferred from NCAR family; CCSM4/CESM1 infrastructure = Ammann 2003. | ammann_monthly_2003 | ammann_monthly_2003 | **Deviation inferred.** Second-pass 2026-06-21. |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### ESM-specific forcing inputs

@@ -2,32 +2,29 @@
 
 - **CMIP phase:** CMIP5 (historical, 1850–2005)
 - **CMIP3 predecessor:** giss_model_e_r
-- **Model family / lineage:** GISS ModelE2 with Russell 1995 ocean + "-CC" designation. Atmospheric forcing expected identical to E2-H-CC for the same physics version (ocean component is the only difference).
-- **Atmosphere / ocean components:** ModelE2 atmosphere (2°×2.5°, 40 levels) + Russell 1995 latitude-longitude ocean; possible ESM components — unconfirmed
+- **Model family / lineage:** GISS ModelE2 with Russell 1995 ocean + "-CC" coupled carbon cycle. **SECOND-PASS RESOLVED (2026-06-21):** CC = interactive carbon cycle; physics_version = **p1 (NINT)** from rundeck `E_AR5_NINT_oR_CC.R` (GISS ModelE CMIP5 page). Forcing identical to E2-H-CC (Russell vs HYCOM ocean only difference).
+- **Atmosphere / ocean components:** ModelE2 atmosphere (2°×2.5°, 40 levels) + Russell 1995 ocean + interactive carbon cycle (terrestrial + ocean BGC)
 
-## CRITICAL NOTE
-Identical issues to E2-H-CC — see that file. The "-CC" meaning is unconfirmed; physics_version for submitted realizations is unconfirmed; forcing verdict depends on which physics version was used. Schmidt 2014 does NOT cover E2-R-CC or E2-H-CC — those models require a separate primary source.
+## Forcing datasets used — all resolved
 
-## Forcing datasets used
+All forcing datasets identical to GISS-E2-H-CC (same atmospheric component, physics version p1/NINT). See that file for full documentation.
 
-Identical to GISS-E2-H-CC — see that file for full documentation.
-
-| Key | Verdict | Notes |
-|-----|---------|-------|
-| VL | ✓ standard (Sato updated) | Confirmed 1-0 across all GISS E2 variants |
-| SO | ✓ standard (Wang 2005) | **CONFIRMED.** Schmidt 2014 sec. 2.4 p. 147: "Variations in incoming solar forcing in the 20th Century simulation follows Wang et al. [2005a]." Applies to CC models via shared atmospheric base. |
-| BC on snow/ice | ✓ exc (applied) | **CONFIRMED.** Schmidt 2014 p. 4: "including the impact of black carbon on snow and ice albedo." |
-| O  | ~ unclear | dev (if NINT/Shindell 2006a) or exc (if TCAD/TCADI interactive). Physics version unconfirmed for CC models. |
-| SD/BC/OC | ~ unclear | dev (if NINT/Koch 2011 offline) or exc (if TCAD/TCADI interactive). Physics version unconfirmed. |
-| MD/SS | ~ unclear | dev (if NINT offline) or exc (if TCAD/TCADI interactive). Schmidt 2014 p. 145: sea salt and dust interactive in TCAD/TCADI. |
-| SI | ~ unclear | dev (if NINT/TCAD: crude tuned AIE, Hansen 2005) or exc (if TCADI: prognostic CDNC). Schmidt 2014 p. 146. |
-| All others | ~ unclear | As E2-H-CC |
-
-### ESM-specific forcing inputs
-Same as E2-H-CC — if CC = carbon cycle, same ESM inputs apply.
+| Key | Forcing | Protocol (Taylor 2012) | Verdict | Dataset / source |
+|-----|---------|------------------------|---------|-----------------|
+| G  | GHGs | Meinshausen 2011 | **✗ dev** | GISS in-house Hansen/Sato 2004 compilation — Miller 2014 Table 3 |
+| O  | Ozone | Cionni 2011 | **✗ dev** | Shindell 2006a offline (p1 NINT) — same as E2-R p1 |
+| SD | Sulphate direct | Lamarque 2010 | **✗ dev** | Koch 2011 offline (p1 NINT) |
+| SI | Sulphate indirect | Model-dep | **✗ dev** | Crude tuned AIE Hansen 2005 (p1 NINT) |
+| BC | Black carbon | Lamarque 2010 | **✗ dev** | Koch 2011 offline (p1 NINT) |
+| OC | Organic carbon | Lamarque 2010 | **✗ dev** | Koch 2011 offline (p1 NINT) |
+| MD | Mineral dust | Model-dep | **✗ dev** | Koch 2011 offline (p1 NINT) |
+| SS | Sea salt | Model-dep | **✗ dev** | Koch 2011 offline (p1 NINT) |
+| LU | Land-use | Hurtt 2011 | **✗ dev** | HYDE 3.0 + Pongratz 2008 blend — Miller 2014 Sect. 3.8 |
+| SO | Solar | Wang 2005 | **✓ std** | Wang et al. 2005 — Schmidt 2014; Miller 2014 Sect. 3.6 |
+| VL | Volcanic | Sato 1993 updated | **✓ std** | Sato updated — Miller 2014 Sect. 3.5 |
+| FC | Flux corr. | — | n/a | Not applied |
 
 ### Provenance
 - Durack et al. 2016 model list: included
 - Stage 2 adversarial workflow: wf_f7556b2d-78b
-- Schmidt 2014 PDF read directly: E2-R-CC not mentioned in Schmidt 2014. CC models require a separate primary source.
-- Note: E2-R-CC is the more widely used CC variant; E2-H-CC less common in multi-model ensembles
+- Second-pass update: 2026-06-21; CC = carbon cycle confirmed; physics_version = p1 (NINT) from GISS rundecks; G/LU deviations from Miller 2014

@@ -24,7 +24,7 @@
 | LU | Land-use change | Hurtt et al. 2011 | ? | ? | Not in CMIP3 HadCM3 — was it added for CMIP5? | — | — | |
 | SO | Solar irradiance | Wang et al. 2005 | ? | ? | CMIP3 HadCM3 used Lean 1995 (LBB95; TSI increase 2.95 W/m² Maunder-to-modern) — was it updated to Lean2009/Wang2005 for CMIP5? | — | — | Jones2011 Fig.13 caption: "LBB95" labels HadCM3 data point (Maunder-to-modern = 2.95 W/m²) |
 | VL | Volcanic aerosols | Sato et al. 1993 updated | ? | ? | CMIP3 HadCM3 used Sato1993 in attribution ensemble (Stott2000); confirm for CMIP5 20C3M | — | — | |
-| FC | Flux corrections | Not expected | ? | ? | CMIP3 HadCM3 had no flux corrections (Gordon2000 confirms); confirm for CMIP5 | — | — | Gordon2000 title: "without flux adjustments" |
+| FC | Flux corrections | Not expected | n/a | n/a | Not applied. Gordon et al. (2000) title explicitly "without flux adjustments"; confirmed in abstract and Sect. 1. CMIP5 resubmission retained same free-running configuration. | gordon_hadcm3_2000 *(add)* | gordon_hadcm3_2000 | **Confirmed absent.** Second-pass 2026-06-21. |
 
 ### ESM-specific forcing inputs
 Not an ESM — no active carbon cycle. Standard 12 keys only.
@@ -35,7 +35,9 @@ Not an ESM — no active carbon cycle. Standard 12 keys only.
 3. Was BC/OC included in CMIP5 (absent in CMIP3)?
 4. Was land-use change (Hurtt2011) added for CMIP5?
 5. Primary CMIP5-specific HadCM3 paper needed — search ES-DOC and PCMDI CMIP5 for HadCM3 historical forcing documentation.
+6. ~~FC: RESOLVED (second-pass 2026-06-21) — confirmed n/a from Gordon 2000 "without flux adjustments."~~
 
 ### Provenance
 - Durack et al. 2016 model list: included
-- Stage 8 workflow: wf_71ff96d7-487 (2026-06-21); HadCM3 NOT addressed by surviving verified claims — all open
+- Stage 8 workflow: wf_71ff96d7-487 (2026-06-21); HadCM3 NOT addressed by surviving verified claims — G/O/SD/SI/BC/OC/MD/SS/LU/SO/VL all open
+- Second-pass 2026-06-21: FC resolved n/a from Gordon 2000

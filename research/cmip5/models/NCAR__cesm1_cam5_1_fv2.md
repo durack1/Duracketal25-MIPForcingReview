@@ -13,7 +13,7 @@ All entries below are inferred from CESM1-CAM5 (identical configuration at lower
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? std | TV | Meinshausen et al. 2011 | meinshausen_rcp_2011 | meinshausen_rcp_2011 | As CESM1-CAM5 |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | **✗ dev** | TV | IPCC TAR GHG concentrations. Inferred as CESM1-CAM5 (same GHG infrastructure) which itself inherits from CCSM4. Gent 2011: IPCC TAR. | — | — | **Deviation inferred** from Gent 2011 NCAR family. Second-pass 2026-06-21. |
 | O  | Ozone | Cionni et al. 2011 | ? std | TV | Cionni et al. 2011 | cionni_ozone_2011 | cionni_ozone_2011 | As CESM1-CAM5; no interactive gas-phase chemistry |
 | SD | Sulphate direct | Lamarque et al. 2010 | exc (inferred) | TV+ | Lamarque 2010 emissions → MAM3 | lamarque_historical_2010 | lamarque_historical_2010 | Identical to CESM1-CAM5; confirmed for CAM5 1-0 |
 | SI | Sulphate indirect | Model-dependent | exc (inferred) | TV+ | MAM3 direct + indirect | liu_toward_2012 | liu_toward_2012 | As CESM1-CAM5 |
@@ -21,9 +21,9 @@ All entries below are inferred from CESM1-CAM5 (identical configuration at lower
 | OC | Organic carbon | Lamarque et al. 2010 | exc (inferred) | TV+ | Lamarque 2010 emissions → MAM3 | lamarque_historical_2010 | lamarque_historical_2010 | As CESM1-CAM5 |
 | MD | Mineral dust | Lamarque et al. 2010 | exc (inferred) | TV+ | Lamarque 2010 emissions → MAM3 | lamarque_historical_2010 | lamarque_historical_2010 | As CESM1-CAM5 |
 | SS | Sea salt | Lamarque et al. 2010 | exc (inferred) | TV+ | Lamarque 2010 emissions → MAM3 | lamarque_historical_2010 | lamarque_historical_2010 | As CESM1-CAM5 |
-| LU | Land-use change | Hurtt et al. 2011 | ? std | TV | Hurtt et al. 2011 | hurtt_harmonization_2011 | hurtt_harmonization_2011 | As CESM1-CAM5 |
-| SO | Solar irradiance | Wang et al. 2005 | ✓ std (inferred) | TV | Wang & Lean 2005 | wang_modeling_2005 | wang_modeling_2005 | As CESM1-CAM5 (CCSM4 confirmed 1-0) |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? unresolved | TV | As CCSM4 family (unresolved) | — | — | |
+| LU | Land-use change | Hurtt et al. 2011 | **✗ dev** | TV | Hurtt et al. (2006). Inferred as CESM1-CAM5 = CCSM4 CLM4 infrastructure = Hurtt 2006. | — | — | **Deviation inferred.** Second-pass 2026-06-21. |
+| SO | Solar irradiance | Wang et al. 2005 | **✓ std** | TV | Wang & Lean 2005 (as CESM1-CAM5; Gent 2011 confirmed) | wang_modeling_2005 | wang_modeling_2005 | Confirmed. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✗ dev** | TV | Ammann et al. (2003). Inferred as CESM1-CAM5 = CCSM4 infrastructure = Ammann 2003. | ammann_monthly_2003 | ammann_monthly_2003 | **Deviation inferred.** Second-pass 2026-06-21. |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### ESM-specific forcing inputs

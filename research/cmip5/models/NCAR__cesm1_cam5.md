@@ -11,7 +11,7 @@
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? std | TV | Meinshausen et al. 2011 (expected) | meinshausen_rcp_2011 | meinshausen_rcp_2011 | Expected standard; not explicitly confirmed in Stage 3 |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | **✗ dev** | TV | IPCC TAR GHG concentrations (inferred from NCAR family). Gent 2011 (CCSM4/CAM4): "specified as in the IPCC third assessment report." CAM5 uses CLM4/CICE4 infrastructure shared with CCSM4 — GHG configuration is at the coupler level, not the atmospheric dynamics level; IPCC TAR likely applies. | — | — | **Deviation inferred** from Gent 2011 applied to NCAR CESM1 family. Meehl 2013 (primary) not checked for explicit GHG citation. Second-pass 2026-06-21. |
 | O  | Ozone | Cionni et al. 2011 | ? std | TV | Cionni et al. 2011 (expected) | cionni_ozone_2011 | cionni_ozone_2011 | CAM5 has no full interactive gas-phase chemistry; MAM3 is aerosol-only; ozone prescribed from Cionni2011 expected |
 | SD | Sulphate direct | Lamarque et al. 2010 | **✓ exc** | TV+ | Lamarque et al. 2010 emissions → MAM3 prognostic sulphate | lamarque_historical_2010 | lamarque_historical_2010 | **Confirmed 1-0** (Liu2012 + Meehl2013). MAM3 computes sulphate prognostically from SO2 emissions; exceeds prescribed-OD standard. Includes direct + indirect effects. |
 | SI | Sulphate indirect | Model-dependent | **✓ exc** | TV+ | MAM3 prognostic (both direct and indirect effects) | liu_toward_2012 | liu_toward_2012 | **Confirmed 1-0**. Meehl2013: CESM1-CAM5 includes both direct and indirect aerosol effects; CCSM4 had only the direct effect. MAM3 computes cloud-droplet activation from prognostic aerosols. |
@@ -19,9 +19,9 @@
 | OC | Organic carbon | Lamarque et al. 2010 | **✓ exc** | TV+ | Lamarque et al. 2010 emissions → MAM3 prognostic POM + secondary organic aerosol (SOA) | lamarque_historical_2010 | lamarque_historical_2010 | **Confirmed 1-0**. MAM3 carries POM and SOA prognostically from Lamarque2010 emissions. |
 | MD | Mineral dust | Lamarque et al. 2010 | **✓ exc** | TV+ | Lamarque et al. 2010 emissions → MAM3 prognostic dust | lamarque_historical_2010 | lamarque_historical_2010 | **Confirmed 1-0**. MAM3 carries mineral dust prognostically. |
 | SS | Sea salt | Lamarque et al. 2010 | **✓ exc** | TV+ | Lamarque et al. 2010 emissions → MAM3 prognostic sea salt | lamarque_historical_2010 | lamarque_historical_2010 | **Confirmed 1-0**. MAM3 carries sea salt prognostically. |
-| LU | Land-use change | Hurtt et al. 2011 | ? std | TV | Hurtt et al. 2011 (expected) | hurtt_harmonization_2011 | hurtt_harmonization_2011 | Expected standard |
-| SO | Solar irradiance | Wang et al. 2005 | **✓ std** | TV | Wang & Lean 2005 (SOLAR_TSI_Lean file; same as CCSM4) | wang_modeling_2005 | wang_modeling_2005 | Inherited from CCSM4 family; CCSM4 confirmed 1-0 |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | **? unresolved** | TV | Sato-updated OR NCAR-internal? (same as CCSM4) | — | — | Same unresolved question as CCSM4 family; see CCSM4 file |
+| LU | Land-use change | Hurtt et al. 2011 | **✗ dev** | TV | Hurtt et al. (2006) (inferred from NCAR family). CLM4 land is shared CCSM4/CESM1 infrastructure — Gent 2011 confirms Hurtt 2006, not 2011. | — | — | **Deviation inferred** from Gent 2011 NCAR family. Second-pass 2026-06-21. |
+| SO | Solar irradiance | Wang et al. 2005 | **✓ std** | TV | Wang & Lean 2005 (SOLAR_TSI_Lean file; inherited from CCSM4 family; Gent 2011 confirms) | wang_modeling_2005 | wang_modeling_2005 | Confirmed. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✗ dev** | TV | Ammann et al. (2003) (inferred from NCAR family). Gent 2011 confirms CCSM4 = Ammann 2003 "exactly as in CCSM3." Shared CCSM4/CESM1 infrastructure = same volcanic OD. | ammann_monthly_2003 | ammann_monthly_2003 | **Deviation inferred** from Gent 2011. Second-pass 2026-06-21. |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### Aerosol emissions inputs (MAM3 drivers)

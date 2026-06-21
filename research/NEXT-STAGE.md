@@ -646,7 +646,169 @@ Source: workflow wf_36a86e20-c4b (2026-06-21); models confirmed from Bentsen2013
 
 ---
 
-## CMIP5 Stage 11 (CMCC: CMCC-CESM, CMCC-CM, CMCC-CMS) — NEXT
+## CMIP5 Stage 11 (CMCC: CMCC-CESM, CMCC-CM, CMCC-CMS) — COMPLETE ✓ (2026-06-21)
+
+**Results written:** `CMCC__cmcc_cesm.md` (components corrected, MOZART-3 refuted), `CMCC__cmcc_cm.md` (O=✓std Cionni2011 C1modB confirmed), `CMCC__cmcc_cms.md` (O=? hitop variant inferred); `README.md` registry rows 45–47 and staging plan row 11 ☑; Stage 11 cross-cutting findings section; `bib-to-add.md` Stage 11 section (5 entries). NOTE: verified-forcing-matrix.csv not updated (file does not exist yet in repo). CMIP5 first pass complete — all 47 models processed across 11 stages. Next: CMIP5 second pass (open questions / targeted PDF reads) or CMIP6 first pass.
+
+**Key findings:**
+- CMCC-CM O=✓std (Cionni2011 C1modB; Eyring2013 Table 1; only confirmed forcing across all 36 slots)
+- CMCC-CMS O=? (hitop variant strongly inferred; C1modB refuted for L95 model; CMS absent from Eyring2013 Table 1)
+- CMCC-CESM components corrected: OPA8.2+SILVA (not NEMO3.2/CLM3.5); MOZART-3 absent (refuted)
+- 35/36 forcing slots remain unconfirmed across all three models (most documentation-sparse centre of 11 stages)
+- None of three models submitted historicalMisc attribution experiments
+- Source: wf_89572b47-8df (2026-06-21); 28 agents; 1,697,919 tokens
+
+## CMIP5 FIRST PASS COMPLETE (2026-06-21)
+
+All 47 models across 11 stages processed.
+
+**Second-pass updates applied (2026-06-21):**
+- Stage 3 NCAR: G/LU/VL → ✗dev (IPCC TAR, Hurtt2006, Ammann2003; Gent2011); CESM1-CAM5/1-FV2/BGC/WACCM/FASTCHEM same family deviations confirmed
+- Stage 4 BCC: Aerosols → ✗dev (Collins2006 prescribed OD, SI=n/a); G/O/LU/SO/VL still ?
+- Stage 5 ACCESS: Aerosols → CLASSIC resolved (Martin2011); G/LU/SO/VL still ?
+- Stage 6 GISS-CC: All atmos cells → ✗dev/✓std (p1 NINT confirmed from rundecks; Miller2014/Schmidt2014)
+- Stage 9 MIROC4h/5: All 11 cells confirmed (Sakamoto2012/WatanabeM2010 Sect external-forcing)
+- Stage 9 MIROC-ESM/CHEM: G/LU → ✓std (Meinshausen2011/Hurtt2009/2011; Watanabe2011); SO → ~ (Lean2005 nuanced)
+- HadCM3: FC → n/a confirmed (Gordon2000 title: "without flux adjustments")
+
+**Remaining ? cells (27 standalone, 104 total-with-partial-uncertainty) as of 2026-06-21:**
+- BCC-CSM1.1/1.1m: G/O/LU/SO/VL (Wu2014 PDF in /resources)
+- HadCM3: 11 cells (Johns2003 + Gordon2000 both in /resources)
+- GISS-E2-H/R: MD/SS (physics-version-dependent; GISS-E2-H also G/LU uncertain in prior entries)
+- CESM1-FASTCHEM/WACCM: MD/SS + aerosol details (likely CAM4-prescribed but unconfirmed)
+- Many models: G/LU/SO/VL = "?std(unconfirmed)" (expected std but not primary-source confirmed)
+
+---
+
+## CMIP5 Second Pass Stage A (BCC + CanESM2/CanCM4 open questions) — NEXT
+
+**Workflow launched (2026-06-21):** wf_d8355c25-4e2 — session ended before results arrived. On next session: check workflow output (transcript at `.claude/projects/.../subagents/workflows/wf_d8355c25-4e2/`), then write results to model files and CSV. If workflow timed out, re-run with same prompt below (no resume needed — PDF reads are fast).
+
+**Target open cells:**
+- BCC-CSM1.1: G=? O=? LU=? SO=? VL=? (5 cells; Wu2014 PDF available)
+- BCC-CSM1.1-m: same (identical model, higher res only)
+- CanESM2: LU=~unclear, SO=?, VL=? and N-dep/CO2-mode open (vonSalzen2013 PDF available)
+- CanCM4: same as CanESM2 atmospheric component
+
+**Resources available:** `resources/Wuetal14JMetRes-BCC-CSM1Overview.pdf`, `resources/vonSalzenetal13Atmos-Ocean-CanAM4RepresentationOfPhysicalProcesses.pdf`, `resources/Aroraetal11GRL-CarbonEmissionLimitsRequiredToSatisfyRCPsCanESM2.pdf`
+
+### Stage A prompt:
+
+Targeted second-pass read to resolve open forcing questions for two CMIP5 model groups. Primary sources are PDFs already in the `/resources/` directory — use direct PDF reads, NOT web search.
+
+**GROUP 1: BCC-CSM1.1 and BCC-CSM1.1-m** (Wu, T., et al. 2014. *J. Meteor. Res.* 28(1), 34–56. doi:10.1007/s13351-014-3041-7; PDF at `resources/Wuetal14JMetRes-BCC-CSM1Overview.pdf`)
+
+Open cells for BOTH BCC models (identical forcing per Wu2014 p.43):
+1. **G = ?**: Did BCC-CSM1.1 use Meinshausen et al. 2011 GHG concentrations (Taylor2012 standard) or different GHG dataset?
+2. **O = ?**: Did BCC-CSM1.1 use Cionni et al. 2011 ozone (Taylor2012 standard) or a different ozone dataset/climatology?
+3. **LU = ?**: Did BCC-CSM1.1 use Hurtt et al. 2011 land-use dataset (Taylor2012 standard)? Land-use may be absent (BCC-AGCM2.1 is not a full ESM).
+4. **SO = ?**: Which solar irradiance dataset — Wang et al. 2005 (standard) or different?
+5. **VL = ?**: Which volcanic dataset — Sato et al. 1993 updated (standard) or Ammann et al. 2003 or other?
+
+Read Wu2014 Sections 2–4 for model structure; look for dedicated forcing/external-forcing subsection. Also check Wu2014 p.36 distinction between BCC-AGCM2.1 (CMIP5 submission) and BCC-AGCM2.0.1-CAM research model.
+
+**GROUP 2: CanESM2 and CanCM4** (vonSalzen, K., et al. 2013. *Atmos.-Ocean* 51(1), 104–125. doi:10.1080/07055900.2012.755610; PDF at `resources/vonSalzenetal13Atmos-Ocean-CanAM4RepresentationOfPhysicalProcesses.pdf`)
+
+Open cells:
+1. **LU = ~unclear**: Is land-use change forcing (Hurtt2011) applied in the coupled CanESM2 historical run? vonSalzen2013 covers AMIP (uncoupled); confirm if LU applies in coupled mode.
+2. **SO = ?**: Which solar irradiance dataset — confirm Wang2005 (std) or different? vonSalzen2013 Sect. on external forcing should have this.
+3. **VL = ?**: Which volcanic dataset — Sato1993-updated (std) or other? Same section.
+4. **CanESM2 N-dep**: Lamarque2010 or Lamarque2013 ACCMIP for nitrogen deposition to CTEM land + CMOC ocean?
+5. **CanESM2 CO2 mode**: Concentration-driven (historical) confirmed?
+
+Also read `resources/Aroraetal11GRL-CarbonEmissionLimitsRequiredToSatisfyRCPsCanESM2.pdf` for CanESM2 ESM-specific forcing (N-dep, CO2 mode).
+
+ADVERSARIALLY VERIFY: For each finding, try to refute it — ask if an alternative interpretation is possible. Reject any claim not supported by a direct quote or specific page number from the PDF.
+
+DELIVERABLE: Per open cell per model: verdict (std/dev/exc/?), temporal code, dataset/source, direct quote + page number from PDF. Flag if cell remains unresolved after PDF read.
+
+---
+
+## CMIP5 Second Pass Stage B (HadCM3 targeted read) — PENDING
+
+**Target:** HadCM3 — 11 open cells (G/O/SD/SI/BC/OC/MD/SS/LU/SO/VL)
+
+**Resources:** `resources/Johnsetal03ClimDyn-HadCM3AnthropogenicClimateChange1860To2100.pdf`, `resources/Gordonetal00ClimDyn-HadCM3SSTSeaIceExtentsAndOceanHeatTransportsWithoutFluxAdjustment.pdf`, `resources/Stottetal00SC-20CenturyTemperatureExternalControlByNaturalAndAnthropogenicForcings.pdf`
+
+### Stage B prompt:
+
+Targeted second-pass read to resolve all 11 open forcing cells for **HadCM3 CMIP5 `historical`** (1850–2005). FC=n/a is already confirmed (Gordon2000). Primary sources are PDFs in `/resources/` — use direct PDF reads.
+
+PRIMARY SOURCES:
+1. **Johns, T.C., et al. (2003)**. Anthropogenic climate change for 1860 to 2100 simulated with the HadCM3 model under updated emissions scenarios. *Clim. Dyn.* 20(5–6), 583–612. PDF at `resources/Johnsetal03ClimDyn-HadCM3AnthropogenicClimateChange1860To2100.pdf` — this is the CMIP3/20C3M paper but the same model is resubmitted to CMIP5.
+2. **Stott, P.A., et al. (2000)**. External control of 20th century temperature by natural and anthropogenic forcings. *Science* 290, 2133–2137. PDF at `resources/Stottetal00SC-20CenturyTemperatureExternalControlByNaturalAndAnthropogenicForcings.pdf` — the main HadCM3 detection-attribution paper with explicit forcing list.
+3. **Gordon, C., et al. (2000)** PDF at `resources/Gordonetal00ClimDyn-HadCM3SSTSeaIceExtentsAndOceanHeatTransportsWithoutFluxAdjustment.pdf` — model description.
+
+Key questions:
+1. **G**: Meinshausen2011 (std) or CMIP3-era GHG dataset? HadCM3 CMIP5 may still use pre-CMIP5 GHG time series.
+2. **O**: Cionni2011 (std) or older ozone dataset (Haigh 1994 climatology used in CMIP3)?
+3. **SD/SI**: Johns2003 should specify sulphate direct+indirect scheme; CLASSIC scheme expected but confirm.
+4. **BC/OC**: Were BC/OC added for CMIP5 (absent in CMIP3 HadCM3)? Or still absent?
+5. **MD/SS**: Expected absent — confirm.
+6. **LU**: Hurtt2011 (std) added for CMIP5? Or excluded (as in CMIP3)?
+7. **SO**: Wang2005 (std) updated from Lean1995 (2.95 W/m² Maunder-to-modern used in CMIP3)?
+8. **VL**: Sato1993-updated (std) confirmed for CMIP5?
+
+IMPORTANT: HadCM3 is the same model as CMIP3 ukmo_hadcm3. The critical question is whether CMIP5 forcing datasets (Meinshausen2011, Cionni2011, Hurtt2011, Wang2005) were adopted or whether CMIP3-era datasets were carried over. The CMIP5 protocol requested updating to standard datasets — verify compliance.
+
+ADVERSARIALLY VERIFY all findings. For each confirmed cell: provide direct quote + page from PDF.
+
+DELIVERABLE: Per cell: verdict (std/dev/n-a/?), temporal, dataset, quote/page. Flag cells that remain unresolved after PDF read.
+
+---
+
+## CMIP5 Second Pass Stage C (MPI-ESM + EC-EARTH open questions) — PENDING
+
+**Target:** MPI-ESM-LR/MR/P: SO/VL/ESM-inputs; EC-EARTH: 7 cells (G/O/SO/VL/LU/MD/SS)
+
+**Resources:** `resources/Giorgettaetal13JAMES-ClimateCarbonCycleChanges1850To2100InMPI-ESMForCMIP5.pdf`, `resources/Stevensetal13JAMES-MPI-M-ECHAM6AtmosphericComponent.pdf`, `resources/Hazelegeretal11ClimDyn-EC-Earthv2p2DescriptionAndValidation.pdf`, `resources/Reicketal13JAMES-MPI-ESMNaturalAndAnthropogenicLandCoverChange.pdf`
+
+### Stage C prompt (for use after Stage B complete):
+
+Targeted second-pass read for MPI-ESM and EC-EARTH open questions. Primary sources are PDFs in `/resources/`.
+
+**MPI-ESM-LR/MR/P open cells:**
+1. **SO=?**: `resources/Giorgettaetal13JAMES-ClimateCarbonCycleChanges1850To2100InMPI-ESMForCMIP5.pdf` Sect. on external forcing — which solar dataset (Wang2005 std, or SPARC/SOLARIS, or other)?
+2. **VL=?**: Same paper — volcanic forcing dataset (Sato1993-updated std, or Stenchikov1998-basis)?
+3. **ESM N-dep**: Lamarque2010 or 2013 ACCMIP for N/S deposition to JSBACH/HAMOCC?
+4. **ESM iron**: HAMOCC iron deposition dataset?
+5. **ESM CO2 mode**: Concentration-driven or emission-driven historical?
+
+Also check `resources/Stevensetal13JAMES-MPI-M-ECHAM6AtmosphericComponent.pdf` for ECHAM6 atmospheric forcing details.
+
+**EC-EARTH open cells** (Hazeleger, W., et al. 2012; PDF at `resources/Hazelegeretal11ClimDyn-EC-Earthv2p2DescriptionAndValidation.pdf`):
+1. **G=?**: Meinshausen2011 (std)?
+2. **O=?**: Cionni2011 (std)?
+3. **SO=?**: Wang2005 (std)?
+4. **VL=?**: Sato1993-updated (std)?
+5. **LU=?**: Hurtt2011 (std)?
+6. **MD/SS=?**: Confirmed in IFS aerosol mapping or absent?
+
+Also check `resources/Doscheretal22GMD-EC-Earth3ForCMIP6.pdf` for references to CMIP5 forcing.
+
+ADVERSARIALLY VERIFY each finding. Provide direct quote + page from PDF.
+
+---
+
+## CMIP5 Second Pass Stage D (CMCC targeted read) — PENDING
+
+**Target:** CMCC-CESM/CM/CMS — 35/36 cells unconfirmed
+
+**Resources:** `resources/Vichietal11ClimDyn-CMCC-CESM-GlobalAndRegionalCarbonUptakeAndClimateChangeSensitivityToASubstantialMitigationScenario.pdf`
+
+### Stage D prompt (for use after Stage C complete):
+
+Targeted second-pass read + web search for CMCC model forcing documentation.
+
+Read `resources/Vichietal11ClimDyn-CMCC-CESM-GlobalAndRegionalCarbonUptakeAndClimateChangeSensitivityToASubstantialMitigationScenario.pdf` for CMCC-CESM ESM forcing details (G, O, aerosols, LU, SO, VL, ESM-inputs).
+
+Also web-fetch: Scoccimarro, E., et al. (2011). Effects of Tropical Cyclones on Ocean Heat Transport in a High Resolution Coupled General Circulation Model. *J. Climate* 24, 4368–4384. doi:10.1175/2011JCLI4104.1 — primary CMCC-CM documentation. And Fogli, P.G., et al. (2009). INGV-CMCC Carbon (ICC): a carbon cycle Earth system model. CMCC Tech. Rep. RP0061 (search cmcc.it).
+
+For each model (CMCC-CESM, CMCC-CM, CMCC-CMS): all 12 forcing keys — which dataset, verdict vs Taylor2012.
+
+---
+
+## NEXT STAGE — CMIP5 NEXT (archived heading)
 
 Seed model files before launching:
 - `research/cmip5/models/CMCC__cmcc_cesm.md`

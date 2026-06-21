@@ -11,7 +11,7 @@
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? std | TV | Meinshausen et al. 2011 (expected) | meinshausen_rcp_2011 | meinshausen_rcp_2011 | |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | **✗ dev** | TV | IPCC TAR GHG concentrations (inferred from NCAR family). Gent 2011 (CCSM4): "specified as in the IPCC third assessment report." WACCM uses same CLM4/CICE4/coupler infrastructure as CCSM4 = shared GHG configuration. | — | — | **Deviation inferred** from Gent 2011 NCAR family. Second-pass 2026-06-21. |
 | O  | Ozone | Cionni et al. 2011 (models w/o interactive chem) | **✓ exc** | TV+ | WACCM MOZART interactive whole-atmosphere chemistry (Marsh et al. 2013) | marsh_climate_2013 | marsh_climate_2013 | **Confirmed 1-0 (medium confidence)**. WACCM's defining feature is interactive stratospheric + tropospheric ozone chemistry. Ozone computed prognostically — not prescribed from Cionni2011. Confidence medium because Marsh 2013 was paywalled (403); scientifically unambiguous. |
 | SD | Sulphate direct | Lamarque et al. 2010 | ? | TV | Likely prescribed OD (CAM4-based; not MAM3) | lamarque_historical_2010 | lamarque_historical_2010 | WACCM uses CAM4 dynamics, not CAM5. Aerosol treatment unconfirmed — likely prescribed OD as per CAM4, not MAM3 interactive. |
 | SI | Sulphate indirect | Model-dependent | ? | ? | Likely n/a (if CAM4-like prescribed aerosols, direct only) | — | — | |
@@ -19,9 +19,9 @@
 | OC | Organic carbon | Lamarque et al. 2010 | ? | TV | Likely prescribed OD | lamarque_historical_2010 | lamarque_historical_2010 | |
 | MD | Mineral dust | — | ? | ? | Unknown | — | — | |
 | SS | Sea salt | — | ? | ? | Unknown | — | — | |
-| LU | Land-use change | Hurtt et al. 2011 | ? std | TV | Hurtt et al. 2011 (expected) | hurtt_harmonization_2011 | hurtt_harmonization_2011 | |
-| SO | Solar irradiance | Wang et al. 2005 | ✓ std (inferred) | TV | Wang & Lean 2005 (SOLAR_TSI_Lean; same family as CCSM4) | wang_modeling_2005 | wang_modeling_2005 | CCSM4 confirmed 1-0; inherited; WACCM additionally uses spectrally-resolved UV for stratospheric photolysis |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? unresolved | TV | As CCSM4 family (unresolved); stratospheric aerosol may also interact with WACCM chemistry | — | — | WACCM stratospheric chemistry may require volcanic aerosol injection for heterogeneous chemistry |
+| LU | Land-use change | Hurtt et al. 2011 | **✗ dev** | TV | Hurtt et al. (2006) (inferred from NCAR family). CLM4 is shared CCSM4 infrastructure = Hurtt 2006. | — | — | **Deviation inferred.** Second-pass 2026-06-21. |
+| SO | Solar irradiance | Wang et al. 2005 | **✓ std** | TV | Wang & Lean 2005 (SOLAR_TSI_Lean; inherited from CCSM4 family; Gent 2011 confirms). WACCM also uses spectrally-resolved UV for photolysis. | wang_modeling_2005 | wang_modeling_2005 | Confirmed. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✗ dev** | TV | Ammann et al. (2003) (inferred from NCAR family). CCSM4/CESM1 infrastructure = Ammann 2003 volcanic OD. WACCM stratospheric chemistry also requires external volcanic injection; same Ammann 2003 dataset likely. | ammann_monthly_2003 | ammann_monthly_2003 | **Deviation inferred.** Second-pass 2026-06-21. |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### Chemistry-specific forcing inputs

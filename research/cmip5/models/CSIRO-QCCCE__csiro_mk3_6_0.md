@@ -4,7 +4,7 @@
 - **CMIP3 predecessor:** csiro_mk3_5 (CSIRO-Mk3.5) — in the Mark lineage
 - **Model family / lineage:** CSIRO-Mk3.5 (CMIP3) → CSIRO-Mk3.6.0 (CMIP5). Spectral AGCM (R63L18 = T63-equivalent, 18 pressure levels). Independent lineage from ACCESS. Has a sulfate aerosol scheme but not clear if it's interactive or prescribed. Ozone treatment is a key question — may use a CSIRO-specific dataset rather than Cionni2011.
 - **Atmosphere / ocean components:** CSIRO-AGCM (R63L18 spectral) + MOM2.2 ocean + MOSES2.2 land + sea ice
-- **Primary documentation paper(s):** Jeffrey, S., et al. (2013). Australia's CMIP5 submission using the CSIRO-Mk3.6.0 model. *Aust. Meteorol. Oceanogr. J.* 63(1), 1–13. doi:10.22499/2.6301.001 [jeffrey_australia_2013 *(add)*]
+- **Primary documentation paper(s):** Jeffrey, S., et al. (2013). Australia's CMIP5 submission using the CSIRO-Mk3.6.0 model. *Aust. Meteorol. Oceanogr. J.* 63(1), 1–13. doi:10.1071/ES13001 [jeffrey_australia_2013 *(add)*]
 - **Forcing-specific reference(s):** Jeffrey et al. 2013
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
@@ -28,7 +28,7 @@
 Not an ESM. Standard 12 keys only.
 
 ### Key aerosol scheme note
-Rotstayn et al. 2010 interactive aerosol scheme carries **11 prognostic mass tracers**: DMS, SO₂, sulfate, hydrophobic BC, hydrophilic BC, hydrophobic OC, hydrophilic OC, and four mineral dust size bins. This is the "by far the most important improvement" over CSIRO-Mk3.5 predecessor (Collier/Jeffrey et al. 2013). Scheme EXCEEDS the Taylor 2012 standard (prescribed Lamarque2010 OD) by computing aerosol optical depths online from prognostic mass fields + Lamarque2010 anthropogenic emission inputs + online natural emission sources.
+Rotstayn et al. (2010, *Int. J. Climatol.* 30(7):1067–1088, doi:10.1002/joc.1952) interactive aerosol scheme carries **11 prognostic mass tracers**: DMS, SO₂, sulfate, hydrophobic BC, hydrophilic BC, hydrophobic OC, hydrophilic OC, and four mineral dust size bins. This is the "by far the most important improvement" over CSIRO-Mk3.5 predecessor (Collier/Jeffrey et al. 2013). Scheme EXCEEDS the Taylor 2012 standard (prescribed Lamarque2010 OD) by computing aerosol optical depths online from prognostic mass fields + Lamarque2010 anthropogenic emission inputs + online natural emission sources.
 
 ### Confirmed deviations from Taylor 2012
 1. **LU = ✗dev**: Land-use change explicitly excluded. Taylor 2012 standard = Hurtt et al. 2011 time-varying transitions. CSIRO-Mk3.6.0 does not apply LU.
