@@ -321,6 +321,431 @@ DELIVERABLE: cited report, per forcing per model: verdict, temporal treatment (T
 
 ## After Stage 10: write results, update all tracking files. Then proceed to synthesis and summary.
 
+---
+
+# CMIP5 — first pass
+
+## Lean workflow script (same as CMIP3):
+`/home/duro/.claude/projects/-home-duro-git-Duracketal25-MIPForcingReview-research-models/1d50b049-f316-40c3-80be-a997612ce472/workflows/scripts/deep-research-lean.js`
+
+## CMIP5 Stage 1 (GFDL: CM2p1, CM3, ESM2G, ESM2M) — COMPLETE ✓ (2026-06-20)
+
+**Results written:** `GFDL__gfdl_cm2p1.md`, `GFDL__gfdl_cm3.md`, `GFDL__gfdl_esm2g.md`, `GFDL__gfdl_esm2m.md`, `verified-forcing-matrix.csv`, `README.md` registry rows 1–4 and Stage 1 status, `bib-to-add.md` CMIP5 Stage 1 section.
+
+Key findings:
+- CM2p1: follows standard CMIP5 protocol (G/O/SD/BC/OC/LU all standard); SO/VL/SI/MD/SS unverified at model level; open question: did GFDL update from CMIP3-era datasets to Meinshausen/Hurtt/Wang2005?
+- CM3: **EXCEEDS standard on O and all 6 aerosol forcings** — AM3 interactive 85-species tropospheric+stratospheric chemistry (ozone not from Cionni2011; computed prognostically) + 20 interactive aerosol species from Lamarque2010 emissions (not prescribed OD); Donner2011 verbatim: "first coupled chemistry-climate model that allowed representation of interactive aerosols and ozone, rather than prescribing concentrations from offline models"
+- ESM2G/M: standard atmospheric protocol; ESM-specific additions: Lamarque2013 ACCMIP N/S deposition (likely); CO2 concentration-driven (`historical`) AND emission-driven (`esmHistorical`) modes — **refuted claim that ESMs are exclusively emission-driven**; TOPAZ iron deposition and ocean C initialisation unconfirmed at model level
+- ESM2G vs ESM2M: forcing expected identical; ocean physics differs (GOLD isopycnal vs MOM4p1 z-level only)
+
+Source: adversarial workflow wf_ad589a7e-9e9; GFDL model pages; Donner 2011; PCMDI CMIP5 forcing page; GFDL ESM FAQ.
+
+---
+
+## CMIP5 Stage 2 (GISS: E2-H, E2-H-CC, E2-R, E2-R-CC) — COMPLETE ✓ (2026-06-20)
+
+**Results written:** `GISS__giss_e2_h.md`, `GISS__giss_e2_h_cc.md`, `GISS__giss_e2_r.md`, `GISS__giss_e2_r_cc.md`, `verified-forcing-matrix.csv` rows 5–8, `README.md` registry rows 5–8 and Stage 2 status + cross-cutting findings, `bib-to-add.md` CMIP5 Stage 2 section.
+
+Key findings:
+- **Physics_version governs forcing, NOT model name or CC suffix**: p1=NINT(prescribed), p2=TCAD(interactive), p3=TCADI(interactive+AIE). Mapping of named model → physics_version was NOT confirmed.
+- **NINT (p1) DEVIATES from Taylor 2012 on O and aerosols**: Ozone = Shindell 2003 offline (identical to CMIP3 GISS, NOT Cionni 2011). Aerosols = Miller 2006a/Koch 2011 offline (NOT Lamarque 2010 OD). Confirmed 1-0 from Miller 2014.
+- **TCAD/TCADI (p2/p3) EXCEED standard** on O and aerosols (interactive OMA).
+- **H vs R**: HYCOM (HYbrid Coordinate Ocean Model) vs Russell 1995 — atmosphere identical for same physics version.
+- **VL confirmed all 4 models**: Sato updated (TV, std). Confirmed 1-0 from GISS CMIP5 page + Schmidt 2014.
+- **CC suffix meaning unconfirmed** — refuted claim that CC = interactive atmospheric chemistry. CC may mean active carbon cycle (ESM). Physics_version for CC submissions unconfirmed.
+
+Source: GISS CMIP5 page; Schmidt et al. 2014 doi:10.1002/2013MS000265; Miller et al. 2014 doi:10.1002/2013MS000266; adversarial workflow wf_f7556b2d-78b; 14 claims verified, 6 confirmed 1-0, 8 killed.
+
+Seed model files before launching:
+- `research/cmip5/models/GISS__giss_e2_h.md`
+- `research/cmip5/models/GISS__giss_e2_h_cc.md`
+- `research/cmip5/models/GISS__giss_e2_r.md`
+- `research/cmip5/models/GISS__giss_e2_r_cc.md`
+
+### Stage 2 prompt:
+
+Document the climate forcing datasets used in the four GISS CMIP5 models — GISS-E2-H, GISS-E2-H-CC, GISS-E2-R, and GISS-E2-R-CC — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (*BAMS* doi:10.1175/BAMS-D-11-00094.1) standard protocol. GISS has four variants: two ocean configurations (H=HydraBASE layered ocean; R=Russell 1995 latitude-longitude ocean) × two atmospheric chemistry options (plain E2 = prescribed chemistry; CC = interactive GISS OMA atmospheric chemistry). Key distinctions to document:
+- **E2 vs E2-CC**: CC variants have interactive atmospheric chemistry (OMA scheme) — ozone and aerosols may be interactive rather than prescribed. This is analogous to GFDL-CM3 (interactive) vs CM2p1 (prescribed).
+- **H vs R**: These differ in ocean component only; atmospheric forcing should be identical for H vs H-CC and R vs R-CC respectively.
+
+IMPORTANT CMIP5 CONTEXT: GISS-E2-*-CC are Earth System Models with active atmospheric chemistry. Pay close attention to:
+- **Ozone treatment**: E2 variants likely use Cionni2011 prescribed ozone; E2-CC variants likely compute ozone interactively via OMA chemistry. Confirm.
+- **Aerosol treatment**: GISS has historically used interactive OMA aerosol scheme (Koch 2001; sulfate, BC, OC) — confirm whether all four variants use interactive aerosols from Lamarque2010 emissions, or whether some use prescribed OD.
+- **Nitrogen deposition** (reactive N — drives biogeochemistry for CC variants): Lamarque et al. 2013 ACCMIP dataset?
+- **BC on snow/ice**: GISS has a long-standing BC-on-snow parameterisation — confirm whether it was applied in CMIP5 historical runs.
+- **CO2 mode**: Do any GISS variants support emission-driven CO2? Or all concentration-driven?
+
+PRIMARY SOURCES:
+- All four variants: Schmidt, G.A., et al. (2014). Configuration and assessment of the GISS ModelE2 contributions to the CMIP5 archive. *J. Adv. Model. Earth Syst.* 6(1), 141–184. doi:10.1002/2013MS000265 [schmidt_configuration_2014 *(add)*]
+- Chemistry (OMA): Miller, R.L., et al. (2014). CMIP5 historical simulations (1850–2012) with GISS ModelE2. doi:10.1175/JCLI-D-13-00050.1
+- ES-DOC simulation documents: https://explore.es-doc.org (search GISS-E2-H historical, GISS-E2-R historical)
+- PCMDI CMIP5 model documentation
+
+FOR EACH of 12 forcings (+ESM-specific inputs), for EACH of the four models:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed? Fixed values WITH UNITS.
+(c) Did the model follow the Taylor 2012 standard protocol, or deviate?
+(d) For CC variants: are ozone and aerosols interactive (OMA) or prescribed?
+
+Taylor 2012 standard protocol (baseline claims to test):
+- G: Meinshausen et al. 2011 GHG concentrations
+- O: Cionni et al. 2011 (for models WITHOUT interactive chemistry)
+- SD/BC/OC: Lamarque et al. 2010 (prescribed OD or emissions for interactive)
+- LU: Hurtt et al. 2011 land-use transitions
+- SO: Wang et al. 2005 solar reconstruction
+- VL: Sato et al. 1993 updated
+
+Key questions:
+- Do E2-H and E2-R use identical atmospheric forcing? (Expected yes — ocean differs only.)
+- Do E2-H-CC and E2-R-CC have fully interactive chemistry (OMA) covering ozone AND aerosols? If so, they should EXCEED standard on O and aerosols, analogous to GFDL-CM3.
+- BC-on-snow: GISS has this capability from CMIP3 era — was it applied in CMIP5?
+- Solar: Wang 2005 standard or different?
+- Volcanic: Sato updated?
+
+DELIVERABLE: per forcing per model — verdict (follows standard / deviates / exceeds standard), temporal treatment (TV/FXc/FXk with units), dataset source + citation. Document E2-CC ESM-specific inputs separately. Flag any deviations from Taylor 2012.
+
+## After CMIP5 Stage 2: write results to model files, add 4 GISS rows to verified-forcing-matrix.csv, update README.md registry rows 5-8 and Stage 2 status, append refs to bib-to-add.md.
+
+---
+
+## CMIP5 Stage 3 (NCAR/CESM: CCSM4, CESM1-BGC, CESM1-CAM5, CESM1-CAM5-1-FV2, CESM1-FASTCHEM, CESM1-WACCM) — COMPLETE ✓ (2026-06-21)
+
+### Stage 3 key findings (2026-06-21):
+- **CESM1-CAM5 and CESM1-CAM5-1-FV2 EXCEED standard on all aerosols (SD/SI/BC/OC/MD/SS)**: MAM3 three-mode modal aerosol module drives all six aerosol species prognostically from Lamarque 2010 emissions; includes both direct and indirect effects — confirmed 1-0 (Liu2012 + Meehl2013). First CMIP5 family confirmed EXCEEDS on aerosols with indirect effect included.
+- **CESM1-WACCM EXCEEDS standard on ozone**: WACCM MOZART whole-atmosphere interactive chemistry computes ozone prognostically from surface to mesosphere — confirmed 1-0 (medium confidence; Marsh2013 paywalled).
+- **CCSM4 solar confirmed as Wang+Lean 2005 (std)**: SOLAR_TSI_Lean_1610-2007_annual_c090324.nc in NCAR SVN — 'Lean' filename = Wang, Lean & Sheeley 2005 (*ApJ* 625) — confirmed 1-0.
+- **CCSM4 SI=n/a (direct aerosol effect only)**: CAM4 uses prescribed aerosol OD with direct effect only; no indirect effect — confirmed 1-0 via contrast with CESM1-CAM5 in Meehl2013.
+- **CESM1-BGC inherits all CCSM4 atmospheric forcings**: ESM-specific inputs (Lindsay2014 primary): N-dep=Lamarque **2010** (NOT 2013 ACCMIP — notable deviation from GFDL ESMs); iron=Luo2003 FXc; CO2=PRES+PROG modes.
+- **CESM1-FASTCHEM treatment largely unresolved**: Interactive ozone refuted (0-1); Lamarque2010-emissions aerosol claim refuted (0-1) → likely CAM4-like prescribed, but unconfirmed. Needs Lamarque2012 (resources/) direct read.
+- **VL unresolved across entire NCAR/CESM family**: CCSM3 used Ammann 2003; CCSM4/CESM1 switch to Sato-updated unconfirmed family-wide.
+
+Model files already seeded:
+- `research/cmip5/models/NCAR__ccsm4.md`
+- `research/cmip5/models/NCAR__cesm1_bgc.md`
+- `research/cmip5/models/NCAR__cesm1_cam5.md`
+- `research/cmip5/models/NCAR__cesm1_cam5_1_fv2.md`
+- `research/cmip5/models/NCAR__cesm1_fastchem.md`
+- `research/cmip5/models/NCAR__cesm1_waccm.md`
+
+### Stage 3 prompt:
+
+Document the climate forcing datasets used in the six NCAR/CESM CMIP5 models — CCSM4, CESM1-BGC, CESM1-CAM5, CESM1-CAM5-1-FV2, CESM1-FASTCHEM, and CESM1-WACCM — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (*BAMS* doi:10.1175/BAMS-D-11-00094.1) standard protocol. This is the NCAR/CESM family, which covers a wide range from a basic AOGCM (CCSM4) through an ESM with active carbon cycles (CESM1-BGC), an interactive-aerosol model (CESM1-CAM5 with MAM3), and a whole-atmosphere chemistry model (CESM1-WACCM). The key distinctions:
+- **CCSM4**: AOGCM baseline; CAM4 atmosphere; no interactive aerosols; prescribed forcings throughout. Check if CMIP5 updated the volcanic forcing from Ammann 2003 (used in CCSM3/CMIP3) to Sato updated.
+- **CESM1-BGC**: ESM with active carbon cycle (POP2-BEC ocean + CLM4-CN land); confirm N-deposition dataset, CO2 mode (concentration vs. emission-driven), and iron deposition.
+- **CESM1-CAM5**: CAM5 atmosphere with MAM3 three-mode modal aerosol scheme — aerosols are INTERACTIVE from Lamarque 2010 emissions, expected to EXCEED standard on SD/BC/OC/SI/MD/SS. FASTCHEM is a variant of CAM-chem and may have intermediate chemistry.
+- **CESM1-CAM5-1-FV2**: Lower-resolution variant of CESM1-CAM5 (2° FV dynamical core); forcing expected identical to CESM1-CAM5.
+- **CESM1-FASTCHEM**: Uses CAM4+FASTCHEM (prescribed/fast chemistry); ozone treatment is the key question — does FASTCHEM use Cionni2011 prescribed ozone or a fast offline chemistry calculation?
+- **CESM1-WACCM**: Full whole-atmosphere chemistry (surface to mesosphere, 66 levels); ozone is INTERACTIVE — expected to EXCEED standard on O. Solar forcing: WACCM also responds to spectrally-resolved UV solar variability (photolysis). Confirm if spectrally-resolved Wang 2005 or a spectral supplement is used.
+
+IMPORTANT CMIP5 CONTEXT — CESM family specific:
+- **CCSM3/CCSM4 VOLCANIC TRANSITION**: CCSM3 (CMIP3) used Ammann et al. 2003 volcanic dataset (NOT Sato 1993). CCSM4/CESM1 may have switched to Sato updated (Taylor 2012 standard) — this is the key solar/volcanic question for this family.
+- **MAM3 aerosol emissions**: CESM1-CAM5 and CESM1-WACCM use MAM3 from Lamarque 2010 emissions — these EXCEED the prescribed-OD standard.
+- **CESM1-BGC biogeochemistry inputs**: N-deposition for CLM4-CN (land) and POP2-BEC (ocean); iron deposition to ocean; CO2 emissions for potential emission-driven runs.
+- **BC on snow/ice**: The NCAR team has a well-developed BC-on-snow scheme — confirm which CESM1 variants apply it.
+
+PRIMARY SOURCES:
+- CCSM4: Gent, P.R., et al. (2011). *J. Climate* 24, 4973–4991. doi:10.1175/2011JCLI4083.1
+- CESM1-BGC: Lindsay, K., et al. (2014). *J. Climate* 27, 8981–9005. doi:10.1175/JCLI-D-12-00565.1
+- CESM1-CAM5: Meehl, G.A., et al. (2013). *J. Climate* 26, 6287–6308. doi:10.1175/JCLI-D-12-00572.1; Liu, X., et al. (2012). *GMD* 5, 709–739. doi:10.5194/gmd-5-709-2012
+- CESM1-WACCM: Marsh, D.R., et al. (2013). *J. Climate* 26, 7372–7391. doi:10.1175/JCLI-D-12-00558.1
+- CESM1-FASTCHEM: Lamarque, J.-F., et al. (2012). *GMD* 5, 369–411. doi:10.5194/gmd-5-369-2012 (CAM-chem)
+- ES-DOC simulation documents: https://explore.es-doc.org
+- PCMDI CMIP5 forcing pages
+
+FOR EACH of 12 forcings (+ESM/chemistry-specific inputs), for EACH model:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed?
+(c) Did it follow Taylor 2012 standard, deviate, or exceed?
+(d) For BGC: CO2 mode (concentration vs. emission-driven)? N-deposition dataset? Iron deposition?
+(e) For CAM5/WACCM: interactive aerosols from Lamarque 2010 emissions (exc) or prescribed OD (std)?
+(f) For WACCM: is ozone interactive (exc) confirmed from Marsh 2013?
+
+Key questions:
+1. CCSM4 volcanic forcing: Sato updated (CMIP5 standard) or Ammann 2003 (carried over from CCSM3)?
+2. CCSM4 solar: Wang 2005 confirmed?
+3. CESM1-CAM5 MAM3: confirmed interactive aerosols from Lamarque 2010 (exc on SD/BC/OC)?
+4. CESM1-WACCM: confirmed interactive ozone (exc on O) from Marsh 2013?
+5. CESM1-BGC: what N-deposition dataset was used? What iron deposition dataset for POP2-BEC?
+6. CESM1-FASTCHEM: does FASTCHEM use Cionni2011 (std) or a quasi-interactive ozone calculation?
+7. BC-on-snow: which CESM1 variants apply it?
+
+Taylor 2012 standard protocol (baseline):
+- G: Meinshausen et al. 2011 | O: Cionni et al. 2011 (w/o interactive chem) | SD/BC/OC: Lamarque 2010 | LU: Hurtt 2011 | SO: Wang 2005 | VL: Sato updated
+
+DELIVERABLE: per forcing per model — verdict (std/dev/exc), temporal (TV/FXc/FXk with units), dataset + citation. Document BGC/WACCM ESM/chemistry-specific inputs separately. Flag deviations from Taylor 2012. Adversarially verify key claims.
+
+## After CMIP5 Stage 3: write results to model files, add 6 NCAR rows to verified-forcing-matrix.csv, update README.md registry rows 9-14 and Stage 3 status, append refs to bib-to-add.md.
+
+---
+
+## CMIP5 Stage 4 (CCCma + BCC: CanESM2, CanCM4, bcc-csm1-1, bcc-csm1-1-m) — COMPLETE ✓ (2026-06-21)
+
+### Stage 4 key findings (2026-06-21):
+- **CanAM4 aerosols = interactive (likely exc)**: Wilcox et al. 2013 (ERL 8:024033) classifies CanESM2 as SA (first indirect effect = YES, second = NO). Prescribed-OD claim adversarially refuted (0-1). Aerosol dataset provenance (Lamarque2010 emissions vs other) unresolved.
+- **All other CCCma/BCC forcings unverified**: PCMDI and WDC-Climate provide only protocol-level recommendations, not model-specific forcing provenance. VonSalzen2013 (CanAM4) paywalled in workflow but PDF now in /resources.
+- **BCC CMIP6 papers must not be used**: Wu2019 (BCC-CSM2-MR) and Wu2020 (BCC-ESM1) describe CMIP6 models using Meinshausen 2017 GHGs — confirmed 1-0 as WRONG ERA. Wu2014 (bcc-csm1-1 CMIP5) PDF in /resources for next pass.
+- **CanCM4 inferred from CanESM2**: Same CanAM4 atmosphere → same aerosol finding (SD/SI = ~ unclear likely exc).
+- **Next-pass priority**: Read VonSalzen2013 PDF (CanAM4 forcing details) + Wu2014 PDF (BCC-CSM1.1) to resolve all open questions.
+
+Seed model files before launching:
+- `research/cmip5/models/CCCma__canesm2.md`
+- `research/cmip5/models/CCCma__cancm4.md`
+- `research/cmip5/models/BCC__bcc_csm1_1.md`
+- `research/cmip5/models/BCC__bcc_csm1_1_m.md`
+
+### Stage 4 prompt:
+
+Document the climate forcing datasets used in the four CCCma/BCC CMIP5 models — CanESM2, CanCM4, bcc-csm1-1, and bcc-csm1-1-m — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (*BAMS* doi:10.1175/BAMS-D-11-00094.1) standard protocol. CCCma (Canadian Centre for Climate Modelling and Analysis) contributed two related models: CanESM2 is a full ESM with an active carbon cycle (CTEM land + CMOC ocean); CanCM4 is the underlying AOGCM sharing the same CanAM4 atmosphere. BCC (Beijing Climate Center, China) contributed two resolutions of their climate system model: bcc-csm1-1 (lower resolution) and bcc-csm1-1-m (moderate resolution), both sharing the same BCC-AGCM atmosphere.
+
+PRIOR STAGE CONTEXT — important patterns to watch:
+- GISS (Stage 2): ozone used GISS offline Shindell2003 (NOT Cionni2011) — check if CCCma/BCC similarly used non-standard ozone datasets.
+- NCAR/CESM (Stage 3): ESM N-dep used Lamarque **2010** (not 2013 ACCMIP) — check which year for CanESM2.
+- Standard vs. interactive aerosols: CESM1-CAM5 exceeded standard (MAM3); check if CanAM4/BCC-AGCM are prescribed-OD (standard) or interactive.
+
+KEY ARCHITECTURE QUESTIONS:
+- **CanESM2**: ESM — CTEM (Canadian Terrestrial Ecosystem Model) + CMOC (Canadian Model of Ocean Carbon). Does it use interactive atmospheric chemistry? What ozone dataset? Aerosols: CanAM4 is the atmosphere — prescribed OD or interactive? N-deposition: Lamarque 2010 or 2013 ACCMIP? CO2 mode: concentration-driven (historical) or emission-driven (esmHistorical)?
+- **CanCM4**: AOGCM using CanAM4 atmosphere (same as CanESM2 atmospheric component). Confirm same atmospheric forcings as CanESM2. Not an ESM — no ESM-specific inputs.
+- **bcc-csm1-1 and bcc-csm1-1-m**: BCC-AGCM2.0 atmosphere. What ozone treatment (Cionni2011 or BCC-internal)? Aerosol treatment? Solar/volcanic datasets?
+
+PRIMARY SOURCES:
+- CanESM2 (carbon cycle): Arora, V.K., et al. (2011). Carbon emission limits required to satisfy future representative concentration pathways of greenhouse gases. *Biogeosciences* 8(5), 1603–1625. doi:10.5194/bg-8-1603-2011
+- CanESM2/CanCM4 (atmosphere, CanAM4): VonSalzen, K., et al. (2013). The Canadian Fourth Generation Atmospheric Global Climate Model (CanAM4). Part I: representation of physical processes. *Atmos.-Ocean* 51(1), 104–125. doi:10.1080/07055900.2012.755610
+- BCC models: Wu, T., et al. (2014). An overview of BCC climate system model development and application for climate change studies. *J. Meteor. Res.* 28(1), 34–56. doi:10.1007/s13351-014-3041-7
+- ES-DOC simulation documents: https://explore.es-doc.org
+- PCMDI CMIP5 forcing pages
+
+FOR EACH of 12 forcings (+ESM-specific for CanESM2), for EACH model:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed?
+(c) Did it follow Taylor 2012 standard, deviate, or exceed?
+(d) For CanESM2: N-dep dataset and year? CO2 mode?
+
+Key questions:
+1. CanESM2/CanCM4 ozone: Cionni2011 (std) or a different dataset (e.g., GISS-style offline)?
+2. CanESM2/CanCM4 aerosols: prescribed OD from Lamarque2010 (std) or interactive aerosol scheme?
+3. CanESM2 N-deposition: Lamarque 2010 or 2013 ACCMIP? (GFDL ESMs used 2013; NCAR used 2010 — what did CCCma use?)
+4. CanESM2 CO2 mode: concentration-driven historical or emission-driven esmHistorical?
+5. BCC ozone and aerosol treatment: Cionni2011 and Lamarque2010-OD (std), or alternative datasets?
+6. Solar (both centres): Wang2005 confirmed, or centre-specific?
+7. Volcanic (both centres): Sato updated confirmed, or Ammann2003 or other?
+
+Taylor 2012 standard protocol (baseline):
+- G: Meinshausen et al. 2011 | O: Cionni et al. 2011 (w/o interactive chem) | SD/BC/OC/MD/SS: Lamarque 2010 | LU: Hurtt 2011 | SO: Wang 2005 | VL: Sato updated
+
+DELIVERABLE: per forcing per model — verdict (std/dev/exc), temporal (TV/FXc/FXk), dataset + citation. Document CanESM2 ESM inputs separately. Flag deviations from Taylor 2012. Adversarially verify key claims.
+
+## After CMIP5 Stage 4: write results to model files, add 4 CCCma/BCC rows to verified-forcing-matrix.csv, update README.md registry rows 15-18 and Stage 4 status, append refs to bib-to-add.md.
+
+---
+
+## CMIP5 Stage 5 (CSIRO + ACCESS: ACCESS1-0, ACCESS1-3, CSIRO-Mk3.6.0) — COMPLETE ✓ (2026-06-21)
+
+Stage 5 results written (2026-06-21) — workflow wf_6a1942cb-0da:
+- `research/cmip5/models/CSIRO-BOM__access1_0.md` — O=✓std confirmed; aerosol/SO/VL/LU unconfirmed (claims refuted 0-1); cross-check UKMO Stage 8
+- `research/cmip5/models/CSIRO-BOM__access1_3.md` — all inferred from ACCESS1-0 (identical forcing)
+- `research/cmip5/models/CSIRO-QCCCE__csiro_mk3_6_0.md` — EXCEEDS std on ALL aerosols; LU=✗dev; O=✓std; SO/VL=~dev/std?(medium conf)
+- `research/cmip5/data/verified-forcing-matrix.csv` — rows 19–21 added
+- `research/cmip5/README.md` — rows 19–21 updated ☐→☑; staging plan row 5 updated ☐→☑; Stage 5 cross-cutting findings added
+- `research/bib-to-add.md` — Stage 5 section prepended (bi_access_2013, jeffrey_australia_2013, rotstayn_aerosol_2010, eyring_ozone_2013, jones_hadgem2es_2011)
+
+**Key findings:**
+- CSIRO-Mk3.6.0 EXCEEDS std on ALL 6 aerosol keys: Rotstayn2010 interactive 11-tracer scheme (prognostic SO4/BC/OC/dust-4bins/SS) from Lamarque2010 emissions + online natural sources — confirmed 1-0 high conf. Analogous to CESM1-CAM5 MAM3 and CanAM4 SA.
+- CSIRO-Mk3.6.0 O=✓std: Cionni2011 AC&C/SPARC; Syktus2011 verbatim — confirmed 1-0 high conf.
+- CSIRO-Mk3.6.0 LU=✗dev: explicitly excluded — Syktus2011 + Collier2011 — confirmed 1-0 high conf.
+- CSIRO-Mk3.6.0 SO=~dev (Lean2000 not Wang2005; same TSI lineage; medium conf); VL=~dev/std? (Sato1993 not Sato-updated; same GISS lineage; medium conf).
+- ACCESS O=✓std: Cionni2011 confirmed 1-0 high conf (Bi/Dix 2013 + Eyring 2013; no interactive chemistry; GLOMAP ruled out).
+- ACCESS aerosol/SO/VL/LU: ALL unconfirmed (claims refuted 0-1 for lack of primary text evidence this stage). Likely CLASSIC prescribed sulfate scheme from HadGEM2-A inheritance — to be confirmed in UKMO Stage 8.
+
+---
+
+## CMIP5 Stage 6 (CNRM + IPSL: CNRM-CM5, CNRM-CM5-2, IPSL-CM5A-LR, IPSL-CM5A-MR, IPSL-CM5B-LR) — COMPLETE ✓ (2026-06-21)
+
+Stage 6 results written (2026-06-21) — workflow wf_affaeb54-772 (14/14 claims confirmed 1-0):
+- `research/cmip5/models/CNRM__cnrm_cm5.md` — populated; MOBIDIC ozone exc; LMDZ-INCA offline OD aerosols dev; Ammann2007 volcanic dev; LU excluded dev; MD/SS FXc dev; SO unconfirmed
+- `research/cmip5/models/CNRM__cnrm_cm5_2.md` — inferred from CNRM-CM5; MOCAGE O exc expected but UNCONFIRMED
+- `research/cmip5/models/IPSL__ipsl_cm5a_lr.md` — populated; INCA+REPROBUS ozone dev; LMDZ-INCA offline 11yr-smoothed aerosols dev; Wang2005+Frohlich&Lean2004 solar std; Sato1993-updated volcanic std; LU unconfirmed
+- `research/cmip5/models/IPSL__ipsl_cm5a_mr.md` — identical forcing to CM5A-LR (resolution only)
+- `research/cmip5/models/IPSL__ipsl_cm5b_lr.md` — identical forcing to CM5A-LR (LMDZ5B physics not forcing)
+- `research/cmip5/data/verified-forcing-matrix.csv` — rows 22–26 added (cnrm_cm5, cnrm_cm5_2, ipsl_cm5a_lr, ipsl_cm5a_mr, ipsl_cm5b_lr)
+- `research/cmip5/README.md` — rows 22–26 updated ☐→☑; staging plan row 6 updated ☐→☑; Stage 6 cross-cutting findings section added
+- `research/bib-to-add.md` — Stage 6 section prepended (voldoire_cnrm_2013, dufresne_ipsl_2013, szopa_aerosol_2013, ammann_volcanic_2007, cariolle_new_2007, frohlich_lean_2004)
+
+### Key findings (Stage 6):
+- Both French groups substitute LMDZ-INCA offline pre-computed aerosol ODs for the Taylor 2012 standard Lamarque2010-OD — systematic DEVIATION across CNRM + IPSL. Confirmed 1-0 high conf (Voldoire2013 + Szopa2013).
+- CNRM-CM5 ozone EXCEEDS standard: MOBIDIC 2-D linearized interactive scheme (Cariolle & Teyssèdre 2007) — ozone prognostic in ARPEGE.
+- IPSL-CM5 ozone DEVIATES: offline merged INCA-trop + REPROBUS-strat product, prescribed as monthly-mean zonal fields — NOT Cionni2011.
+- CNRM-CM5 additional deviations: mineral dust + sea salt FIXED at pre-industrial (FXc); LU explicitly excluded; volcanic = Ammann2007 (not Sato-updated).
+- IPSL-CM5 corrects CMIP3 errors: SO=✓std (Wang2005+Frohlich&Lean2004); VL=✓std (Sato1993-updated). Both CMIP3 no-natural-forcing errors corrected.
+- CNRM-CM5-2 MOCAGE ozone remains unconfirmed from primary source — open question for follow-up.
+
+---
+
+## CMIP5 Stage 7 (MPI + EC-EARTH: MPI-ESM-LR, MPI-ESM-MR, MPI-ESM-P, EC-EARTH) — NEXT
+
+Seed model files before launching:
+- `research/cmip5/models/MPI__mpi_esm_lr.md`
+- `research/cmip5/models/MPI__mpi_esm_mr.md`
+- `research/cmip5/models/MPI__mpi_esm_p.md`
+- `research/cmip5/models/ICHEC__ec_earth.md`
+
+### Stage 7 prompt:
+
+Document the climate forcing datasets used in the four European CMIP5 models — MPI-ESM-LR, MPI-ESM-MR, MPI-ESM-P (MPI-M, Germany) and EC-EARTH (ICHEC/EC-EARTH Consortium, Europe) — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (*BAMS* doi:10.1175/BAMS-D-11-00094.1) standard protocol. This is the European continental group (German + pan-European consortium). In CMIP3, MPI-ECHAM5 had 3 confirmed conflicts (BC/OC/LU not applied despite Table S1 Y) — test whether corrected in CMIP5 MPI-ESM. EC-EARTH is a new entrant not in CMIP3.
+
+PRIOR STAGE CONTEXT — important patterns to watch:
+- CNRM/IPSL (Stage 6) deviated on aerosols + ozone by using centre-specific offline chemistry-derived fields rather than Lamarque2010-OD/Cionni2011 directly. Test whether MPI/EC-EARTH similarly use ECHAM-family aerosol schemes.
+- CSIRO-Mk3.6.0 (Stage 5) and CESM1-CAM5 (Stage 3) EXCEEDED on aerosols (interactive schemes) — MPI-ESM uses ECHAM6 with HAM2 aerosol scheme, which is also interactive. Likely exceeds.
+- GFDL-ESM (Stage 1): N-dep = Lamarque2013 ACCMIP; CESM1-BGC: N-dep = Lamarque2010. What does MPI-ESM use?
+- CMIP3 MPI-ECHAM5 explicitly stated "only anthropogenic forcings" (no BC/OC/LU). Test whether MPI-ESM-LR/MR/P corrected this.
+
+KEY ARCHITECTURE QUESTIONS:
+- **MPI-ESM-LR, MPI-ESM-MR**: Full ESM with ECHAM6 atmosphere + MPIOM ocean + JSBACH land (active C cycle) + HAMOCC ocean biogeochemistry. ECHAM6 includes the HAM2 aerosol scheme (Hamburg Aerosol Module) — likely interactive, potentially exc on aerosols. Confirm ozone treatment (Cionni2011 prescribed or HAMMOZ/LABMOS interactive?). ESM-specific: N-dep dataset; CO2 mode; iron deposition for HAMOCC.
+- **MPI-ESM-P**: "Paleo" configuration of MPI-ESM-LR — optimized for long-timescale simulations. Same atmosphere/ocean as LR; forcing protocol may be identical or slightly reduced (check if any forcing was simplified for paleo).
+- **EC-EARTH**: IFS cy31r1 atmosphere (ECMWF operational model) + NEMO2 ocean + LIM2 sea ice. Key question: IFS-based models use a different atmospheric chemistry framework from ECHAM-family. Ozone prescribed from Cionni2011 (std) or different? Aerosols: OASIS scheme, prescribed OD, or interactive? Primary source: Hazeleger et al. 2012 (*BAMS* doi:10.1175/BAMS-D-11-00094.1) or Hazeleger et al. 2010 (*BAMS*).
+
+PRIMARY SOURCES:
+- MPI-ESM: Giorgetta, M.A., et al. (2013). Climate and carbon cycle changes from 1850 to 2100 in MPI-ESM simulations for the Coupled Model Intercomparison Project phase 5. *J. Adv. Model. Earth Syst.* 5(3), 572–597. doi:10.1002/jame.20038 [giorgetta_climate_2013 *(add)*]
+- MPI-ESM ECHAM6 + HAM2: Stevens, B., et al. (2013). Atmospheric component of the MPI-M Earth System Model: ECHAM6. *J. Adv. Model. Earth Syst.* 5(2), 146–172. doi:10.1002/jame.20015
+- EC-EARTH: Hazeleger, W., et al. (2012). EC-Earth V2.2: description and validation of a new seamless earth system prediction model. *Clim. Dyn.* 39(11), 2611–2629. doi:10.1007/s00382-011-1228-5
+- ES-DOC simulation documents: https://explore.es-doc.org
+- PCMDI CMIP5 documentation
+
+FOR EACH of 12 forcings (+ESM-specific inputs for MPI-ESM), for EACH model:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed?
+(c) Did it follow Taylor 2012 standard, deviate, or exceed?
+(d) For MPI-ESM: N-dep dataset and year? CO2 mode (concentration vs. emission-driven)? Iron deposition for HAMOCC? BC-on-snow?
+
+Key questions:
+1. MPI-ESM aerosols: HAM2 interactive (exc) or prescribed OD? ECHAM6 can run with or without HAM2.
+2. MPI-ESM ozone: Cionni2011 (std) or LABMOS/HAMMOZ interactive (exc)? ECHAM6 supports both.
+3. MPI-ESM LU, BC, OC: Were these corrected from CMIP3 ECHAM5 exclusion (where BC/OC/LU = not applied despite Table S1 Y)?
+4. MPI-ESM N-deposition: Lamarque 2010 or 2013 ACCMIP?
+5. MPI-ESM iron deposition to HAMOCC: which dataset?
+6. MPI-ESM-P: same forcing as LR or simplified for paleo mode?
+7. EC-EARTH aerosols and ozone: IFS-derived or prescribed standard datasets?
+8. EC-EARTH solar and volcanic: Wang2005/Sato-updated (std) or different?
+
+Taylor 2012 standard protocol (baseline):
+- G: Meinshausen et al. 2011 | O: Cionni et al. 2011 (w/o interactive chem) | SD/BC/OC/MD/SS: Lamarque 2010 | LU: Hurtt 2011 | SO: Wang 2005 | VL: Sato updated
+
+DELIVERABLE: per forcing per model — verdict (std/dev/exc/?), temporal (TV/FXc/FXk), dataset + citation. Document MPI-ESM ESM-specific inputs separately (N-dep, CO2 mode, iron, BC-on-snow). Flag deviations from Taylor 2012. Adversarially verify key claims.
+
+## After CMIP5 Stage 7: write results to model files, add 4 MPI+EC-EARTH rows to verified-forcing-matrix.csv, update README.md registry rows 27-30 and Stage 7 status, append refs to bib-to-add.md.
+
+---
+
+## [Stage 6 preserved prompt archive below]
+
+### Stage 6 prompt (archived):
+
+Document the climate forcing datasets used in the five French CMIP5 models — CNRM-CM5, CNRM-CM5-2, IPSL-CM5A-LR, IPSL-CM5A-MR, and IPSL-CM5B-LR — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (*BAMS* doi:10.1175/BAMS-D-11-00094.1) standard protocol. CNRM (Centre National de Recherches Météorologiques) and IPSL (Institut Pierre-Simon Laplace) are the two French modelling groups. In CMIP3, both CNRM-CM3 and IPSL-CM4 had known forcing issues (confirmed Stage 6 CMIP3: CNRM had SI=✗ direct-only no-indirect, SO=✗ fixed-1370, VL=✗ no-volcanic; IPSL had SO=✗ fixed-1365, VL=✗ no-natural-forcings). Test whether these were corrected in CMIP5.
+
+PRIOR STAGE CONTEXT — important patterns to watch:
+- CSIRO-Mk3.6.0 (Stage 5) EXCEEDS on aerosols (interactive Rotstayn2010), explicitly EXCLUDES LU — check if French models also have unusual deviations.
+- GISS (Stage 2) deviated on ozone (Shindell2003 not Cionni2011) — test French models carefully.
+- CNRM-CM5-2 may have interactive chemistry (check if ozone is exc) — the "-2" suffix sometimes denotes an updated version with chemistry.
+- IPSL-CM5B-LR uses a different physical parameterisation package from CM5A models (notably different boundary layer and convection schemes) — forcing may also differ.
+
+KEY ARCHITECTURE QUESTIONS:
+- **CNRM-CM5**: ARPEGE-Climate 5.2 atmosphere + NEMO3.2 ocean. Aerosols: prescribed OD (std) or interactive? Ozone: Cionni2011 (std) or MOCAGE interactive chemistry? VL/SO: corrected from CMIP3 fixed-solar/no-volcanic?
+- **CNRM-CM5-2**: Updated version of CNRM-CM5 with interactive chemistry (MOCAGE). Expected to EXCEED on O and possibly aerosols. Confirm.
+- **IPSL-CM5A-LR / MR**: LMDZ5A atmosphere + NEMO ocean + ORCHIDEE land. Aerosols: prescribed OD (std) or interactive (INCA chemistry)? LR and MR are resolution variants — forcing expected identical.
+- **IPSL-CM5B-LR**: Different LMDZ5B atmosphere physics from CM5A. What changed in forcing?
+
+PRIMARY SOURCES:
+- CNRM-CM5: Voldoire, A., et al. (2013). The CNRM-CM5.1 global climate model: description and basic evaluation. *Clim. Dyn.* 40(9–10), 2091–2121. doi:10.1007/s00382-011-1259-y [voldoire_cnrm_2013 *(add)*]
+- IPSL-CM5A: Dufresne, J.-L., et al. (2013). Climate change projections using the IPSL-CM5 Earth System Model: from CMIP3 to CMIP5. *Clim. Dyn.* 40(9–10), 2123–2165. doi:10.1007/s00382-012-1636-1 [dufresne_ipsl_2013 *(add)*]
+- ES-DOC simulation documents: https://explore.es-doc.org
+- PCMDI CMIP5 documentation
+
+FOR EACH of 12 forcings, for EACH model:
+(a) Was it applied in `historical`? (b) WHICH dataset/source — time-varying or fixed? (c) Did it follow Taylor 2012 standard, deviate, or exceed?
+
+Key questions:
+1. CNRM-CM5 aerosols: Prescribed OD from Lamarque2010 (std) or interactive INCA aerosols?
+2. CNRM-CM5 ozone: Cionni2011 (std) or interactive MOCAGE chemistry (exc)?
+3. CNRM-CM5-2: Is the chemistry upgrade (MOCAGE interactive) confirmed, and does it EXCEED on O and aerosols?
+4. IPSL-CM5A-LR/MR: Aerosols — prescribed OD (std) or interactive INCA (exc)?
+5. IPSL-CM5B-LR: Does the different physics scheme change the forcing protocol?
+6. Solar and volcanic (all): Corrected from CMIP3 errors (fixed-solar, no-volcanic)? Wang2005 / Sato-updated?
+7. LU (all): Hurtt2011 standard applied, or excluded (as CSIRO-Mk3.6.0)?
+
+Taylor 2012 standard protocol (baseline):
+- G: Meinshausen et al. 2011 | O: Cionni et al. 2011 (w/o interactive chem) | SD/BC/OC/MD/SS: Lamarque 2010 | LU: Hurtt 2011 | SO: Wang 2005 | VL: Sato updated
+
+DELIVERABLE: per forcing per model — verdict (std/dev/exc/?), temporal (TV/FXc/FXk), dataset + citation. Flag deviations from Taylor 2012. Adversarially verify key claims.
+
+## After CMIP5 Stage 6: write results to model files, add 5 CNRM/IPSL rows to verified-forcing-matrix.csv, update README.md registry rows 22-26 and Stage 6 status, append refs to bib-to-add.md.
+
+---
+
+## Archive: CMIP5 Stage 1 prompt (GFDL) — preserved for reference
+
+Seed model files before launching:
+
+Seed model files before launching:
+- `research/cmip5/models/GFDL__gfdl_cm2p1.md`
+- `research/cmip5/models/GFDL__gfdl_cm3.md`
+- `research/cmip5/models/GFDL__gfdl_esm2g.md`
+- `research/cmip5/models/GFDL__gfdl_esm2m.md`
+
+Also create `research/cmip5/data/verified-forcing-matrix.csv` (header only) before Stage 1.
+
+### Stage 1 prompt:
+
+Document the climate forcing datasets used in the four GFDL CMIP5 models — GFDL-CM2p1, GFDL-CM3, GFDL-ESM2G, and GFDL-ESM2M — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Continuation of a forcing review that completed CMIP3 for all 24 models. CMIP5 uses a more standardized protocol; the baseline is **Taylor et al. 2012** (*BAMS* doi:10.1175/BAMS-D-11-00094.1), which specifies recommended datasets for each forcing. Document whether each model followed the standard or deviated, with primary-source evidence.
+
+IMPORTANT CMIP5 CONTEXT: This was the first generation of Earth System Models (ESMs), introducing active carbon cycles, interactive biogeochemistry, and atmospheric chemistry. Some models include additional forcing inputs to drive these new components that were absent in CMIP3. Pay close attention to:
+- **Nitrogen deposition** (reactive N from Lamarque et al. 2010 emissions — drives ESM land/ocean biogeochemistry)
+- **CO2 concentration vs. emissions** (ESMs may use prescribed CO2 concentrations OR prescribed emissions with interactive carbon cycle — document which)
+- **Atmospheric chemistry inputs** (NOx, VOC, CO emissions from Lamarque 2010 — relevant to models with interactive chemistry)
+- **Ocean biogeochemistry forcing** (nutrient inputs, iron deposition — some ESMs include these)
+- **Black carbon on snow/ice** (additional aerosol-cryosphere forcing pathway, not just direct/indirect)
+
+PRIMARY SOURCES:
+- GFDL-CM2p1: Delworth et al. 2006 (doi:10.1175/JCLI3629.1); note CM2p1 is essentially the CMIP3 CM2.1 rerun under CMIP5 protocol — check what changed in forcing
+- GFDL-CM3: Donner et al. 2011 (*J. Climate* doi:10.1175/2011JCLI3955.1); Levy et al. 2013 (aerosol forcing in CM3)
+- GFDL-ESM2G and ESM2M: Dunne et al. 2012 (*J. Climate* doi:10.1175/JCLI-D-11-00560.1); ESMs have active ocean/land biogeochemistry — document any additional forcing datasets for the ESM components
+- ES-DOC simulation documents: https://explore.es-doc.org (search by model name + historical experiment)
+- PCMDI/CMIP5 model documentation pages may still exist for some GFDL models
+
+FOR EACH of 12 forcings (+ESM-specific inputs), for EACH model:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed? Fixed values WITH UNITS.
+(c) Did the model follow the Taylor 2012 standard protocol, or use a different dataset?
+(d) For ESMs (ESM2G, ESM2M): what additional forcing datasets drove the ESM components (carbon cycle, biogeochemistry)?
+
+Taylor 2012 standard protocol (baseline claims to test):
+- G: Meinshausen et al. 2011 GHG concentrations
+- O: Cionni et al. 2011 (for models without interactive chemistry)
+- SD/BC/OC: Lamarque et al. 2010 emissions (or prescribed OD from same)
+- LU: Hurtt et al. 2011 land-use transitions
+- SO: Wang et al. 2005 solar reconstruction
+- VL: Sato et al. 1993 updated
+
+Key questions:
+- GFDL-CM2p1: Is forcing identical to CMIP3 CM2.1, or updated to use Meinshausen/Cionni/Hurtt/Wang 2005? Document what changed.
+- GFDL-CM3: First GFDL model with interactive aerosols and atmospheric chemistry — confirm which aerosol species are interactive vs. prescribed; confirm ozone treatment (interactive or Cionni 2011?)
+- GFDL-ESM2G vs ESM2M: Both use TOPAZ ocean biogeochemistry — what additional nutrient/iron/deposition datasets were applied? Do they use CO2 concentrations (concentration-driven) or emissions (emission-driven)?
+- All models: Solar = Wang 2005 standard? Volcanic = Sato updated?
+
+DELIVERABLE: per forcing per model — verdict (follows standard / deviates / exceeds standard), temporal treatment (TV/FXc/FXk with units), dataset source + citation. Note ESM-specific additional inputs separately. Flag any deviations from Taylor 2012.
+
+## After Stage 1 (CMIP5): write results to model files, add rows to verified-forcing-matrix.csv, update README.md registry rows 1-4 and Stage 1 status, append refs to bib-to-add.md.
+
 ## Remaining queue (CMIP3 first pass)
 10 BCCR+IAP+INM — NEXT
 Then synthesis + summary of all 24 models.
