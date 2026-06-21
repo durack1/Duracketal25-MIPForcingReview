@@ -586,15 +586,86 @@ Stage 6 results written (2026-06-21) — workflow wf_affaeb54-772 (14/14 claims 
 
 ---
 
-## CMIP5 Stage 7 (MPI + EC-EARTH: MPI-ESM-LR, MPI-ESM-MR, MPI-ESM-P, EC-EARTH) — NEXT
+## CMIP5 Stage 7 (MPI + EC-EARTH: MPI-ESM-LR, MPI-ESM-MR, MPI-ESM-P, EC-EARTH) — COMPLETE ✓ (2026-06-21)
+
+**Results written:** `MPI__mpi_esm_lr.md`, `MPI__mpi_esm_mr.md`, `MPI__mpi_esm_p.md`, `ICHEC__ec_earth.md`, `verified-forcing-matrix.csv` rows 27–30, `README.md` registry rows 27–30 and staging plan row 7 ☑, Stage 7 cross-cutting findings section, `bib-to-add.md` Stage 7 section.
+
+**Key findings (Stage 7):**
+- **MPI-ESM aerosols = ✗dev (Kinne MAC-v1)**: All three MPI configurations prescribe total-anthropogenic aerosol optical properties from Kinne et al. 2013 MAC-v1 climatology — NOT Lamarque2010-OD, NOT interactive HAM2. BC/OC effects physically incorporated in bundled optical field (corrects CMIP3 ECHAM5 exclusion) but method deviates from Taylor2012 standard.
+- **MPI-ESM ozone = ✓std (Cionni2011)**: ECHAM6 default ozone is a 3D monthly climatology from Cionni2011 AC&C/SPARC database, extended above 1 hPa. No interactive chemistry in standard historical. Stevens2013 verbatim confirmed 1-0 high conf.
+- **MPI-ESM LU = ✓std (Hurtt2011 LUH1 via JSBACH)**: Corrects CMIP3 ECHAM5 LU exclusion. Confirmed 1-0 medium conf.
+- **EC-EARTH SI = ✗dev (no indirect effect)**: "ECE2 only accounts for the direct radiative effects of aerosols...but it has no representation of the indirect effects." — Wyser et al. 2020 (GMD doi:10.5194/gmd-13-3465-2020) verbatim, confirmed 1-0 high conf; Döscher et al. 2022 (doi:10.5194/gmd-15-2973-2022) supporting. Aerosol source ~std (CAM/Lamarque2011 mass-concentrations mapped onto IFS types, direct-only).
+- **ESM inputs (MPI-ESM N-dep, HAMOCC iron, BC-on-snow) and MPI-ESM SO/VL all unconfirmed** (Giorgetta2013 + Stevens2013 paywalled Wiley 402).
+- **3 adversarially killed claims were overcautious**: refutations are good news — they confirm that primary sources DO document forcing details and that EC-EARTH followed CMIP5 protocols.
+
+Source: workflow wf_c371f969-29f (2026-06-21); 11/14 confirmed.
+
+---
+
+## CMIP5 Stage 8 (UKMO: HadCM3, HadGEM2-AO, HadGEM2-CC, HadGEM2-ES) — NEXT
 
 Seed model files before launching:
-- `research/cmip5/models/MPI__mpi_esm_lr.md`
-- `research/cmip5/models/MPI__mpi_esm_mr.md`
-- `research/cmip5/models/MPI__mpi_esm_p.md`
-- `research/cmip5/models/ICHEC__ec_earth.md`
+- `research/cmip5/models/MOHC__hadcm3.md`
+- `research/cmip5/models/MOHC__hadgem2_ao.md`
+- `research/cmip5/models/MOHC__hadgem2_cc.md`
+- `research/cmip5/models/MOHC__hadgem2_es.md`
 
-### Stage 7 prompt:
+### Stage 8 prompt:
+
+Document the climate forcing datasets used in the four UK Met Office Hadley Centre CMIP5 models — HadCM3, HadGEM2-AO, HadGEM2-CC, and HadGEM2-ES — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (*BAMS* doi:10.1175/BAMS-D-11-00094.1) standard protocol. UKMO (UK Met Office / Hadley Centre) contributed one older model (HadCM3, same generation as CMIP3) and three HadGEM2 variants that span from a basic AOGCM (HadGEM2-AO) to a model with interactive chemistry (HadGEM2-CC) to a full ESM (HadGEM2-ES). Cross-check: ACCESS1-0 and ACCESS1-3 (Stage 5) inherit the HadGEM2-A atmosphere — Stage 8 results should resolve the ACCESS aerosol/SO/VL/LU questions that were left unconfirmed in Stage 5.
+
+PRIOR STAGE CONTEXT — important patterns to watch:
+- CMIP3 HadCM3 used CLASSIC sulphate scheme (direct + Tett2002 delta-albedo indirect, sulphate-only); solar = Lean 1995 — test whether CMIP5 HadCM3 updated datasets to Meinshausen2011/Cionni2011/Wang2005.
+- CMIP3 HadGEM1 used CLASSIC aerosols (BC/OC/sulphate/SS; direct + 1st+2nd indirect) and Solanki & Krivova 2003 solar — test whether HadGEM2 evolved this scheme.
+- GISS (Stage 2) NINT deviated on ozone (GISS offline, not Cionni2011); MPI-ESM (Stage 7) deviated on aerosols (Kinne MAC-v1, not Lamarque2010-OD); test whether UKMO CLASSIC aerosols also deviate.
+- CESM1-CAM5 (Stage 3) and CSIRO-Mk3.6.0 (Stage 5) exceeded on all aerosols (interactive from Lamarque2010-emis) — test whether HadGEM2-CC/ES similarly exceed.
+
+KEY ARCHITECTURE QUESTIONS:
+- **HadCM3**: Same model as CMIP3, likely with updated boundary conditions. Does it use Meinshausen2011 GHGs (std) or CMIP3-era datasets? CLASSIC aerosols (direct + delta-albedo indirect)? Cionni2011 ozone (std) or CMIP3-era Haigh ozone? Key concern: this is an older model likely not updated for CMIP5 standard datasets.
+- **HadGEM2-AO**: AOGCM base without ESM components. Uses HadGEM2-A atmosphere (same atmosphere as ACCESS1-0/1-3). CLASSIC aerosol scheme. Prescribed ozone from Cionni2011 (std) or interactive UKCA? LU from Hurtt2011?
+- **HadGEM2-CC**: Coupled Chemistry variant — adds UKCA interactive stratospheric+tropospheric chemistry. Ozone expected INTERACTIVE (O=exc). Aerosols: CLASSIC prescribed or interactive from UKCA?
+- **HadGEM2-ES**: Full ESM — TRIFFID interactive vegetation + MEDUSA ocean biogeochemistry + UKCA chemistry. ESM-specific inputs: N-deposition dataset, CO2 mode (concentration vs. emission-driven), ocean biogeochemistry nutrients. LU via TRIFFID: Hurtt2011 or HYDE? UKCA interactive ozone (O=exc). BC on snow/ice?
+
+IMPORTANT CROSS-CHECK — ACCESS aerosols: ACCESS1-0/1-3 use HadGEM2-A atmosphere (same as HadGEM2-AO) but results were unconfirmed in Stage 5. Use Stage 8 findings to retrospectively confirm or update the ACCESS aerosol treatment.
+
+PRIMARY SOURCES:
+- All HadGEM2 variants: Collins, W.J., et al. (2011). Development and evaluation of an Earth-System model – HadGEM2. *Geosci. Model Dev.* 4(4), 1051–1075. doi:10.5194/gmd-4-1051-2011 [collins_hadgem2_2011 *(add)*]
+- HadGEM2-ES (CMIP5 implementation): Jones, C.D., et al. (2011). The HadGEM2-ES implementation of CMIP5 centennial simulations. *Geosci. Model Dev.* 4(3), 543–570. doi:10.5194/gmd-4-543-2011 [jones_hadgem2es_2011 — already in bib-to-add Stage 5 section]
+- HadGEM2 aerosols/CLASSIC: Martin, G.M., et al. (2011). The HadGEM2 family of Met Office Unified Model climate configurations. *Geosci. Model Dev.* 4, 723–757. doi:10.5194/gmd-4-723-2011 [martin_hadgem2_2011 *(add)*]
+- HadCM3 CMIP5: Gordon, C., et al. (2000). The simulation of SST, sea ice extents and ocean heat transports in a version of the Hadley Centre coupled model without flux adjustments. *Clim. Dyn.* 16, 147–168. doi:10.1007/s003820050010 + Johns, T.C., et al. (2003). HadCM3 forcing table. *Clim. Dyn.* 20, 583–612. doi:10.1007/s00382-002-0296-y [johns_hadcm3_2003 — already in bib-to-add Stage 8 CMIP3 section]
+- ES-DOC simulation documents: https://explore.es-doc.org
+- PCMDI CMIP5 documentation
+
+FOR EACH of 12 forcings (+ESM inputs for HadGEM2-ES), for EACH model:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed?
+(c) Did it follow Taylor 2012 standard, deviate, or exceed?
+(d) For HadGEM2-ES: N-dep dataset (Lamarque2010 or 2013 ACCMIP)? CO2 mode? Ocean biogeochemistry inputs?
+(e) For HadGEM2-CC/ES: is UKCA ozone interactive (O=exc)?
+
+Key questions:
+1. HadCM3: Were GHG/ozone datasets updated to Meinshausen2011/Cionni2011 for CMIP5, or are CMIP3-era datasets carried over?
+2. HadGEM2-AO aerosols: CLASSIC prescribed OD from Lamarque2010 (std) or interactive? Which aerosol species?
+3. HadGEM2-CC/ES ozone: UKCA interactive confirmed (O=exc)? Which interactive chemistry scheme?
+4. HadGEM2-ES LU: Hurtt2011 via TRIFFID (std) or excluded?
+5. HadGEM2-ES N-deposition: Lamarque 2010 or 2013 ACCMIP?
+6. Solar/volcanic (all HadGEM2): Wang2005/Sato-updated (std) or Solanki-Krivova 2003/other?
+7. ACCESS cross-check: Does HadGEM2-AO aerosol treatment match or clarify the unresolved ACCESS1-0/1-3 aerosol findings from Stage 5?
+
+Taylor 2012 standard protocol (baseline):
+- G: Meinshausen et al. 2011 | O: Cionni et al. 2011 (w/o interactive chem) | SD/BC/OC/MD/SS: Lamarque 2010 | LU: Hurtt 2011 | SO: Wang 2005 | VL: Sato updated
+
+DELIVERABLE: per forcing per model — verdict (std/dev/exc/?), temporal (TV/FXc/FXk), dataset + citation. Document HadGEM2-ES ESM-specific inputs separately (N-dep, CO2 mode, ocean biogeochemistry, BC-on-snow). Flag deviations from Taylor 2012. Adversarially verify key claims.
+
+## After CMIP5 Stage 8: write results to model files, add 4 MOHC rows to verified-forcing-matrix.csv (rows 31–34), update README.md registry rows 31–34 and Stage 8 status, append refs to bib-to-add.md.
+
+---
+
+## [Stage 7 archived prompt below]
+
+### Stage 7 prompt (archived):
 
 Document the climate forcing datasets used in the four European CMIP5 models — MPI-ESM-LR, MPI-ESM-MR, MPI-ESM-P (MPI-M, Germany) and EC-EARTH (ICHEC/EC-EARTH Consortium, Europe) — for their CMIP5 `historical` experiment (1850–2005).
 

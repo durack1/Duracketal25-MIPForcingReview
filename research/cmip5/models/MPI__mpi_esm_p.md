@@ -9,29 +9,26 @@
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
 
-Expected identical to MPI-ESM-LR pending confirmation. Key question: does the paleo configuration simplify or change any forcing for the CMIP5 `historical` run?
+Inferred identical to MPI-ESM-LR. No evidence surfaced from Stage 7 workflow of any paleo-mode forcing simplification relative to LR. ESGF forcing string "GHG Oz SD Sl Vl LU" is plausible (same ECHAM6 physics; shared protocol) but was not independently confirmed for MPI-ESM-P.
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? (as LR expected) | TV | As LR | — | — | |
-| O  | Ozone | Cionni et al. 2011 | ? (as LR expected) | TV | As LR | — | — | |
-| SD | Sulphate direct | Lamarque et al. 2010 | ? (as LR expected) | TV | As LR | — | — | |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ✓std (as LR; inferred) | TV | Meinshausen2011 — as LR | giorgetta_climate_2013 *(add)* | giorgetta_climate_2013 *(add)* | |
+| O  | Ozone | Cionni et al. 2011 | ✓std (as LR; inferred) | TV | Cionni2011 3D monthly — as LR | stevens_atmospheric_2013 *(add)* | stevens_atmospheric_2013 *(add)* | |
+| SD | Sulphate direct | Lamarque et al. 2010 | ✗dev (as LR; inferred) | TV | Kinne MAC-v1 total-optical climatology — as LR | giorgetta_climate_2013 *(add)*; kinne_macv1_2013 *(add)* | giorgetta_climate_2013 *(add)* | |
 | SI | Sulphate indirect | Model-dependent | ? (as LR) | ? | As LR | — | — | |
-| BC | Black carbon | Lamarque et al. 2010 | ? (as LR expected) | TV | As LR | — | — | |
-| OC | Organic carbon | Lamarque et al. 2010 | ? (as LR expected) | TV | As LR | — | — | |
+| BC | Black carbon | Lamarque et al. 2010 | ✗dev (as LR; inferred) | TV | Bundled in Kinne MACv1 — as LR | giorgetta_climate_2013 *(add)* | giorgetta_climate_2013 *(add)* | |
+| OC | Organic carbon | Lamarque et al. 2010 | ✗dev (as LR; inferred) | TV | Bundled in Kinne MACv1 — as LR | giorgetta_climate_2013 *(add)* | giorgetta_climate_2013 *(add)* | |
 | MD | Mineral dust | — | ? (as LR) | ? | As LR | — | — | |
 | SS | Sea salt | — | ? (as LR) | ? | As LR | — | — | |
-| LU | Land-use change | Hurtt et al. 2011 | ? (as LR expected) | TV | As LR | — | — | |
-| SO | Solar irradiance | Wang et al. 2005 | ? (as LR expected) | TV | As LR | — | — | |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? (as LR expected) | TV | As LR | — | — | |
+| LU | Land-use change | Hurtt et al. 2011 | ✓std (as LR; inferred) | TV | Hurtt2011 LUH1 via JSBACH — as LR | giorgetta_climate_2013 *(add)* | giorgetta_climate_2013 *(add)* | |
+| SO | Solar irradiance | Wang et al. 2005 | ? (as LR) | TV | As LR — ESGF "Sl" flag expected | — | — | |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | ? (as LR) | TV | As LR — ESGF "Vl" flag expected | — | — | |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### ESM-specific forcing inputs
-As MPI-ESM-LR (JSBACH + HAMOCC). If P configuration modified any ESM inputs for paleo runs, document.
-
-### Open questions
-- Does MPI-ESM-P differ from MPI-ESM-LR in its historical forcing? (Paleo setup may have extended or simplified the forcing datasets.)
+As MPI-ESM-LR (same JSBACH + HAMOCC; all ESM inputs unresolved). Open question: does the paleo configuration modify any ESM inputs for long-timescale runs?
 
 ### Provenance
 - Durack et al. 2016 model list: included
-- Stage 7 workflow: pending
+- Stage 7 workflow: wf_c371f969-29f (2026-06-21) — no paleo-specific evidence surfaced; all inferred from MPI-ESM-LR
