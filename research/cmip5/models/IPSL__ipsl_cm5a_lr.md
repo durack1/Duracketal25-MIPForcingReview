@@ -13,7 +13,7 @@ All three IPSL-CM5 configurations (CM5A-LR, CM5A-MR, CM5B-LR) share IDENTICAL fo
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ?std | TV | Meinshausen2011 (expected; not confirmed by surviving claims) | meinshausen_rcp_2011 | meinshausen_rcp_2011 | |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ✓std | TV | Meinshausen2011 RCP GHG concentrations — CO2 from Law Dome/SIO/NOAA records for historical; CH4, N2O, CFCs all from CMIP5 recommended dataset | Dufresne et al. 2013 | dufresne_climate_2013 | Confirmed 1-0 high conf; Dufresne2013 verbatim (Sect. 3.5–3.6): "The prescribed evolution of CO2 concentrations is taken from the CMIP5 recommended dataset and is described in Meinshausen et al." and "The concentrations are taken from the recommended CMIP5 dataset and are described in Meinshausen et al." (p. 2134) |
 | O  | Ozone | Cionni et al. 2011 | ✗dev | TV | Offline merged product: LMDz-OR-INCA (troposphere) + LMDz-REPROBUS (stratosphere), merged at 150 ppbv ozone contour (~tropopause), prescribed as time-varying monthly-mean zonal fields — NOT Cionni2011 | Szopa et al. 2013 | szopa_aerosol_2013 *(add)* | Confirmed 1-0 high conf; Szopa2013 verbatim: "INCA (tropospheric) and REPROBUS (stratospheric) ozone fields are then merged with a transition region centered on the tropopause region and averaged over longitudes to produce time-varying zonally-averaged monthly-mean ozone fields"; NOT interactive in the coupled model — prescribed offline (dev, not exc); corrects CMIP3 IPSL-CM4 no-natural-forcing error |
 | SD | Sulphate direct | Lamarque et al. 2010 | ✗dev | TV | LMDZ-INCA offline-pre-computed monthly-mean aerosol fields, smoothed with 11-year running mean; Lamarque2010 emissions used as INCA input — NOT Lamarque2010-OD applied directly | Szopa et al. 2013 | szopa_aerosol_2013 *(add)* | Confirmed 1-0 high conf; Szopa2013 verbatim: "past and future evolutions of aerosol distribution are computed using the LMDZ-INCA model…Anthropogenic and biomass burning emissions are provided by Lamarque et al (2010)…computed monthly mean aerosol fields are then smoothed with an 11-year running mean"; offline-derived not Lamarque2010-OD |
 | SI | Sulphate indirect | Model-dependent | ✗dev | TV | First indirect (cloud albedo) effect computed online in LMDZ using prescribed INCA aerosol concentrations — NOT Lamarque2010-OD; Boucher-Lohmann approach continues from CMIP3 IPSL-CM4 | Szopa et al. 2013 | szopa_aerosol_2013 *(add)* | 1st indirect active in LMDZ with INCA-prescribed concentrations; ~dev (source is INCA offline, not Lamarque2010-OD std) |
@@ -21,7 +21,7 @@ All three IPSL-CM5 configurations (CM5A-LR, CM5A-MR, CM5B-LR) share IDENTICAL fo
 | OC | Organic carbon | Lamarque et al. 2010 | ✗dev | TV | As SD — offline LMDZ-INCA computation, 11-yr smoothed, Lamarque2010-emissions as input | Szopa et al. 2013 | szopa_aerosol_2013 *(add)* | |
 | MD | Mineral dust | — | ✗dev | TV | As SD — offline LMDZ-INCA computation, 11-yr smoothed; natural mineral dust emissions in INCA | Szopa et al. 2013 | szopa_aerosol_2013 *(add)* | INCA includes mineral dust; temporally varying from offline run |
 | SS | Sea salt | — | ✗dev | TV | As SD — offline LMDZ-INCA computation, 11-yr smoothed; natural sea salt emissions in INCA | Szopa et al. 2013 | szopa_aerosol_2013 *(add)* | INCA includes sea salt; temporally varying from offline run |
-| LU | Land-use change | Hurtt et al. 2011 | ? | TV | ORCHIDEE land — LU treatment in CMIP5 historical not confirmed from workflow output | — | — | Open question: Dufresne2013 ESM section to be checked for LU source |
+| LU | Land-use change | Hurtt et al. 2011 | ✓std | TV | Hurtt et al. 2011 (UNH dataset) transient historical crop and pasture — translated to ORCHIDEE PFT fractions using observed present-day land-cover map as base | Dufresne et al. 2013 | dufresne_climate_2013 | Confirmed 1-0 high conf; Dufresne2013 verbatim (Sect. 3.7): "We use the transient historical and future crop and pasture datasets developed by Hurtt et al. (hereafter referred to as the UNH dataset) for both the historical period and the 4 RCPs scenarios for the future period." (p. 2134) |
 | SO | Solar irradiance | Wang et al. 2005 | ✓std | TV | Wang2005 (long-term) + Frohlich & Lean 2004 (solar cycle variability) — combined TSI | Dufresne et al. 2013 | dufresne_ipsl_2013 *(add)*; frohlich_lean_2004 *(add)* | Confirmed 1-0 high conf; Dufresne2013 verbatim: "an estimate of the past solar cycles (Frohlich and Lean 2004) and…an estimate of long term variations (Wang et al. 2005)"; CORRECTS CMIP3 IPSL-CM4 fixed-solar error |
 | VL | Volcanic aerosols | Sato et al. 1993 updated | ✓std | TV | Updated Sato et al. 1993 stratospheric aerosol optical depth — prescription as reduced TSI | Dufresne et al. 2013 | dufresne_ipsl_2013 *(add)* | Confirmed 1-0 high conf; Dufresne2013 verbatim: "aerosol optical depth of volcanic aerosol is an updated version of Sato et al. (1993)"; CORRECTS CMIP3 IPSL-CM4 no-volcanic error; implemented as TSI reduction rather than 3D aerosol field |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
@@ -32,8 +32,10 @@ IPSL-CM5A-LR is an ESM (ORCHIDEE active carbon cycle). N-deposition source and C
 ### Confirmed deviations from Taylor 2012
 1. **O = ✗dev**: Offline merged INCA-trop + REPROBUS-strat ozone, prescribed monthly-mean zonal fields — not Cionni2011.
 2. **SD/SI/BC/OC/MD/SS = ✗dev**: All aerosols from offline LMDZ-INCA pre-computation with Lamarque2010 emissions, 11-yr smoothed — not Lamarque2010-OD applied directly. SI computed online in LMDZ from INCA concentrations (dev, not std).
-3. **SO = ✓std**: Wang2005 + Frohlich&Lean2004 corrects CMIP3 fixed-solar error.
-4. **VL = ✓std**: Sato1993-updated corrects CMIP3 no-volcanic error.
+3. **G = ✓std**: Meinshausen2011 CMIP5 recommended dataset confirmed (Dufresne2013 Sect. 3.5–3.6).
+4. **LU = ✓std**: Hurtt2011 (UNH) transient crop/pasture confirmed (Dufresne2013 Sect. 3.7).
+5. **SO = ✓std**: Wang2005 + Frohlich&Lean2004 corrects CMIP3 fixed-solar error.
+6. **VL = ✓std**: Sato1993-updated corrects CMIP3 no-volcanic error.
 
 ### CMIP3 IPSL-CM4 comparison
 CMIP3 confirmed conflicts: SO=✗(fixed 1365 W m⁻²), VL=✗(no natural forcings). Both corrected in CMIP5.
@@ -42,3 +44,4 @@ CMIP5 new deviations: O uses INCA+REPROBUS offline (dev from Cionni2011); aeroso
 ### Provenance
 - Durack et al. 2016 model list: included
 - Stage 6 workflow: wf_affaeb54-772 (2026-06-21) — 14/14 claims confirmed 1-0; Szopa2013 + Dufresne2013 primary sources accessed directly
+- Stage 7 update (2026-06-21): G and LU confirmed from Dufresne2013 Sect. 3.5–3.7; all 12 standard forcing keys now resolved

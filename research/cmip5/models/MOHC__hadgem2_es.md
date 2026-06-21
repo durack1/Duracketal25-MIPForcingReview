@@ -5,36 +5,36 @@
 - **Model family / lineage:** HadGEM2-ES = HadGEM2-CC + TRIFFID interactive vegetation (terrestrial C cycle) + MEDUSA ocean biogeochemistry + interactive UKCA chemistry. Full ESM. "ES" = Earth System. Primary UKMO ESM for CMIP5; Jones et al. 2011 is the key CMIP5 implementation paper.
 - **Atmosphere / ocean components:** HadGEM2-A (N96 L38) + HadGEM2-O (1°×1°, 40 levels) + TRIFFID land (active C cycle) + MEDUSA ocean biogeochemistry + UKCA chemistry
 - **Primary documentation paper(s):** Collins, W.J., et al. (2011). Development and evaluation of an Earth-System model – HadGEM2. *Geosci. Model Dev.* 4(4), 1051–1075. doi:10.5194/gmd-4-1051-2011 [collins_hadgem2_2011 *(add)*]
-- **Forcing-specific reference(s):** Jones, C.D., et al. (2011). The HadGEM2-ES implementation of CMIP5 centennial simulations. *Geosci. Model Dev.* 4(3), 543–570. doi:10.5194/gmd-4-543-2011 [jones_hadgem2es_2011 — already in bib-to-add Stage 5 section]
+- **Forcing-specific reference(s):** Jones, C.D., et al. (2011). The HadGEM2-ES implementation of CMIP5 centennial simulations. *Geosci. Model Dev.* 4(3), 543–570. doi:10.5194/gmd-4-543-2011 [jones_hadgem2es_2011 — already in bib-to-add Stage 5 section]; Martin, G.M., et al. (2011). The HadGEM2 family of Met Office Unified Model climate configurations. *Geosci. Model Dev.* 4, 723–757. doi:10.5194/gmd-4-723-2011 [martin_hadgem2_2011 *(add)*]
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? | ? | | — | — | |
-| O  | Ozone | Cionni et al. 2011 | ? | ? | UKCA interactive chemistry expected — O=exc | — | — | HadGEM2-ES includes UKCA; if ozone interactive → exc |
-| SD | Sulphate direct | Lamarque et al. 2010 | ? | ? | CLASSIC scheme from Lamarque2010 emissions? | — | — | |
-| SI | Sulphate indirect | Model-dependent | ? | ? | CLASSIC includes 1st+2nd indirect? | — | — | HadGEM1 had 1st+2nd indirect (most complete CMIP3 scheme) |
-| BC | Black carbon | Lamarque et al. 2010 | ? | ? | | — | — | |
-| OC | Organic carbon | Lamarque et al. 2010 | ? | ? | | — | — | |
-| MD | Mineral dust | — | ? | ? | | — | — | |
-| SS | Sea salt | — | ? | ? | | — | — | |
-| LU | Land-use change | Hurtt et al. 2011 | ? | ? | TRIFFID interactive vegetation — LU via Hurtt2011? | — | — | |
-| SO | Solar irradiance | Wang et al. 2005 | ? | ? | | — | — | |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? | ? | | — | — | |
-| FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ✓std | TV | Meinshausen et al. 2011 concentration time series (CO2, CH4, N2O, halocarbons); concentration-driven `historical` run | Jones et al. 2011, Fig. 2 | jones_hadgem2es_2011 | Jones2011 Fig.2 caption: "See Meinshausen et al. (2011) for further details." CH4 prescribed at surface from Meinshausen series then evolved aloft via UKCA. |
+| O  | Ozone | Cionni et al. 2011 | exc | TV+ | UKCA interactive tropospheric chemistry (O'Connor 2011 config.) from Lamarque2010 precursor/aircraft emissions; Cionni2011 (NCAS-updated, with 11-yr solar cycle) used ONLY for prescribed stratospheric input | Jones et al. 2011, Sect. 4.1–4.2 | jones_hadgem2es_2011 | Jones2011 Sect.4.1: "No prescribed tropospheric ozone abundance data were used within HadGEM2-ES. Instead, the tropospheric evolution of ozone was simulated using surface and aircraft emissions of tropospheric ozone precursors and reactive gases." Precursor emissions from Lamarque2010. EXCEEDS standard — Cionni2011 (NCAS-updated) used only for stratospheric input. |
+| SD | Sulphate direct | Lamarque et al. 2010 | ~std | TV+ | CLASSIC ammonium sulphate aerosol from Lamarque2010 precursor/primary emissions (emission-driven interactive scheme); contributes to direct + 1st+2nd indirect effects | Jones et al. 2011; Martin et al. 2011 | jones_hadgem2es_2011; martin_hadgem2_2011 | Lamarque2010 emissions source matches standard; architecture is emission-driven interactive (not prescribed OD). Martin2011: "Emission datasets for aerosol precursors and primary aerosols have also been revised, with the HadGEM2 family typically using datasets created in support of...CMIP-5...(Lamarque et al., 2010)." |
+| SI | Sulphate indirect | Model-dependent | exc | TV+ | CLASSIC: ALL species except FF-BC and mineral dust contribute to both 1st and 2nd indirect cloud effects (prognostic cloud droplet activation) | Jones et al. 2011 | jones_hadgem2es_2011 | Jones2011: "all aerosol species, except fossil-fuel black carbon and mineral dust, also contribute to both the first and second indirect effects." Bellouin2011: full scheme up to 8 species; CMIP5 runs use 6 active. |
+| BC | Black carbon | Lamarque et al. 2010 | ~std | TV+ | CLASSIC FF-BC from Lamarque2010 emissions; direct effect only (FF-BC excluded from both indirect effects) | Jones et al. 2011; Martin et al. 2011 | jones_hadgem2es_2011; martin_hadgem2_2011 | Lamarque2010 emissions source matches standard. Jones2011: FF-BC is one of "all aerosol species, except fossil-fuel black carbon and mineral dust" — i.e. BC is the exception, contributing only to the direct effect. |
+| OC | Organic carbon | Lamarque et al. 2010 | ~std | TV+ | CLASSIC FF-OC + biomass-burning aerosol from Lamarque2010 emissions; contributes to 1st+2nd indirect effects | Jones et al. 2011; Martin et al. 2011 | jones_hadgem2es_2011; martin_hadgem2_2011 | Lamarque2010 emissions source matches standard; architecture = interactive. Jones2011: "nitrate aerosols are not included in the CMIP5 simulations." |
+| MD | Mineral dust | — | exc | TV+ | CLASSIC fully interactive mineral dust computed online from model wind speed; no prescribed external dust dataset; mineral dust excluded from indirect effects | Jones et al. 2011; Martin et al. 2011 | jones_hadgem2es_2011; martin_hadgem2_2011 | Dust generated interactively (fully online from meteorology) — exceeds any prescribed approach. |
+| SS | Sea salt | — | exc | TV+ | CLASSIC fully interactive sea salt computed online from model wind speed; no prescribed external sea salt dataset; contributes to 1st+2nd indirect effects | Jones et al. 2011; Martin et al. 2011 | jones_hadgem2es_2011; martin_hadgem2_2011 | Sea salt generated interactively (fully online from meteorology). |
+| LU | Land-use change | Hurtt et al. 2011 | ✓std | TV | Hurtt et al. 2011 harmonized dataset (HYDE v3.1 based); fractional mask of anthropogenic disturbance (sum of crop + pasture, 1860–2005) applied as boundary condition to TRIFFID DGVM | Jones et al. 2011 | jones_hadgem2es_2011 | Jones2011: "Historic and future simulations...use time varying disturbance from the Hurtt et al. (2011) dataset"; "fractional coverage of anthropogenic disturbance is defined as the sum of crop and pasture for the historical period 1860-2005." TRIFFID responds dynamically — land cover not directly prescribed. |
+| SO | Solar irradiance | Wang et al. 2005 | ✓std | TV | Lean et al. 2009 (L09) / Wang et al. 2005 TSI reconstruction (CMIP5-recommended); Maunder-minimum-to-modern TSI increase = 1.11 W/m² (vs. 2.73 W/m² HadGEM1, 2.95 W/m² HadCM3) | Jones et al. 2011, Sect. 7.1 | jones_hadgem2es_2011 | Jones2011 Sect.7.1: "The TSI data used for the historic period were recommended by CMIP5 (Lean et al., 2009 — L09)...Background variations in TSI are produced from a model of solar magnetic flux incorporating historic sunspot numbers (Wang et al., 2005)." Updates Solanki & Krivova 2003 used in HadGEM1. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | ✗dev | TV | Sato et al. 1993 monthly stratospheric OD at 550 nm (1850–2000), 4 equal-area latitudinal zones; post-2000 extended with stable background floor of 0.002 at 550 nm (~20× HadGEM1 minimum) derived from Thomason et al. 2008 observations at 1020 nm. NOT the GISS Sato-updated (Taylor 2012 standard). | Jones et al. 2011 | jones_hadgem2es_2011 | Jones2011: "The dataset used for the historic period was monthly stratospheric optical depths, at 550 nm, from 1850 to 2000 (Sato et al., 1993)...A value of stable observed optical depth at 1020 nm since 2000 was found to be 0.001 (Thomason et al., 2008)...suggests a minimum of global stratospheric aerosol optical depth of 0.002 at 550 nm, approximately 20 times more than used in the HadGEM1 study." DEVIATES — Sato1993 original, not Sato-updated. |
+| FC | Flux corrections | Not expected | n/a | n/a | Not applied — free-running coupled model | — | — | |
 
 ### ESM-specific forcing inputs
 HadGEM2-ES is a full ESM (TRIFFID + MEDUSA + UKCA).
 
 | ESM input | Applied? | Dataset / source | Notes |
 |-----------|----------|-----------------|-------|
-| N-deposition (NHx/NOy) | ? | Lamarque 2010 or 2013 ACCMIP? | Drives TRIFFID land C cycle |
-| CO2: conc.- or emission-driven | ? | Meinshausen 2011 conc. (expected for `historical`) | `esmHistorical` emission-driven runs also exist |
-| Atmospheric chem inputs (NOx/VOC/CO) | ? | Lamarque et al. 2010 (expected) | Drives UKCA interactive chemistry |
-| Iron / dust deposition | ? | ? | MEDUSA ocean biogeochemistry |
-| BC on snow/ice | ? | ? | |
+| N-deposition (NHx/NOy) | ? | Unresolved (Lamarque 2010 or 2013 ACCMIP?) | Drives TRIFFID land C cycle; not confirmed in Stage 8 workflow |
+| CO2: conc.- or emission-driven | Conc. (historical) | Meinshausen2011 concentration-driven for `historical` | Confirmed 1-0. Separate emission-driven 3.2E variant also exists (Jones2011 Table 1). |
+| Atmospheric chem inputs (NOx/VOC/CO) | Yes | Lamarque et al. 2010 precursor/aircraft emissions | Drives UKCA interactive tropospheric chemistry. Confirmed (Jones2011 Sect. 4.1). |
+| Iron / dust deposition | ? | MEDUSA ocean biogeochemistry inputs unconfirmed | Not addressed in Stage 8 workflow |
+| BC on snow/ice | ? | Unconfirmed | Not addressed in Stage 8 workflow |
 
 ### Provenance
 - Durack et al. 2016 model list: included
-- Stage 8 workflow: pending
+- Stage 8 workflow: wf_71ff96d7-487 (2026-06-21); 14/14 claims confirmed 1-0 (all HadGEM2-ES only; high confidence; sources: Collins2011, Jones2011, Martin2011, Bellouin2011)

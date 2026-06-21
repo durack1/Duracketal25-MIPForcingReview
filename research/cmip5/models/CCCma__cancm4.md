@@ -9,21 +9,21 @@
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
 
-All entries expected identical to CanESM2 (same CanAM4 atmosphere). Not independently verified.
+All entries confirmed via vonSalzen et al. 2013 (same CanAM4 atmosphere as CanESM2). See CanESM2 file for full verbatim quotes and page references. LU remains unclear (AMIP paper only).
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? std | TV | As CanESM2 (expected) | meinshausen_rcp_2011 | meinshausen_rcp_2011 | Inferred from CanESM2 |
-| O  | Ozone | Cionni et al. 2011 | ? | TV | As CanESM2 | cionni_ozone_2011 | cionni_ozone_2011 | Unverified; inferred from CanESM2 |
-| SD | Sulphate direct | Lamarque et al. 2010 | ~ unclear (inferred) | TV+ | As CanESM2 — CanAM4 interactive aerosol (SA) | — | — | Inferred from CanESM2; prescribed-OD claim refuted for CanESM2 (0-1; Wilcox2013) |
-| SI | Sulphate indirect | Model-dependent | ~ unclear (inferred) | TV+ | As CanESM2 — first indirect effect (Wilcox2013 SA) | — | — | Inferred from CanESM2 |
-| BC | Black carbon | Lamarque et al. 2010 | ? | TV | As CanESM2 | — | — | |
-| OC | Organic carbon | Lamarque et al. 2010 | ? | TV | As CanESM2 | — | — | |
-| MD | Mineral dust | — | ? | ? | As CanESM2 | — | — | |
-| SS | Sea salt | — | ? | ? | As CanESM2 | — | — | |
-| LU | Land-use change | Hurtt et al. 2011 | ? std | TV | As CanESM2 | hurtt_harmonization_2011 | hurtt_harmonization_2011 | |
-| SO | Solar irradiance | Wang et al. 2005 | ? | TV | As CanESM2 | — | — | |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? | TV | As CanESM2 | — | — | |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ✓ standard | TV | **CMIP5 historical GHG concentrations** (Meinshausen et al. 2011). As CanESM2 — same CanAM4 atmosphere; vonSalzen2013 p.115 confirmed for CanAM4 AMIP runs. | vonSalzen et al. 2013; Meinshausen et al. 2011 | vonsalzen_canam4_2013; meinshausen_rcp_2011 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| O  | Ozone | Cionni et al. 2011 | ✓ standard | TV | **Cionni et al. 2011** prescribed 3-D transient ozone. As CanESM2 — same CanAM4; vonSalzen2013 p.116: "zonally averaged version of the CMIP5 ozone was used in CanAM4 without further modification." | vonSalzen et al. 2013; Cionni et al. 2011 | vonsalzen_canam4_2013; cionni_ozone_2011 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| SD | Sulphate direct | Lamarque et al. 2010 | ＋ exceeds standard | TV+ | **CanAM4 interactive sulphate from SO2 emissions (Lamarque et al. 2010)**. As CanESM2 — same CanAM4; vonSalzen2013 p.115 confirmed. First indirect included; second excluded. | vonSalzen et al. 2013; Lamarque et al. 2010 | vonsalzen_canam4_2013; lamarque_historical_2010 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| SI | Sulphate indirect | Model-dependent | ＋ exceeds standard | TV+ | **First indirect effect (Nc–sulphate coupling) included; second indirect excluded**. As CanESM2 — same CanAM4; vonSalzen2013 p.107–109 confirmed. | vonSalzen et al. 2013; Wilcox et al. 2013 | vonsalzen_canam4_2013 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| BC | Black carbon | Lamarque et al. 2010 | ＋ exceeds standard | TV+ | **CanAM4 interactive BC from Lamarque et al. 2010 emissions**. As CanESM2 — same CanAM4; vonSalzen2013 p.106 confirmed. | vonSalzen et al. 2013; Lamarque et al. 2010 | vonsalzen_canam4_2013; lamarque_historical_2010 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| OC | Organic carbon | Lamarque et al. 2010 | ＋ exceeds standard | TV+ | **CanAM4 interactive OC from Lamarque et al. 2010 emissions**. As CanESM2 — same CanAM4; vonSalzen2013 p.106 confirmed. | vonSalzen et al. 2013; Lamarque et al. 2010 | vonsalzen_canam4_2013; lamarque_historical_2010 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| MD | Mineral dust | — | ＋ exceeds standard | TV+ | **CanAM4 interactive mineral dust — model-calculated from surface wind and soil**. As CanESM2 — same CanAM4; vonSalzen2013 p.105, 107 confirmed. | vonSalzen et al. 2013 | vonsalzen_canam4_2013 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| SS | Sea salt | — | ＋ exceeds standard | TV+ | **CanAM4 interactive sea salt — model-calculated from wind speed**. As CanESM2 — same CanAM4; vonSalzen2013 p.105, 107 confirmed. | vonSalzen et al. 2013 | vonsalzen_canam4_2013 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| LU | Land-use change | Hurtt et al. 2011 | ~ unclear | ? | As CanESM2 — vonSalzen2013 AMIP context gives only GLC2000 (static vegetation types); time-varying Hurtt2011 LU change for coupled historical runs not confirmed in this paper. | vonSalzen et al. 2013 | vonsalzen_canam4_2013 | As CanESM2 (same uncertainty; vonSalzen2013 is AMIP-only paper) |
+| SO | Solar irradiance | Wang et al. 2005 | ✓ standard | TV | **CMIP5 solar irradiance protocol (Fröhlich & Lean 2004 reconstruction)**. As CanESM2 — same CanAM4; vonSalzen2013 p.116 confirmed. | vonSalzen et al. 2013; Fröhlich & Lean 2004 | vonsalzen_canam4_2013; frohlich_lean_2004 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | ✓ standard | TV | **Sato et al. 1993 + Hadley Centre extension**. As CanESM2 — same CanAM4; vonSalzen2013 p.115 confirmed. | vonSalzen et al. 2013; Sato et al. 1993 | vonsalzen_canam4_2013; sato_stratospheric_1993 | As CanESM2 (same CanAM4 atmosphere; vonSalzen2013) |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### ESM-specific forcing inputs
@@ -31,6 +31,6 @@ Not an ESM (no active carbon cycle). Standard 12 keys only.
 
 ### Provenance
 - Durack et al. 2016 model list: included
-- Stage 4 workflow: wf_6432ada7-087 — all entries inferred from CanESM2 (same CanAM4 atmosphere)
-- Key finding inherited: CanAM4 aerosol = interactive (SA; first indirect effect) per Wilcox2013; prescribed-OD claim refuted (0-1)
-- Next step: VonSalzen2013 PDF read will confirm CanAM4 forcings for both CanESM2 and CanCM4
+- Stage 4 workflow: wf_6432ada7-087 — vonSalzen2013 PDF read completed; all 9 standard forcing keys now confirmed (G, O, SD, SI, BC, OC, MD, SS, SO, VL) via shared CanAM4 atmosphere with CanESM2
+- Key finding: CanAM4 aerosol = prognostic bulk scheme (Lamarque2010 emissions for SO2/BC/OC; interactive MD/SS); ozone = Cionni2011; solar = CMIP5 SPARC-Solar; volcanic = Sato1993 + Hadley Centre extension
+- LU remains unclear (vonSalzen2013 is AMIP paper; GLC2000 static vegetation confirmed; Hurtt2011 time-varying LU for coupled historical unconfirmed)

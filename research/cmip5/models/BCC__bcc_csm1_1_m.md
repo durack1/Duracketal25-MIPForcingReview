@@ -9,21 +9,21 @@
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
 
-All entries expected identical to bcc-csm1-1 (same physics, higher resolution). Not independently verified.
+All entries expected identical to bcc-csm1-1 (same BCC-CSM1.1 family physics, higher T106 resolution). Wu2014 p.43 (Section 3.1.1) explicitly states "both BCC-CSM1.1 and BCC-CSM1.1(m)" were forced identically: "Given external forcing by observed GHGs, natural and anthropogenic aerosols, volcanic eruptions, total column ozone, and solar activity". Not independently verified beyond this statement.
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? | TV | As bcc-csm1-1 | — | — | |
-| O  | Ozone | Cionni et al. 2011 | ? | TV | As bcc-csm1-1 | — | — | |
-| SD | Sulphate direct | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 | — | — | |
-| SI | Sulphate indirect | Model-dependent | ? | ? | As bcc-csm1-1 | — | — | |
-| BC | Black carbon | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 | — | — | |
-| OC | Organic carbon | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 | — | — | |
-| MD | Mineral dust | — | ? | ? | As bcc-csm1-1 | — | — | |
-| SS | Sea salt | — | ? | ? | As bcc-csm1-1 | — | — | |
-| LU | Land-use change | Hurtt et al. 2011 | ? std | TV | As bcc-csm1-1 | hurtt_harmonization_2011 | hurtt_harmonization_2011 | |
-| SO | Solar irradiance | Wang et al. 2005 | ? | TV | As bcc-csm1-1 | — | — | |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? | TV | As bcc-csm1-1 | — | — | |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "observed GHGs". Specific dataset unconfirmed; as bcc-csm1-1. |
+| O  | Ozone | Cionni et al. 2011 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "total column ozone". Specific dataset unconfirmed; as bcc-csm1-1. |
+| SD | Sulphate direct | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "natural and anthropogenic aerosols". Specific dataset unconfirmed; as bcc-csm1-1. |
+| SI | Sulphate indirect | Model-dependent | ? | ? | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
+| BC | Black carbon | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
+| OC | Organic carbon | Lamarque et al. 2010 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
+| MD | Mineral dust | — | ? | ? | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
+| SS | Sea salt | — | ? | ? | As bcc-csm1-1 (inferred from same BCC family) | — | — | As bcc-csm1-1; unconfirmed from Wu2014. |
+| LU | Land-use change | Hurtt et al. 2011 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 does NOT mention land-use change. As bcc-csm1-1; unconfirmed. |
+| SO | Solar irradiance | Wang et al. 2005 | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "solar activity". Specific dataset unconfirmed; as bcc-csm1-1. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | ? | TV | As bcc-csm1-1 (inferred from same BCC family) | — | — | Wu2014 p.43: "both BCC-CSM1.1 and BCC-CSM1.1(m)" forced by "volcanic eruptions". Specific dataset unconfirmed; as bcc-csm1-1. |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### ESM-specific forcing inputs
@@ -32,4 +32,5 @@ Not an ESM. Standard 12 keys only.
 ### Provenance
 - Durack et al. 2016 model list: included
 - Stage 4 workflow: wf_6432ada7-087 — no CMIP5-specific findings; all entries inferred from bcc-csm1-1 (same physics)
-- Next step: as bcc-csm1-1 — read Wuetal14JMetRes PDF
+- Wu2014 PDF read: Wuetal14JMetRes-BCC-CSM1Overview.pdf — Wu2014 explicitly confirms BCC-CSM1.1(m) and BCC-CSM1.1 used identical external forcing types (p.43, Section 3.1.1); specific datasets unconfirmed
+- Next step: as bcc-csm1-1 — Xin et al. 2013c (Adv. Climate Change Res.) or ES-DOC CMIP5 documentation

@@ -602,7 +602,168 @@ Source: workflow wf_c371f969-29f (2026-06-21); 11/14 confirmed.
 
 ---
 
-## CMIP5 Stage 8 (UKMO: HadCM3, HadGEM2-AO, HadGEM2-CC, HadGEM2-ES) — NEXT
+## CMIP5 Stage 8 (UKMO: HadCM3, HadGEM2-AO, HadGEM2-CC, HadGEM2-ES) — COMPLETE ✓ (2026-06-21)
+
+**Results written:** `MOHC__hadcm3.md`, `MOHC__hadgem2_ao.md`, `MOHC__hadgem2_cc.md`, `MOHC__hadgem2_es.md`, `verified-forcing-matrix.csv` rows 31–34, `README.md` registry rows 31–34 and staging plan row 8 ☑, Stage 8 cross-cutting findings section, `bib-to-add.md` Stage 8 CMIP5 section.
+
+**Key findings (Stage 8):**
+- **HadGEM2-ES fully documented (14/14 confirmed 1-0)**: G=✓std(Meinshausen2011); O=exc(UKCA-interactive-trop+Cionni2011-NCAS-strat); SD/BC/OC=~std(CLASSIC-Lamarque2010-emis;interactive-not-prescribed-OD); SI/MD/SS=exc(1st+2nd-indirect+fully-interactive); LU=✓std(Hurtt2011-TRIFFID); SO=✓std(Lean2009/Wang2005); VL=✗dev(Sato1993-original-extended-Thomason2008-NOT-Sato-updated). Sources: Jones2011 + Collins2011 + Martin2011.
+- **HadCM3 NOT confirmed**: Workflow did not return any surviving claims for HadCM3 — all 12 forcings remain "?". CMIP5 dataset update status unknown.
+- **HadGEM2-AO/CC inferred from family**: All verdicts extrapolated from HadGEM2-ES + Collins2011/Martin2011. AO: O=?std (no UKCA). CC: O=?exc (UKCA). Not directly verified.
+- **ACCESS cross-check resolved inferentially**: Collins2011+Martin2011 confirm HadGEM2-A uses CLASSIC from Lamarque2010 — same atmosphere as ACCESS1-0/1-3; confirms ACCESS aerosol inference from Stage 5.
+
+Source: workflow wf_71ff96d7-487 (2026-06-21); 14/14 claims confirmed 1-0 (all HadGEM2-ES).
+
+---
+
+## CMIP5 Stage 9 (MIROC: MIROC4h, MIROC5, MIROC-ESM, MIROC-ESM-CHEM) — COMPLETE ✓ (2026-06-21)
+
+**Results written:** `MIROC__miroc4h.md`, `MIROC__miroc5.md`, `MIROC__miroc_esm.md`, `MIROC__miroc_esm_chem.md`, `verified-forcing-matrix.csv` rows 35–38, `README.md` registry rows 35–38 and staging plan row 9 ☑, Stage 9 cross-cutting findings section, `bib-to-add.md` CMIP5 Stage 9 section.
+
+**Key findings (Stage 9):**
+- **MIROC-ESM-CHEM O=exc (CHASER interactive)**: CHASER predicts ozone from Lamarque2010 precursor emissions — confirmed 1-0 high conf (Watanabe2011 GMD). MIROC-ESM-CHEM is the interactive-chemistry companion; MIROC-ESM uses prescribed ozone from a custom offline CHASER run (Kawase2011), NOT Cionni2011.
+- **MIROC-ESM/CHEM aerosols all exc (SPRINTARS interactive)**: BC, OC/OM, sulphate, soil dust, sea salt all driven interactively by SPRINTARS from Lamarque2010 precursor emissions + internal model meteorology for dust/salt. Coupled to cloud/precipitation for direct+semi-direct+indirect aerosol effects. Continues CMIP3 MIROC3.2 SPRINTARS pattern. All 6 aerosol keys = exc; confirmed 1-0 high conf.
+- **MIROC-ESM/CHEM VL=✓std (Sato1993+updates)**: Post-1998 exponential decay (1-yr relaxation time). Confirmed 1-0 high conf (Watanabe2011 verbatim).
+- **MIROC4h and MIROC5 — SCOPE LIMITATION**: Sakamoto2012 (MIROC4h primary) documents a 1950 present-day control run ONLY — not CMIP5 historical forcings. Watanabe M. 2010 (MIROC5 primary) covers mean-state/variability; no per-forcing documentation. All 12 cells remain "?" for both models. SPRINTARS likely (from ESM/CHEM confirmation) but NOT confirmed for the AOGCM-only variants.
+- **Solar (all four models) UNRESOLVED**: Lean2005 deviation claim refuted (0-1). Wang2005 standard NOT positively confirmed. Solar dataset unknown for all four MIROC CMIP5 models.
+
+Source: workflow wf_9b467e91-606 (2026-06-21); 30 agents; 758,709 subagent tokens; 12/14 claims confirmed 1-0; 2 refuted (Lean2005 solar deviation; MIROC4h developer consortium claim); Watanabe et al. 2011 (GMD doi:10.5194/gmd-4-845-2011) primary source for MIROC-ESM/CHEM.
+
+---
+
+## CMIP5 Stage 10 (NorESM + FGOALS + FIO + BNU) — COMPLETE ✓ (2026-06-21)
+
+Model files written: `NCC__noresm1_m.md`, `NCC__noresm1_me.md`, `LASG-CESS__fgoals_g2.md`, `LASG-IAP__fgoals_s2.md`, `FIO__fio_esm.md`, `GCESS__bnu_esm.md`; `verified-forcing-matrix.csv` rows 39–44; `README.md` registry rows 39–44 and staging plan row 10 ☑; Stage 10 cross-cutting findings section; `bib-to-add.md` CMIP5 Stage 10 section (8 entries).
+
+**Key findings (Stage 10):**
+- **NorESM1-M/ME aerosols all exc (CAM4-Oslo interactive)**: SD/SI/BC/OC/MD/SS all ＋exc — full online prognostic scheme from Lamarque2010 emissions + wind; 1st+2nd indirect. G/O/LU/SO/VL=✓std.
+- **NorESM1-ME ESM inputs**: N-dep=Lamarque2010 (NOT 2013 ACCMIP; Tjiputra2013); iron=Mahowald2005 (HAMOCC; Tjiputra2013).
+- **FGOALS-g2/s2 SD/BC/OC=✗dev (BAM bulk scheme)**: Prescribed mass concentrations (not OD) from offline Lamarque2010 transport; SI/MD/SS=exc; CMIP3 SO/VL/LU omissions all corrected (Li2013/Bao2013).
+- **FIO-ESM VL=Sato-updated**: NOT Ammann2003 despite CAM3.1 heritage — deliberate CMIP5 adoption confirmed (Qiao2013). SI=n/a (CAM3.1); MD/SS=FXc.
+- **BNU-ESM**: SD/BC/OC=✓std; SI/MD/SS=exc; N-dep=Lamarque2010; iron=Mahowald2005 (NEMO2-BGC; Ji2014).
+
+Source: workflow wf_36a86e20-c4b (2026-06-21); models confirmed from Bentsen2013, Tjiputra2013, Li2013, Bao2013, Qiao2013, Ji2014.
+
+---
+
+## CMIP5 Stage 11 (CMCC: CMCC-CESM, CMCC-CM, CMCC-CMS) — NEXT
+
+Seed model files before launching:
+- `research/cmip5/models/CMCC__cmcc_cesm.md`
+- `research/cmip5/models/CMCC__cmcc_cm.md`
+- `research/cmip5/models/CMCC__cmcc_cms.md`
+
+### Stage 11 prompt:
+
+Document the climate forcing datasets used in the three CMCC CMIP5 models — CMCC-CESM, CMCC-CM, and CMCC-CMS — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (BAMS doi:10.1175/BAMS-D-11-00094.1) standard protocol. CMCC (Centro Euro-Mediterraneo sui Cambiamenti Climatici) is the Italian modelling centre, based in Bologna. Three variants exist spanning from a full ESM with interactive chemistry (CMCC-CESM) to an AOGCM (CMCC-CM) to an AOGCM with a stratosphere-resolving atmospheric model (CMCC-CMS).
+
+PRIOR STAGE CONTEXT — key patterns to watch:
+- Stage 6 CNRM-CM5: interactive ozone via MOBIDIC (O=exc). CMCC-CESM has interactive chemistry — test if O=exc.
+- Stage 6 IPSL: deviated on aerosols+ozone (LMDZ-INCA offline OD). Test whether CMCC uses similar offline Italian/French chemistry products or standard Lamarque2010-OD.
+- Stage 7 MPI-ESM: deviated on aerosols (Kinne MACv1). Check if CMCC uses MACv1 or similar prescribed climatology.
+- Stage 10 NorESM1-ME: N-dep=Lamarque2010. CMCC-CESM has ocean BGC — verify if consistent.
+- CMCC-CMS uses ECMWF IFS spectral atmosphere (SY120L95 — extending to 0.01 hPa). High vertical resolution may affect ozone forcing approach.
+
+KEY ARCHITECTURE:
+- **CMCC-CESM**: Full ESM. ECHAM5 atmosphere (T31L39) + NEMO3.2 ocean (2°) + CLM3.5 land + LIM2 sea ice + PELAGOS ocean BGC + MOZART-3 interactive chemistry. ESM inputs: N-dep, CO2 mode, iron. Interactive chemistry expected: O=exc.
+- **CMCC-CM**: AOGCM. ECHAM5 atmosphere (T159L31) + OPA8.2 ocean (2°) + SILVA land + LIM2 sea ice. No interactive chemistry. Expected: O=Cionni2011 (std). Aerosols: ECHAM5 vintage may use Tanré et al. or HAM/M7 — test if Lamarque2010 standard was adopted for CMIP5.
+- **CMCC-CMS**: AOGCM. ECHAM5-MPIOM-like atmosphere (T63L95 — stratosphere-resolving) + OPA8.2 ocean (2°) + SILVA land + LIM2 sea ice. High vertical resolution for stratospheric dynamics. Ozone: does high vertical resolution atmospheric model require prescribed stratospheric ozone separately from tropospheric? VL: is Sato-updated applied consistently given high vertical levels?
+
+PRIMARY SOURCES (to fetch):
+- Scoccimarro, E., et al. (2011). Effects of Tropical Cyclones on Ocean Heat Transport in a High-Resolution Coupled General Circulation Model. *J. Climate* 24(16), 4368–4384. doi:10.1175/2011JCLI4104.1 — CMCC-CM primary documentation
+- Fogli, P.G., et al. (2009). INGV-CMCC Carbon (ICC): a carbon cycle Earth system model. CMCC Tech. Rep. RP0061. — CMCC-CESM primary documentation
+- Vichi, M., et al. (2011). Global and regional ocean carbon uptake and climate change: sensitivity to a substantial mitigation scenario. *Clim. Dyn.* 37(9–10), 1929–1947. doi:10.1007/s00382-011-1079-0 — PELAGOS BGC module
+- Manzini, E., et al. (2006). The influence of sea surface temperatures on the Northern winter stratosphere: Ensemble simulations with the MAECHAM5 model. *J. Clim.* 19, 3863–3881. doi:10.1175/JCLI3826.1 — CMCC-CMS stratosphere-resolving atmosphere
+- ES-DOC CIM documents: https://explore.es-doc.org (search CMCC + historical)
+- PCMDI CMIP5 model documentation: search "CMCC" at https://pcmdi.llnl.gov/mips/cmip5/availability.html
+
+FOR EACH of 12 forcings (+ESM inputs for CMCC-CESM), for EACH model:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed?
+(c) Did it follow Taylor 2012 standard, deviate, or exceed?
+(d) For CMCC-CESM: N-dep dataset (Lamarque2010 or 2013 ACCMIP)? CO2 mode? Iron for PELAGOS BGC?
+(e) Does the ECHAM5 atmospheric base impose any systematic deviation across all three CMCC models?
+
+KEY QUESTIONS (priority order):
+1. CMCC-CESM chemistry: Is MOZART-3 interactive chemistry active in CMIP5 historical? → O=exc expected.
+2. CMCC-CM/CMS ozone: Cionni2011 (std) or alternative?
+3. All three: Aerosols — does ECHAM5 use Lamarque2010-OD (std), Kinne MACv1 (as MPI), or interactive HAM?
+4. CMCC-CESM ESM inputs: N-dep dataset (year)? CO2 mode? Iron deposition for PELAGOS?
+5. CMCC-CMS stratospheric ozone: does the L95 top require special treatment?
+6. All three: Solar=Wang2005? Volcanic=Sato-updated?
+7. LU: Hurtt2011 in all three?
+
+STANDARD PROTOCOL BASELINE (Taylor 2012):
+G=Meinshausen2011 | O=Cionni2011(w/o interactive chem) | SD/BC/OC/MD/SS=Lamarque2010 | LU=Hurtt2011 | SO=Wang2005 | VL=Sato-updated
+
+DELIVERABLE: per forcing per model — verdict (std/dev/exc/?), temporal (TV/FXc/FXk), dataset + citation. Document CMCC-CESM ESM-specific inputs separately. Flag deviations. Adversarially verify key claims.
+
+After: write results to model files (`CMCC__cmcc_cesm.md`, `CMCC__cmcc_cm.md`, `CMCC__cmcc_cms.md`), add 3 rows to `verified-forcing-matrix.csv` (rows 45–47), update `README.md` registry rows 45–47 and Stage 11 status, append refs to `bib-to-add.md`.
+
+---
+
+## CMIP5 Stage 9 (prompt archived — COMPLETE):
+
+Seed model files before launching:
+- `research/cmip5/models/MIROC__miroc4h.md`
+- `research/cmip5/models/MIROC__miroc5.md`
+- `research/cmip5/models/MIROC__miroc_esm.md`
+- `research/cmip5/models/MIROC__miroc_esm_chem.md`
+
+### Stage 9 prompt:
+
+Document the climate forcing datasets used in the four MIROC CMIP5 models — MIROC4h, MIROC5, MIROC-ESM, and MIROC-ESM-CHEM — for their CMIP5 `historical` experiment (1850–2005).
+
+CONTEXT: Part of a forcing review of 47 CMIP5 models against the Taylor et al. 2012 (BAMS doi:10.1175/BAMS-D-11-00094.1) standard protocol. MIROC (Model for Interdisciplinary Research On Climate) is the primary Japanese modelling group, jointly developed by CCSR/NIES/JAMSTEC. Four variants span from high-resolution AOGCM (MIROC4h), to updated AOGCM (MIROC5), to full ESM (MIROC-ESM), to ESM with coupled chemistry (MIROC-ESM-CHEM).
+
+PRIOR STAGE CONTEXT — key patterns to watch:
+- CMIP3 MIROC3.2 (hires/medres) used SPRINTARS interactive aerosols (confirmed Stage 9 CMIP3). Test whether MIROC4h/MIROC5 continue SPRINTARS in CMIP5.
+- CMIP3 MIROC3.2 had richest aerosol suite in CMIP3 review (BC/OC/dust/SS/SI all Y, all confirmed genuine). Test whether CMIP5 MIROC maintains this.
+- Stage 8 UKMO: HadGEM2-ES deviated on VL (Sato1993 original, not Sato-updated). Test MIROC VL carefully.
+- Stage 7 MPI-ESM deviated on aerosols (Kinne MACv1). Stage 6 CNRM+IPSL deviated on both O+aerosols (offline INCA). Check if MIROC uses SPRINTARS (exc) or prescribed Lamarque2010-OD (std).
+
+KEY ARCHITECTURE QUESTIONS:
+- **MIROC4h**: High-resolution AOGCM (T213 ocean, ~0.5°). Based on older MIROC3.2 architecture? Uses SPRINTARS interactive aerosols? Prescribed ozone from Cionni2011 (std) or older CMIP3-era ozone?
+- **MIROC5**: Updated AOGCM (T85L40 atmosphere + MOM4-class ocean). New aerosol scheme — does it continue SPRINTARS or switch to prescribed OD? Ozone treatment? Solar/volcanic datasets updated from CMIP3?
+- **MIROC-ESM**: Full ESM with MATSIRO (land), SEIK (ocean biogeochemistry). N-deposition dataset (Lamarque2010 or 2013 ACCMIP)? CO2 mode (concentration or emission-driven)? Iron deposition for ocean BGC?
+- **MIROC-ESM-CHEM**: Adds CHASER interactive atmospheric chemistry (tropospheric chemistry + aerosols). Ozone expected INTERACTIVE (O=exc). Aerosols: SPRINTARS + CHASER combined? What aerosol precursor emissions dataset?
+
+PRIMARY SOURCES:
+- MIROC4h: Sakamoto, T.T., et al. (2012). MIROC4h — a new high-resolution atmosphere–ocean coupled general circulation model. *J. Meteor. Soc. Japan* 90(3), 325–359. doi:10.2151/jmsj.2012-301 [sakamoto_miroc4h_2012 *(add)*]
+- MIROC5: Watanabe, M., et al. (2010). Improved climate simulation by MIROC5: mean states, variability, and climate sensitivity. *J. Climate* 23(23), 6312–6335. doi:10.1175/2010JCLI3679.1 [watanabe_improved_2010 *(add)*]
+- MIROC-ESM: Watanabe, S., et al. (2011). MIROC-ESM 2010: model description and basic results of CMIP5-20c3m experiments. *Geosci. Model Dev.* 4(4), 845–872. doi:10.5194/gmd-4-845-2011 [watanabe_miroc_2011 *(add)*]
+- MIROC-ESM-CHEM: Watanabe et al. 2011 (same paper above; CHEM adds CHASER chemistry)
+- ES-DOC simulation documents: https://explore.es-doc.org (search MIROC4h/MIROC5/MIROC-ESM/MIROC-ESM-CHEM historical)
+- PCMDI CMIP5 documentation
+
+FOR EACH of 12 forcings (+ESM inputs for MIROC-ESM/MIROC-ESM-CHEM), for EACH model:
+(a) Was it applied in `historical`?
+(b) WHICH dataset/source — time-varying or fixed? Fixed values WITH UNITS.
+(c) Did it follow Taylor 2012 standard, deviate, or exceed?
+(d) For MIROC-ESM: N-dep dataset and year? CO2 mode? Iron deposition for ocean BGC?
+(e) For MIROC-ESM-CHEM: is ozone from CHASER interactive (O=exc)?
+
+KEY QUESTIONS:
+1. MIROC4h aerosols: SPRINTARS interactive (exc) or prescribed Lamarque2010-OD (std)?
+2. MIROC5 aerosols: SPRINTARS (continuing from MIROC3.2) or new scheme?
+3. MIROC-ESM-CHEM ozone: CHASER interactive confirmed (O=exc)?
+4. Solar (all): Wang2005 confirmed (std)? Or CMIP3-era solar carried over?
+5. Volcanic (all): Sato-updated confirmed (std)? MIROC3.2 had genuine SO/VL — test CMIP5 update.
+6. MIROC-ESM N-deposition: Lamarque 2010 or 2013 ACCMIP?
+7. MIROC4h vs MIROC5: Is forcing protocol identical or do they differ substantially?
+
+STANDARD PROTOCOL BASELINE (Taylor 2012):
+G=Meinshausen2011 | O=Cionni2011(w/o interactive chem) | SD/BC/OC/MD/SS=Lamarque2010 | LU=Hurtt2011 | SO=Wang2005 | VL=Sato-updated
+
+DELIVERABLE: per forcing per model — verdict (std/dev/exc/?), temporal (TV/FXc/FXk), dataset + citation. Document MIROC-ESM/CHEM ESM-specific inputs separately. Flag deviations from Taylor 2012. Adversarially verify key claims.
+
+## After CMIP5 Stage 9: write results to model files, add 4 MIROC rows to verified-forcing-matrix.csv (rows 35–38), update README.md registry rows 35–38 and Stage 9 status, append refs to bib-to-add.md.
+
+---
+
+## CMIP5 Stage 8 archived prompt (preserved for reference)
 
 Seed model files before launching:
 - `research/cmip5/models/MOHC__hadcm3.md`
