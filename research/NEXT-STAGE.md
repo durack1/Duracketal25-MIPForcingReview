@@ -680,25 +680,32 @@ All 47 models across 11 stages processed.
 
 ---
 
-## CMIP5 Second Pass Stage A (BCC + CanESM2/CanCM4 open questions) — PARTIAL ✓ (2026-06-22)
+## CMIP5 Second Pass Stage A (BCC + CanESM2/CanCM4 open questions) — COMPLETE ✓ (2026-06-22)
 
-**Results (2026-06-22):** wf_7d4aa291-ba4 — Arora2011 agent succeeded; Wu2014 and vonSalzen2013 PDF reads failed (poppler-utils not installed; Read tool requires pdftoppm).
+**Results (2026-06-22):** wf_7d4aa291-ba4 — Arora2011 agent succeeded; Wu2014 and vonSalzen2013 PDF reads failed in workflow (poppler-utils not installed; Read tool requires pdftoppm).
 
 **Resolved this pass:**
 - **CanESM2 LU = ✓std**: Arora2011 p.2: "historical changes in crop area provided in the CMIP5 dataset" (=luh.unh.edu=Hurtt2011). Written to CCCma__canesm2.md + CSV.
 - **CanESM2 CO2-mode = concentration-driven ✓**: Arora2011 p.1: "prescribed CO2 and other GHGs forcing." Written to CCCma__canesm2.md + CSV.
 - **CanCM4 LU = ✓std (inferred)**: Same CanAM4/CLM as CanESM2; Hurtt2011 CMIP5 LUH. Written to CCCma__cancm4.md + CSV.
-- **SO/VL already confirmed** from Stage 4 vonSalzen2013 read (in model files; no change needed).
+- **SO/VL/G/O/SD/BC/OC/MD/SS/SI already confirmed** from Stage 4 vonSalzen2013 read (in model files; no change needed).
+- **BCC LU = ✗dev**: Absent from Wu2014 p.43 forcing list ("GHGs, aerosols, volcanic eruptions, total column ozone, and solar activity" — LU not mentioned). Written to CSV.
 
-**Still open (PDF unreadable without poppler-utils):**
-- BCC-CSM1.1: G=? O=? LU=? SO=? VL=?
-- BCC-CSM1.1-m: same
-- CanESM2 N-dep: ? (not in Arora2011; needs Arora & Boer 2010 or other BGC paper)
+## CMIP5 Second Pass Stage A2 (pdfminer reads: Wu2014 / Wu2010 / vonSalzen2013 / Christian2014 / Cionni2011) — COMPLETE ✓ (2026-06-22)
 
-**Target open cells:**
-- BCC-CSM1.1: G=? O=? LU=? SO=? VL=? (5 cells; Wu2014 PDF available — needs poppler-utils)
-- BCC-CSM1.1-m: same (identical model, higher res only)
-- CanESM2: N-dep=? (primary source needed; Arora & Boer 2010 terrestrial BGC)
+**PDFs read with pdfminer (miniforge3/bin/python3):**
+1. `Wuetal14JMetRes-BCC-CSM1Overview.pdf` (Wu2014) — confirmed DOES NOT NAME specific G/O/SO/VL datasets; only lists forcing categories; BCC LU=✗dev confirmed.
+2. `Wuetal10ClimDyn-BCC-AGCM2DescriptionPerformanceOfPresentDayClimate.pdf` (Wu2010) — BCC-AGCM2.0.1 AMIP runs (1949–2000 observed SST/SIC); GHGs held constant at 1990 levels; aerosol = Collins2006 climatology (FXc); no CMIP5 historical forcing datasets named. NOT a CMIP5 historical description.
+3. `vonSalzenetal13Atmos-Ocean-CanAM4RepresentationOfPhysicalProcesses.pdf` (vonSalzen2013) — all CanESM2/CanCM4 G/O/SD/SI/BC/OC/MD/SS/SO/VL confirmed from Stage 4; no new information needed.
+4. `Christian14PLOSOne-CanESM2TimingAndDepartureOfOceanBiogeochemicalCyclesFromPreindustrialState.pdf` (Christian2014) — BGC emergence paper; uses CanESM2 historical runs but does not describe N-dep input forcing. No N-dep dataset named.
+5. `Cionnietal11AtmosChemPhys-HistoricalOzoneDatabaseForCMIP5.pdf` (Cionni2011) — lists CCMs used to create the database (Table 2); does NOT list BCC-CSM models as confirmed adopters. No BCC confirmation.
+6. `Eyringetal13JGR-Long-termOzoneChangesAndClimateImpactsInCMIP5.pdf` (Eyring2013) — no BCC or EC-Earth entries in Table 1.
+
+**Definitive open cells (exhausted all available /resources/ PDFs):**
+- BCC-CSM1.1 + BCC-CSM1.1-m: G=? O=? SO=? VL=? (4 cells; LU=✗dev resolved). No English-language primary source names these datasets. Deferred to CMIP6 cross-reference pass.
+- CanESM2: N-dep=? DIC-init=? Not in Arora2011, vonSalzen2013, Christian2014, or Christian2010. Needs Arora & Boer (2010) terrestrial BGC paper or other primary source. Deferred to CMIP6 cross-reference pass.
+
+**Resources available:** `resources/Wuetal14JMetRes-BCC-CSM1Overview.pdf`, `resources/vonSalzenetal13Atmos-Ocean-CanAM4RepresentationOfPhysicalProcesses.pdf`, `resources/Aroraetal11GRL-CarbonEmissionLimitsRequiredToSatisfyRCPsCanESM2.pdf`
 
 **Resources available:** `resources/Wuetal14JMetRes-BCC-CSM1Overview.pdf`, `resources/vonSalzenetal13Atmos-Ocean-CanAM4RepresentationOfPhysicalProcesses.pdf`, `resources/Aroraetal11GRL-CarbonEmissionLimitsRequiredToSatisfyRCPsCanESM2.pdf`
 
