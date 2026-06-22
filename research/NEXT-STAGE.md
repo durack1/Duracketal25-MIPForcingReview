@@ -1,3 +1,117 @@
+# CMIP6 — first pass
+
+**Model list**: `research/cmip6/data/cmip6-cv-model-list.csv` — 64 models (WCRP-CMIP CVs, accessed 2026-06-22)
+**Verified matrix**: `research/cmip6/data/verified-forcing-matrix.csv` — 64 rows, all ? (seeded 2026-06-22)
+**README**: `research/cmip6/README.md` — forcing standard, model registry, stage plan
+**Baseline paper**: Eyring et al. 2016 (*GMD* doi:10.5194/gmd-9-1937-2016)
+**Standard datasets**: G=Meinshausen2017, O=Checa-Garcia2018, SD/BC/OC=Hoesly2018/CEDS, LU=Hurtt2020/LUH2, SO=Matthes2017, VL=Thomason2018/GloSSAC
+
+## CMIP6 Stage plan (17 stages, 64 models)
+
+| Stage | Institution(s) | Models | N | CMIP5 link |
+|-------|---------------|--------|---|------------|
+| 1  | NOAA-GFDL                | GFDL-CM4, GFDL-ESM4 | 2 | CMIP5 Stage 1 |
+| 2  | NASA-GISS                | GISS-E2-1-G, -G-CC, -E2-1-H, -E2-2-G, -E2-2-H, -E3-G | 6 | CMIP5 Stage 2 |
+| 3  | NCAR                     | CESM2, CESM2-FV2, CESM2-WACCM | 3 | CMIP5 Stage 3 |
+| 4  | E3SM-Project             | E3SM-1-0, -1-1, -1-1-ECA, -2-0 | 4 | CESM1 fork; shares CAM5/CLM5/CICE5/MPAS-O forcing stack with NCAR |
+| 5  | CCCma                    | CanESM5, CanESM5-1, CanESM5-CanOE | 3 | CMIP5 Stage 4 |
+| 6  | BCC + CAMS               | BCC-CSM2-MR, CAMS-CSM1-0 | 2 | BCC from CMIP5 Stage 4 |
+| 7  | CNRM-CERFACS + IPSL      | CNRM-CM6-1, -HR, CNRM-ESM2-1, IPSL-CM6A-LR | 4 | CMIP5 Stage 6 |
+| 8  | MPI-M + HAMMOZ-Consortium | MPI-ESM1-2-LR, -HR, MPI-ESM-1-2-HAM | 3 | CMIP5 Stage 7; HAMMOZ new |
+| 9  | EC-Earth-Consortium (1)  | EC-Earth3, EC-Earth3-AerChem, EC-Earth3-CC | 3 | CMIP5 Stage 7 (EC-EARTH) |
+| 10 | EC-Earth-Consortium (2)  | EC-Earth3-ESM-1, EC-Earth3-Veg, EC-Earth3-Veg-LR | 3 | EC-Earth3 variants |
+| 11 | MOHC + NIMS-KMA          | HadGEM3-GC31-LL, -MM, UKESM1-0-LL, -1-LL, KACE-1-0-G | 5 | CMIP5 Stage 8; KACE new (HadGEM3 fork) |
+| 12 | MIROC + MRI              | MIROC6, MIROC-ES2L, MIROC-ES2H, MRI-ESM2-0 | 4 | CMIP5 Stage 9 |
+| 13 | NCC + CMCC               | NorESM2-LM, -MM, CMCC-CM2-SR5, CMCC-ESM2 | 4 | CMIP5 Stages 10+11 |
+| 14 | CSIRO + CSIRO-ARCCSS     | ACCESS-CM2, ACCESS-ESM1-5 | 2 | CMIP5 Stage 5 |
+| 15 | AWI + INM                | AWI-CM-1-1-LR, -MR, AWI-ESM-1-REcoM, INM-CM4-8, INM-CM5-0 | 5 | INM lineage from CMIP5 |
+| 16 | CAS + FIO-QLNM + NUIST   | CAS-ESM2-0, FGOALS-f3-L, FGOALS-g3, FIO-ESM-2-0, NESM3 | 5 | CMIP5 Stage 10 (FGOALS/FIO) |
+| 17 | THU + SNU + AS-RCEC + KIOST + CCCR-IITM + UA | CIESM, SAM0-UNICON, TaiESM1, KIOST-ESM, IITM-ESM, MCM-UA-1-0 | 6 | New entrants |
+
+## CMIP6 Stage 1 (NOAA-GFDL: GFDL-CM4, GFDL-ESM4) — COMPLETE ✓ (2026-06-22)
+
+Model files: `research/cmip6/models/NOAA-GFDL__GFDL-CM4.md`, `research/cmip6/models/NOAA-GFDL__GFDL-ESM4.md`
+Workflow run: wf_bc550b03-31e
+
+**Key findings:**
+- **CM4 (AM4.0)**: PRESCRIBES ozone ✓std (reversal from CMIP5 CM3 interactive). Aerosols interactive from CEDS+BB4CMIP6 ✓std. G/SO ✓std generic.
+- **ESM4 (AM4.1)**: INTERACTIVE ozone ＋exc (GFDL-ATMCHEM4.1, full trop+strat). Aerosols ✓std. G/SO ✓std generic.
+- **VL**: Unconfirmed for both (Stenchikov 2006 claim refuted; IACETH SAGE3λ unverified).
+- **LU**: Unconfirmed for both.
+- **ESM4 open**: N-dep source (NCAR-CCMI-2-0 vs GFDL internal?); CO2 mode; Fe deposition for COBALT.
+
+---
+
+## CMIP6 Stage 2 (NASA-GISS: 6 models) — COMPLETE ✓ (2026-06-22)
+
+Model files: `research/cmip6/models/NASA-GISS__GISS-E2-*.md`, `GISS-E3-G.md`
+Workflow run: wf_3520e866-fd8
+
+**Key findings:**
+- **E2-1-G / -H / -G-CC** (all = NINT, physics_version=1): O=✗dev — prescribes GISS-OMA-derived ozone, NOT standard CCMI. CEDS+BB4CMIP6 emissions used offline to generate OMA fields; NINT ingests prescribed fields. SD/BC/OC=~ (emissions standard, mode indirect via OMA).
+- **CC suffix = Carbon Cycle** (C4MIP), NOT chemistry — E2-1-G-CC ozone treatment IDENTICAL to E2-1-G.
+- **MATRIX ≠ standard submission** — MATRIX is physics_version=5 (optional); standard historical is NINT (v1).
+- **E2-2-G/H and E3-G ozone UNRESOLVED** — higher model top (0.002 hPa, L102/L106 vs L40) + QBO suggests interactive (＋exc), but unconfirmed. Primary doc for E2.2: Rind et al. 2020 (JGR doi:10.1029/2019JD032204).
+- **VL**: unresolved for all 6 models (Thomason GloSSAC claim refuted).
+- Keeble et al. 2021 evaluated NO GISS model — cannot close E2.2/E3 ozone status from that source.
+
+---
+
+## CMIP6 Stage 3 (NCAR: CESM2, CESM2-FV2, CESM2-WACCM) — NEXT ▶
+
+**Seed model files before launching:**
+- `research/cmip6/models/NCAR__CESM2.md`
+- `research/cmip6/models/NCAR__CESM2-FV2.md`
+- `research/cmip6/models/NCAR__CESM2-WACCM.md`
+
+### Stage 3 prompt:
+
+Document the climate forcing datasets used in the three NCAR CMIP6 models — CESM2, CESM2-FV2, and CESM2-WACCM — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. NCAR is Stage 3, continuing from CMIP5 Stage 3 (CCSM4, CESM1-BGC, CESM1-CAM5, CESM1-WACCM). Key context from prior stages: GFDL-ESM4 and GISS-E2-1-G deviations show center-specific ozone products are common; look carefully at WACCM interactive chemistry vs CESM2 prescribed.
+
+KEY ARCHITECTURE:
+- **CESM2**: CAM6 atmosphere + CLM5 land + MOM6/POP2 ocean + CICE5. Standard configuration. CMIP5 predecessor CCSM4/CESM1 used prescribed ozone (Lamarque 2012 trop+Tilmes strat).
+- **CESM2-FV2**: As CESM2 but with lower resolution (finite-volume 2° vs 1°). Atmospheric forcing expected identical to CESM2.
+- **CESM2-WACCM**: WACCM6 atmosphere (Whole Atmosphere Community Climate Model) with interactive chemistry and a higher model top (~140 km). CMIP5 CESM1-WACCM used interactive chemistry (O=exc). Expected to continue interactive (＋exc) in CMIP6.
+
+PRIOR CMIP5 CONTEXT:
+- CMIP5 CCSM4/CESM1: prescribed ozone (Lamarque et al. 2012, trop; Tilmes et al. strat); aerosols from Lamarque 2010 ACCMIP emissions (interactive in CAM5)
+- CMIP5 CESM1-WACCM: interactive chemistry (O=＋exc)
+- Key CMIP5→CMIP6 question: did CESM2 upgrade to Checa-Garcia 2018 CCMI for prescribed ozone? Or center-specific?
+- Stage 2 finding: GISS-E2.1 NINT used center-specific OMA-derived ozone (✗dev); beware same pattern for CESM2
+
+CMIP6 standard protocol (Eyring 2016) baseline:
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0) | O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0) for prescribed models
+- SD/BC/OC: CEDS (CEDS-2017-05-18) + BB4CMIP6 (VUA-CMIP-BB4CMIP6-1-2) interactive OR MACv2-SP (MPI-M-MACv2-SP-1-0) prescribed
+- LU: Hurtt 2020 LUH2 v2.1h (UofMD-landState-2-1-h) | SO: Matthes 2017 (SOLARIS-HEPPA-3-2) | VL: IACETH SAGE3λ (IACETH-SAGE3lambda-3-0-0)
+
+PRIMARY SOURCES:
+- Danabasoglu et al. 2020: CESM2 description, JAMES doi:10.1029/2019MS001916
+- Gettelman et al. 2019: WACCM6 description, JGR doi:10.1029/2019JD030943 (or similar)
+- Tilmes et al. 2019: CESM2-WACCM forcing strategy (doi:10.1029/2019MS001882 or similar)
+- Keeble et al. 2021 (ACP 21, 5015): classifies CESM2-WACCM as interactive-chemistry model
+- ES-DOC simulation documents: https://explore.es-doc.org
+
+KEY QUESTIONS — for EACH model:
+1. O: Does CESM2 CAM6 prescribe CCMI ozone (✓std) or a center-specific product (✗dev like GISS-NINT)?
+2. O: Does CESM2-WACCM use WACCM6 interactive chemistry (＋exc) — confirm from Gettelman 2019/Tilmes 2019.
+3. SD/BC/OC: Does CAM6 use CEDS+BB4CMIP6 precursor emissions interactively (✓std), or prescribed OD?
+4. LU: Hurtt 2020 LUH2 v2.1h confirmed for CESM2/CLM5?
+5. SO: SOLARIS-HEPPA-3-2 confirmed (WACCM may handle solar differently — spectral vs TSI)?
+6. VL: IACETH-SAGE3lambda-3-0-0 or center-specific volcanic AOD?
+7. CESM2-FV2 vs CESM2: confirm atmospheric forcing is identical (only resolution differs)?
+8. CESM2-WACCM ESM inputs: N-dep (NCAR-CCMI-2-0 expected), CO2 mode?
+9. Any supplemental non-input4MIPs forcing datasets for any of the three models?
+
+DELIVERABLE: per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk with units). Note where CESM2 and CESM2-FV2 share identical forcing. Flag deviations from Eyring 2016. Note supplemental datasets.
+
+---
+
+# CMIP3 and CMIP5 archive (COMPLETE)
+
+---
+
 # Resume after token reset → Stage 5 PARTIAL + Stage 4b (CCCma open questions) + Stage 6 (CNRM + IPSL)
 
 **Lean harness script (reuse, do not regenerate):**
