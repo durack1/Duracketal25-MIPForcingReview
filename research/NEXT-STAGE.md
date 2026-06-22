@@ -1,5 +1,18 @@
 # CMIP6 — first pass
 
+## Session plan (token budget: ~4–5 stages per 5-hour session)
+
+| Session | Stages | Institutions | Resume prompt |
+|---------|--------|-------------|---------------|
+| 1 | 1–4 | GFDL, GISS, NCAR, E3SM | ✓ COMPLETE (2026-06-22) |
+| 2 | 5–9 | CCCma, BCC/CAMS, CNRM/IPSL, MPI-M/HAMMOZ, EC-Earth(1) | ✓ COMPLETE (2026-06-23) |
+| 3 | 10–14 | EC-Earth(2), MOHC/NIMS-KMA, MIROC/MRI, NCC/CMCC, CSIRO | "continue CMIP6 — Session 3 starts at Stage 10 EC-Earth(2)" |
+| 4 | 15–17 | AWI/INM, CAS/FIO/NUIST, THU/SNU/misc | "continue CMIP6 — Session 4 starts at Stage 15 AWI/INM" |
+
+**At the start of each new session**: read `memory/project_cmip6_status.md` to confirm last completed stage, then find the corresponding `— NEXT ▶` entry below, seed the model files, and launch the workflow. Cross-stage findings from prior stages are in the individual model files under `research/cmip6/models/`.
+
+---
+
 **Model list**: `research/cmip6/data/cmip6-cv-model-list.csv` — 64 models (WCRP-CMIP CVs, accessed 2026-06-22)
 **Verified matrix**: `research/cmip6/data/verified-forcing-matrix.csv` — 64 rows, all ? (seeded 2026-06-22)
 **README**: `research/cmip6/README.md` — forcing standard, model registry, stage plan
@@ -57,54 +70,326 @@ Workflow run: wf_3520e866-fd8
 
 ---
 
-## CMIP6 Stage 3 (NCAR: CESM2, CESM2-FV2, CESM2-WACCM) — NEXT ▶
+## CMIP6 Stage 3 (NCAR: CESM2, CESM2-FV2, CESM2-WACCM) — COMPLETE ✓ (2026-06-22)
 
-**Seed model files before launching:**
-- `research/cmip6/models/NCAR__CESM2.md`
-- `research/cmip6/models/NCAR__CESM2-FV2.md`
-- `research/cmip6/models/NCAR__CESM2-WACCM.md`
+Model files: `research/cmip6/models/NCAR__CESM2.md`, `NCAR__CESM2-FV2.md`, `NCAR__CESM2-WACCM.md`
+Workflow run: wf_5c9d74cf-149 (14 claims verified, 14 confirmed, 0 killed)
 
-### Stage 3 prompt:
+**Key findings:**
+- **CESM2 and CESM2-FV2 (CAM6)**: O=✗dev, VL=✗dev — both prescribed from same bundled WACCM6-derived file (`ozone_strataero_WACCM_L70_zm5day_18500101-20150103_CMIP6ensAvg_c180923.nc`). NOT standard CCMI. Keeble 2021 verbatim: "Most models prescribing stratospheric ozone use the CMIP6 dataset (Checa-Garcia, 2018b), except CESM2, CESM2-FV2, and NorESM2, which prescribe ozone values from simulations performed with the CESM2-WACCM model."
+- **CESM2-WACCM (WACCM6)**: O=＋exc — TSMLT interactive chemistry (~228 prognostic species, 150 photolysis + 403 gas-phase reactions, MAM4 aerosols). VL=＋exc — interactive stratospheric aerosol from volcanic SO2 via MAM4 (this is the source of the CESM2/FV2 prescribed files).
+- **SD/BC/OC all three**: ✓std — CEDS (Hoesly 2018) + BB4CMIP6 (van Marle 2017). Upgrade from CMIP5 ACCMIP Lamarque 2010.
+- **CESM2-FV2**: Resolution-only (FV ~1.9°×2.5° vs 1°); all forcing identical to CESM2.
+- **Cross-cutting flag**: NorESM2 (Stage 13) also uses CESM2-WACCM-derived ozone per Keeble 2021 — test at Stage 13.
+- **G/LU/SO**: Medium confidence std only — not explicitly confirmed by workflow.
 
-Document the climate forcing datasets used in the three NCAR CMIP6 models — CESM2, CESM2-FV2, and CESM2-WACCM — for their CMIP6 `historical` experiment (1850–2014).
+---
 
-CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. NCAR is Stage 3, continuing from CMIP5 Stage 3 (CCSM4, CESM1-BGC, CESM1-CAM5, CESM1-WACCM). Key context from prior stages: GFDL-ESM4 and GISS-E2-1-G deviations show center-specific ozone products are common; look carefully at WACCM interactive chemistry vs CESM2 prescribed.
+## CMIP6 Stage 4 (E3SM-Project: E3SM-1-0, E3SM-1-1, E3SM-1-1-ECA, E3SM-2-0) — COMPLETE ✓ (2026-06-22)
+
+Model files: `research/cmip6/models/E3SM-Project__E3SM-1-0.md`, `E3SM-1-1.md`, `E3SM-1-1-ECA.md`, `E3SM-2-0.md`
+Workflow run: wf_29f9e93f-7df (8 confirmed, 6 killed of 14 verified)
+
+**Key findings:**
+- **G/SD/BC/OC all four**: ✓std — CEDS-2017-05-18 + BB4CMIP6; files `cmip6_mam4_{so2,bc_a4,pom_a4}_*_1850-2014_c180205.nc`. Golaz 2022: "same input data processing for GHGs and aerosol emissions" v1→v2.
+- **O (E3SM-1-0/1-1/1-1-ECA — O3v1 module)**: ~ — HYBRID. Tropospheric O3 prescribed from CCMI input4MIPs (Hegglin et al. 2016 = UReading-CCMI-1-0) + stratospheric O3 interactive Linoz v2. Tropospheric portion IS standard CCMI (unlike CESM2 ✗dev); strat is interactive → overall verdict ~.
+- **O (E3SM-2-0 — O3v2 module)**: ~ — HYBRID, more divergent. Trop O3 = passive tracer decaying to 30 ppb below 1 km (48-hour e-folding, no prescribed CCMI); strat = Linoz v2 interactive. Brown 2024 explicitly contrasts this with CESM2-WACCM6 fully interactive chemistry.
+- **ECA suffix confirmed**: ECA = ELM v1.1 Equilibrium Chemistry Approximation (C-N-P plant/soil BGC, wholly terrestrial). NOT interactive atmospheric chemistry. Atmospheric forcing of E3SM-1-1-ECA = IDENTICAL to E3SM-1-1.
+- **VL unresolved**: Both VL candidate claims refuted (center-specific DOE-ACME radiation file 0-1; GloSSAC v1 for E3SMv2 0-1). Standard IACETH unconfirmed. Genuinely open.
+- **LU/SO**: unresolved.
+- **E3SM-1-0 vs 1-1**: forcing identical (EAMv1 vs EAMv1.1 = incremental physics, same forcing stack).
+
+**Cross-cutting lesson**: E3SM hybrid ozone (O3v1/O3v2) is a distinct pattern not seen in previous stages. The Linoz coefficient table (`linoz1850-2015_2010JPL_CMIP6_10deg_58km_c20171109.nc`) is chemistry PARAMETERS, not a prescribed ozone dataset — important disambiguation.
+
+---
+
+## CMIP6 Stage 5 (CCCma: CanESM5, CanESM5-1, CanESM5-CanOE) — COMPLETE ✓ (2026-06-22)
+
+Model files: `research/cmip6/models/CCCma__CanESM5.md`, `CCCma__CanESM5-1.md`, `CCCma__CanESM5-CanOE.md`
+Workflow run: wf_743d4a9c-430 (28 agents; 14/14 claims confirmed, 0 killed)
+
+**Key findings:**
+- **First CLEAN PASS** — no deviations from Eyring 2016 on any confirmed forcing.
+- **O=✓std/TV all three**: Standard CMIP6 CCMI ozone (Checa-Garcia 2018 / UReading-CCMI-1-0). Swart 2019: "O3 is specified as varying spatially – typically employing that prescribed for CMIP6 (Checa-Garcia et al., 2018)." CanAM5 is NOT an interactive chemistry model.
+- **SD/BC/OC/SI/MD/SS=✓std/TV all three**: Interactive prognostic bulk aerosol scheme (sulphate, BC, OC, sea salt, mineral dust) consuming CEDS+BB4CMIP6 emissions — NOT MACv2-SP. Both direct and indirect effects. Cole 2023: prognostic size-dependent dust + wind-dependent sea salt.
+- **LU=✓std/TV all three**: LUH2 v2h (UofMD-landState-2-1-h); Swart 2019 section 2.2 verbatim. CLASSIC land C-N cycle.
+- **VL=✓std/TV all three**: IACETH-SAGE3lambda-3-0-0 v3 confirmed; Rieger et al. 2020 (GMD 13:4831; CCCma+PCMDI authors incl. P. Durack) verbatim: "version 3 remains the official CMIP6 input."
+- **SO CanESM5-1=✓std/TV**: Matthes 2017 / SOLARIS-HEPPA-3-2 confirmed (Cole 2023). **SO CanESM5.0=?**: Cole 2023 frames Matthes 2017 as a *change* introduced in CanAM5.0.3, implying CanESM5.0 used a different/older solar product.
+- **G=?**: Not directly confirmed; expected ✓std.
+- **CanOE**: Ocean BGC only — replaces CMOC (NOT TOPAZ as previously assumed). Christian 2022 confirms atmospheric forcing identical. Atmospheric forcing = as CanESM5.
+- **N-dep**: Not confirmed; NCAR-CCMI-2-0 expected for CLASSIC C-N cycle.
+
+---
+
+## CMIP6 Stage 6 (BCC + CAMS: BCC-CSM2-MR, CAMS-CSM1-0) — COMPLETE ✓ (2026-06-22)
+
+Model files: `research/cmip6/models/BCC__BCC-CSM2-MR.md`, `research/cmip6/models/CAMS__CAMS-CSM1-0.md`
+Workflow run: wf_1a7b005d-ffd (28 agents; 13/14 confirmed, 1 killed)
+
+**Key findings:**
+- **BCC-CSM2-MR O=✓std/TV**: Standard CMIP6 CCMI ozone confirmed by Keeble 2021 Table 1. Resolves CMIP5 unknown.
+- **BCC-CSM2-MR SD/BC/OC=✓std/TV**: MACv2-SP (Stevens 2017) nine-plume prescribed aerosol — Eyring 2016 sanctioned prescribed path. NOT interactive CEDS+BB4CMIP6. Wu 2019 verbatim.
+- **BCC-CSM2-MR SI=✗dev/TV**: Indirect effect uses CMIP5 Taylor 2012 aerosol masses + NCAR CAM-Chem Lamarque 2012 nitrate — non-input4MIPs supplemental datasets, NOT Eyring 2016 protocol.
+- **BCC-CSM2-MR G/SO/VL/LU=✓std/TV**: Full standard CMIP6 forcing stack from input4MIPs (Xin 2021). LU now applied — reverses CMIP5 BCC LU=✗dev exclusion.
+- **CAMS-CSM1-0**: Only G=✓std confirmed (Meinshausen 2017, He 2020 AAS). All other forcings (O/SD/BC/OC/LU/SO/VL) remain UNRESOLVED (?).
+
+---
+
+## CMIP6 Stage 7 (CNRM-CERFACS + IPSL: CNRM-CM6-1, -HR, CNRM-ESM2-1, IPSL-CM6A-LR) — COMPLETE ✓ (2026-06-23; wf_e2b2d348-b4e)
+
+Model files: `research/cmip6/models/CNRM-CERFACS__CNRM-CM6-1.md`, `-HR.md`, `CNRM-ESM2-1.md`, `IPSL__IPSL-CM6A-LR.md`
+
+**Key findings:**
+- **CNRM-CM6-1 O=~/TV**: Linearized strat ozone (prognostic O3 with precomputed CNRM-ESM2-1 rates) + prescribed CCMI trop. Intermediate between ✓std and ＋exc. CMIP5 MOBIDIC downgraded, not corrected.
+- **CNRM-CM6-1 SD/BC/OC=✗dev/TV**: TACTIC_v2-derived monthly AOD fields prescribed offline — neither MACv2-SP nor CEDS+BB4CMIP6 interactive. Michou 2020 verbatim: "monthly AOD fields varying each year, coming from atmosphere-only type simulations using the TACTIC_v2 scheme."
+- **CNRM-CM6-1-HR**: All forcing expected identical to CNRM-CM6-1 (resolution only; NOT explicitly confirmed by Stage 7 workflow).
+- **CNRM-ESM2-1 O=＋exc/TV**: REPROBUS-C_v2 fully interactive (168 reactions, ~63 species, every time step). One of only 6 CMIP6 models with interactive stratospheric chemistry (Keeble 2021). NOTE: seeded stub incorrectly named TACTIC for ozone — corrected in final model file.
+- **CNRM-ESM2-1 SD/BC/OC=~/TV**: TACTIC_v2 interactive aerosols — emissions provenance unconfirmed.
+- **IPSL-CM6A-LR O=✓std/TV**: CMIP5 offline INCA+REPROBUS deviation CORRECTED. Now standard CCMI with tropopause-stretching (Lurton 2020: doi:10.1029/2019MS001940 — new key paper, "Implementation of the CMIP6 forcing data in the IPSL-CM6A-LR model").
+- **LARGE SCOPE GAPS**: G, LU, SO, VL unconfirmed for all 4; IPSL aerosols entirely unconfirmed.
+- Sources: Michou et al. 2020 (doi:10.1029/2019MS001816); Voldoire et al. 2019 (doi:10.1029/2019MS001770); Séférian et al. 2019 (doi:10.1029/2019MS001885); Lurton et al. 2020 (doi:10.1029/2019MS001940); Keeble et al. 2021 (doi:10.5194/acp-21-5015-2021)
+
+---
+
+## CMIP6 Stage 8 (MPI-M + HAMMOZ-Consortium: MPI-ESM1-2-LR, -HR, MPI-ESM-1-2-HAM) — COMPLETE ✓ (2026-06-23; wf_f9ea73ac-462)
+
+Model files: `research/cmip6/models/MPI-M__MPI-ESM1-2-LR.md`, `MPI-M__MPI-ESM1-2-HR.md`, `HAMMOZ-Consortium__MPI-ESM-1-2-HAM.md`
+
+**Key findings:**
+- **MPI-ESM1-2-LR/HR O=✓std/TV**: CCMI prescribed on all levels — Keeble 2021: "For both configurations, ozone is prescribed on all levels following the CMIP6 recommendations."
+- **MPI-ESM1-2-LR/HR SD/BC/OC/SI=✓std/TV**: **MACv2-SP prescribed aerosol (CMIP5 MAC-v1 deviation CORRECTED)**. Mauritsen 2019 verbatim: "The old climatology of anthropogenic aerosol has been replaced with the newly developed MACv2-SP parameterization... which has been designed for the usage in the framework of CMIP6." WDC-Climate: "aerosol: none, prescribed MACv2-SP."
+- **MPI-ESM1-2-LR/HR MD/SS=FXc**: Kinne et al. 2013 fixed natural aerosol background. Not time-varying.
+- **MPI-ESM1-2-LR/HR LU=✓std/TV**: LUH2v2h — LR via dynamic transitions; HR via prescribed maps. Same source.
+- **MPI-ESM-1-2-HAM O=✓std**: Identical to LR/HR (HAM2 has no ozone chemistry; MOZ1.0 not used for CMIP6).
+- **MPI-ESM-1-2-HAM SD/BC/OC/MD/SS=~/TV**: HAM2 interactive aerosols — CMIP6 historical emissions provenance UNCONFIRMED. Neubauer 2019 standalone runs used ACCMIP MACCity (NOT CEDS, NOT CMIP6-historical); cannot transpose.
+- **All three — gaps**: G/SO/VL unconfirmed; ESM inputs (N-dep, CO2-mode, Fe) unconfirmed.
+- Key DOI note: Mauritsen et al. 2019 = JAMES doi:10.1029/2018MS001400 (NOT GMD gmd-12-3241-2019 — that DOI was wrong in the workflow brief).
+- Sources: Mauritsen et al. 2019 (doi:10.1029/2018MS001400); Stevens et al. 2017 (doi:10.5194/gmd-10-433-2017); Keeble et al. 2021 (doi:10.5194/acp-21-5015-2021)
+
+---
+
+## CMIP6 Stage 9 (EC-Earth-Consortium 1: EC-Earth3, EC-Earth3-AerChem, EC-Earth3-CC) — COMPLETE ✓ (2026-06-23; wf_1fb84fb8-c26; 27 agents; 13/14 confirmed, 1 killed)
+
+Model files written: `research/cmip6/models/EC-Earth-Consortium__EC-Earth3.md`, `EC-Earth-Consortium__EC-Earth3-AerChem.md`, `EC-Earth-Consortium__EC-Earth3-CC.md`; CSV rows 29-31 updated.
+
+**Key findings (Stage 9):**
+- EC-Earth3: SD/BC/OC/SI=✓std (MACv2-SP: offline TM5 PI 1850 climatology + MACv2-SP anthropogenic plumes; CMIP5 MACC offline deviation CORRECTED); LU=✓std (LUH2 Hurtt 2020 applied indirectly via EC-Earth3-Veg precomputed vegetation fields — CMIP5 LU exclusion CORRECTED); O=✓std (CCMI prescribed, inferred from AerChem CCMI nudge target); G=✓std (Meinshausen 2017/2020); SO=✓std (Matthes 2017); MD/SS=FXc (TM5 PI 1850 natural background); VL=~ (CMIP6 strat aerosol prescribed, IACETH source_id unconfirmed)
+- EC-Earth3-AerChem: O=＋exc (TM5-MP interactive trop ozone+methane + CCMI strat nudge; van Noije 2021 doi:10.5194/gmd-14-5637-2021); SD/BC/OC/SI/MD/SS=＋exc (TM5-MP M7 interactive aerosol consuming CEDS+BB4CMIP6 confirmed). CRITICAL: EC-Earth3-AerChem does NOT appear in Keeble 2021's 6-model interactive-chemistry list (paper predates CMIP6 AerChem submission); sole primary source = van Noije 2021 (DOI is 5637, NOT 5079 as in Stage 9 prompt)
+- EC-Earth3-CC: All atmospheric forcing INFERRED identical to EC-Earth3 (shared IFS; no CC-specific direct confirmation); LPJG active C cycle; N-dep=? (NCAR-CCMI-2-0 expected, not confirmed); CO2-mode=?
+- CMIP6 TM5 PI aerosol baseline differs from MPI-M Kinne 2013 but both result in ✓std for EC-Earth3/MPI-ESM1.2 prescribed-path aerosols
+
+---
+
+**SESSION 2 (Stages 5–9) — COMPLETE ✓ (2026-06-23)**
+
+**Resume Session 3 with**: "continue CMIP6 — Session 3 starts at Stage 10 EC-Earth(2)"
+
+---
+
+## CMIP6 Stage 10 (EC-Earth-Consortium 2: EC-Earth3-ESM-1, EC-Earth3-Veg, EC-Earth3-Veg-LR) — IN PROGRESS ▶ (wf_a7a69943-dee; 2026-06-23)
+
+Model files seeded: `research/cmip6/models/EC-Earth-Consortium__EC-Earth3-ESM-1.md`, `EC-Earth-Consortium__EC-Earth3-Veg.md`, `EC-Earth-Consortium__EC-Earth3-Veg-LR.md`
+Lean harness script (reuse): `/home/duro/.claude/projects/-home-duro-git-Duracketal25-MIPForcingReview-research-models/1d50b049-f316-40c3-80be-a997612ce472/workflows/scripts/deep-research-lean.js`
+
+**Prior EC-Earth3 context (Stage 9 — COMPLETE):**
+- EC-Earth3 base: O=✓std (CCMI), SD/BC/OC/SI=✓std (MACv2-SP), MD/SS=FXc (TM5 PI), LU=✓std (LUH2 indirect via EC-Earth3-Veg precomputed), G=✓std, SO=✓std, VL=~
+- EC-Earth3-Veg is the DIRECT PROVIDER of the vegetation fields that EC-Earth3/CC ingest: Döscher 2022 verbatim: "This happens automatically in the EC-Earth3-Veg configuration... but for all other configurations the required vegetation cover and type need to be precomputed"
+- EC-Earth3-ESM-1 adds PISCES-v2 ocean BGC (replaces HAMOCC); may add TOPAZ; check N-dep for PISCES
+
+**CMIP5 context:**
+- EC-EARTH CMIP5: O=✓std (Cionni 2011 prescribed); SD/BC/OC=✗dev (ECMWF/MACC offline aerosol climatology); LU=✗dev (excluded); SO/VL=unresolved.
+- EC-Earth3-Veg is new — CMIP6 LPJmL dynamic vegetation + LUH2 direct ingestion.
+
+### Stage 9 workflow prompt (archived):
+
+Document the climate forcing datasets used in three EC-Earth-Consortium CMIP6 models — EC-Earth3, EC-Earth3-AerChem, and EC-Earth3-CC — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 9 of 17, Session 2 of 4.
 
 KEY ARCHITECTURE:
-- **CESM2**: CAM6 atmosphere + CLM5 land + MOM6/POP2 ocean + CICE5. Standard configuration. CMIP5 predecessor CCSM4/CESM1 used prescribed ozone (Lamarque 2012 trop+Tilmes strat).
-- **CESM2-FV2**: As CESM2 but with lower resolution (finite-volume 2° vs 1°). Atmospheric forcing expected identical to CESM2.
-- **CESM2-WACCM**: WACCM6 atmosphere (Whole Atmosphere Community Climate Model) with interactive chemistry and a higher model top (~140 km). CMIP5 CESM1-WACCM used interactive chemistry (O=exc). Expected to continue interactive (＋exc) in CMIP6.
+- EC-Earth3: IFS cy36r4 atmosphere (T255L91, ~0.7°) + HTESSEL land (static BGC) + NEMO3.6 (ORCA1) ocean + LIM3 sea ice. AOGCM. CMIP5 predecessor EC-EARTH used offline ECMWF/MACC aerosol climatology (✗dev) and excluded LU (✗dev). Did EC-Earth3 correct both deviations?
+- EC-Earth3-AerChem: EC-Earth3 base + TM5-MP atmospheric chemistry-transport model (fully coupled, interactive ozone AND aerosol). Expected: O=＋exc, SD/BC/OC=＋exc. Primary source: van Noije et al. 2021 (GMD doi:10.5194/gmd-14-5079-2021).
+- EC-Earth3-CC: EC-Earth3 base + active carbon cycle (LPJG = LPJ-GUESS). Same atmospheric forcing as EC-Earth3 (expected). Additional ESM inputs: N-dep (NCAR-CCMI-2-0?), CO2-mode.
 
-PRIOR CMIP5 CONTEXT:
-- CMIP5 CCSM4/CESM1: prescribed ozone (Lamarque et al. 2012, trop; Tilmes et al. strat); aerosols from Lamarque 2010 ACCMIP emissions (interactive in CAM5)
-- CMIP5 CESM1-WACCM: interactive chemistry (O=＋exc)
-- Key CMIP5→CMIP6 question: did CESM2 upgrade to Checa-Garcia 2018 CCMI for prescribed ozone? Or center-specific?
-- Stage 2 finding: GISS-E2.1 NINT used center-specific OMA-derived ozone (✗dev); beware same pattern for CESM2
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–8):
+- Standard CCMI ozone (✓std): GFDL-CM4, CanESM5/5-1/CanOE, BCC-CSM2-MR, IPSL-CM6A-LR, MPI-ESM1-2-LR/HR
+- Interactive ozone (＋exc): GFDL-ESM4, CESM2-WACCM, CNRM-ESM2-1; Keeble2021 lists only 6 models — AerChem (TM5) expected to be one
+- MACv2-SP prescribed aerosol (✓std): BCC-CSM2-MR, MPI-ESM1-2-LR/HR — EC-Earth3 likely uses different approach
+- CEDS+BB4CMIP6 interactive (✓std): GFDL-CM4/ESM4, CanESM5, E3SM — test EC-Earth3
+- Center-specific offline aerosol (✗dev): CMIP5 EC-EARTH MACC (corrected?), CNRM-CM6-1 TACTIC_v2
 
 CMIP6 standard protocol (Eyring 2016) baseline:
-- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0) | O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0) for prescribed models
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
 - SD/BC/OC: CEDS (CEDS-2017-05-18) + BB4CMIP6 (VUA-CMIP-BB4CMIP6-1-2) interactive OR MACv2-SP (MPI-M-MACv2-SP-1-0) prescribed
-- LU: Hurtt 2020 LUH2 v2.1h (UofMD-landState-2-1-h) | SO: Matthes 2017 (SOLARIS-HEPPA-3-2) | VL: IACETH SAGE3λ (IACETH-SAGE3lambda-3-0-0)
+- LU: Hurtt 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes 2017 SOLARIS-HEPPA-3-2 (SOLARIS-HEPPA-3-2)
+- VL: IACETH SAGE3lambda v3.0.0 (IACETH-SAGE3lambda-3-0-0)
+- N-dep (ESMs): NCAR-CCMI-2-0
 
 PRIMARY SOURCES:
-- Danabasoglu et al. 2020: CESM2 description, JAMES doi:10.1029/2019MS001916
-- Gettelman et al. 2019: WACCM6 description, JGR doi:10.1029/2019JD030943 (or similar)
-- Tilmes et al. 2019: CESM2-WACCM forcing strategy (doi:10.1029/2019MS001882 or similar)
-- Keeble et al. 2021 (ACP 21, 5015): classifies CESM2-WACCM as interactive-chemistry model
-- ES-DOC simulation documents: https://explore.es-doc.org
+- All EC-Earth3 variants: Döscher et al. 2022 (GMD doi:10.5194/gmd-15-2973-2022) — CRITICAL primary source; Table 1 documents all forcing datasets for EC-Earth3
+- EC-Earth3-AerChem: van Noije et al. 2021 (GMD doi:10.5194/gmd-14-5079-2021) — primary source for TM5-MP chemistry and emissions
+- Keeble et al. 2021 (ACP 21, 5015) — Table 1: EC-Earth3-AerChem should appear in interactive-chemistry group
+- CMIP5 comparison: Hazeleger et al. 2012 or EC-Earth2.3 description for MACC aerosol baseline
+- ES-DOC: https://explore.es-doc.org (search EC-Earth3 historical, EC-Earth3-AerChem historical)
 
-KEY QUESTIONS — for EACH model:
-1. O: Does CESM2 CAM6 prescribe CCMI ozone (✓std) or a center-specific product (✗dev like GISS-NINT)?
-2. O: Does CESM2-WACCM use WACCM6 interactive chemistry (＋exc) — confirm from Gettelman 2019/Tilmes 2019.
-3. SD/BC/OC: Does CAM6 use CEDS+BB4CMIP6 precursor emissions interactively (✓std), or prescribed OD?
-4. LU: Hurtt 2020 LUH2 v2.1h confirmed for CESM2/CLM5?
-5. SO: SOLARIS-HEPPA-3-2 confirmed (WACCM may handle solar differently — spectral vs TSI)?
-6. VL: IACETH-SAGE3lambda-3-0-0 or center-specific volcanic AOD?
-7. CESM2-FV2 vs CESM2: confirm atmospheric forcing is identical (only resolution differs)?
-8. CESM2-WACCM ESM inputs: N-dep (NCAR-CCMI-2-0 expected), CO2 mode?
-9. Any supplemental non-input4MIPs forcing datasets for any of the three models?
+KEY QUESTIONS:
+1. O (EC-Earth3 and EC-Earth3-CC): Standard CCMI prescribed (✓std expected)? CMIP5 was ✓std Cionni.
+2. SD/BC/OC (EC-Earth3 and EC-Earth3-CC): CMIP5 used ECMWF/MACC offline (✗dev). Did CMIP6 EC-Earth3 update to CEDS+BB4CMIP6 interactive or MACv2-SP? Döscher 2022 Table 1 should specify.
+3. LU (EC-Earth3 and CC): HTESSEL is static BGC — does it ingest LUH2 v2.1h? CMIP5 excluded LU. Did CMIP6 correct this?
+4. SO/VL (all three): Matthes 2017 / IACETH SAGE3λ? Unresolved in CMIP5.
+5. EC-Earth3-AerChem: TM5-MP interactive ozone (＋exc expected). What emissions does TM5 consume? CEDS+BB4CMIP6 (✓std/＋exc) or other?
+6. EC-Earth3-CC ESM inputs: N-dep (NCAR-CCMI-2-0?) for LPJG, CO2-mode.
+7. EC-Earth3 vs EC-Earth3-CC: Same atmospheric forcing (CC adds C-cycle only)?
+8. EC-Earth3-AerChem non-chemistry forcings: G, LU, SO, VL same as EC-Earth3?
 
-DELIVERABLE: per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk with units). Note where CESM2 and CESM2-FV2 share identical forcing. Flag deviations from Eyring 2016. Note supplemental datasets.
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk with value+units). Document whether CMIP5 deviations (aerosol, LU) were corrected. Flag remaining deviations from Eyring 2016. Note sharing between EC-Earth3 and EC-Earth3-CC.
+
+**CMIP5 context (preserved for reference):**
+
+Document the climate forcing datasets used in three German CMIP6 models — MPI-ESM1-2-LR and MPI-ESM1-2-HR (both MPI-M) and MPI-ESM-1-2-HAM (HAMMOZ-Consortium) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 8 of 17, Session 2 of 4.
+
+KEY ARCHITECTURE:
+- MPI-ESM1-2-LR: ECHAM6.3 atmosphere (T63L47) + JSBACH3.2 land (active C) + MPIOM1.6.3 ocean + HAMOCC6 ocean BGC. Full ESM. CMIP5 predecessor MPI-ESM-LR used Kinne MAC-v1 aerosols (✗dev) and Cionni 2011 ozone (✓std). Did MPI-ESM1.2 update aerosols to CEDS+BB4CMIP6 or MACv2-SP?
+- MPI-ESM1-2-HR: Higher-resolution variant (T127L95 atmosphere, ~100km → 40km). Same ECHAM6.3/JSBACH/MPIOM/HAMOCC stack. All forcing expected IDENTICAL to MPI-ESM1-2-LR.
+- MPI-ESM-1-2-HAM: HAMMOZ-Consortium model = MPI-ESM1.2 base + HAM2 interactive aerosol scheme (ECHAM-HAM2). Key difference: HAM2 interactive aerosols instead of the MPI-ESM1.2 prescribed aerosols. CMIP6 new entrant (no CMIP5 predecessor in scope). Primary source: Tegen et al. 2019 (GMD doi:10.5194/gmd-12-1331-2019). Does HAM2 consume CEDS+BB4CMIP6 emissions interactively?
+
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–7):
+- Standard CCMI ozone (✓std): GFDL-CM4, CanESM5/5-1/CanOE, BCC-CSM2-MR; IPSL-CM6A-LR (corrected from CMIP5)
+- Interactive ozone (＋exc): GFDL-ESM4, CESM2-WACCM, CNRM-ESM2-1 (REPROBUS-C_v2)
+- Hybrid/linearized ozone (~): E3SM (O3v1/O3v2), CNRM-CM6-1 (linearized strat + CCMI trop)
+- Deviating ozone (✗dev): GISS-E2.1-NINT (OMA-derived), CESM2/FV2 (WACCM6-derived bundle)
+- MACv2-SP prescribed aerosol: BCC-CSM2-MR confirmed (✓std prescribed path)
+- TACTIC_v2 offline AOD: CNRM-CM6-1 (✗dev), CNRM-ESM2-1 interactive (~/＋exc)
+- Cross-cutting: Keeble 2021 Table 1 lists only 6 models with interactive stratospheric chemistry — check if MPI-ESM1.2 uses standard prescribed CCMI.
+
+CMIP6 standard protocol (Eyring 2016) baseline:
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
+- SD/BC/OC: CEDS (CEDS-2017-05-18) + BB4CMIP6 (VUA-CMIP-BB4CMIP6-1-2) interactive OR MACv2-SP (MPI-M-MACv2-SP-1-0) prescribed
+- LU: Hurtt 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes 2017 SOLARIS-HEPPA-3-2 (SOLARIS-HEPPA-3-2)
+- VL: IACETH SAGE3lambda v3.0.0 (IACETH-SAGE3lambda-3-0-0)
+- N-dep (ESMs): NCAR-CCMI-2-0
+
+PRIMARY SOURCES:
+- MPI-ESM1-2-LR and -HR: Mauritsen et al. 2019 (JAMES doi:10.5194/gmd-12-3241-2019); Müller et al. 2018 (ECHAM6.3)
+- MPI-ESM-1-2-HAM: Tegen et al. 2019 (GMD doi:10.5194/gmd-12-1331-2019); Neubauer et al. 2019 (GMD doi:10.5194/gmd-12-1725-2019)
+- Keeble et al. 2021 (ACP 21, 5015) — Table 1 check: MPI-ESM1-2-LR ozone classification
+- MACv2-SP: Stevens et al. 2017 (ACP doi:10.5194/acp-17-12871-2017) — MPI-M aerosol standard for prescribed-path models; CMIP6 sanctioned. MPI-M DEVELOPED MACv2-SP — did they also USE it in MPI-ESM1.2?
+- ES-DOC: https://explore.es-doc.org (search MPI-ESM1-2-LR historical, MPI-ESM-1-2-HAM historical)
+
+KEY QUESTIONS:
+1. SD/BC/OC (MPI-ESM1-2-LR/HR): CMIP5 MPI-ESM-LR used Kinne 2006 MAC-v1 (✗dev). Did CMIP6 MPI-ESM1.2 update to MACv2-SP (✓std prescribed path) or CEDS+BB4CMIP6 interactive (✓std), or a different aerosol treatment?
+2. O (MPI-ESM1-2-LR/HR): Standard CCMI prescribed (✓std expected)? Or did CMIP6 MPI add chemistry? Keeble 2021 Table 1 should clarify.
+3. LU (MPI-ESM1-2-LR/HR): JSBACH3.2 active C — Hurtt 2020 LUH2? CMIP5 used Hurtt 2011 (✓std); expect CMIP6 upgrade.
+4. SO/VL (MPI-ESM1-2-LR/HR): Standard Matthes 2017 / IACETH SAGE3λ? Unresolved in CMIP5 MPI.
+5. MPI-ESM-1-2-HAM aerosols: Does HAM2 interactive scheme consume CEDS+BB4CMIP6 emissions (✓std/＋exc), or something else? Is there a prescribed aerosol fallback?
+6. MPI-ESM-1-2-HAM vs MPI-ESM1-2-LR: Do the base models (non-aerosol forcings G, O, LU, SO, VL) differ, or is it aerosols only?
+7. N-dep (JSBACH/HAMOCC6): NCAR-CCMI-2-0? CO2-mode for ESMs?
+8. MPI-ESM1-2-HR vs LR: Confirm all forcing identical (resolution only)?
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk with value+units). Document whether each CMIP5 deviation was corrected. Note MPI-ESM1-2-LR/HR sharing. Flag deviations from Eyring 2016. Note HAM vs base differences.
+
+**CMIP5 context (critical for Stage 7 — preserved for reference):**
+- CNRM-CM5 CMIP5: O=＋exc (MOBIDIC interactive Cariolle); SD/BC/OC=✗dev (LMDZ-INCA offline pre-computed OD); LU=✗dev (excluded); VL=✗dev (Ammann 2007 not Sato-updated); MD/SS=FXc (pre-industrial). Did CNRM-CM6 correct these deviations?
+- IPSL-CM5 CMIP5: O=✗dev (offline INCA+REPROBUS product not Cionni); SD/BC/OC=✗dev (LMDZ-INCA offline 11-year smoothed); SO=✓std (Wang 2005); VL=✓std (Sato-updated). Did IPSL-CM6A correct the O/aerosol deviations?
+
+### Stage 7 workflow prompt:
+
+Document the climate forcing datasets used in the four French CMIP6 models — CNRM-CM6-1, CNRM-CM6-1-HR, CNRM-ESM2-1 (all CNRM-CERFACS), and IPSL-CM6A-LR (IPSL) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 7 of 17, Session 2 of 4.
+
+KEY ARCHITECTURE:
+- CNRM-CM6-1: ARPEGE-Climat6 atmosphere (T127L91) + SURFEX v8 land + NEMO3.6 ocean + CICE5. AOGCM. CMIP5 predecessor CNRM-CM5 deviated on O (＋exc MOBIDIC), aerosols (✗dev LMDZ-INCA offline), LU (✗dev excluded), VL (✗dev Ammann2007). Did CMIP6 correct these?
+- CNRM-CM6-1-HR: High-resolution variant (~50km atm, 0.25° ocean). All forcing expected IDENTICAL to CNRM-CM6-1.
+- CNRM-ESM2-1: CNRM-CM6-1 + full ESM components: SURFEX v8 active C-N-P + TRIPc + PISCES ocean BGC. ESM variant. May have interactive atmospheric chemistry (TACTIC scheme?). Additional ESM inputs: N-dep, Fe deposition.
+- IPSL-CM6A-LR: LMDZ6A atmosphere (2.5°×1.27°, 79 levels) + ORCHIDEE v2.0 land (active C) + NEMO3.6 (ORCA2) ocean + LIM3. Full ESM. CMIP5 IPSL-CM5A deviated on O (offline INCA+REPROBUS) and aerosols (LMDZ-INCA offline 11yr-smoothed). Did CM6A correct these?
+
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–6):
+- Standard CCMI ozone (✓std): GFDL-CM4, CanESM5/5-1/CanOE, BCC-CSM2-MR (confirmed via Keeble 2021)
+- Interactive ozone (＋exc): GFDL-ESM4 (GFDL-ATMCHEM4.1); CESM2-WACCM (TSMLT ~228sp)
+- Deviating ozone (✗dev): GISS-E2.1-NINT; CESM2/FV2 (WACCM6-derived bundle)
+- Hybrid ozone (~): E3SM (O3v1/O3v2)
+- CMIP5 CNRM used MOBIDIC (＋exc); CMIP5 IPSL used offline INCA+REPROBUS (✗dev). Test if CMIP6 corrected.
+
+CMIP6 standard protocol (Eyring 2016) baseline:
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
+- SD/BC/OC: CEDS (CEDS-2017-05-18) + BB4CMIP6 (VUA-CMIP-BB4CMIP6-1-2) interactive OR MACv2-SP (MPI-M-MACv2-SP-1-0) prescribed
+- LU: Hurtt 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes 2017 SOLARIS-HEPPA-3-2 (SOLARIS-HEPPA-3-2)
+- VL: IACETH SAGE3lambda v3.0.0 (IACETH-SAGE3lambda-3-0-0)
+- N-dep (ESMs): NCAR-CCMI-2-0
+
+PRIMARY SOURCES:
+- CNRM-CM6-1 and variants: Voldoire et al. 2019 (JAMES doi:10.1029/2019MS001770); Séférian et al. 2019 (JAMES doi:10.1029/2019MS001885) for CNRM-ESM2-1
+- IPSL-CM6A-LR: Boucher et al. 2020 (JAMES doi:10.1029/2019MS002010)
+- Keeble et al. 2021 (ACP 21, 5015) — Table 1 classifies ozone treatment for all CMIP6 models; CNRM/IPSL entries key
+- ES-DOC: https://explore.es-doc.org (search CNRM-CM6-1 historical, IPSL-CM6A-LR historical)
+- Szopa et al. 2021 (GMD doi:10.5194/gmd-14-1039-2021) — IPSL aerosol treatment in LMDZ-INCA; did CM6A update?
+
+KEY QUESTIONS — for each model:
+1. O: Did CNRM-CM6-1 switch from MOBIDIC interactive (＋exc in CMIP5) to prescribed CCMI (✓std)? Or continue interactive? Did IPSL-CM6A switch from offline INCA+REPROBUS (✗dev in CMIP5) to standard CCMI (✓std)?
+2. SD/BC/OC: Did CNRM-CM6-1 update from LMDZ-INCA offline (✗dev in CMIP5) to CEDS+BB4CMIP6 or MACv2-SP? Did IPSL-CM6A update from LMDZ-INCA offline 11yr-smoothed (✗dev in CMIP5)?
+3. LU: Did CNRM-CM6-1 add land-use change (absent in CMIP5)? SURFEX v8 with Hurtt 2020? ORCHIDEE v2.0 for IPSL-CM6A?
+4. VL: Did CNRM-CM6-1 switch from Ammann2007 (✗dev in CMIP5) to IACETH-SAGE3lambda-3-0-0 (✓std)?
+5. CNRM-ESM2-1 vs CNRM-CM6-1: Any ozone or aerosol differences (interactive chemistry TACTIC)?
+6. CNRM-ESM2-1 ESM inputs: N-dep (NCAR-CCMI-2-0?), Fe deposition for PISCES, CO2-mode?
+7. IPSL-CM6A-LR ESM inputs: N-dep for ORCHIDEE, CO2-mode, Fe deposition for PISCES?
+8. CNRM-CM6-1-HR: Confirm all forcing identical to CNRM-CM6-1 (resolution only)?
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk with value+units). Document whether each CMIP5 deviation was corrected in CMIP6. Note CNRM-CM6-1/HR sharing. Flag any remaining deviations from Eyring 2016.
+
+---
+
+# CMIP3 and CMIP5 archive (COMPLETE)
+
+Document the climate forcing datasets used in the two Chinese CMIP6 models — BCC-CSM2-MR (BCC) and CAMS-CSM1-0 (CAMS) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 6 of 17, Session 2 of 4.
+
+KEY ARCHITECTURE:
+- BCC-CSM2-MR: BCC-AGCM3 atmosphere (T106L46) + BCC-AVIM2 land (active carbon cycle) + MOM4 ocean + SIS sea ice. CMIP5 predecessor bcc-csm1-1 used unknown forcing (G/O/SO/VL all unresolved in CMIP5 review; LU=✗dev confirmed — LU absent from Wu2014 forcing list). Key question: did CMIP6 BCC-CSM2-MR adopt CEDS+BB4CMIP6 aerosol emissions and CCMI ozone (standard), or use centre-specific datasets as in CMIP5?
+- CAMS-CSM1-0: IFS-based atmosphere (T106L31, ECMWF dynamical core) + CLM4 land + MOM4 ocean. New entrant with no CMIP5 predecessor. Primary paper: He et al. 2019 (JAMES doi:10.1029/2018MS001602).
+
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–5, all confirmed):
+- Standard CCMI ozone (✓std): GFDL-CM4, CanESM5/5-1/CanOE (Stage 5 clean pass)
+- Interactive ozone (＋exc): GFDL-ESM4 (GFDL-ATMCHEM4.1); CESM2-WACCM (TSMLT ~228sp)
+- Deviating ozone (✗dev): GISS-E2.1-NINT (OMA-derived); CESM2/FV2 (WACCM6-derived bundle)
+- Hybrid ozone (~): E3SM (O3v1/O3v2)
+Test whether each BCC/CAMS model follows the standard CCMI path.
+
+CMIP6 standard protocol (Eyring 2016) baseline:
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
+- SD/BC/OC: CEDS (CEDS-2017-05-18) + BB4CMIP6 (VUA-CMIP-BB4CMIP6-1-2) interactive OR MACv2-SP (MPI-M-MACv2-SP-1-0) prescribed
+- LU: Hurtt 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes 2017 SOLARIS-HEPPA-3-2 (SOLARIS-HEPPA-3-2)
+- VL: IACETH SAGE3lambda v3.0.0 (IACETH-SAGE3lambda-3-0-0)
+- N-dep (ESMs): NCAR-CCMI-2-0
+
+PRIMARY SOURCES:
+- BCC-CSM2-MR: Wu et al. 2019 (JAMES 11:10 doi:10.1029/2018MS001583); Xin et al. 2019 (JAMES) or equivalent BCC CMIP6 description; Wu et al. 2014 (J. Meteor. Res. 28:34 doi:10.1007/s13351-014-3041-7) for CMIP5 comparison
+- CAMS-CSM1-0: He et al. 2019 (JAMES doi:10.1029/2018MS001602); any ES-DOC simulation document
+- ES-DOC: https://explore.es-doc.org (search BCC-CSM2-MR historical, CAMS-CSM1-0 historical)
+- Keeble et al. 2021 (ACP 21, 5015) — check if BCC or CAMS appear in ozone classification table
+
+KEY QUESTIONS:
+1. O: Does BCC-CSM2-MR prescribe standard CCMI ozone (✓std) or a BCC centre-specific product (✗dev)? CMIP5 BCC ozone was unresolved.
+2. SD/BC/OC: BCC-AGCM3 — interactive aerosols from CEDS+BB4CMIP6, or prescribed OD? MACv2-SP?
+3. LU: BCC-AVIM2 active carbon cycle — Hurtt 2020 LUH2 v2.1h? CMIP5 BCC explicitly excluded LU.
+4. SO/VL: Matthes 2017 and IACETH-SAGE3lambda-3-0-0 confirmed? CMIP5 BCC SO/VL unresolved.
+5. N-dep: BCC-AVIM2 (active BGC) — NCAR-CCMI-2-0?
+6. CAMS-CSM1-0 complete forcing stack: all 7+ forcings unknown — document from He 2019 or ES-DOC.
+7. Does CAMS use standard CMIP6 forcing datasets, or inherit from ECMWF IFS forcing lineage?
+8. Any supplemental non-input4MIPs forcing datasets?
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk with value+units). Flag deviations from Eyring 2016. Note ESM-specific inputs (N-dep, CO2-mode) for BCC-AVIM2 active BGC. Note where BCC-CSM2-MR and CAMS-CSM1-0 share or differ on specific forcings.
 
 ---
 

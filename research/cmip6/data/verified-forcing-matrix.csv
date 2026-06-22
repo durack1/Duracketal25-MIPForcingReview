@@ -7,28 +7,28 @@ GISS-E2-1-H,NASA-GISS,?,✗dev,~,~,~,~,?,?,?,?,?,n/a,,O=✗dev(as E2-1-G identic
 GISS-E2-2-G,NASA-GISS,?,?,?,?,?,?,?,?,?,?,?,n/a,,O=?(higher-top-suggests-interactive unconfirmed)
 GISS-E2-2-H,NASA-GISS,?,?,?,?,?,?,?,?,?,?,?,n/a,,O=?(as E2-2-G identical atm)
 GISS-E3-G,NASA-GISS,?,?,?,?,?,?,?,?,?,?,?,n/a,,O=?(ModelE3-cubed-sphere unconfirmed)
-CESM2,NCAR,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CESM2-FV2,NCAR,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CESM2-WACCM,NCAR,?,?,?,?,?,?,?,?,?,?,?,?,?,
-E3SM-1-0,E3SM-Project+LLNL+UCI+UCSB,?,?,?,?,?,?,?,?,?,?,?,?,?,
-E3SM-1-1,E3SM-Project+RUBISCO,?,?,?,?,?,?,?,?,?,?,?,?,?,
-E3SM-1-1-ECA,E3SM-Project,?,?,?,?,?,?,?,?,?,?,?,?,?,
-E3SM-2-0,E3SM-Project,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CanESM5,CCCma,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CanESM5-1,CCCma,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CanESM5-CanOE,CCCma,?,?,?,?,?,?,?,?,?,?,?,?,?,
-BCC-CSM2-MR,BCC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CAMS-CSM1-0,CAMS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CNRM-CM6-1,CNRM-CERFACS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CNRM-CM6-1-HR,CNRM-CERFACS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CNRM-ESM2-1,CNRM-CERFACS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-IPSL-CM6A-LR,IPSL,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MPI-ESM-1-2-HAM,HAMMOZ-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MPI-ESM1-2-HR,MPI-M+DWD+DKRZ,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MPI-ESM1-2-LR,MPI-M+AWI+DKRZ+DWD,?,?,?,?,?,?,?,?,?,?,?,?,?,
-EC-Earth3,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
-EC-Earth3-AerChem,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
-EC-Earth3-CC,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
+CESM2,NCAR,~,✗dev,✓std,~,✓std,✓std,~,~,~,~,✗dev,n/a,,O=✗dev(WACCM6-derived not CCMI) VL=✗dev(bundled O+VL file ozone_strataero_WACCM_L70)
+CESM2-FV2,NCAR,~,✗dev,✓std,~,✓std,✓std,~,~,~,~,✗dev,n/a,,O=✗dev(as CESM2 identical forcing) VL=✗dev(bundled O+VL file)
+CESM2-WACCM,NCAR,~,＋exc,✓std,~,✓std,✓std,~,~,~,~,＋exc,n/a,N-dep=? CO2-mode=?,O=＋exc(WACCM6-TSMLT-228sp) VL=＋exc(interactive-strat-aerosol-MAM4)
+E3SM-1-0,E3SM-Project+LLNL+UCI+UCSB,✓std,~,✓std,~,✓std,✓std,~,~,?,?,?,n/a,,O=~(O3v1-hybrid:trop-CCMI+strat-Linozv2) VL=?(both-candidates-refuted)
+E3SM-1-1,E3SM-Project+RUBISCO,✓std,~,✓std,~,✓std,✓std,~,~,?,?,?,n/a,,O=~(as E3SM-1-0 O3v1) forcing-identical-to-1-0
+E3SM-1-1-ECA,E3SM-Project,✓std,~,✓std,~,✓std,✓std,~,~,?,?,?,n/a,N-dep=?,O=~(as E3SM-1-1) ECA=land-BGC-only-not-atm-chem
+E3SM-2-0,E3SM-Project,✓std,~,✓std,~,✓std,✓std,~,~,?,?,?,n/a,N-dep=?,O=~(O3v2:trop-passive-tracer+strat-Linozv2) VL=?(both-candidates-refuted)
+CanESM5,CCCma,?,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,?,✓std,n/a,N-dep=? CO2-mode=conc,O=✓std(CCMI-Checa-Garcia2018) SO=?(CanESM5.0-solar-unconfirmed-Cole2023-implies-Matthes2017-new-in-CanESM5-1)
+CanESM5-1,CCCma,?,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,n/a,N-dep=? CO2-mode=conc,
+CanESM5-CanOE,CCCma,?,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,?,✓std,n/a,CanOE=ocean-BGC-only(CMOC-replaced) N-dep=? CO2-mode=conc,SO=?(as-CanESM5.0-shared-CanAM5.0.0-atm)
+BCC-CSM2-MR,BCC,✓std,✓std,✓std,✗dev,✓std,✓std,?,?,✓std,✓std,✓std,n/a,N-dep=? CO2-mode=?,SI=✗dev(CMIP5-Taylor2012-masses+Lamarque2012-nitrate) SD/BC/OC=✓std(MACv2-SP-prescribed-path)
+CAMS-CSM1-0,CAMS,✓std,?,?,?,?,?,?,?,?,?,?,n/a,,G=✓std(Meinshausen2017) all-other-forcings-unconfirmed
+CNRM-CM6-1,CNRM-CERFACS,?,~,✗dev,✗dev,✗dev,✗dev,?,?,?,?,?,n/a,,O=~(linearized-strat+prescribed-CCMI-trop-Keeble2021) SD/BC/OC=✗dev(TACTIC_v2-offline-AOD-from-CNRM-ESM2-1-Michou2020)
+CNRM-CM6-1-HR,CNRM-CERFACS,?,~,✗dev,✗dev,✗dev,✗dev,?,?,?,?,?,n/a,,O=~(as-CNRM-CM6-1-expected-resolution-only) SD/BC/OC=✗dev(as-CNRM-CM6-1-expected)
+CNRM-ESM2-1,CNRM-CERFACS,?,＋exc,~,~,~,~,?,?,?,?,?,n/a,N-dep=? CO2-mode=? Fe=?,O=＋exc(REPROBUS-C_v2-fully-interactive-168rxn-Michou2020-1of6-Keeble2021) SD/BC/OC=~(TACTIC_v2-interactive-emission-provenance-unconfirmed)
+IPSL-CM6A-LR,IPSL,?,✓std,?,?,?,?,?,?,?,?,?,n/a,N-dep=? CO2-mode=?,O=✓std(CMIP5-✗dev-CORRECTED-now-standard-CCMI-tropopause-stretched-Lurton2020) SD/BC/OC=?(Lurton2020-says-prescribed-but-dataset-unconfirmed)
+MPI-ESM-1-2-HAM,HAMMOZ-Consortium,?,✓std,~,~,~,~,~,~,?,?,?,n/a,N-dep=? CO2-mode=? Fe=?,O=✓std(CCMI-as-MPI-ESM1-2-LR-Keeble2021-HAM2-no-ozone-chem) SD/BC/OC/MD/SS=~(HAM2-interactive-aerosols-CEDS+BB4CMIP6-provenance-unconfirmed-for-CMIP6-historical)
+MPI-ESM1-2-HR,MPI-M+DWD+DKRZ,?,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,?,?,n/a,N-dep=? CO2-mode=? Fe=?,O=✓std(CCMI-prescribed-Keeble2021-verbatim) SD/BC/OC/SI=✓std(MACv2-SP-prescribed-path-Mauritsen2019-CMIP5-MAC-v1-corrected) MD/SS=FXc(Kinne2013-natural-background) LU=✓std(LUH2v2h-map-based)
+MPI-ESM1-2-LR,MPI-M+AWI+DKRZ+DWD,?,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,?,?,n/a,N-dep=? CO2-mode=? Fe=?,O=✓std(CCMI-prescribed-Keeble2021-verbatim) SD/BC/OC/SI=✓std(MACv2-SP-Stevens2017-Mauritsen2019-CMIP5-MAC-v1-corrected) MD/SS=FXc(Kinne2013-natural-background) LU=✓std(LUH2v2h-dynamic-transitions)
+EC-Earth3,EC-Earth-Consortium,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,~,n/a,,O=✓std(CCMI-prescribed-inferred-from-AerChem-CCMI-nudge-target) SD/BC/OC/SI=✓std(MACv2-SP-prescribed-TM5-PI-1850-clim+MACv2-SP-anthropogenic-Doscher2022-CMIP5-MACC-corrected) MD/SS=FXc(TM5-PI-1850-natural-bg) LU=✓std(LUH2-Hurtt2020-indirect-via-EC-Earth3-Veg-precomputed-CMIP5-LU-exclusion-corrected) G=✓std(Meinshausen2017-2020) SO=✓std(Matthes2017) VL=~(CMIP6-strat-aerosol-prescribed-source-id-unconfirmed)
+EC-Earth3-AerChem,EC-Earth-Consortium,✓std,＋exc,＋exc,＋exc,＋exc,＋exc,＋exc,＋exc,✓std,✓std,~,n/a,NOT-in-Keeble2021-6-model-list,O=＋exc(TM5-MP-interactive-trop-ozone-methane+CCMI-strat-nudge-vanNoije2021-doi:10.5194/gmd-14-5637-2021-NOT-5079) SD/BC/OC/SI/MD/SS=＋exc(TM5-MP-M7-interactive-CEDS-BB4CMIP6-confirmed) LU=✓std(LUH2-indirect-as-EC-Earth3) G=✓std SO=✓std VL=~
+EC-Earth3-CC,EC-Earth-Consortium,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,~,n/a,N-dep=? CO2-mode=?,All-atmospheric-forcing-INFERRED-identical-to-EC-Earth3(shared-IFS-no-CC-specific-primary-source); LPJG active-C N-dep/CO2-mode unconfirmed
 EC-Earth3-ESM-1,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
 EC-Earth3-Veg,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
 EC-Earth3-Veg-LR,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
