@@ -871,6 +871,35 @@ For each model (CMCC-CESM, CMCC-CM, CMCC-CMS): all 12 forcing keys — which dat
 
 ---
 
+## CMIP5 Second Pass Stage E (PDF reads: Scoccimarro2011 / Manzini2006 / Hazeleger2010) — COMPLETE ✓ (2026-06-22)
+
+**Results (2026-06-22 — pdfminer reads, main session):**
+
+**Scoccimarro2011 (CMCC-CM primary paper) — NO CMIP5 FORCING INFO:**
+- Paper describes CMCC_MED (Mediterranean model with embedded NEMO regional Med Sea), NOT standalone CMCC-CM
+- Architecture confirmed: ECHAM5 T159L31 (top ~10 hPa) + OPA8.2 ORCA2 + OASIS3 + LIM sea ice
+- Protocol: IPCC 20C3M (1950–1999) + A1B (2000–2069) — NOT CMIP5 historical
+- No aerosol, ozone, land-use, solar, or volcanic dataset names given
+- Written to CMCC__cmcc_cm.md provenance. All ? cells remain ?.
+
+**Manzini2006 (MAECHAM5 for CMCC-CMS) — BASE ARCHITECTURE ONLY:**
+- Configuration: T42L39 (lower-res than CMCC-CMS T63L95)
+- Key finding: ozone = monthly zonal-mean climatological distribution from **Fortuin & Kelder (1998)** — fixed climatology, pre-Cionni2011
+- AMIP-style (prescribed SST/SIC); no CMIP5 forcing datasets
+- CMCC-CMS CMIP5 ozone now has two possible interpretations: (a) updated to hitop Cionni2011; (b) retained Fortuin-Kelder 1998. Absence from Eyring2013 Table 1 is consistent with (b).
+- Written to CMCC__cmcc_cms.md O cell and provenance. O cell remains ?.
+
+**Hazeleger2010 (EC-EARTH BAMS) — INDIRECT CORROBORATION ONLY:**
+- Pre-CMIP5 paper (2010); describes plans for CMIP5 participation; no specific forcing dataset names
+- Lists boundary condition categories (GHG, aerosols, LU, solar) without naming datasets
+- Corroborates SI=✗dev: "direct and indirect aerosol effects" still being implemented → direct-only in CMIP5
+- Confirms TM5 not yet coupled in EC-Earth V2 → prescribed Lamarque2011 aerosols (consistent with Wyser2020)
+- Written to ICHEC__ec_earth.md (Forcing-specific reference added; provenance entry added). G/O/LU/SO/VL still ?.
+
+**Resources:** `resources/Scoccimarroetal11JCL-CMCC-MEDTropicalCycloneEffectsOnOceanHeatTransport.pdf`, `resources/Manzinietal06JCL-MAECHAM5-InfluenceOfSSTOnNorthernWinterStratosphere.pdf`, `resources/Hazelegeretal10BAMS-EC-Earth-ASeamlessEarth-systemPredictionApproachInAction.pdf`
+
+---
+
 ## NEXT STAGE — CMIP5 NEXT (archived heading)
 
 Seed model files before launching:
