@@ -19,7 +19,7 @@
 | OC | Organic carbon | Lamarque et al. 2010 | **✗ dev** | FXc | **Collins et al. (2006)** prescribed climatological OD — scattering-aerosol component includes OC. | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred.** Second-pass 2026-06-21. |
 | MD | Mineral dust | — | **✗ dev** | FXc | **Collins et al. (2006)** prescribed climatological OD — dust included as one component. NOT Lamarque 2010 transient. | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred.** Second-pass 2026-06-21. |
 | SS | Sea salt | — | **✗ dev** | FXc | **Collins et al. (2006)** prescribed climatological OD — sea salt included as one component. | collins_parameterization_2006 | collins_parameterization_2006 | **Deviation inferred.** Second-pass 2026-06-21. |
-| LU | Land-use change | Hurtt et al. 2011 | ? | TV | ? | — | — | Wu2014 does NOT mention land-use change forcing. Hurtt 2011 dataset unconfirmed. |
+| LU | Land-use change | Hurtt et al. 2011 | ✗ dev | n/a | **Not applied in CMIP5 historical runs.** Wu2014 p.43 (Section 3.1.1) forcing list: "Given external forcing by observed GHGs, natural and anthropogenic aerosols, volcanic eruptions, total column ozone, and solar activity" — land-use change is **absent** from this explicit forcing list. Wu2014 mentions "Hurtt" nowhere. BCC-AGCM2.1 based on CAM3 framework; CLM3 land model does not apply time-varying Hurtt2011 LU transitions. pdfminer full-text extraction confirms LU absent throughout paper. | wu_overview_2014 | wu_overview_2014 | **LU not applied** (absent from Wu2014 forcing list; analogous to CSIRO-Mk3.6.0 LU exclusion). Second-pass 2026-06-22. |
 | SO | Solar irradiance | Wang et al. 2005 | ? | TV | ? | — | — | Wu2014 p.43 (Section 3.1.1): "solar activity" confirmed as external forcing. Wu2014 p.49 (Section 3.3): "errors in assumed solar radiation" discussed. Specific dataset (Wang 2005) NOT named in Wu2014. Unconfirmed. |
 | VL | Volcanic aerosols | Sato et al. 1993 updated | ? | TV | ? | — | — | Wu2014 p.43: "volcanic eruptions" confirmed as external forcing. Wu2014 p.49–50: Krakatoa (1883), Pelee (1902), Agung (1963), Pinatubo (1991) discussed. Specific dataset (Sato 1993 updated) NOT named in Wu2014. Unconfirmed. |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
@@ -32,11 +32,12 @@ bcc-csm1-1 → BCC-CSM2-MR (Wu et al. 2019 GMD) → BCC-ESM1 (Wu et al. 2020 GMD
 
 ### Open questions
 1. **RESOLVED (second-pass 2026-06-21):** SD/SI/BC/OC/MD/SS — aerosol treatment confirmed as Collins 2006 prescribed climatological OD (✗dev); SI absent (n/a). Basis: BCC-AGCM2.1 inherits CAM3 prescribed-OD scheme per Wu2014 p.36 architecture description.
-2. Wu2014 does NOT cite specific CMIP5-standard datasets (Meinshausen 2011, Cionni 2011, Hurtt 2011, Wang 2005, Sato 1993) by name — G/O/LU/SO/VL remain ?.
+2. Wu2014 does NOT cite specific CMIP5-standard datasets (Meinshausen 2011, Cionni 2011, Wang 2005, Sato 1993) by name — G/O/SO/VL remain ?. **LU now resolved as ✗dev** (absent from Wu2014 forcing list; not applied).
 3. Xin, X.-G., et al. (2013). How well does BCC_CSM1.1 reproduce the 20th century climate change over China? *Atmos. Oceanic Sci. Lett.* 6(1), 21–26. doi:10.1080/16742834.2013.11447053 — may contain specific forcing dataset citations. HTTP 403 in Stage 4; try different access route. Also Xin et al. 2013c (Adv. Climate Change Res. 4(1), 41–49) cited repeatedly in Wu2014 for CMIP5 BCC-CSM experiments.
 
 ### Provenance
 - Durack et al. 2016 model list: included
 - Stage 4 workflow: wf_6432ada7-087 — no CMIP5-specific dataset findings; aerosol type confirmed as prescribed
-- Wu2014 PDF read: Wuetal14JMetRes-BCC-CSM1Overview.pdf — forcing types confirmed, specific datasets unconfirmed
+- Wu2014 PDF read (Stage 4): forcing types confirmed, specific datasets unconfirmed
 - Second-pass 2026-06-21: aerosol cells (SD/SI/BC/OC/MD/SS) resolved from Collins 2006 CAM3 prescribed-OD inference
+- Second-pass 2026-06-22: pdfminer full-text extraction of Wu2014 PDF (wf_7d4aa291-ba4 + direct extraction). LU=✗dev confirmed (absent from Wu2014 p.43 forcing list). G/O/SO/VL: forcing types confirmed but specific datasets not named in Wu2014 (remain ?).

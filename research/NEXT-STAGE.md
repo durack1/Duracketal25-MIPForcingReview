@@ -680,15 +680,25 @@ All 47 models across 11 stages processed.
 
 ---
 
-## CMIP5 Second Pass Stage A (BCC + CanESM2/CanCM4 open questions) — NEXT
+## CMIP5 Second Pass Stage A (BCC + CanESM2/CanCM4 open questions) — PARTIAL ✓ (2026-06-22)
 
-**Workflow launched (2026-06-21):** wf_d8355c25-4e2 — session ended before results arrived. On next session: check workflow output (transcript at `.claude/projects/.../subagents/workflows/wf_d8355c25-4e2/`), then write results to model files and CSV. If workflow timed out, re-run with same prompt below (no resume needed — PDF reads are fast).
+**Results (2026-06-22):** wf_7d4aa291-ba4 — Arora2011 agent succeeded; Wu2014 and vonSalzen2013 PDF reads failed (poppler-utils not installed; Read tool requires pdftoppm).
+
+**Resolved this pass:**
+- **CanESM2 LU = ✓std**: Arora2011 p.2: "historical changes in crop area provided in the CMIP5 dataset" (=luh.unh.edu=Hurtt2011). Written to CCCma__canesm2.md + CSV.
+- **CanESM2 CO2-mode = concentration-driven ✓**: Arora2011 p.1: "prescribed CO2 and other GHGs forcing." Written to CCCma__canesm2.md + CSV.
+- **CanCM4 LU = ✓std (inferred)**: Same CanAM4/CLM as CanESM2; Hurtt2011 CMIP5 LUH. Written to CCCma__cancm4.md + CSV.
+- **SO/VL already confirmed** from Stage 4 vonSalzen2013 read (in model files; no change needed).
+
+**Still open (PDF unreadable without poppler-utils):**
+- BCC-CSM1.1: G=? O=? LU=? SO=? VL=?
+- BCC-CSM1.1-m: same
+- CanESM2 N-dep: ? (not in Arora2011; needs Arora & Boer 2010 or other BGC paper)
 
 **Target open cells:**
-- BCC-CSM1.1: G=? O=? LU=? SO=? VL=? (5 cells; Wu2014 PDF available)
+- BCC-CSM1.1: G=? O=? LU=? SO=? VL=? (5 cells; Wu2014 PDF available — needs poppler-utils)
 - BCC-CSM1.1-m: same (identical model, higher res only)
-- CanESM2: LU=~unclear, SO=?, VL=? and N-dep/CO2-mode open (vonSalzen2013 PDF available)
-- CanCM4: same as CanESM2 atmospheric component
+- CanESM2: N-dep=? (primary source needed; Arora & Boer 2010 terrestrial BGC)
 
 **Resources available:** `resources/Wuetal14JMetRes-BCC-CSM1Overview.pdf`, `resources/vonSalzenetal13Atmos-Ocean-CanAM4RepresentationOfPhysicalProcesses.pdf`, `resources/Aroraetal11GRL-CarbonEmissionLimitsRequiredToSatisfyRCPsCanESM2.pdf`
 
@@ -724,7 +734,24 @@ DELIVERABLE: Per open cell per model: verdict (std/dev/exc/?), temporal code, da
 
 ---
 
-## CMIP5 Second Pass Stage B (HadCM3 targeted read) — PENDING
+## CMIP5 Second Pass Stage B (HadCM3 targeted read) — COMPLETE ✓ (2026-06-22)
+
+**Resolved (Johns2003 + Stott2000 — direct pdfminer reads, main session):**
+- **O = ✗dev**: Li & Shine (1995) + STOCHEM (Collins1997/1999) + SAGE/Wang1996 ozone method; NOT Cionni2011. Johns2003 S5.2 L1196–1228.
+- **SD = ＋exc**: Fully interactive sulphur cycle scheme from SO2 emissions (Stott2000 L157; Johns2003 S5.3); exceeds prescribed Lamarque2010 standard.
+- **SI = ~ (nuanced)**: Included via offline calibrated cloud albedo perturbations from HadAM3 experiments (Johns2003 Appendix A); ~70% of HadAM3 magnitude in coupled runs.
+- **BC = ✗dev**: Not applied — Johns2003 S5.4 L1907: "Our simulations do not take changes in black carbon and organic carbon into account."
+- **OC = ✗dev**: Same as BC.
+- **MD = ✗dev**: Explicitly omitted — Johns2003 L4252: "We have omitted the effects of changes in soot, biogenic aerosols and mineral dust."
+- **SS = ✗dev**: Not applied as historical forcing; not mentioned in either paper.
+- **LU = ✗dev**: Explicitly excluded — Johns2003 L4261: "We have also neglected land surface changes."
+- **SO = ✗dev**: Lean, Beer & Bradley (1995) (LBB95) — Stott2000 ref 22; Jones2011 Fig.13 confirms LBB95 for CMIP5 HadCM3 (Maunder-to-modern = 2.95 W/m²); NOT Wang2005.
+- **VL = ✓std**: Sato et al. (1993) — Stott2000 ref 21 ("Sato, Hansen, McCormick, Pollack, JGR 98, 22987").
+- **G = ~ (uncertain)**: Johns2003 used IPCC 1995 (Schimel et al. 1996) for historical GHGs; CMIP5 submission may have updated to Meinshausen2011 — no CMIP5-specific HadCM3 paper found to confirm.
+
+**Written to:** `MOHC__hadcm3.md` (all 11 cells updated) + `verified-forcing-matrix.csv` row 31 patched.
+
+**Still open:** G=~ (CMIP5 update to Meinshausen2011 not confirmed or refuted). Requires CMIP5-specific HadCM3 documentation (none found in /resources/).
 
 **Target:** HadCM3 — 11 open cells (G/O/SD/SI/BC/OC/MD/SS/LU/SO/VL)
 
@@ -757,9 +784,26 @@ DELIVERABLE: Per cell: verdict (std/dev/n-a/?), temporal, dataset, quote/page. F
 
 ---
 
-## CMIP5 Second Pass Stage C (MPI-ESM + EC-EARTH open questions) — PENDING
+## CMIP5 Second Pass Stage C (MPI-ESM + EC-EARTH open questions) — COMPLETE ✓ (2026-06-22)
 
-**Target:** MPI-ESM-LR/MR/P: SO/VL/ESM-inputs; EC-EARTH: 7 cells (G/O/SO/VL/LU/MD/SS)
+**Results (2026-06-22 — direct pdfminer reads, main session):**
+
+**MPI-ESM-LR/MR/P VL = ✗dev (confirmed):**
+- Giorgetta2013 S4.7 L793–800: "Stratospheric aerosols are represented by their optical properties, which are provided for the historical period (G. Stenchikov, personal communication, 2010), extending the Pinatubo aerosol data set (PADS) of Stenchikov et al. [1998]."
+- Stenchikov1998/PADS-extended by G. Stenchikov (pers. comm. 2010) — NOT Sato1993-updated (Taylor2012 standard). ✗dev confirmed.
+- MR and P: same dataset inferred (same ECHAM6 + Giorgetta2013 protocol). Written to MPI__mpi_esm_lr/mr/p.md + CSV rows 27–29.
+
+**EC-EARTH MD and SS = ~std (upgraded from ?):**
+- Hazeleger2011 S2.1: "EC-Earth optionally allows for time varying aerosol forcings based on historical and projected concentrations (Lamarque et al.). These will be applied in the CMIP5 simulations." — confirms ALL Lamarque2011 mass-conc aerosol species (including dust and sea salt) for CMIP5 runs.
+- MD and SS upgraded from "?" to ~std (TV, Lamarque2011 via IFS aerosol-type mapping). Written to ICHEC__ec_earth.md + CSV row 30.
+
+**EC-EARTH G/O/LU/SO/VL = still unconfirmed:**
+- Hazeleger2011 states "different greenhouse gas concentrations… and land use fields will be used" for CMIP5 without naming source datasets. No CMIP5-specific EC-EARTH documentation paper naming these datasets found in /resources/.
+- 5 cells remain "?" — no further sources available from current /resources/ PDFs.
+
+**MPI-ESM ESM-inputs (N-dep, iron, BC-on-snow):** Still unresolved — not in accessible Giorgetta2013 or Reick2013 text. Reick2013 covers JSBACH DYNVEG land-cover methodology only, no ESM forcing dataset names.
+
+**Written to:** `MPI__mpi_esm_lr/mr/p.md` (VL updated) + `ICHEC__ec_earth.md` (MD/SS upgraded) + `verified-forcing-matrix.csv` rows 27–29 (VL) and row 30 (MD/SS + notes).
 
 **Resources:** `resources/Giorgettaetal13JAMES-ClimateCarbonCycleChanges1850To2100InMPI-ESMForCMIP5.pdf`, `resources/Stevensetal13JAMES-MPI-M-ECHAM6AtmosphericComponent.pdf`, `resources/Hazelegeretal11ClimDyn-EC-Earthv2p2DescriptionAndValidation.pdf`, `resources/Reicketal13JAMES-MPI-ESMNaturalAndAnthropogenicLandCoverChange.pdf`
 
@@ -790,11 +834,30 @@ ADVERSARIALLY VERIFY each finding. Provide direct quote + page from PDF.
 
 ---
 
-## CMIP5 Second Pass Stage D (CMCC targeted read) — PENDING
+## CMIP5 Second Pass Stage D (CMCC targeted read) — COMPLETE ✓ (2026-06-22)
 
-**Target:** CMCC-CESM/CM/CMS — 35/36 cells unconfirmed
+**Results (2026-06-22 — pdfminer read + web fetch, main session):**
 
-**Resources:** `resources/Vichietal11ClimDyn-CMCC-CESM-GlobalAndRegionalCarbonUptakeAndClimateChangeSensitivityToASubstantialMitigationScenario.pdf`
+**CMCC-CESM: 9 cells resolved (from 11 open)**
+Primary sources: Vichi2011 (PDF extracted) + Fogli2009 (CMCC RP0061 downloaded from cmcc.it)
+- **G = ✗dev**: ENSEMBLES GHG concentrations (Johns et al. 2011, cnrm.meteo.fr), NOT Meinshausen2011. Vichi2011 verbatim: "The well-mixed GHGs and the sulphate aerosols used in the preindustrial and historical runs are the annually prescribed observation-based concentrations available from the ENSEMBLES multi-model experiment."
+- **O = ✗dev**: Fixed monthly ozone climatology (T31_o3clim2.nc), NOT Cionni2011. Fogli2009 input file list verbatim.
+- **SD = ✗dev**: ENSEMBLES annual sulphate concentrations (T31_so4_YYYY.nc), NOT Lamarque2010-OD. Vichi2011 + Fogli2009.
+- **SI/BC/OC = ✗dev (n/a)**: ECHAM5 T31 without HAM — sulphate-only scheme; no indirect effect, no BC, no OC files in Fogli2009 input list.
+- **MD/SS = ✗dev (FXc)**: No time-varying dust/sea-salt files; T31_so4_nat_clim.nc = fixed natural sulphate background only.
+- **LU = ✗dev (n/a)**: No time-varying land-use file; all vegetation files = fixed climatologies in Fogli2009.
+- **SO/VL = ~ (likely ✗dev)**: Vichi2011: "The INGV-CMCC-CE simulations were performed without any variation in natural forcings (solar and volcanic)." Applies to all described simulations; no solar/volcanic files in Fogli2009. CAVEAT: Vichi2011 describes ENSEMBLES (1860–1999) experiments; CMIP5 historical may differ.
+- **CO2 mode = concentration-driven**: Vichi2011 "prescribed atmospheric 'target' concentrations."
+
+**CMCC-CM: no new findings**
+- O=✓std (Cionni2011 C1modB) already confirmed Stage 11. Scoccimarro2011 paywalled (AMS 403). No other accessible source found. All other 10 cells remain "?".
+
+**CMCC-CMS: no new findings**
+- All 11 cells remain "?". No accessible primary source found.
+
+**Written to:** `CMCC__cmcc_cesm.md` (11 cells updated) + `verified-forcing-matrix.csv` rows 45–47 (all three CMCC rows added, previously missing).
+
+**Resources:** `resources/Vichietal11ClimDyn-CMCC-CESM-GlobalAndRegionalCarbonUptakeAndClimateChangeSensitivityToASubstantialMitigationScenario.pdf`; Fogli2009 CMCC RP0061 downloaded from cmcc.it/wp-content/uploads/2012/05/rp0061-ans-04-2009.pdf
 
 ### Stage D prompt (for use after Stage C complete):
 

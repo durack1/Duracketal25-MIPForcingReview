@@ -9,35 +9,32 @@
 
 ## Forcing datasets used (historical 1850–2005) — verified against Taylor et al. 2012 protocol
 
-**NOTE: Stage 8 workflow (wf_71ff96d7-487) DID NOT confirm any forcing verdicts for HadCM3 — all 14 surviving verified claims concern HadGEM2-ES only. HadCM3 is the same model as CMIP3 ukmo_hadcm3 and it is unknown whether CMIP5 dataset updates (Meinshausen2011/Cionni2011/Lamarque2010/Wang2005) were applied. All cells remain "?" pending targeted read.**
+**Note on source scope**: Johns2003 (primary forcing reference) describes SRES scenario experiments (1860–2100); Stott2000 describes detection/attribution experiments with natural forcings. The CMIP5 historical run is a separate submission — some datasets may differ from the Johns2003 configuration. Where CMIP5-specific datasets are uncertain, verdicts are marked ~ with explanation.
 
 | Key | Forcing | Protocol (Taylor 2012) | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ? | ? | CMIP3-era or updated Meinshausen2011? Key open question for CMIP5 submission | — | — | HadCM3 is same model as CMIP3; may carry over CMIP3-era GHG datasets or update to Meinshausen2011 |
-| O  | Ozone | Cionni et al. 2011 | ? | ? | Cionni2011 (std) or CMIP3-era Haigh ozone climatology? | — | — | CMIP3 HadCM3 used a prescribed ozone climatology |
-| SD | Sulphate direct | Lamarque et al. 2010 | ? | ? | CLASSIC sulphate scheme; which aerosol dataset — Lamarque2010-OD or CMIP3-era Mitchell&Johns1997? | — | — | CMIP3 HadCM3 used Mitchell & Johns 1997 sulphate |
-| SI | Sulphate indirect | Model-dependent | ? | ? | CLASSIC delta-albedo indirect (sulphate-only, Tett2002 method) — confirm for CMIP5 | — | — | CMIP3: Tett2002 offline delta-albedo indirect method |
-| BC | Black carbon | Lamarque et al. 2010 | ? | ? | Not in CMIP3 HadCM3 — was it added for CMIP5? | — | — | Jones2011 Fig.13 describes HadCM3 solar (LBB95) but does not document BC treatment |
-| OC | Organic carbon | Lamarque et al. 2010 | ? | ? | As BC — likely absent | — | — | |
-| MD | Mineral dust | — | ? | ? | Not expected | — | — | |
-| SS | Sea salt | — | ? | ? | Not expected | — | — | |
-| LU | Land-use change | Hurtt et al. 2011 | ? | ? | Not in CMIP3 HadCM3 — was it added for CMIP5? | — | — | |
-| SO | Solar irradiance | Wang et al. 2005 | ? | ? | CMIP3 HadCM3 used Lean 1995 (LBB95; TSI increase 2.95 W/m² Maunder-to-modern) — was it updated to Lean2009/Wang2005 for CMIP5? | — | — | Jones2011 Fig.13 caption: "LBB95" labels HadCM3 data point (Maunder-to-modern = 2.95 W/m²) |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? | ? | CMIP3 HadCM3 used Sato1993 in attribution ensemble (Stott2000); confirm for CMIP5 20C3M | — | — | |
-| FC | Flux corrections | Not expected | n/a | n/a | Not applied. Gordon et al. (2000) title explicitly "without flux adjustments"; confirmed in abstract and Sect. 1. CMIP5 resubmission retained same free-running configuration. | gordon_hadcm3_2000 *(add)* | gordon_hadcm3_2000 | **Confirmed absent.** Second-pass 2026-06-21. |
+| G  | Well-mixed GHGs | Meinshausen et al. 2011 | ~ | TV | **Johns2003 experiments used IPCC 1995 (Schimel et al. 1996; T. Wigley pers. comm.)** — "CO2, CH4 and N2O were as specified in the IPCC 1995 report." CMIP5 historical submission may have updated to Meinshausen2011; no CMIP5-specific HadCM3 documentation paper found. | Johns et al. 2003 | johns_hadcm3_2003 | Johns2003 S5.1: IPCC1995 GHGs for historical period. CMIP5 update uncertain. ~ unclear. |
+| O  | Ozone | Cionni et al. 2011 | **✗ dev** | TV | **Li & Shine (1995) method + STOCHEM (Collins et al. 1997, 1999) for tropospheric trends + SAGE (Wang et al. 1996) for stratospheric baseline.** Not Cionni2011. Johns2003 S5.2: "linearly extrapolated and added to a baseline climatology following Li and Shine (1995)" with SAGE data (Wang et al. 1996); tropospheric trends from STOCHEM chemical transport model. | Johns et al. 2003; Collins et al. 1997, 1999 | johns_hadcm3_2003 | **Deviation confirmed.** STOCHEM + Li&Shine1995 + SAGE/Wang1996, NOT Cionni2011. Second-pass 2026-06-22. |
+| SD | Sulphate direct | Lamarque et al. 2010 | **＋ exc** | TV+ | **Fully interactive sulphur cycle scheme** — sulphate determined explicitly from anthropogenic aerosol concentration (SO2 emissions-driven). Stott2000 L157: "fully interactive sulfur cycle scheme that models the [transport/oxidation]"; Johns2003 S5.3: "determined explicitly from the anthropogenic aerosol concentration and physical state of the atmosphere." Exceeds prescribed Lamarque2010 standard. | Stott et al. 2000; Johns et al. 2003 | stott_detection_2000; johns_hadcm3_2003 | **Exceeds standard.** Interactive sulphate (SO2-emissions-driven), not prescribed Lamarque2010 OD. Second-pass 2026-06-22. |
+| SI | Sulphate indirect | Model-dependent | ~ | TV | **Offline calibrated cloud albedo perturbation method.** Johns2003 S5.3: "specified cloud albedo perturbations based on prior calibration experiments performed separately using HadAM3, which had the natural and anthropogenic emissions included with present-day climate." First indirect only; offline pre-calibration not fully interactive. | Johns et al. 2003 | johns_hadcm3_2003 | ~ nuanced. Indirect forcing included via calibrated delta-albedo method (Appendix A); ~70% of HadAM3 calibration magnitude in coupled runs. Second-pass 2026-06-22. |
+| BC | Black carbon | Lamarque et al. 2010 | **✗ dev** | n/a | **Not applied.** Johns2003 S5.4 L1907–1910: "Our simulations do not take changes in black carbon and organic carbon into account." | Johns et al. 2003 | johns_hadcm3_2003 | **BC not applied.** Second-pass 2026-06-22. |
+| OC | Organic carbon | Lamarque et al. 2010 | **✗ dev** | n/a | **Not applied.** Johns2003 S5.4 L1907–1910: "Our simulations do not take changes in black carbon and organic carbon into account." | Johns et al. 2003 | johns_hadcm3_2003 | **OC not applied.** Second-pass 2026-06-22. |
+| MD | Mineral dust | — | **✗ dev** | n/a | **Not applied.** Johns2003 L4252–4258: "We have omitted the effects of changes in soot, biogenic aerosols and mineral dust." | Johns et al. 2003 | johns_hadcm3_2003 | **MD not applied.** Second-pass 2026-06-22. |
+| SS | Sea salt | — | **✗ dev** | n/a | **Not applied** — no evidence of time-varying sea salt historical forcing. Not mentioned in Johns2003 or Stott2000 as a historical forcing component. Pattern consistent with absent BC/OC/MD. | Johns et al. 2003 | johns_hadcm3_2003 | **SS not applied as historical forcing.** Second-pass 2026-06-22. |
+| LU | Land-use change | Hurtt et al. 2011 | **✗ dev** | n/a | **Not applied.** Johns2003 L4261: "We have also neglected land surface changes and natural forcings (solar variations and volcanoes)." | Johns et al. 2003 | johns_hadcm3_2003 | **LU not applied** (absent from HadCM3 experiment suite; consistent with CMIP3 ukmo_hadcm3). Second-pass 2026-06-22. |
+| SO | Solar irradiance | Wang et al. 2005 | **✗ dev** | TV | **Lean, Beer & Bradley (1995) (LBB95)** — spectrally-resolved solar irradiance reconstruction. Stott2000 ref 22: "J. Lean, J. Beer, R. Bradley, Geophys. Res. Lett. 22, 3195 (1995)." Not Wang2005. Jones2011 Fig.13 independently labels HadCM3 CMIP5 data as "LBB95" (Maunder-to-modern = 2.95 W/m²). | Stott et al. 2000; Lean et al. 1995 | stott_detection_2000; lean_lbb95_1995 | **Deviation confirmed.** LBB95 (Lean1995), not Wang2005. Jones2011 confirms LBB95 for CMIP5 runs. Second-pass 2026-06-22. |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✓ std** | TV | **Sato et al. (1993)** stratospheric aerosol optical depths. Stott2000 ref 21: "M. Sato, J. E. Hansen, M. P. McCormick, J. B. Pollack, J. Geophys. Res. 98, 22987 (1993)." | Stott et al. 2000; Sato et al. 1993 | stott_detection_2000; sato_stratospheric_1993 | **Standard confirmed.** Sato1993 as in Taylor2012 protocol. Second-pass 2026-06-22. |
+| FC | Flux corrections | Not expected | n/a | n/a | Not applied. Gordon et al. (2000) title explicitly "without flux adjustments"; confirmed in abstract and Sect. 1. CMIP5 resubmission retained same free-running configuration. | Gordon et al. 2000 | gordon_hadcm3_2000 | **Confirmed absent.** Second-pass 2026-06-21. |
 
 ### ESM-specific forcing inputs
 Not an ESM — no active carbon cycle. Standard 12 keys only.
 
-### Key open questions (needs targeted PDF read)
-1. Were GHG/ozone datasets updated to Meinshausen2011/Cionni2011 for CMIP5, or are CMIP3-era datasets carried over?
-2. Was solar updated from Lean1995 (2.95 W/m² Maunder-to-modern) to Wang2005/Lean2009 (1.11 W/m²)?
-3. Was BC/OC included in CMIP5 (absent in CMIP3)?
-4. Was land-use change (Hurtt2011) added for CMIP5?
-5. Primary CMIP5-specific HadCM3 paper needed — search ES-DOC and PCMDI CMIP5 for HadCM3 historical forcing documentation.
-6. ~~FC: RESOLVED (second-pass 2026-06-21) — confirmed n/a from Gordon 2000 "without flux adjustments."~~
+### Open questions
+1. **G (GHGs) — uncertain**: Johns2003 used IPCC 1995 (Schimel et al. 1996) for historical GHGs. Whether the CMIP5 historical submission updated to Meinshausen2011 is unknown — no CMIP5-specific HadCM3 documentation paper found. Verdict currently ~ (nuanced).
+2. **SI (sulphate indirect) — nuanced**: Included via offline calibrated cloud albedo perturbation (Johns2003 Appendix A), producing ~70% of HadAM3 calibration magnitude in the coupled runs. This is a real but non-standard indirect method — marking as ~ rather than ✗dev or ＋exc.
 
 ### Provenance
 - Durack et al. 2016 model list: included
-- Stage 8 workflow: wf_71ff96d7-487 (2026-06-21); HadCM3 NOT addressed by surviving verified claims — G/O/SD/SI/BC/OC/MD/SS/LU/SO/VL all open
+- Stage 8 workflow: wf_71ff96d7-487 (2026-06-21); HadCM3 NOT addressed by surviving verified claims
 - Second-pass 2026-06-21: FC resolved n/a from Gordon 2000
+- Second-pass 2026-06-22 (Stage B): Johns2003 PDF full-text extracted via miniforge3 pdfminer; Stott2000 PDF searched. Resolved: O=✗dev (Li&Shine1995+STOCHEM/SAGE), SD=＋exc (interactive sulphate), BC/OC/MD/SS/LU=✗dev (all absent), SO=✗dev (Lean1995/LBB95), VL=✓std (Sato1993). G=~ (IPCC1995 in Johns2003; CMIP5 update uncertain). SI=~ (offline calibrated cloud albedo perturbation).

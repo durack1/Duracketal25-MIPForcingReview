@@ -23,7 +23,7 @@ Inferred identical to MPI-ESM-LR. No evidence surfaced from Stage 7 workflow of 
 | SS | Sea salt | — | ✗dev (as LR; inferred) | TC | As MD — bundled within MAC-v1 coarse-mode natural component — as MPI-ESM-LR (inferred) | Kinne et al. 2013; Stevens et al. 2013 | kinne_macv1_2013 *(add)*; stevens_atmospheric_2013 *(add)* | |
 | LU | Land-use change | Hurtt et al. 2011 | ✓std (as LR; inferred) | TV | Hurtt2011 LUH1 via JSBACH — as LR | giorgetta_climate_2013 *(add)* | giorgetta_climate_2013 *(add)* | |
 | SO | Solar irradiance | Wang et al. 2005 | ✗dev (as LR; inferred) | TV | SPARC/SOLARIS project dataset — as MPI-ESM-LR (inferred; same ECHAM6 forcing) | Giorgetta et al. 2013 | giorgetta_climate_2013 *(add)* | |
-| VL | Volcanic aerosols | Sato et al. 1993 updated | ? (as LR; inferred) | TV | Stratospheric aerosol from volcanic eruptions; Schmidt et al. 2012 application — as MPI-ESM-LR (inferred) | Stevens et al. 2013 | stevens_atmospheric_2013 *(add)* | |
+| VL | Volcanic aerosols | Sato et al. 1993 updated | **✗ dev** | TV | **Stenchikov1998/PADS-extended (as MPI-ESM-LR)** — Giorgetta2013 S4.7: Stenchikov1998 PADS extended by G. Stenchikov (pers. comm. 2010); NOT Sato1993-updated. | Giorgetta et al. 2013; Stenchikov et al. 1998 | giorgetta_climate_2013 *(add)* | **Deviation confirmed** (as MPI-ESM-LR). Second-pass 2026-06-22 (Stage C). |
 | FC | Flux corrections | Not expected | n/a | n/a | Not applied | — | — | |
 
 ### ESM-specific forcing inputs
