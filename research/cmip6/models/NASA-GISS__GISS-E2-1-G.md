@@ -21,11 +21,11 @@
 | SI | Aerosol — sulphate indirect | Model-dependent | — | ~ | TV | Indirect effect parameterised using the prescribed OMA aerosol fields | Kelley et al. 2020 | [kelley_giss_2020] | |
 | BC | Black carbon | CEDS + BB4CMIP6 | `CEDS-2017-05-18` + `VUA-CMIP-BB4CMIP6-1-2` | ~ | TV | As SD — OMA-derived prescribed fields; CEDS+BB4CMIP6 emissions source standard | Kelley et al. 2020 | [kelley_giss_2020] | |
 | OC | Organic carbon | CEDS + BB4CMIP6 | `CEDS-2017-05-18` + `VUA-CMIP-BB4CMIP6-1-2` | ~ | TV | As SD | Kelley et al. 2020 | [kelley_giss_2020] | |
-| MD | Mineral dust | Model-dependent | — | ? | ? | | | | |
-| SS | Sea salt | Model-dependent | — | ? | ? | | | | |
+| MD | Mineral dust | Model-dependent | — | ~ | TV | GISS-OMA-derived prescribed fields; online interactive in OMA (Cakmur et al. 2006 approach, 6 size bins 0.1–8 μm); NINT ingests pre-computed OMA dust fields — center-specific, NOT Kinne 2013 background | Kelley et al. 2020 | [kelley_giss_2020] | OMA dust tracers: Cakmur et al. 2006 approach, emitted silt/clay fractions optimized; NINT uses pre-computed offline fields as with sulfate/BC/OC |
+| SS | Sea salt | Model-dependent | — | ~ | TV | GISS-OMA-derived prescribed fields; sea-salt included in OMA aerosol module alongside dust/sulfate; NINT ingests offline OMA sea-salt fields — center-specific | Kelley et al. 2020 | [kelley_giss_2020] | Same OMA offline package as SD/BC/OC/MD |
 | LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | `UofMD-landState-2-1-h` | ? | TV | Expected standard; not explicitly confirmed | — | — | Open |
 | SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | `SOLARIS-HEPPA-3-2` | ? | TV | Expected standard; not explicitly confirmed | — | — | Open |
-| VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | `IACETH-SAGE3lambda-3-0-0` | ? | TV | VL source unresolved — "Thomason 2018 GloSSAC" claim REFUTED by adversarial verifier | — | — | OPEN: VL source for all GISS models unresolved |
+| VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | `IACETH-SAGE3lambda-3-0-0` | **✓std** | TV | **Thomason et al. 2018 GloSSAC / IACETH stratospheric aerosol — explicitly confirmed**: "Volcanic aerosols were prescribed using precomputed aerosol depth and effective particle radius (Thomason et al., 2018)" | Kelley et al. 2020 | [kelley_giss_2020] | Direct textual confirmation from Kelley 2020 §3.2. Thomason 2018 ESSD (doi:10.5194/essd-10-469-2018) = standard CMIP6 stratospheric AOD. |
 | FC | Flux corrections | Not expected | — | n/a | n/a | None | — | — | |
 
 ### Supplemental / non-input4MIPs forcings
@@ -49,11 +49,33 @@
 - CMIP5 GISS used Sato volcanic AOD — what CMIP6 uses is unresolved.
 
 ## Open questions
-1. **VL**: What volcanic aerosol dataset? (Thomason GloSSAC claim refuted; standard IACETH-SAGE3lambda unconfirmed)
-2. **G/LU/SO**: Confirm UoM-CMIP-1-2-0, UofMD-landState-2-1-h, SOLARIS-HEPPA-3-2
+1. ~~**VL**: RESOLVED — Thomason et al. 2018 confirmed in Kelley 2020 §3.2~~
+2. **G/LU/SO**: Kelley 2020 says these were "specified using a mix of approaches (Miller et al., 2020)"; confirm UoM-CMIP-1-2-0 (G), UofMD-landState-2-1-h (LU), SOLARIS-HEPPA-3-2 (SO) via Miller 2020 (doi:10.1029/2019MS002034)
 3. **G/H forcing identity**: Confirm atmospheric forcings identical between G and H variants (expected yes)
 
 ## Provenance
 - WCRP-CMIP CVs source_id: GISS-E2-1-G confirmed
 - Sources: Kelley et al. 2020 (doi:10.1029/2019MS002025); data.giss.nasa.gov/modelE/cmip6/
 - Stage workflow run ID: wf_3520e866-fd8 (2026-06-22)
+
+### Notes — CMIP5 lineage review (2026-06-27)
+Papers read: Schmidt et al. 2014 JAMES (doi:10.1002/2013MS000265) and Miller et al. 2014 JAMES (doi:10.1002/2013MS000266) — both CMIP5 GISS-E2-R/E2-H papers, not CMIP6 primary sources. Lineage clues only; no CMIP6 verdicts can be confirmed from these papers.
+
+CMIP5 GISS-E2 forcing datasets (for lineage reference):
+- **G**: GISS-specific GHG concentrations from Hansen et al. 2007 / GISS data server (data.giss.nasa.gov/modelforce/ghgases/) — NOT Meinshausen 2017. Possible ✗dev lineage for CMIP6.
+- **LU**: HYDE3.0 (Klein Goldewijk & van Drecht 2006) + Pongratz et al. 2008 blend (1850–1900) — NOT LUH2 (Hurtt 2020). Possible ✗dev lineage for CMIP6.
+- **SO**: TSI from Wang et al. 2005 updated + spectral variations from Lean 2009 (CMIP5-recommended) — NOT Matthes 2017. Possible ✗dev lineage for CMIP6.
+- **VL**: Sato et al. 1993 stratospheric AOD updated (data.giss.nasa.gov/modelforce/strataer/) — NOT Thomason 2018 / IACETH. Consistent with CMIP6 VL still open.
+- **MD**: NINT version uses prescribed climatological dust cycle from Miller et al. 2006a (no temporal variability) — NOT Kinne 2013 standard. Possible ✗dev/~ lineage.
+- **SS**: Included in NINT offline aerosol package alongside dust/sulfate/BC/OC — center-specific; not separately referenced to any CMIP6 standard dataset.
+
+All six target unknowns (G, MD, SS, LU, SO, VL) remain **?** — CMIP5 papers document E2-R/E2-H predecessors only; explicit CMIP6 confirmation requires Kelley et al. 2020 or supplementary CMIP6 documentation.
+
+### Notes — Stage 9 second pass CMIP6 (2026-06-27)
+Kelley et al. 2020 JAMES (doi:10.1029/2019MS002025) read in full (1827 lines). Key findings for target unknowns:
+
+- **VL = ✓std CONFIRMED**: §3.2 (line 628-629): "Volcanic aerosols were prescribed using precomputed aerosol depth and effective particle radius (Thomason et al., 2018)" — Thomason 2018 ESSD doi:10.5194/essd-10-469-2018 = standard CMIP6 IACETH stratospheric AOD. Prior "refuted" note was incorrect; direct textual evidence now overrides.
+- **MD = ~ CONFIRMED**: §2.1.3: OMA module treats dust interactively (Cakmur et al. 2006, 6 size bins 0.1–8 μm, optimized clay fractions). NINT runs ingest pre-computed OMA dust fields — same center-specific offline package as sulfate/BC/OC. Not Kinne 2013 natural background.
+- **SS = ~ CONFIRMED**: OMA treats sea-salt alongside dust/sulfate (§2.1.3, line 299-301). NINT GISS-E2-1-G ingests offline OMA sea-salt fields — center-specific, same mechanism as MD/SD/BC/OC.
+- **G, LU, SO remain ?**: Kelley 2020 §3.2 (line 626-627) states "Well-mixed greenhouse gases, solar activity changes (affecting TSI and the spectral irradiance), and LULC (including irrigation) were specified using a mix of approaches (Miller et al., 2020)." The specific datasets are NOT named in Kelley 2020 — they are deferred entirely to Miller et al. 2020 (doi:10.1029/2019MS002034).
+- Thomason 2018 reference in Kelley: doi:10.5194/essd-10-469-2018, "A global space-based stratospheric aerosol climatology: 1979–2016".

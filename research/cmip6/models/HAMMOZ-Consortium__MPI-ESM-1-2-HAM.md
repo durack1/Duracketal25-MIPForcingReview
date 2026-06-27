@@ -23,7 +23,7 @@
 | OC | Organic carbon | CEDS + BB4CMIP6 | ~ | TV | As SD — HAM2 interactive OC | Tegen et al. 2019 | |
 | MD | Mineral dust | — | ~ | TV | HAM2 prognostic dust (interactive) — emission provenance unconfirmed | Tegen et al. 2019 | HAM2 has prognostic dust, unlike MPI-ESM1-2-LR/HR where dust is FXc (Kinne 2013) |
 | SS | Sea salt | — | ~ | TV | HAM2 prognostic sea salt (interactive) | Tegen et al. 2019 | As MD |
-| LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | ? | TV | Expected same as MPI-ESM1-2-LR (LUH2v2h); not explicitly confirmed for HAM | — | OPEN |
+| LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | ✓std | TV | **LUH2v2h (dynamic transitions)** — same JSBACH3.2 land component as MPI-ESM1-2-LR. Mauritsen 2019 (section 6.3): "in MPI-ESM1.2-LR land use is computed from a sequence of land use transitions" from "LUH2v2h (Hurtt et al., 2016)". HAM shares identical land component. | Mauritsen et al. 2019 | |
 | SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | ? | TV | Expected same as MPI-ESM1-2-LR; not confirmed | — | OPEN |
 | VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | ? | TV | Expected same as MPI-ESM1-2-LR; not confirmed | — | OPEN |
 | FC | Flux corrections | Not expected | n/a | n/a | None | — | |
@@ -37,15 +37,20 @@
 
 | ESM input | Applied? | Verdict | Notes |
 |-----------|----------|---------|-------|
-| N-deposition (NHx/NOy) | Expected yes | ? | JSBACH3.2 + HAMOCC6 — as MPI-ESM1-2-LR |
+| N-deposition (NHx/NOy) | Yes | ✓std | HAMOCC6 ocean BGC: same as MPI-ESM1-2-LR. Mauritsen 2019 (section 5.2): "Gridded coupled chemistry model intercomparison N-deposition fields of version 1.0 are used as provided via the CMIP6 input database" = NCAR-CCMI-2-0 (input4MIPs). HAM shares identical HAMOCC6 component. |
 | CO2-mode | ? | ? | Concentration-driven expected |
 | Fe deposition (HAMOCC6) | Possible | ? | As MPI-ESM1-2-LR |
 
 ## Open questions
-1. **SD/BC/OC — CMIP6 historical emissions**: Does HAM2 consume CEDS+BB4CMIP6 in the CMIP6 historical run? Resolve via Tegen et al. 2019 Part 1 (doi:10.5194/gmd-12-1331-2019) or ES-DOC for MPI-ESM-1-2-HAM historical.
-2. **G/LU/SO/VL**: All standard expected, matching MPI-ESM1-2-LR — none confirmed.
-3. **N-dep, CO2-mode, Fe**: ESM inputs unconfirmed.
+1. **SD/BC/OC — CMIP6 historical emissions**: Does HAM2 consume CEDS+BB4CMIP6 in the CMIP6 historical run? Resolve via Tegen et al. 2019 Part 1 (doi:10.5194/gmd-12-1331-2019) or ES-DOC for MPI-ESM-1-2-HAM historical. Both Tegen 2019 papers use ACCMIP emissions (not CEDS/BB4CMIP6) for their evaluation runs, but these are pre-CMIP6 evaluation runs — CMIP6 historical emissions provenance remains unconfirmed.
+2. **G/SO/VL**: Expected standard (matching MPI-ESM1-2-LR) — not confirmed in any paper reviewed.
+3. **CO2-mode, Fe**: ESM inputs unconfirmed.
 
 ## Provenance
 - Stage 8 workflow run ID: wf_f9ea73ac-462 (2026-06-23)
-- Key sources: Tegen et al. 2019 (doi:10.5194/gmd-12-1331-2019); Neubauer et al. 2019 Part 1 (doi:10.5194/gmd-12-1643-2019), Part 2 (doi:10.5194/gmd-12-3609-2019); Keeble et al. 2021 (doi:10.5194/acp-21-5015-2021)
+- Stage 9 full text review (2026-06-27): Mauritsen et al. 2019 JAMES (doi:10.1029/2018MS001400), Tegen et al. 2019 GMD Part 1 (doi:10.5194/gmd-12-1643-2019), Neubauer et al. 2019 GMD Part 2 (doi:10.5194/gmd-12-3609-2019) fully extracted and searched.
+  - **LU confirmed ✓std**: Mauritsen 2019 section 6.3 — LUH2v2h (Hurtt et al. 2016) used via JSBACH3.2 land component shared with HAM.
+  - **N-dep confirmed ✓std**: Mauritsen 2019 section 5.2 — "Gridded coupled chemistry model intercomparison N-deposition fields of version 1.0 are used as provided via the CMIP6 input database" = NCAR-CCMI-2-0 input4MIPs; HAMOCC6 shared with HAM.
+  - **G, SO, VL**: Not named in any of the three papers. Mauritsen 2019 confirms volcanic stratospheric aerosols ARE prescribed in historical simulations (section 8.2) but does not name the dataset. G (Meinshausen 2017) and SO (Matthes 2017) not cited.
+  - **SD/BC/OC emissions**: Tegen 2019 and Neubauer 2019 use ACCMIP MACCity/RCP8.5 emissions for their evaluation runs — these are pre-CMIP6 evaluation configurations, not the CMIP6 historical run. CEDS+BB4CMIP6 provenance for CMIP6 historical remains unconfirmed.
+- Key sources: Tegen et al. 2019 (doi:10.5194/gmd-12-1331-2019); Neubauer et al. 2019 Part 1 (doi:10.5194/gmd-12-1643-2019), Part 2 (doi:10.5194/gmd-12-3609-2019); Keeble et al. 2021 (doi:10.5194/acp-21-5015-2021); Mauritsen et al. 2019 (doi:10.1029/2018MS001400)

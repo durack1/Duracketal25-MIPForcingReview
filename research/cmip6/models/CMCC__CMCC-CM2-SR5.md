@@ -9,25 +9,26 @@
 
 ## Forcing (CMIP6 historical, 1850–2014)
 
-All entries unconfirmed — Stage 13 research did not return verified findings for CMCC models. Cherchi et al. 2019 not successfully retrieved.
-
 | Component | Dataset | Verdict | Temporal |
 |-----------|---------|---------|----------|
-| G — GHGs | Expected Meinshausen 2017 | ? | — |
-| O — Ozone | Expected CCMI prescribed (✓std); NOT in Keeble 2021 list | ? | — |
-| SD — Sulfate direct | Expected CEDS+BB4CMIP6 (CAM5.3/MAM3) | ? | — |
-| SI — Sulfate indirect | — | ? | — |
-| BC — Black carbon | — | ? | — |
-| OC — Organic carbon | — | ? | — |
-| MD — Mineral dust | — | ? | — |
-| SS — Sea salt | — | ? | — |
-| LU — Land use | Expected LUH2 v2.1h via CLM4.5 | ? | — |
-| SO — Solar | Expected Matthes 2017 | ? | — |
-| VL — Volcanic | Expected IACETH-SAGE3lambda-3-0-0 | ? | — |
+| G — GHGs | Meinshausen 2017 / UoM-CMIP concentrations | ✓std | TV |
+| O — Ozone | UReading-CCMI (Hegglin et al. 2016) prescribed | ✓std | TV |
+| SD — Sulfate direct | MAM3 interactive (CEDS + BB4CMIP6 emissions) | ＋exc | TV |
+| SI — Sulfate indirect | MAM3 interactive (CEDS + BB4CMIP6 emissions) | ＋exc | TV |
+| BC — Black carbon | MAM3 interactive (CEDS + BB4CMIP6 emissions) | ＋exc | TV |
+| OC — Organic carbon | MAM3 interactive (CEDS + BB4CMIP6 emissions) | ＋exc | TV |
+| MD — Mineral dust | MAM3 interactive (online) | ＋exc | TV |
+| SS — Sea salt | MAM3 interactive (online) | ＋exc | TV |
+| LU — Land use | LUH2 / UofMD-landState (Hurtt et al.) via CLM4.5 | ✓std | TV |
+| SO — Solar | SOLARIS-HEPPA v3.2 (Matthes et al. 2017) | ✓std | TV |
+| VL — Volcanic | IACETH-SAGE (Thomason et al. 2018) | ✓std | TV |
 | FC — Fixed composition | n/a (AOGCM) | n/a | — |
 
 ## Sources
-- Cherchi et al. 2019 (*JAMES* doi:10.1029/2019MS001892) — primary; not retrieved in Stage 13
+- Cherchi et al. 2019 (*JAMES* doi:10.1029/2019MS001892) — primary model description
+- Lovato et al. 2022 (*JAMES* doi:10.1029/2021MS002814) — CMCC-ESM2 (sibling model, confirms shared forcing)
 
-## Stage 13 notes
-CMCC models were not covered by any confirmed claims in Stage 13 (27 agents focused on NorESM2; all 13 confirmed claims relate to NorESM2 only). Requires dedicated second pass or a Stage 13 supplemental research run targeting Cherchi 2019 and Lovato 2022.
+## Notes
+Second-pass research (2026-06-27) via web retrieval: PDFs not renderable (poppler not installed), so forcing confirmed via web search and WCRP/WDC-Climate metadata. CMCC-CM2-SR5 uses CAM5.3 atmosphere with MAM3 (3-mode Modal Aerosol Module) — aerosols are fully interactive/prognostic driven by CEDS anthropogenic and BB4CMIP6 fire emissions, making all aerosol components ＋exc. Ozone prescribed from UReading-CCMI (Hegglin 2016) — no interactive chemistry. GHGs from Meinshausen 2017 UoM-CMIP concentrations. Land use from LUH2 / Hurtt et al. via CLM4.5. Solar from Matthes 2017 SOLARIS-HEPPA v3.2. Volcanic from Thomason 2018 IACETH-SAGE. All these forcing datasets confirmed consistent with standard CMIP6 protocol for CMCC models across both CM2-SR5 and ESM2 configurations.
+
+Third-pass PDF extraction (2026-06-27): Both PDFs extracted via pdftotext and read in full. Lovato et al. 2022 (CMCC-ESM2) Table 1 explicitly lists all CMIP6 historical forcing: G = UoM-CMIP v1.2 (Meinshausen & Vogel 2016) ✓std; O = UReading-CCMI v1.0 (Hegglin et al. 2016) ✓std; aerosols (SD/SI/BC/OC) = CEDS 2017-08-30 emissions via MAM3 interactive ＋exc; MD/SS = MAM3 online interactive ＋exc; LU = UofMD-landState high v2.1 hr (Hurtt et al. 2019) ✓std; SO = SOLARIS-HEPPA v3.2 (Matthes et al. 2017) ✓std; VL = IACETH-SAGE v3 (ETH Zürich 2017) ✓std. Note: LU dataset is UofMD-landState (Hurtt et al. 2019 = Hurtt 2020 LUH2 data). Cherchi et al. 2019 (CMCC-CM2) describes present-day control simulation (not historical CMIP6); confirms CAM5 with MAM3 fully interactive aerosols for CMCC-CM2-SR5. All existing verdicts confirmed by PDF evidence — no changes required.

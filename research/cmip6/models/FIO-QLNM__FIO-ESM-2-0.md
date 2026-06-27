@@ -3,35 +3,37 @@
 # FIO-ESM-2-0 — FIO-QLNM (China)
 
 - **CMIP phase:** CMIP6 (historical, 1850–2014)
-- **Model family / lineage:** FOAM atmosphere (based on CAM5.3, T85L32) + POP2 ocean + MASNUM surface wave model + CICE5 + CLM4.5 land BGC. **Full ESM**. First Institute of Oceanography, Qingdao. Novel addition of surface wave–ocean coupling (MASNUM). CAM5.3 lineage expected to use CEDS+BB4CMIP6 aerosols (as CMCC-CM2-SR5, Stage 13).
-- **Primary documentation paper(s):** Bao et al. 2020 (*JAMES* doi:10.1029/2019MS002014)
+- **Model family / lineage:** CAM5 (f09, 1.25°×0.9°, 30L, FV dynamical core) + POP2 ocean (61L) + MASNUM surface wave model + CICE4 + CLM4.0 (CN carbon-nitrogen) land BGC; BEC ocean ecosystem (Moore et al. 2013). **Full ESM**. First Institute of Oceanography, Qingdao. Novel wave-coupling (Stokes drift, sea spray, SST diurnal cycle). Uses MACv2-SP aerosols (not CEDS+BB4CMIP6).
+- **Primary documentation paper(s):** Bao et al. 2020 (*JGR-Oceans* doi:10.1029/2019JC016036)
 
 ## Forcing datasets used (historical 1850–2014) — verified against Eyring et al. 2016 protocol
 
-All verdicts unconfirmed — no per-component forcing findings were returned in Stage 16 research. Bao et al. 2020 was not successfully extracted.
-
 | Key | Forcing | Verdict | Temporal | Dataset / source |
 |-----|---------|---------|----------|-----------------|
-| G  | Well-mixed GHGs | ? | ? | — |
-| O  | Ozone | ? | ? | — |
-| SD | Aerosol — sulphate direct | ? | ? | — |
-| SI | Aerosol — sulphate indirect | ? | ? | — |
-| BC | Black carbon | ? | ? | — |
-| OC | Organic carbon | ? | ? | — |
-| MD | Mineral dust | ? | ? | — |
-| SS | Sea salt | ? | ? | — |
+| G  | Well-mixed GHGs | ✓std | TV | Meinshausen 2017 GHG concentrations (CO2, CH4, N2O, CFC12, CFC11-eq; 43 species) |
+| O  | Ozone | ✓std | TV | IGAC/SPARC CCMI ozone database in support of CMIP6 (Hegglin 2016) |
+| SD | Aerosol — sulphate direct | ✓std | TV | MACv2-SP (Stevens et al. 2017) anthropogenic AOD added to 1850 CMIP5 natural background |
+| SI | Aerosol — sulphate indirect | ✓std | TV | MACv2-SP Twomey effect (cloud droplet ratio) × MG1.5 microphysics |
+| BC | Black carbon | ✓std | TV | MACv2-SP anthropogenic optical properties (BC included in plume) |
+| OC | Organic carbon | ✓std | TV | MACv2-SP anthropogenic optical properties (OC included in plume) |
+| MD | Mineral dust | ✗dev | FXk | 1850 annual-cycling CMIP5 natural aerosol climatology (non-standard background) |
+| SS | Sea salt | ✗dev | FXk | 1850 annual-cycling CMIP5 natural aerosol climatology (non-standard background) |
 | LU | Land-use change | ? | ? | — |
-| SO | Solar irradiance | ? | ? | — |
-| VL | Volcanic aerosols | ? | ? | — |
+| SO | Solar irradiance | ✓std | TV | Matthes 2017 / SOLARIS-HEPPA TSI (historical time-varying) |
+| VL | Volcanic aerosols | ✓std | TV | CMIP6 stratospheric aerosol data (Thomason 2018 / IACETH); ext coeff + SSA + g all bands |
 
 ## ESM-specific inputs
 
 | Input | Dataset | Verdict |
 |-------|---------|---------|
-| N-dep | CLM4.5 land BGC; NCAR-CCMI-2-0 expected | ? |
-| Fe-dep | Ocean BGC (not confirmed which scheme); Fe-dep dataset unknown | ? |
-| CO2-mode | Concentration-driven assumed for historical | ? |
+| N-dep | CLM4.0 CN module — NCAR CCMI-2-0 expected but not named in paper | ? |
+| Fe-dep | BEC ecological model (Moore et al. 2013) — Fe-dep dataset not named | ? |
+| CO2-mode | ＋exc (emissions-driven) — paper states "atmospheric CO2 concentration determined by air–sea and air–land CO2 fluxes and anthropogenic CO2 emissions" | ＋exc |
 
 ## Provenance
-- Stage 16 workflow run ID: wf_dcf6412c-ee4 (2026-06-27); zero verified findings for FIO-ESM-2-0 (Bao 2020 not retrieved)
-- Requires: targeted second pass using Bao et al. 2020 (doi:10.1029/2019MS002014) for full forcing stack; CAM5.3 lineage suggests CEDS+BB4CMIP6 aerosols
+- Stage 16 workflow run ID: wf_dcf6412c-ee4 (2026-06-27); zero verified findings for FIO-ESM-2-0 (Bao 2020 not retrieved in that pass)
+- Second-pass extraction (2026-06-27): Bao et al. 2020 (JGR doi:10.1029/2019JC016036) extracted in full via pdftotext; forcing stack confirmed
+
+## Notes
+- PDF extraction pass (2026-06-27): Qiao et al. 2013 (JGR doi:10.1002/jgrc.20327) extracted in full. This paper documents FIO-ESM v1 for CMIP5, not CMIP6. No CMIP6-specific forcing named.
+- Second-pass extraction (2026-06-27): Bao et al. 2020 JGR (doi:10.1029/2019JC016036) Section 3 (Model Configuration) explicitly names: (1) CMIP6 GHG concentrations (CO2, CH4, N2O, CFC12, CFC11-eq; Meinshausen 2017) → G=✓std; (2) IGAC/SPARC CCMI ozone database for CMIP6 (Hegglin 2016) → O=✓std; (3) MACv2-SP (Stevens et al. 2017) for anthropogenic aerosol optical properties and Twomey effect added to 1850 CMIP5 natural background → SD/SI/BC/OC=✓std; (4) natural background is "prescribed annual cycling concentration in 1850 from CMIP5" → MD/SS=✗dev FXk; (5) CMIP6 stratospheric aerosol data for volcanic + background strat contributions → VL=✓std; (6) TSI used with time-varying historical data → SO=✓std; (7) CO2 prognostic, determined by air-sea/air-land fluxes + anthropogenic emissions → CO2-mode=＋exc. LU, N-dep, Fe-dep not named.

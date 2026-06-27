@@ -1,4 +1,4 @@
-<!-- CMIP6 forcing record — MIROC-ES2H (MIROC). Stage 12 complete (2026-06-26). -->
+<!-- CMIP6 forcing record — MIROC-ES2H (MIROC). Stage 12 complete (2026-06-26). Confirmation pass complete (2026-06-27): Hajima2020 Table C1 confirms all ES2L forcings; ES2H inferences confirmed via shared OECO2/SPRINTARS/VISIT-e components. Fe-dep resolved as ~ (centre-specific, Ito et al. 2018/2011 via SPRINTARS). Watanabe2021 not in /resources/. -->
 
 # MIROC-ES2H — MIROC (Japan)
 
@@ -31,7 +31,7 @@ All forcing inferred from shared ESM components with MIROC-ES2L; no separately d
 | Input | Dataset | Verdict |
 |-------|---------|---------|
 | N-dep | As MIROC-ES2L (NCAR-CCMI-2-0, shared VISIT-e land BGC) | ✓std |
-| Fe-dep | As MIROC-ES2L (OECO2 ocean BGC; dataset not confirmed) | ? |
+| Fe-dep | As MIROC-ES2L (OECO2 ocean BGC; pyrogenic Fe: Ito et al. 2018/Hoesly2018/vanMarle2017 via SPRINTARS; lithogenic Fe: SPRINTARS prognostic dust at 3.5% Fe content; biomass burning Fe: Ito 2011 BC-ratio; non-standard centre-specific approach) | ~ |
 | CO2-mode | As MIROC-ES2L (concentration-driven) | ✓std |
 
 ## Sources
@@ -43,3 +43,8 @@ All forcing inferred from shared ESM components with MIROC-ES2L; no separately d
 - Higher model top (L81, ~0.004 hPa) vs MIROC-ES2L (L40) does not imply interactive chemistry — confirmed absent from Keeble 2021 list
 - Higher horizontal resolution (T213, ~60km) vs MIROC-ES2L (T42, ~300km) should not affect forcing dataset selection
 - Open question: does Watanabe 2021 reveal any forcing differences from MIROC-ES2L?
+
+## Confirmation pass notes (2026-06-27)
+- Hajima et al. 2020 (GMD doi:10.5194/gmd-13-2197-2020) Table C1 (Appendix C) explicitly lists all MIROC-ES2L CMIP6 HIST forcing datasets: GHG = Meinshausen 2017; aerosol emissions (BC/OC/SO2) = Hoesly 2018 (CEDS) + van Marle 2017 (BB4CMIP6); ozone = Checa-Garcia 2018 (CCMI); LU = Ma et al. 2019 (LUH2); VL = Thomason et al. (IACETH WCRP-CMIP6); SO = Matthes 2017; N-dep = IGAC/SPARC CCMI
+- Fe-dep resolved from Hajima 2020 Sect. 2.1.3 and Appendix C: pyrogenic Fe from Ito et al. 2018 (fossil fuel/biofuel) + Ito 2011 (biomass burning BC-ratio 0.04 gFe/gBC); lithogenic Fe from SPRINTARS prognostic mineral dust at 3.5% Fe content (Duce and Tindale 1991); all deposition simulated online by SPRINTARS — centre-specific approach, not standard CMIP6 Fe-dep dataset; verdict updated from ? to ~
+- MIROC-ES2H inferences from ES2L confirmed valid: both models share OECO2, SPRINTARS, VISIT-e, and MATSIRO components; Fe-dep approach identical

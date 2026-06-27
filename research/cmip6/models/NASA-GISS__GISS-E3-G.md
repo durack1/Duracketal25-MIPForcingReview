@@ -43,3 +43,7 @@
 ## Provenance
 - Sources: data.giss.nasa.gov/modelE/cmip6/ (architecture); primary paper TBD
 - Stage workflow run ID: wf_3520e866-fd8 (2026-06-22; partial findings — E3-G largely unresolved)
+
+## Notes
+- Schmidt et al. 2014 (JAMES doi:10.1002/2013MS000265) and Miller et al. 2014 (JAMES doi:10.1002/2013MS000266) reviewed. Both papers document CMIP5 ModelE2 only (NINT/TCAD/TCADI configurations). Forcings used: GHG from GISS internal observations (Hansen et al. 2007 updates), solar from Wang et al. 2005/Lean 2009, volcanic from Sato et al. 1993, land use from HYDE3.0/Pongratz et al. 2008. These are all pre-CMIP6 datasets and provide no direct confirmation of CMIP6 forcing treatments for GISS-E3-G. No ModelE3 (GISS-E3-G) content in either paper. All forcing verdicts remain unresolved pending identification of a primary ModelE3/GISS-E3-G documentation paper.
+- Russotto et al. 2021 (JAMES doi:10.1029/2021MS002601) reviewed. Paper documents tropical cyclone properties in two development versions (V1 April 2018, V2 March 2019) of GISS-E3 at C180 (0.5°) resolution, run in atmosphere-only mode with prescribed HadISST2 SSTs (1980–2000). No CMIP6 forcing table, experimental design section, or mention of GHG/ozone/aerosol/land-use/solar/volcanic forcing datasets. The paper explicitly states there is no C180 version of ModelE3 in the CMIP6 ensemble. Provides zero forcing information for GISS-E3-G CMIP6 historical simulations. All verdicts remain unresolved.

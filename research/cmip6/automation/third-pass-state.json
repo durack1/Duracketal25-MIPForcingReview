@@ -1,0 +1,157 @@
+{
+  "_comment": "CMIP6 third-pass PDF extraction. 24 new PDFs added 2026-06-27. Targets residual unknowns from second pass. Run with args: {batch_id: N, state_path: '<this file>'}.",
+  "current_batch": 8,
+  "current_batch_status": "all-complete",
+  "last_run_id": "wf_9e9e4df4-ebb",
+  "total_batches": 7,
+  "completed_batches": [1, 2, 3, 4, 5, 6, 7],
+  "_doi_corrections": "Voldoire2019=doi:10.1029/2019MS001683; Seferian2019=doi:10.1029/2019MS001791; Boucher2020=doi:10.1029/2019MS002010; Li2020JAMES=doi:10.1029/2019MS002012; Bao2020=JGR-doi:10.1029/2019JC016036; Tegen2019=doi:10.5194/gmd-12-1643-2019; TaiESM1-Lee2020-IS-CMIP6",
+  "_unresolvable": "BCC-CSM2-MR N-dep; MRI-ESM2-0 N-dep/Fe-dep/CO2-mode; MIROC-ES2H (Watanabe2021 not available) — no new PDFs for these",
+  "base_path": "/home/duro/git/Duracketal25-MIPForcingReview",
+  "batch_script": "/home/duro/git/Duracketal25-MIPForcingReview/research/cmip6/automation/pdf-extract-batch.js",
+  "batches": [
+    {
+      "id": 1,
+      "label": "MPI-ESM family (G/SO/VL + HAM aerosols)",
+      "models": ["MPI-ESM1-2-LR", "MPI-ESM1-2-HR", "MPI-ESM-1-2-HAM"],
+      "model_files": ["MPI-M__MPI-ESM1-2-LR.md", "MPI-M__MPI-ESM1-2-HR.md", "HAMMOZ-Consortium__MPI-ESM-1-2-HAM.md"],
+      "pdfs": ["Mauritsenetal19JAMES-MPI-ESM1-2-LR.pdf", "Tegenetal19GMD-MIP-ESM-1-2-HAM-Part1AerosolEvaluation.pdf", "Neubaueretal19GMD-MPI-ESM-1-2-HAM-Part2CloudEvaluationAerosolRadiativeForcingAndClimateSensitivity.pdf"],
+      "per_model_pdfs": {
+        "MPI-ESM1-2-LR":  ["Mauritsenetal19JAMES-MPI-ESM1-2-LR.pdf"],
+        "MPI-ESM1-2-HR":  ["Mauritsenetal19JAMES-MPI-ESM1-2-LR.pdf"],
+        "MPI-ESM-1-2-HAM": ["Mauritsenetal19JAMES-MPI-ESM1-2-LR.pdf", "Tegenetal19GMD-MIP-ESM-1-2-HAM-Part1AerosolEvaluation.pdf", "Neubaueretal19GMD-MPI-ESM-1-2-HAM-Part2CloudEvaluationAerosolRadiativeForcingAndClimateSensitivity.pdf"]
+      },
+      "target_unknowns": {
+        "MPI-ESM1-2-LR":  ["G", "SO", "VL"],
+        "MPI-ESM1-2-HR":  ["G", "SO", "VL"],
+        "MPI-ESM-1-2-HAM": ["G", "LU", "SO", "VL", "N-dep", "CO2-mode"]
+      },
+      "note": "Mauritsen 2019 JAMES (doi:10.1029/2018MS001400) is the primary CMIP6 MPI-ESM1-2 paper. Tegen 2019 GMD (doi:10.5194/gmd-12-1643-2019) = HAM Part 1 aerosol evaluation. Neubauer 2019 GMD (doi:10.5194/gmd-12-3609-2019) = HAM Part 2. Already confirmed for LR/HR: O/SD/SI/BC/OC=✓std(CEDS); MD/SS=FXc. Do not change these.",
+      "status": "complete",
+      "run_id": "wf_f73b2a23-3ba",
+      "results_summary": "G/SO/VL unresolvable — Mauritsen 2019 never names Meinshausen2017, Matthes2017, or IACETH SAGE3λ by name. HAM: LU=✓std confirmed (shared JSBACH3.2); N-dep=✓std confirmed (Mauritsen2019 s5.2 shared HAMOCC6). SD/BC/OC for HAM remain ~ (ACCMIP used in evaluation runs; CEDS+BB4CMIP6 for CMIP6 historical not confirmed in any paper)."
+    },
+    {
+      "id": 2,
+      "label": "CNRM family (G/MD/SS/LU/SO/VL + ESM2-1 BGC)",
+      "models": ["CNRM-CM6-1", "CNRM-CM6-1-HR", "CNRM-ESM2-1"],
+      "model_files": ["CNRM-CERFACS__CNRM-CM6-1.md", "CNRM-CERFACS__CNRM-CM6-1-HR.md", "CNRM-CERFACS__CNRM-ESM2-1.md"],
+      "pdfs": ["Voldoireetal19JAMES-CNRM-CM6-1.pdf", "Michouetal19JAMES-CNRM-CM6-1AndCNRM-ESM2-1Present-DayHistoricalAerosolAndOzoneCharacteristics.pdf", "Seferianetal19JAMES-CNRM-ESM2-1-RoleOfProcessesInPresent-DayAndFutureClimate.pdf"],
+      "per_model_pdfs": {
+        "CNRM-CM6-1":    ["Voldoireetal19JAMES-CNRM-CM6-1.pdf", "Michouetal19JAMES-CNRM-CM6-1AndCNRM-ESM2-1Present-DayHistoricalAerosolAndOzoneCharacteristics.pdf"],
+        "CNRM-CM6-1-HR": ["Voldoireetal19JAMES-CNRM-CM6-1.pdf", "Michouetal19JAMES-CNRM-CM6-1AndCNRM-ESM2-1Present-DayHistoricalAerosolAndOzoneCharacteristics.pdf"],
+        "CNRM-ESM2-1":   ["Voldoireetal19JAMES-CNRM-CM6-1.pdf", "Seferianetal19JAMES-CNRM-ESM2-1-RoleOfProcessesInPresent-DayAndFutureClimate.pdf", "Michouetal19JAMES-CNRM-CM6-1AndCNRM-ESM2-1Present-DayHistoricalAerosolAndOzoneCharacteristics.pdf"]
+      },
+      "target_unknowns": {
+        "CNRM-CM6-1":    ["G", "MD", "SS", "LU", "SO", "VL"],
+        "CNRM-CM6-1-HR": ["G", "MD", "SS", "LU", "SO", "VL"],
+        "CNRM-ESM2-1":   ["G", "MD", "SS", "LU", "SO", "VL", "N-dep", "Fe-dep", "CO2-mode"]
+      },
+      "note": "Voldoire 2019 JAMES (doi:10.1029/2019MS001683) = primary CNRM-CM6-1 paper. Michou 2019 JAMES (doi:10.1029/2019MS001816) = aerosols + ozone for CM6-1 and ESM2-1. Seferian 2019 JAMES (doi:10.1029/2019MS001791) = CNRM-ESM2-1 primary paper. Already confirmed for all: O=~(semi-interactive); SD/SI/BC/OC=✗dev(TACTIC_v2). Do not change these.",
+      "status": "complete",
+      "run_id": "wf_c49f5ef9-057",
+      "results_summary": "FULLY RESOLVED for CM6-1 and CM6-1-HR (G/SO/VL=✓std, MD/SS/LU=✗dev). ESM2-1 fully resolved except N-dep=? (not mentioned in any paper)."
+    },
+    {
+      "id": 3,
+      "label": "IPSL-CM6A-LR (G/LU/SO) + TaiESM1 (G/O/LU/SO/VL)",
+      "models": ["IPSL-CM6A-LR", "TaiESM1"],
+      "model_files": ["IPSL__IPSL-CM6A-LR.md", "AS-RCEC__TaiESM1.md"],
+      "pdfs": ["Boucheretal20JAMES-IPSL-CM6A-LR.pdf", "Leeetal20GMD-TaiESM1-0-DescriptionAndMeanStateEvaluation.pdf", "Wangetal21JAMES-TaiESM1-PerformanceSimulatingClimateVariabilityComparedWithObservations.pdf"],
+      "per_model_pdfs": {
+        "IPSL-CM6A-LR": ["Boucheretal20JAMES-IPSL-CM6A-LR.pdf"],
+        "TaiESM1":       ["Leeetal20GMD-TaiESM1-0-DescriptionAndMeanStateEvaluation.pdf", "Wangetal21JAMES-TaiESM1-PerformanceSimulatingClimateVariabilityComparedWithObservations.pdf"]
+      },
+      "target_unknowns": {
+        "IPSL-CM6A-LR": ["G", "LU", "SO", "N-dep", "CO2-mode"],
+        "TaiESM1":       ["G", "O", "LU", "SO", "VL"]
+      },
+      "note": "IPSL: Boucher 2020 JAMES (doi:10.1029/2019MS002010) = primary IPSL-CM6A-LR system description. Already confirmed: O=✓std; aerosols all ~. CRITICAL for TaiESM1: Lee 2020 GMD IS the CMIP6 TaiESM1 paper — TaiESM1 was NOT a contributor to CMIP5. Previous batch agent misidentified it as CMIP5-era. Re-read carefully for CMIP6 historical forcing datasets. Aerosols=~(SNAP) already confirmed — do not change. Wang 2021 JAMES (doi:10.1029/2020MS002353) is a companion evaluation paper.",
+      "status": "complete",
+      "run_id": "wf_e81b32ae-eb5",
+      "results_summary": "IPSL: G=✓std, LU=✓std confirmed; SO=? still (not named in Boucher 2020). TaiESM1: G/O/LU/SO/VL all still ? — neither Lee 2020 nor Wang 2021 names specific CMIP6 forcing datasets."
+    },
+    {
+      "id": 4,
+      "label": "GISS family (E2-1-G / E2-2-G / E3-G)",
+      "models": ["GISS-E2-1-G", "GISS-E2-2-G", "GISS-E3-G"],
+      "model_files": ["NASA-GISS__GISS-E2-1-G.md", "NASA-GISS__GISS-E2-2-G.md", "NASA-GISS__GISS-E3-G.md"],
+      "pdfs": ["Kelleyetal20JAMES-GISS-E2-1-ConfigurationsAndClimatology.pdf", "Rindetal20JGR-GISS-E2-2-ModelStructureClimatologyVariabilityAndClimateSensitivity.pdf", "Orbeetal20JGR-GISS-E2-2-Large-scaleTransportValidationAndEvaluationOfClimateResponse.pdf", "Russottoetal21JAMES-GISS-E3-TropicalCycloneProperyEvolution.pdf"],
+      "per_model_pdfs": {
+        "GISS-E2-1-G": ["Kelleyetal20JAMES-GISS-E2-1-ConfigurationsAndClimatology.pdf"],
+        "GISS-E2-2-G": ["Rindetal20JGR-GISS-E2-2-ModelStructureClimatologyVariabilityAndClimateSensitivity.pdf", "Orbeetal20JGR-GISS-E2-2-Large-scaleTransportValidationAndEvaluationOfClimateResponse.pdf"],
+        "GISS-E3-G":   ["Russottoetal21JAMES-GISS-E3-TropicalCycloneProperyEvolution.pdf"]
+      },
+      "target_unknowns": {
+        "GISS-E2-1-G": ["G", "MD", "SS", "LU", "SO", "VL"],
+        "GISS-E2-2-G": ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL"],
+        "GISS-E3-G":   ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Kelley 2020 JAMES (doi:10.1029/2019MS002025) = ModelE2.1 = GISS-E2-1-G CMIP6 configurations. Rind 2020 JGR (doi:10.1029/2019JD032204) + Orbe 2020 JGR (doi:10.1029/2020JD033151) = ModelE2.2 = GISS-E2-2-G. Russotto 2021 JAMES (doi:10.1029/2021MS002601) = GISS-E3 tropical cyclones — extract all forcing info available even if incomplete. E2-1-G O=✗dev already confirmed; do not change.",
+      "status": "complete",
+      "run_id": "wf_6c6f56b5-d1d",
+      "results_summary": "E2-1-G: VL=✓std confirmed (Thomason2018 via Kelley2020 §3.2); G/LU/SO=? need Miller 2020 JAMES doi:10.1029/2019MS002034. E2-2-G: aerosols all ~ confirmed; G/LU/SO/VL=?. E3-G: all ? — Russotto 2021 is development runs paper with no CMIP6 historical forcing info; primary ModelE3 paper not found."
+    },
+    {
+      "id": 5,
+      "label": "GFDL-ESM4 (LU/VL/N-dep) + GFDL-CM4 (LU/VL) + CAMS-CSM1-0 (aerosols/LU)",
+      "models": ["GFDL-CM4", "GFDL-ESM4", "CAMS-CSM1-0"],
+      "model_files": ["NOAA-GFDL__GFDL-CM4.md", "NOAA-GFDL__GFDL-ESM4.md", "CAMS__CAMS-CSM1-0.md"],
+      "pdfs": ["Heldetal19JAMES-GFDL-CM4-StructureAndPerformance.pdf", "Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics.pdf", "Rongetal21AdvAtmosSc-CAMS-CSM1-0-CMIP6Historical.pdf"],
+      "per_model_pdfs": {
+        "GFDL-CM4":    ["Heldetal19JAMES-GFDL-CM4-StructureAndPerformance.pdf", "Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics.pdf"],
+        "GFDL-ESM4":   ["Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics.pdf"],
+        "CAMS-CSM1-0": ["Rongetal21AdvAtmosSc-CAMS-CSM1-0-CMIP6Historical.pdf"]
+      },
+      "target_unknowns": {
+        "GFDL-CM4":    ["LU", "VL"],
+        "GFDL-ESM4":   ["LU", "VL", "N-dep", "CO2-mode"],
+        "CAMS-CSM1-0": ["SD", "SI", "BC", "OC", "MD", "SS", "LU"]
+      },
+      "note": "GFDL-CM4: Held 2019 was read in second pass without resolving LU/VL; re-read alongside Dunne 2020 for any cross-model forcing table. GFDL-ESM4: Dunne 2020 JAMES (doi:10.1029/2019MS002015) is the primary CMIP6 ESM4 paper — check appendices and supplementary material carefully. CAMS-CSM1-0: Rong 2021 AdvAtmosSc (doi:10.1007/s00376-020-0171-y) is the CMIP6 historical paper — the previously available Rong 2018 was a precursor paper. Already confirmed: G/O/SO=✓std; VL=✗dev(zeroed).",
+      "status": "complete",
+      "run_id": "wf_80929758-f16",
+      "results_summary": "GFDL-CM4: LU/VL still ? — neither Held 2019 nor Dunne 2020 names these explicitly; missing Winton 2020 JAMES doi:10.1029/2019MS001819. GFDL-ESM4: LU=✓std, VL=✓std (both medium confidence via CMIP6 compliance statement). CAMS-CSM1-0: SD/SI/BC/OC=✓std (MACv2-SP Rong2021), VL=✓std CORRECTED from ✗dev (Rong2021 formal runs use IACETH), LU=✗dev (fixed land use Table1). MD/SS=? still."
+    },
+    {
+      "id": 6,
+      "label": "FGOALS-g3 + FGOALS-f3-L (all remaining)",
+      "models": ["FGOALS-g3", "FGOALS-f3-L"],
+      "model_files": ["CAS__FGOALS-g3.md", "CAS__FGOALS-f3-L.md"],
+      "pdfs": ["Lietal20JAMES-FGOALS-g3-DescriptionAndEvaluation.pdf", "Lietal20JGR-FGOALS-GAMIL3-GridPointAtmosphericModelDescriptionAndEvaluation.pdf", "Heetal19AdvAtmosSc-FGOALS-f3-L-HistoricalAMIPEvaluation.pdf", "Heetal20AtmosOceScLett-FGOALS-f3-L-DescriptionsForCMIP6DECK.pdf", "Guoetal20AdvAtmosSc-FGOALS-f3-L-OverviewOfCMIP6Historical.pdf"],
+      "per_model_pdfs": {
+        "FGOALS-g3":   ["Lietal20JAMES-FGOALS-g3-DescriptionAndEvaluation.pdf", "Lietal20JGR-FGOALS-GAMIL3-GridPointAtmosphericModelDescriptionAndEvaluation.pdf"],
+        "FGOALS-f3-L": ["Heetal19AdvAtmosSc-FGOALS-f3-L-HistoricalAMIPEvaluation.pdf", "Heetal20AtmosOceScLett-FGOALS-f3-L-DescriptionsForCMIP6DECK.pdf", "Guoetal20AdvAtmosSc-FGOALS-f3-L-OverviewOfCMIP6Historical.pdf"]
+      },
+      "target_unknowns": {
+        "FGOALS-g3":   ["G", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL"],
+        "FGOALS-f3-L": ["MD", "SS", "LU", "VL"]
+      },
+      "note": "FGOALS-g3: Li 2020 JAMES (doi:10.1029/2019MS002012) = primary CMIP6 g3 paper; Li 2020 JGR (doi:10.1029/2020JD032574) = GAMIL3 atmospheric component (shared with g3). O=✓std already confirmed for FGOALS-g3. FGOALS-f3-L: He 2019 AdvAtmosSc (doi:10.1007/s00376-019-9027-8) = historical AMIP; He 2020 AtmosOceScLett (doi:10.1080/16742834.2020.1778419) = CMIP6 DECK; Guo 2020 AdvAtmosSc (doi:10.1007/s00376-020-2004-4) = CMIP6 historical overview. G/O/SD/SI/BC/OC/SO already confirmed for f3-L.",
+      "status": "complete",
+      "run_id": "wf_46cc8907-8f9",
+      "results_summary": "FGOALS-g3: FULLY RESOLVED — MD=✗dev(constant AOD=0.14), SS=✗dev(same constant), LU=✓std(Hurtt2017-LUH2), SO=✓std(Matthes2017), VL=✓std, G=✓std, SD/SI/BC/OC=✓std(MACv2-SP). FGOALS-f3-L: MD=~(CAM-Chem offline), SS=~(same), LU=✗dev(Hurtt2011-CMIP5), VL=? still."
+    },
+    {
+      "id": 7,
+      "label": "FIO-ESM-2-0 + EC-Earth3-ESM-1 + INM-CM5-0 (LU)",
+      "models": ["FIO-ESM-2-0", "EC-Earth3-ESM-1", "INM-CM5-0"],
+      "model_files": ["FIO-QLNM__FIO-ESM-2-0.md", "EC-Earth-Consortium__EC-Earth3-ESM-1.md", "INM__INM-CM5-0.md"],
+      "pdfs": ["Baoetal20JGR-FIO-ESM-2-0DescriptionAndEvaluation.pdf", "vanNoijeetal21GMD-EC-Earth3-AerChem.pdf", "Volodinetal17ClimDyn-INM-CM5-0-SimulationOfPresent-dayClimate.pdf"],
+      "per_model_pdfs": {
+        "FIO-ESM-2-0":    ["Baoetal20JGR-FIO-ESM-2-0DescriptionAndEvaluation.pdf"],
+        "EC-Earth3-ESM-1": ["vanNoijeetal21GMD-EC-Earth3-AerChem.pdf"],
+        "INM-CM5-0":       ["Volodinetal17ClimDyn-INM-CM5-0-SimulationOfPresent-dayClimate.pdf"]
+      },
+      "target_unknowns": {
+        "FIO-ESM-2-0":    ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL", "N-dep", "Fe-dep", "CO2-mode"],
+        "EC-Earth3-ESM-1": ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL", "N-dep", "Fe-dep", "CO2-mode"],
+        "INM-CM5-0":       ["LU"]
+      },
+      "note": "FIO-ESM-2-0: Bao 2020 JGR (doi:10.1029/2019JC016036) = primary CMIP6 paper; uses CAM5.3+CLM4.5 — expect similar forcing to CMCC/FIO-ESM lineage. EC-Earth3-ESM-1: van Noije 2021 GMD (doi:10.5194/gmd-14-5637-2021) covers EC-Earth3-AerChem (IFS+TM5), not ESM-1 directly; extract all forcing info for the shared EC-Earth3 IFS atmospheric core; note if ESM-1-specific info is absent and what was inferred. INM-CM5-0: Volodin 2017 ClimDyn (doi:10.1007/s00382-017-3539-7) = primary CMIP6 paper; G/O/SO/VL/aerosols confirmed — only LU remains ?.",
+      "status": "complete",
+      "run_id": "wf_9e9e4df4-ebb",
+      "results_summary": "FIO-ESM-2-0: G/O/SD/SI/BC/OC=✓std, MD/SS=✗dev(CMIP5 bg), SO/VL=✓std, CO2-mode=＋exc(emissions-driven); LU=? still. EC-Earth3-ESM-1: ALL ? — van Noije 2021 covers AerChem not ESM-1; no primary ESM-1 paper found. INM-CM5-0: LU=? still — Volodin 2017 doesn't mention land-use forcing."
+    }
+  ]
+}

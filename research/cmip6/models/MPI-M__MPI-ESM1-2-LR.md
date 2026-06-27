@@ -33,12 +33,14 @@
 ### Notes
 - MACv2-SP uses CMIP6 emission totals (ultimately from CEDS) only as a temporal scaling index for nine prescribed aerosol plumes — this is NOT the interactive CEDS+BB4CMIP6 path. The anthropogenic aerosol radiative effects are prescribed (direct + first indirect), not simulated from microphysics.
 - ECHAM6.3 as of version 6.3.03 introduced MACv2-SP; all subsequent CMIP6 production runs use it.
+- **CMIP5 context (Giorgetta et al. 2013 JAMES doi:10.1002/jame.20038; Schmidt et al. 2013 JAMES doi:10.1002/jame.20014; Stevens et al. 2013 JAMES doi:10.1002/jame.20015; Manzini et al. 2006 JCL)**: These papers cover MPI-ESM for CMIP5 only. CMIP5 solar = SPARC/SOLARIS dataset (predecessor to Matthes 2017); CMIP5 volcanic = extended Stenchikov et al. 1998 PADS dataset (NOT IACETH SAGE3λ). None of these CMIP5-era papers can confirm or deny the CMIP6 Matthes 2017 (SO) or IACETH SAGE3λ (VL) datasets. G, SO, and VL remain unconfirmed for CMIP6.
+- **Stage 9 full text review (Mauritsen et al. 2019 JAMES; 2026-06-27)**: Complete paper re-read confirms volcanic stratospheric aerosols ARE prescribed in historical simulations (section 8.2, lines noting "zero volcanic stratospheric aerosols" in piControl vs. "volcanoes are activated" in historical), but the specific dataset name (IACETH SAGE3λ) is NOT stated anywhere in the paper. Meinshausen 2017 (G) and Matthes 2017 (SO) are also not cited. N-deposition confirmed: "Gridded coupled chemistry model intercomparison N-deposition fields of version 1.0 are used as provided via the CMIP6 input database" (section 5.2) — this corresponds to NCAR-CCMI-2-0 (input4MIPs). G/SO/VL remain ?.
 
 ## ESM-specific forcing inputs
 
 | ESM input | Applied? | Verdict | Notes |
 |-----------|----------|---------|-------|
-| N-deposition (NHx/NOy) | Expected yes | ? | JSBACH3.2 active C-N-P + HAMOCC6 — NCAR-CCMI-2-0 expected; not confirmed |
+| N-deposition (NHx/NOy) | Yes | ✓std | HAMOCC6 ocean BGC: "Gridded coupled chemistry model intercomparison N-deposition fields of version 1.0 are used as provided via the CMIP6 input database" (Mauritsen et al. 2019 section 5.2) = NCAR-CCMI-2-0 (input4MIPs). Also applied to JSBACH3.2 land C-N-P. |
 | CO2-mode | ? | ? | Concentration-driven expected for historical; not confirmed |
 | Fe deposition (HAMOCC6) | Possible | ? | HAMOCC6 ocean BGC may need Fe input; not confirmed |
 

@@ -17,15 +17,15 @@
 | SI | Aerosol — sulphate indirect | ✗dev | TV | INM-AER1 — only **first aerosol indirect effect** (Twomey — influence on cloud drop radius) considered. No second indirect. | Volodin & Gritsun 2018 | Verbatim: "only the first aerosol indirect effect (the influence of aerosol on cloud drop radius) is taken into consideration." Incomplete indirect effect treatment. |
 | BC | Black carbon | ✗dev | TV | INM-AER1 interactive; BC as one of 10 species. Emissions source from CMIP6 dataset (assumed). | Volodin & Gritsun 2018 | As SD — centre-specific interactive scheme, not standard CEDS+BB4CMIP6 field prescription. |
 | OC | Organic carbon | ✗dev | TV | INM-AER1 interactive; OC as one of 10 species. | Volodin & Gritsun 2018 | As SD. |
-| MD | Mineral dust | ? | ? | INM-AER1 includes coarse/fine mineral dust as two of the 10 species. Dataset/treatment details not confirmed. | Volodin & Gritsun 2018 | Interactive within INM-AER1; not a fixed background as in MPI-ESM1.2. |
-| SS | Sea salt | ? | ? | INM-AER1 includes coarse/fine sea salt as two of the 10 species. | Volodin & Gritsun 2018 | As MD. |
+| MD | Mineral dust | ✗dev | TV | **INM-AER1 interactive**: coarse/fine mineral dust computed online as two of the 10 aerosol species. NOT Kinne 2013 prescribed natural background. | Volodin & Gritsun 2018 | Verbatim: "concentrations of 10 aerosols are calculated" — dust interactive, not fixed climatology. Deviates from standard prescribed background. |
+| SS | Sea salt | ✗dev | TV | **INM-AER1 interactive**: coarse/fine sea salt computed online as two of the 10 aerosol species. NOT Kinne 2013 prescribed natural background. | Volodin & Gritsun 2018 | As MD — interactive within INM-AER1 scheme, not prescribed standard dataset. |
 | LU | Land-use change | ? | ? | Not addressed in Volodin & Gritsun 2018. LUH2 v2.1h expected but not confirmed. | — | Open. |
 | SO | Solar irradiance | ✓std | TV | **Matthes et al. 2017** (TSI + solar spectrum; SOLARIS-HEPPA). | Volodin & Gritsun 2018 | Verbatim: "total solar irradiance (TSI), and solar spectrum...prescribed as recommended for the historical run of CMIP6." |
 | VL | Volcanic aerosols | ✓std | TV | **CMIP6 stratospheric volcanic sulfate aerosol** (= IACETH-SAGE3lambda-3-0-0). | Volodin & Gritsun 2018 | Verbatim: "stratospheric volcanic sulfate aerosol concentration...prescribed as recommended for the historical run of CMIP6." Source_id not named verbatim but IACETH is the only CMIP6 standard stratospheric aerosol dataset. |
 | FC | Flux corrections | n/a | n/a | None | | |
 
 ### Deviations from Eyring 2016 standard protocol
-- **SD/BC/OC = ✗dev**: INM-AER1 interactive aerosol block (Volodin & Kostrykin 2016) — 10-species scheme computing aerosol concentrations from CMIP6-compatible emissions. Neither the prescribed MACv2-SP path nor the CEDS+BB4CMIP6 interactive standard.
+- **SD/BC/OC/MD/SS = ✗dev**: INM-AER1 interactive aerosol block (Volodin & Kostrykin 2016) — 10-species scheme (coarse/fine sea salt, coarse/fine dust, BC, sulphate/organic modes) computed online. Neither MACv2-SP nor CEDS+BB4CMIP6 standard; dust/sea salt not from Kinne 2013 prescribed background.
 - **SI = ✗dev**: Only first indirect effect (cloud drop radius influence). No second indirect/lifetime effect.
 - **G/O/SO/VL = ✓std**: Direct protocol compliance confirmed from Volodin & Gritsun 2018 verbatim.
 - **LU = ?**: Not mentioned in the primary paper.
@@ -33,3 +33,4 @@
 ## Provenance
 - Stage 15 workflow run ID: wf_75e312c8-82e (2026-06-27); INM findings: 1-0 (confirmed from primary source)
 - Key sources: Volodin & Gritsun 2018 (*ESD* doi:10.5194/esd-9-1235-2018, verbatim quotes obtained); Volodin & Kostrykin 2016 (aerosol block description); WDC-Climate C6CMINIC0hi (component listings confirmed, no forcing dataset details)
+- Second-pass note (2026-06-27): Qiao et al. 2013 (*JGR-Oceans* doi:10.1002/jgrc.20327) reviewed — covers FIO-ESM v1 (CMIP5), contains no information relevant to INM-CM5-0. MD and SS resolved to ✗dev based on INM-AER1 interactive aerosol scheme confirmed in Volodin & Gritsun 2018: coarse/fine mineral dust and coarse/fine sea salt are two of the 10 online-computed species — not Kinne 2013 prescribed natural background. LU remains ? (not mentioned in any available source).

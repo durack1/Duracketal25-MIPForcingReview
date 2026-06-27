@@ -1,0 +1,294 @@
+{
+  "_comment": "CMIP6 second-pass PDF extraction state. Each batch = 1-3 models, max 4 agents, ~150k tokens. Restart any batch with resumeFromRunId.",
+  "current_batch": 17,
+  "current_batch_status": "all-complete",
+  "last_run_id": "wf_54a5bc9c-153",
+  "batch_limit": 2,
+  "total_batches": 16,
+  "completed_batches": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+  "_batch12_note": "Batch 12 complete (wf_1465768f-64c, 181555 tokens). GISS E2-1-G/E2-2-G/E3-G: all PDFs CMIP5-era. E2-2-G all 11 ?, E3-G all 11 ?. MISSING: Rind2020 JGR doi:10.1029/2019JD032204; GISS-E3-G primary paper unidentified.",
+  "_batch13_note": "Batch 13 complete (wf_3d5c4cb2-289, 65788 tokens). EC-Earth3-ESM-1: ABSENT from Doscher2022. All 14 components ?. No primary documentation identified.",
+  "_batch14_note": "Batch 14 complete (wf_54a5bc9c-153, 150303 tokens). CNRM family: Voldoire2012 CMIP5-only. All G/MD/SS/LU/SO/VL still ?. MISSING: Voldoire2019 doi:10.1029/2019MS001770; Michou2020 doi:10.1029/2019MS001816; Seferianetal19 doi:10.1029/2019MS001885.",
+  "_batch15_note": "Batch 15 complete (wf_37c076eb-2f9, 160472 tokens). FGOALS-g3: 10 unknowns (only O confirmed). FGOALS-f3-L: 4 unknowns (MD/SS/LU/VL). MISSING: Li2020 doi:10.1029/2019MS002010; He2021 doi:10.1029/2020MS002144.",
+  "_batch16_note": "Batch 16 complete (wf_f3506714-b7f, 99796 tokens). INM-CM5-0: MD/SS resolved ✗dev; LU still ?. FIO-ESM-2-0: all 14 ? (Qiao2013=CMIP5 v1). MISSING: Bao2020 doi:10.1029/2019MS002014.",
+  "_batch10_note": "Batch 10 complete (wf_f9d57008-b00, 77191 tokens, 197s). BCC-CSM2-MR: MD/SS=✗dev(CMIP5 Taylor2012 masses); CO2=conc. N-dep=? (absent from Wu2019 6-item forcing list).",
+  "_batch11_note": "Batch 11 complete (wf_f2332f34-c87, 200484 tokens, 276s). MPI-ESM LR/HR/HAM: ALL PDFs CMIP5-era — G/SO/VL still ?. MISSING: Mauritsen2019 JAMES doi:10.1029/2018MS001400; Tegen2019 GMD doi:10.5194/gmd-12-1331-2019; Neubauer2019 GMD -1643 & -3609.",
+  "_batch8_note": "Batch 8 complete (wf_ee9db368-aee, 154199 tokens, 228s). GFDL-CM4/ESM4: LU/VL still ? (Held2019 confirms forcing but never names LUH2/volcanic dataset). MISSING: Dunne2020 JAMES doi:10.1029/2019MS002015.",
+  "_batch9_note": "Batch 9 complete (wf_28f53493-673, 145861 tokens, 227s). ACCESS-CM2 fully resolved (MD=＋exc Woodward2011). TaiESM1: Lee2020 is CMIP5-era run only — G/O/LU/SO/VL still ?.",
+  "_batch6_note": "Batch 6 complete (wf_afa83273-fa3, 76311 tokens, 195s). MIROC6 verification: all ✓std confirmed from Tatebe2019 §2.4. VL=Thomason2019 SADS v2 confirmed.",
+  "_batch7_note": "Batch 7 complete (wf_48015eb5-868, 135767 tokens, 286s). MIROC-ES2L all confirmed; Fe-dep=~online. MIROC-ES2H Fe-dep resolved ? to ~(Ito2018/2011+SPRINTARS). Watanabe2021 not in library.",
+  "_batch4_note": "Batch 4 complete (wf_c0a1ff32-1d2, 97641 tokens, 204s). ACCESS-ESM1-5: all resolved. SO=✗dev(+4.9W/m² TSI offset); VL=✗dev(4-band collapsed+offset); aerosols ~(CLASSIC v1.0); N-dep=✓std; Fe-dep=FXk(0.6µmol internal).",
+  "_batch5_note": "Batch 5 complete (wf_7034c190-2c8, 88831 tokens, 165s). CAMS-CSM1-0: G/O/SO=✓std; VL=✗dev(aerosol zeroed); SD/SI/BC/OC/MD/SS/LU still ?. MISSING: He2019 JAMES doi:10.1029/2018MS001602.",
+  "_batch2_note": "Batch 2 complete (wf_18fd9681-9ce, 92081 tokens, 262s). MRI-ESM2-0: G/SO/LU=✓std; VL=~(hybrid Thomason+MASINGAR); MD/SS=＋exc; SD/SI/BC/OC=✓std(note: MASINGAR is interactive — may warrant ＋exc review); N-dep/Fe-dep/CO2-mode=?.",
+  "_batch3_note": "Batch 3 complete (wf_fe627e48-0e7, 87422 tokens, 300s). IPSL-CM6A-LR: VL=✓std(Thomason2018); aerosols all ~(LMDZORINCA offline climatology); G/LU/SO still ? (need Boucher2020 IPSL system paper not in library).",
+  "_batch1_note": "Batch 1 PDF-verified (wf_34fd2096-df4, 128426 tokens, 166s). Both CMCC models verified via pdftotext extraction of Lovato2022 Table 1. All verdicts confirmed. pdftotext working via mamba run -n xcd0112.",
+  "base_path": "/home/duro/git/Duracketal25-MIPForcingReview",
+  "batch_script": "/home/duro/git/Duracketal25-MIPForcingReview/research/cmip6/automation/pdf-extract-batch.js",
+  "batches": [
+    {
+      "id": 1,
+      "label": "CMCC models (all-?)",
+      "models": ["CMCC-CM2-SR5", "CMCC-ESM2"],
+      "model_files": ["CMCC__CMCC-CM2-SR5.md", "CMCC__CMCC-ESM2.md"],
+      "pdfs": [
+        "Cherchietal19JAMES-CMCC-CM2-GlobalMeanClimateAndMainPatternsOfVariability.pdf",
+        "Lovatoetal22JAMES-CMCC-ESM2.pdf"
+      ],
+      "target_unknowns": {
+        "CMCC-CM2-SR5": ["G","O","SD","SI","BC","OC","MD","SS","LU","SO","VL"],
+        "CMCC-ESM2": ["G","O","SD","SI","BC","OC","MD","SS","LU","SO","VL","N-dep","Fe-dep","CO2-mode"]
+      },
+      "status": "running",
+      "run_id": "wf_a1e3859c-9a4"
+    },
+    {
+      "id": 2,
+      "label": "MRI-ESM2-0",
+      "models": ["MRI-ESM2-0"],
+      "model_files": ["MRI__MRI-ESM2-0.md"],
+      "pdfs": [
+        "Yukimotoetal19JMetSocJapan-MRI-ESM2p0-DescriptionAndBasicPhysicalEvaluation.pdf"
+      ],
+      "target_unknowns": {
+        "MRI-ESM2-0": ["G","SD","SI","BC","OC","MD","SS","LU","SO","VL","N-dep","Fe-dep","CO2-mode"]
+      },
+      "note": "O=＋exc already confirmed (MRI-CCM2.1 interactive). Do not change O.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 3,
+      "label": "IPSL-CM6A-LR",
+      "models": ["IPSL-CM6A-LR"],
+      "model_files": ["IPSL__IPSL-CM6A-LR.md"],
+      "pdfs": [
+        "Hourdinetal20JAMES-LMDZ6A-AtmosphericComponentOfIPSL-CM6.pdf",
+        "Szopaetal12ClimDyn-IPSL-CM5AerosolAndOzoneForcing1850To2100.pdf"
+      ],
+      "target_unknowns": {
+        "IPSL-CM6A-LR": ["G","SD","SI","BC","OC","MD","SS","LU","SO","VL","N-dep","CO2-mode"]
+      },
+      "note": "O=✓std already confirmed. Hourdin2020 is the primary; Szopa2012 is CMIP5 predecessor for aerosol lineage.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 4,
+      "label": "ACCESS-ESM1-5 (all-?)",
+      "models": ["ACCESS-ESM1-5"],
+      "model_files": ["CSIRO__ACCESS-ESM1-5.md"],
+      "pdfs": [
+        "Ziehnetal20JSHESS-ACCESS-ESM1-5.pdf",
+        "Lawetal17GMD-ACCESS-ESM1-ModelDescriptionAndPre-industrialSimulation.pdf",
+        "Ziehnetal17GMD-ACCESS-ESM1-0-CarbonCycleInHistoricalSimulations.pdf"
+      ],
+      "target_unknowns": {
+        "ACCESS-ESM1-5": ["G","O","SD","SI","BC","OC","MD","SS","LU","SO","VL","N-dep","Fe-dep","CO2-mode"]
+      },
+      "note": "Aerosol scheme confirmed as CLASSIC v1.0 (NOT GLOMAP-mode). Ziehn2020 is primary CMIP6 paper.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 5,
+      "label": "CAMS-CSM1-0",
+      "models": ["CAMS-CSM1-0"],
+      "model_files": ["CAMS__CAMS-CSM1-0.md"],
+      "pdfs": [
+        "Rongetal18JMetRes-CAMS-CSM1-0-BasicEvaluationOfClimatologyAndClimateVariability.pdf"
+      ],
+      "target_unknowns": {
+        "CAMS-CSM1-0": ["O","SD","SI","BC","OC","MD","SS","LU","SO","VL"]
+      },
+      "note": "G=✓std already confirmed (Meinshausen2017). Do not change G.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 6,
+      "label": "MIROC6 (verification pass)",
+      "models": ["MIROC6"],
+      "model_files": ["MIROC__MIROC6.md"],
+      "pdfs": [
+        "Tatebeetal19GMD-MIROC6-DescriptionAndBasicEvaluation.pdf"
+      ],
+      "target_unknowns": {
+        "MIROC6": ["VL-confirm","SD-SI-detail"]
+      },
+      "note": "All verdicts ✓std from prior pass. This is a VERIFICATION — confirm VL=✓std (Thomason/IACETH), confirm SPRINTARS driven by CMIP6-standard emissions. Update only if corrections found.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 7,
+      "label": "MIROC-ES2L + MIROC-ES2H (Fe-dep + confirm)",
+      "models": ["MIROC-ES2L", "MIROC-ES2H"],
+      "model_files": ["MIROC__MIROC-ES2L.md", "MIROC__MIROC-ES2H.md"],
+      "pdfs": [
+        "Hajimaetal20GMD-MIROC-ES2L-DevelopmentAndEvaluationOfBiogeochemicalProcessesAndFeedbacks.pdf",
+        "Kawamiyaetal20ProgEarthPlanetSc-TwoDecadesOfEarthSystemModellingWithMIROC.pdf"
+      ],
+      "target_unknowns": {
+        "MIROC-ES2L": ["Fe-dep"],
+        "MIROC-ES2H": ["Fe-dep","inference-confirmation"]
+      },
+      "note": "MIROC-ES2L all ✓std confirmed except Fe-dep. MIROC-ES2H verdicts inferred from ES2L — need confirmation or note of Watanabe2021 gap.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 8,
+      "label": "GFDL-CM4 + GFDL-ESM4 (LU + VL)",
+      "models": ["GFDL-CM4", "GFDL-ESM4"],
+      "model_files": ["NOAA-GFDL__GFDL-CM4.md", "NOAA-GFDL__GFDL-ESM4.md"],
+      "pdfs": [
+        "Heldetal19JAMES-GFDL-CM4-StructureAndPerformance.pdf",
+        "Dunneetal12JCL-GFDL-ESM2Climate-CarbonESMsPhysicalFormulationAndBaselineCharacteristics.pdf"
+      ],
+      "target_unknowns": {
+        "GFDL-CM4": ["LU","VL"],
+        "GFDL-ESM4": ["LU","VL","N-dep","CO2-mode"]
+      },
+      "note": "Most components ✓std. Only LU and VL unknown for CM4. ESM4 also needs N-dep and CO2 mode. Dunne2012 is GFDL-ESM2 (CMIP5) for lineage context.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 9,
+      "label": "ACCESS-CM2 (MD only) + TaiESM1 (G/O/LU/SO/VL)",
+      "models": ["ACCESS-CM2", "TaiESM1"],
+      "model_files": ["CSIRO-ARCCSS__ACCESS-CM2.md", "AS-RCEC__TaiESM1.md"],
+      "pdfs": [
+        "Bietal20JSHESS-ACCESS-CM2.pdf",
+        "Bodmanetal20JSHESS-ACCESS-AM2-AMIPEvaluation.pdf",
+        "Leeetal20GMD-TaiESM1-0-DescriptionAndMeanStateEvaluation.pdf"
+      ],
+      "target_unknowns": {
+        "ACCESS-CM2": ["MD"],
+        "TaiESM1": ["G","O","LU","SO","VL"]
+      },
+      "note": "ACCESS-CM2: only MD=? remaining (GLOMAP-mode dust treatment). TaiESM1: aerosols=~ (SNAP) confirmed; need G/O/LU/SO/VL. Lee2020 describes CMIP5-style run — flag if CMIP6 forcing not explicit.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 10,
+      "label": "BCC-CSM2-MR (MD/SS/N-dep/CO2-mode)",
+      "models": ["BCC-CSM2-MR"],
+      "model_files": ["BCC__BCC-CSM2-MR.md"],
+      "pdfs": [
+        "Wuetal19GMD-BCC-CSM-ProgressFromCMIP5ToCMIP6.pdf",
+        "Wuetal14JMetRes-BCC-CSM1Overview.pdf"
+      ],
+      "target_unknowns": {
+        "BCC-CSM2-MR": ["MD","SS","N-dep","CO2-mode"]
+      },
+      "note": "G/O/SD/BC/OC/LU/SO/VL=✓std confirmed. SI=✗dev confirmed (CMIP5-Taylor2012 masses). Wu2019 (CMIP5→CMIP6 progress) is primary. Wu2014 is lineage context. Wu2020(BCC-ESM1) and Wu2021(BCC-CSM2-HR) are out-of-scope models — use for aerosol framework context only.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 11,
+      "label": "MPI-ESM1-2-LR + HR + HAM (G/SO/VL)",
+      "models": ["MPI-ESM1-2-LR", "MPI-ESM1-2-HR", "MPI-ESM-1-2-HAM"],
+      "model_files": ["MPI-M__MPI-ESM1-2-LR.md", "MPI-M__MPI-ESM1-2-HR.md", "HAMMOZ-Consortium__MPI-ESM-1-2-HAM.md"],
+      "pdfs": [
+        "Giorgettaetal13JAMES-ClimateCarbonCycleChanges1850To2100InMPI-ESMForCMIP5.pdf",
+        "Stevensetal13JAMES-MPI-M-ECHAM6AtmosphericComponent.pdf",
+        "Manzinietal06JCL-MAECHAM5-InfluenceOfSSTOnNorthernWinterStratosphere.pdf"
+      ],
+      "target_unknowns": {
+        "MPI-ESM1-2-LR": ["G","SO","VL"],
+        "MPI-ESM1-2-HR": ["G","SO","VL"],
+        "MPI-ESM-1-2-HAM": ["G","LU","SO","VL"]
+      },
+      "note": "All three use ECHAM6.3 atmosphere. CMIP5 papers — check if Matthes2017 solar and IACETH volcanic were adopted for CMIP6. Note clearly if inference is tenuous.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 12,
+      "label": "GISS E2-1-G + E2-2-G + E3-G (G/SO/VL and E2-2/E3 gaps)",
+      "models": ["GISS-E2-1-G", "GISS-E2-2-G", "GISS-E3-G"],
+      "model_files": ["NASA-GISS__GISS-E2-1-G.md", "NASA-GISS__GISS-E2-2-G.md", "NASA-GISS__GISS-E3-G.md"],
+      "pdfs": [
+        "Schmidtetal14JAMES-GISS-E2ConfigurationAndAssessmentForCMIP5.pdf",
+        "Milleretal14JAMES-GISS-E2CMIP5HistoricalSimulations1850To2012.pdf"
+      ],
+      "target_unknowns": {
+        "GISS-E2-1-G": ["G","MD","SS","LU","SO","VL"],
+        "GISS-E2-2-G": ["G","O","SD","SI","BC","OC","MD","SS","LU","SO","VL"],
+        "GISS-E3-G": ["G","O","SD","SI","BC","OC","MD","SS","LU","SO","VL"]
+      },
+      "note": "CMIP5 papers for GISS-E2. GISS-E2-1-G O=✗dev confirmed. E2-2-G and E3-G are newer CMIP6 variants — CMIP5 papers may give lineage clues only. Flag inference uncertainty explicitly.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 13,
+      "label": "EC-Earth3-ESM-1 (all-?)",
+      "models": ["EC-Earth3-ESM-1"],
+      "model_files": ["EC-Earth-Consortium__EC-Earth3-ESM-1.md"],
+      "pdfs": [
+        "Doscheretal22GMD-EC-Earth3ForCMIP6.pdf",
+        "Hazelegeretal10BAMS-EC-Earth-ASeamlessEarth-systemPredictionApproachInAction.pdf"
+      ],
+      "target_unknowns": {
+        "EC-Earth3-ESM-1": ["G","O","SD","SI","BC","OC","MD","SS","LU","SO","VL","N-dep","Fe-dep","CO2-mode"]
+      },
+      "note": "EC-Earth3 base (IFS atmosphere) has G/O/aerosols/LU/SO all ✓std. Question: does ESM-1 share this or is it separately described? PISCES-v2 ocean BGC confirmed. Check Doscher2022 specifically for ESM-1.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 14,
+      "label": "CNRM family (G/MD/SS/LU/SO/VL gaps)",
+      "models": ["CNRM-CM6-1", "CNRM-CM6-1-HR", "CNRM-ESM2-1"],
+      "model_files": ["CNRM-CERFACS__CNRM-CM6-1.md", "CNRM-CERFACS__CNRM-CM6-1-HR.md", "CNRM-CERFACS__CNRM-ESM2-1.md"],
+      "pdfs": [
+        "Voldoireetal12ClimDyn-CNRM-CM5p1DescriptionAndBasicEvaluation.pdf"
+      ],
+      "target_unknowns": {
+        "CNRM-CM6-1": ["G","MD","SS","LU","SO","VL"],
+        "CNRM-CM6-1-HR": ["G","MD","SS","LU","SO","VL"],
+        "CNRM-ESM2-1": ["G","MD","SS","LU","SO","VL","N-dep","Fe-dep","CO2-mode"]
+      },
+      "note": "O/SD/BC/OC confirmed for all three. CMIP5 paper — note clearly if inference from CNRM-CM5.1 to CM6-1 is tenuous. CNRM may have adopted Matthes2017/IACETH for CMIP6.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 15,
+      "label": "FGOALS-g3 + FGOALS-f3-L remaining gaps",
+      "models": ["FGOALS-g3", "FGOALS-f3-L"],
+      "model_files": ["CAS__FGOALS-g3.md", "CAS__FGOALS-f3-L.md"],
+      "pdfs": [
+        "Lietal13AdvAtmosSc-LASG-IAP-FGOALS-g2.pdf",
+        "Baoetal13AdvAtmosSc-LASG-IAP-FGOALS-s2.pdf"
+      ],
+      "target_unknowns": {
+        "FGOALS-g3": ["G","SD","SI","BC","OC","MD","SS","LU","SO","VL"],
+        "FGOALS-f3-L": ["MD","SS","LU","VL"]
+      },
+      "note": "FGOALS-g3 O=✓std confirmed. FGOALS-f3-L G/O/SO confirmed. CMIP5 predecessor papers — flag uncertainty explicitly.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 16,
+      "label": "FIO-ESM-2-0 + INM-CM5-0 remaining gaps",
+      "models": ["FIO-ESM-2-0", "INM-CM5-0"],
+      "model_files": ["FIO-QLNM__FIO-ESM-2-0.md", "INM__INM-CM5-0.md"],
+      "pdfs": [
+        "Qiaoetal13JGR-FIO-ESMDevelopmentAndEvaluationOfAnESMWithSurfaceGravityWaves.pdf"
+      ],
+      "target_unknowns": {
+        "FIO-ESM-2-0": ["G","O","SD","SI","BC","OC","MD","SS","LU","SO","VL","N-dep","Fe-dep","CO2-mode"],
+        "INM-CM5-0": ["LU","MD","SS"]
+      },
+      "note": "FIO-ESM-2-0: all ? — CAM5.3 lineage. Qiao2013 is FIO-ESM v1 (CMIP5). INM-CM5-0: G/O/SO/VL=✓std, SD/BC/OC/SI=✗dev (INM-AER1) confirmed. Only LU + INM-AER1 MD/SS treatment unknown.",
+      "status": "pending",
+      "run_id": null
+    }
+  ]
+}

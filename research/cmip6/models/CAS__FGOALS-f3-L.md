@@ -16,9 +16,9 @@
 | SI | Aerosol — sulphate indirect | ✓std | TV | As SD — summary-level CMIP6 standard compliance. | | |
 | BC | Black carbon | ✓std | TV | As SD. | | |
 | OC | Organic carbon | ✓std | TV | As SD. | | |
-| MD | Mineral dust | ? | ? | Not individually confirmed. | | |
-| SS | Sea salt | ? | ? | Not individually confirmed. | | |
-| LU | Land-use change | ? | ? | Expected LUH2 v2.1h; not individually confirmed. | | |
+| MD | Mineral dust | ~ | FXc | **CAM-Chem offline aerosol climatology** (Lamarque et al. 2012). Five aerosol species (sulfates, sea salts, BC, OC, dust) prescribed from NCAR CAM-Chem output — not the CMIP6 standard Kinne 2013 natural background. | *Adv. Atmos. Sci.* 2019 (He et al.); *Atmos. Oce. Sci. Lett.* 2020 (He et al.) | Verbatim (He 2019): "aerosol mass concentrations…taken from…CAM-Chem (Lamarque et al., 2012), there are five aerosol species including sulfates, sea salts, black carbon, organic carbon, and dust." |
+| SS | Sea salt | ~ | FXc | **CAM-Chem offline aerosol climatology** (Lamarque et al. 2012). Same source as MD. | *Adv. Atmos. Sci.* 2019 (He et al.); *Atmos. Oce. Sci. Lett.* 2020 (He et al.) | Confirmed alongside MD and BC/OC from the same CAM-Chem aerosol fields. |
+| LU | Land-use change | ✗dev | TV | **Hurtt et al. 2011** (CMIP5-era LUH, not LUH2). AMIP paper explicitly cites Hurtt 2011. Historical coupled (Guo 2020) says "CMIP6 historical forcing" without naming LUH2. | *Adv. Atmos. Sci.* 2019 (He et al.) | Verbatim (He 2019 AMIP): "The land use datasets are prescribed as their mean climate values (Hurtt et al., 2011)." CMIP5 dataset; deviates from LUH2 standard. |
 | SO | Solar irradiance | ✓std | TV | **Matthes et al. 2017** (SOLARIS-HEPPA-3-2). | *Adv. Atmos. Sci.* 2020 | Verbatim: "solar forcing from Matthes et al. (2017)." |
 | VL | Volcanic aerosols | ? | ? | Not confirmed from Stage 16 sources. | | |
 | FC | Flux corrections | n/a | n/a | None | | |
@@ -26,3 +26,4 @@
 ## Provenance
 - Stage 16 workflow run ID: wf_dcf6412c-ee4 (2026-06-27); confirmed: G/O/SO from *Adv. Atmos. Sci.* verbatim; SD/BC/OC summary-level only; MD/SS/LU/VL unconfirmed
 - Key sources: He et al. 2021 (*JAMES* doi:10.1029/2020MS002144); *Adv. Atmos. Sci.* doi:10.1007/s00376-020-2004-4
+- Second-pass PDF extraction (2026-06-27): He et al. 2019 *Adv. Atmos. Sci.* (doi:10.1007/s00376-019-9027-8) confirms MD and SS as CAM-Chem offline aerosol fields (Lamarque et al. 2012) — five species prescribed from NCAR CAM-Chem output, centre-specific (~). He 2020 *Atmos. Oce. Sci. Lett.* (doi:10.1080/16742834.2020.1778419) corroborates same aerosol source for piControl/DECK. He 2019 AMIP paper confirms LU = Hurtt et al. 2011 (CMIP5 LUH) prescribed as mean climatological values — deviates from LUH2 (✗dev). VL not named in any paper; remains unconfirmed.
