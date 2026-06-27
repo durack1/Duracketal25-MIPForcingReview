@@ -154,6 +154,45 @@ CMIP5 introduced the first generation of Earth System Models (ESMs) with active 
 - **VL=✓std confirmed for MIROC-ESM/CHEM**: Sato et al. 1993 + subsequent updates; post-1998 optical depth exponentially reduced with 1-year relaxation time. Watanabe2011 GMD verbatim confirmed 1-0. This matches the standard Taylor2012 VL protocol. MIROC-ESM/CHEM VL treatment is identical to MIROC3.2 CMIP3 (Sato-updated), confirming no regression in volcanic forcing.
 - **SPRINTARS indirect aerosol effects included (SI=exc)**: SPRINTARS is "coupled to radiation and cloud/precipitation for direct/semi-direct/indirect effects" (Watanabe2011 verbatim). This makes MIROC-ESM/CHEM one of the richest aerosol suites in the CMIP5 review — all species interactive with indirect effects, comparable to CESM1-CAM5 (MAM3) and CSIRO-Mk3.6.0 (Rotstayn2010).
 
+## Status — first + second pass complete (2026-06-22)
+
+**First pass (Stages 1–11):** ALL COMPLETE ✓  
+**Second pass (Stages A/A2/B/C/D/E):** ALL COMPLETE ✓  
+All 47 models documented; verified-forcing-matrix.csv fully populated.
+
+### Deferred / still-open items (literature exhausted or paywalled)
+
+Items below cannot be resolved from currently available PDFs. Grouped by required action:
+
+**Needs modelling group contact or new paper upload:**
+
+| Model(s) | Open cells | Status / root cause |
+|----------|-----------|---------------------|
+| bcc-csm1-1, bcc-csm1-1-m | G O SO VL | Wu 2014 + Wu 2010 + Cionni 2011 + Eyring 2013 all read; no English-language source names any of these four datasets for BCC. Chinese-language primary source may exist. |
+| CMCC-CM | G SD SI BC OC MD SS LU SO VL | Scoccimarro 2011 paywalled (doi:10.1175/2011JCLI4104.1); only O=✓std confirmed (Cionni2011 C1modB via Eyring 2013). |
+| CMCC-CMS | G O SD SI BC OC MD SS LU SO VL | No accessible primary source; Manzini 2006 covers MAECHAM5 dynamics only; O=? (hitop C1modB inferred but absent from Eyring 2013 Table 1). |
+| CMCC-CESM | All 12 + ESM inputs | Fogli 2009 grey-lit RP0061 + Vichi 2011 both read; 35/36 forcing cells unconfirmed. Most documentation-sparse centre in the review. |
+| HadCM3 | G O SD BC OC LU SO VL (8) | Stage 8 workflow confirmed HadGEM2-ES only; HadCM3 CMIP5-specific forcing not documented in any available paper. Whether CMIP3 datasets (Lean1995 solar, IPCC-TAR GHG) were updated for CMIP5 is unconfirmed. |
+| MIROC4h | All 12 | Sakamoto 2012 covers 1950 control run only — no CMIP5 historical forcing detail. |
+| MIROC5 | All 12 | Watanabe M. 2010 covers mean-state; no CMIP5 historical forcing table. |
+| MIROC-ESM, MIROC-ESM-CHEM | SO | Solar dataset unresolved across all four MIROC CMIP5 models; Lean 2005 hypothesis refuted, Wang 2005 not confirmed. |
+| EC-EARTH | G O LU SO VL | Explicitly deferred by user (awaiting CMIP6 cross-reference pass). SI=✗dev confirmed. Aerosols=~std confirmed. |
+| CanESM2, CanCM4 | LU | AMIP-GLC2000 confirmed for AMIP runs; coupled-historical Hurtt2011 not confirmed in vonSalzen 2013. |
+| CanESM2 | N-dep DIC-init | ESM-specific inputs; Arora 2011 + vonSalzen 2013 + Christian 2014 all read; Arora & Boer 2010 terrestrial BGC paper needed for N-dep. |
+| CESM1-FASTCHEM | MD SS + most cells | Treatment largely unresolved; interactive-O and Lamarque2010-emis-aerosol claims both refuted; likely CAM4-like but unconfirmed. |
+| CESM1-WACCM | MD SS | Aerosol scheme specifics unresolved; WACCM chemistry confirmed as ＋exc but aerosol details open. |
+| GISS-E2-R | MD SS | Physics-version dependent; MD/SS specific to p1 NINT configuration — needs rundecks or Schmidt 2014 p1 detailed supplement. |
+| MPI-ESM-LR/MR/P | SO VL ESM-inputs | SO/VL: Giorgetta 2013 paywalled during Stage 7; confirmed O/G/LU/aerosol but not solar or volcanic. ESM inputs (N-dep, CO2-mode, HAMOCC-iron) unresolved. |
+| CNRM-CM5 | SO | Solar dataset unnamed in Voldoire 2013; Ammann 2007 volcanic confirmed (✗dev). |
+| IPSL-CM5A/B | LU | ORCHIDEE land model confirmed but LUH1 Hurtt 2011 not explicitly named in Dufresne 2013. |
+
+**Likely resolvable from ES-DOC (no PDF needed):**
+
+| Model(s) | Open cells | Action |
+|----------|-----------|--------|
+| MIROC4h, MIROC5 | All 12 | ES-DOC CMIP5 experiment metadata for historical runs should name forcing datasets; Sakamoto 2012 / Watanabe 2010 are scope-limited primary papers |
+| ACCESS1-0, ACCESS1-3 | SD BC OC MD SS LU SO VL | Bi 2013 confirms O=✓std; aerosol/LU/SO/VL unconfirmed from primary source — cross-check HadGEM2-A via Collins 2011 / Martin 2011 supported but not directly confirmed |
+
 ## Cross-cutting findings (Stage 8 — UKMO: HadCM3, HadGEM2-AO/CC/ES)
 
 - **HadGEM2-ES fully documented, 14/14 claims confirmed 1-0**: All 12 standard forcings plus CO2 mode and atmospheric chemistry inputs confirmed from Jones2011 (GMD 4:543), Collins2011 (GMD 4:1051), and Martin2011 (GMD 4:723). Only ESM inputs (N-deposition dataset year, MEDUSA ocean BGC nutrients) and BC-on-snow remain open.

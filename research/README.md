@@ -147,6 +147,36 @@ Legend: ☐ not started · ◐ in progress · ☑ complete
 
 **All 24 CMIP3 model files pre-seeded** in `cmip3/models/<CENTER>__<model>.md` with their Table S1 rows in the augmented schema (Verdict/Temporal/Dataset blank, ready to fill). Stages 3–10 now just populate existing files — no setup per stage. INM-CM3.0's row is all "?" (built from primary literature, not in Table S1).
 
+## Project status — all phases (as of 2026-06-27)
+
+| Phase | Models | Passes complete | Fully resolved | Partial / deferred | Permanently closed | Next action |
+|-------|--------|-----------------|---------------|-------------------|-------------------|-------------|
+| CMIP3 | 24 | 1 | 21 | 3 (AOM/CCSM3/Mk3.5) | 0 | Second pass: 8 targeted open questions (see below) |
+| CMIP5 | 47 | 2 | ~30 | ~17 (deferred — see `cmip5/README.md`) | 0 | Modelling group contact for paywalled/silent centres |
+| CMIP6 | 64 | 5 | 35 | 25 | 4 | Modelling group contact (Priority 1/2 table in `cmip6/README.md`) |
+
+**Recommended work order:**
+1. **CMIP3 second pass** — 8 targeted questions; mostly single-component gaps or Table S1 conflict resolutions. Highest leverage per effort: directly affects synthesis paper claims about Table S1 accuracy.
+2. **CMIP5 deferred items** — mix of paywalled papers and silent primary sources. Priority: BCC (4 unknowns × 2 models), MIROC4h/5 (all cells, needs ES-DOC), CMCC-CM/CMS (paywalled).
+3. **CMIP6 Priority 1 follow-up** — 8 models where one email resolves the model completely (GFDL-CM4 VL, FGOALS-f3-L VL, etc.).
+4. **CMIP6 Priority 2 follow-up** — 10 model clusters needing broader group contact.
+
+## Open items for CMIP3 second pass
+
+All 10 stages complete; the following questions remain unresolved from available literature. In priority order:
+
+| # | Model | Component | Table S1 claim | Issue | Required source |
+|---|-------|-----------|----------------|-------|-----------------|
+| 1 | giss_aom | G SD SO | Y Y Y | Russell 1995 PDF uploaded but Appendix B (forcing details) not yet fully extracted | Read Russell 1995 *Atmos.–Ocean* §forcing for G/SD/SO specifics |
+| 2 | ncar_ccsm3_0 | BC OC SD | Y Y Y | All three marked TV in Table S1; FXc claim refuted but TV unconfirmed — temporal treatment genuinely open | Collins et al. 2006 §forcing or PCMDI CCSM3 page for BC/OC/SD temporal treatment |
+| 3 | csiro_mk3_0 | O | Y | Wang 1995 AMIP-II FXc confirmed as baseline; whether TV ozone was applied in 20C3M is undocumented | CSIRO 20C3M run documentation or CTR_021 companion to Gordon 2002 |
+| 4 | csiro_mk3_5 | O + all | Y + ? | All cells inferred from Mk3.0; no Mk3.5-specific primary source located | Gordon 2010 (suspected Mk3.5 primary paper) — not yet uploaded |
+| 5 | ukmo_hadcm3 | VL | Y | Applied in HadCM3-based attribution ensemble (Stott 2000) but 20C3M archived submission unconfirmed | Confirm VL applied in 20C3M specifically (not just attribution); CEDA archive or Jones 2003 |
+| 6 | ukmo_hadgem1 | LU | − | Goldewijk 2001 land-use applied in Run 1 per PCMDI; Table S1 codes LU=− which may be wrong | Confirm whether LU was applied in the 20C3M submission (Table S1 correction candidate) |
+| 7 | mri_cgcm2_3_2a | O | Y | PCMDI 20C3M page lists only 4 forcing agents (GHG/sulphate/volcanic/solar) — ozone conspicuously absent; O=Y may be a Table S1 error | Yukimoto 2001 *Pap. Met. Geophys.* 51(2) radiation section — confirm whether ozone was a transient forcing in 20C3M |
+| 8 | bccr_bcm2.0 | SD | Y | Sulphate applied (Y confirmed) but dataset unidentified; Boucher & Pham 2002 LOA hypothesis explicitly refuted; ARPEGE shared with CNRM but Furevik 2003 is control-only | Need BCCR-specific 20C3M documentation or direct group contact (Helge Drange, BCCR Norway) |
+| — | inmcm3_0 | VL FC | ~ ~ | VL: volcanic file referenced in PDF but claim unresolved. FC: heat+FW corrections suspected but not confirmed | Re-read Volodin & Diansky 2004 §forcing explicitly for VL and FC |
+
 Later passes (after CMIP3): CMIP5 lineage (e.g. GFDL CM3/ESM2M, GISS-E2-H/R, CCSM4) then CMIP6/input4MIPs.
 
 **CMIP5 pre-seeded:** `cmip5/data/cmip5-duracketal16-model-list.csv` — 47 CMIP5 models from Durack et al. (2016) Table S1. Includes the CMIP3-centre descendants: GFDL-CM2p1/CM3/ESM2G/ESM2M, GISS-E2-H/R(+CC), CCSM4/CESM1-*, CNRM-CM5, CSIRO-Mk3.6.0, IPSL-CM5A/B, MPI-ESM-LR/MR/P, HadCM3/HadGEM2-*, MIROC5/-ESM, CanESM2, NorESM1, bcc-csm1-1, FGOALS-g2/s2.
