@@ -35,13 +35,9 @@
 | N-deposition | ? | If LPJ-GUESS land BGC AND PISCES ocean BGC both active, N-dep required. NCAR-CCMI-2-0 expected but NOT confirmed. |
 | CO2-mode | ? | Concentration-driven for historical expected; NOT confirmed. |
 
-## Open questions for second pass
-1. What is the primary documentation paper for EC-Earth3-ESM-1? (Not Döscher 2022 — absent from Table 1)
-2. Is the land BGC component LPJ-GUESS? Which version?
-3. LU mechanism: direct LUH2 ingestion or precomputed from EC-Earth3-Veg runs?
-4. N-dep dataset: NCAR-CCMI-2-0 or other?
-5. Fe deposition dataset for PISCES-v2 ocean iron cycling?
-6. CO2-mode confirmation for historical?
+## Status: PERMANENTLY UNRESOLVABLE (confirmed 2026-06-27)
+
+**No primary documentation paper exists for EC-Earth3-ESM-1.** Confirmed by user 2026-06-27: the EC-Earth3 Consortium has not published a dedicated paper for this configuration. **EC-Earth3-ESM-1-1 is planned as the successor for CMIP7.** All forcing verdicts remain ? by necessity — not from lack of effort but from absence of primary documentation. The shared-IFS inference (all main atm forcings expected to follow EC-Earth3 base) is the best available evidence but cannot be promoted to a confirmed verdict without a citable source.
 
 ## Notes
 Both primary EC-Earth papers read in full (2026-06-27 pass):

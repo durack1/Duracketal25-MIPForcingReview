@@ -7,7 +7,7 @@
 - **Model family / lineage:** ModelE2.1 atmosphere + GISS Ocean v1 (G = Russell ocean). physics_version=1 (NINT).
 - **Atmosphere / ocean components:** ModelE2.1 L40 top ~0.1 hPa / GISS Ocean v1 (Russell); ~2° atmosphere
 - **Primary documentation paper(s):** Kelley et al. 2020, *JAMES* doi:10.1029/2019MS002025 [kelley_giss_2020]
-- **Forcing-specific reference(s):** Bauer et al. 2020, *JAMES* doi:10.1029/2019MS001978 (OMA scheme) [bauer_giss_oma_2020]
+- **Forcing-specific reference(s):** Miller et al. 2021, *JAMES* doi:10.1029/2019MS002034 (CMIP6 historical simulations, GHG/SO/LU/VL confirmed) [miller_giss_2021]; Bauer et al. 2020, *JAMES* doi:10.1029/2019MS001978 (OMA scheme) [bauer_giss_oma_2020]
 
 ## Forcing datasets used (historical 1850–2014) — verified against Eyring et al. 2016 protocol
 
@@ -15,7 +15,7 @@
 
 | Key | Forcing | Protocol (Eyring 2016) | input4MIPs source_id | Verdict | Temporal | Dataset / source | Citation | bib key | Notes |
 |-----|---------|------------------------|---------------------|---------|----------|-----------------|----------|---------|-------|
-| G  | Well-mixed GHGs | Meinshausen et al. 2017 | `UoM-CMIP-1-2-0` | ? | TV | Expected standard; not explicitly confirmed | — | — | Open: confirm UoM-CMIP-1-2-0 |
+| G  | Well-mixed GHGs | Meinshausen et al. 2017 | `UoM-CMIP-1-2-0` | **✓std** | TV | **Meinshausen et al. 2017 — explicitly confirmed**: "concentrations of GHGs are annual averages of values taken from Meinshausen et al. (2017). We use Option 2" (Miller et al. 2021 §3.1) | Miller et al. 2021 | [miller_giss_2021] | CO2, CH4, N2O, CFC-11(eq.), CFC-12; "Option 2" used |
 | O  | Ozone | Checa-Garcia et al. 2018 (CCMI v1.0) | `UReading-CCMI-1-0` | **✗dev** | TV | **GISS-OMA-derived prescribed fields** (NOT the standard CCMI UReading-CCMI-1-0). Pre-computed from an AMIP-style ensemble (1860–2014) of the interactive OMA model (physics_version=3) driven by CMIP6 CEDS+BB4CMIP6 emissions. Prescribed annually-resolved. | Kelley et al. 2020 | [kelley_giss_2020] | **KEY DEVIATION**: NINT ingests pre-computed OMA ozone — center-specific product, not the standard input4MIPs CCMI dataset. "Background fields of ozone and aerosol concentrations are derived from simulations of the interactive OMA version using an ensemble of AMIP-style runs (1860–2014) with annually resolved CMIP6 emissions." |
 | SD | Aerosol — sulphate direct | CEDS + BB4CMIP6 (interactive) | `CEDS-2017-05-18` + `VUA-CMIP-BB4CMIP6-1-2` | **~** | TV | CMIP6-spec CEDS (Hoesly et al. 2018) + BB4CMIP6 (van Marle et al. 2017) emissions used to drive the offline OMA run; the NINT historical simulation then ingests pre-computed OMA aerosol fields (NOT raw emissions-driven interactive aerosol) | Kelley et al. 2020 | [kelley_giss_2020] | Emissions are CMIP6-standard but aerosol is prescribed offline (NINT), not interactively computed in the historical run |
 | SI | Aerosol — sulphate indirect | Model-dependent | — | ~ | TV | Indirect effect parameterised using the prescribed OMA aerosol fields | Kelley et al. 2020 | [kelley_giss_2020] | |
@@ -23,8 +23,8 @@
 | OC | Organic carbon | CEDS + BB4CMIP6 | `CEDS-2017-05-18` + `VUA-CMIP-BB4CMIP6-1-2` | ~ | TV | As SD | Kelley et al. 2020 | [kelley_giss_2020] | |
 | MD | Mineral dust | Model-dependent | — | ~ | TV | GISS-OMA-derived prescribed fields; online interactive in OMA (Cakmur et al. 2006 approach, 6 size bins 0.1–8 μm); NINT ingests pre-computed OMA dust fields — center-specific, NOT Kinne 2013 background | Kelley et al. 2020 | [kelley_giss_2020] | OMA dust tracers: Cakmur et al. 2006 approach, emitted silt/clay fractions optimized; NINT uses pre-computed offline fields as with sulfate/BC/OC |
 | SS | Sea salt | Model-dependent | — | ~ | TV | GISS-OMA-derived prescribed fields; sea-salt included in OMA aerosol module alongside dust/sulfate; NINT ingests offline OMA sea-salt fields — center-specific | Kelley et al. 2020 | [kelley_giss_2020] | Same OMA offline package as SD/BC/OC/MD |
-| LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | `UofMD-landState-2-1-h` | ? | TV | Expected standard; not explicitly confirmed | — | — | Open |
-| SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | `SOLARIS-HEPPA-3-2` | ? | TV | Expected standard; not explicitly confirmed | — | — | Open |
+| LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | `UofMD-landState-2-1-h` | **✗dev** | TV | **CMIP5 land-use data — explicitly confirmed deviation**: "We inadvertently implemented land use in GISS-E2.1 using the same areal fractions of cropland and pasture as prescribed for the GISS CMIP5 model (Miller et al., 2014). Departures from the CMIP6 protocol are described by Ito et al. (2020). After 2005, land use is held constant." (Miller et al. 2021 §3.7) | Miller et al. 2021 | [miller_giss_2021] | NOT LUH2; uses CMIP5-era cropland/pasture fractions; overestimates cultivated area (unmanaged rangeland included in pasture); deviation from Eyring 2016 protocol noted by authors |
+| SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | `SOLARIS-HEPPA-3-2` | **✓std** | TV | **Matthes et al. 2017 — explicitly confirmed**: "Incoming solar radiation at TOA is derived from the annual average of the spectrally resolved flux at 1 AU compiled by Matthes et al. (2017)" (Miller et al. 2021 §3.4) | Miller et al. 2021 | [miller_giss_2021] | Same CMIP6 dataset provides photon flux for photolysis rates (section 3.4); TSI reduced vs CMIP5 Wang/Lean dataset |
 | VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | `IACETH-SAGE3lambda-3-0-0` | **✓std** | TV | **Thomason et al. 2018 GloSSAC / IACETH stratospheric aerosol — explicitly confirmed**: "Volcanic aerosols were prescribed using precomputed aerosol depth and effective particle radius (Thomason et al., 2018)" | Kelley et al. 2020 | [kelley_giss_2020] | Direct textual confirmation from Kelley 2020 §3.2. Thomason 2018 ESSD (doi:10.5194/essd-10-469-2018) = standard CMIP6 stratospheric AOD. |
 | FC | Flux corrections | Not expected | — | n/a | n/a | None | — | — | |
 
@@ -43,6 +43,7 @@
 
 ### Deviations from Eyring 2016 standard protocol
 - **O: ✗dev** — prescribed ozone is GISS-OMA-derived, NOT the standard CCMI dataset (UReading-CCMI-1-0). Same emissions source (CEDS+BB4CMIP6) used to generate it, but the product deviates from the Eyring 2016 prescribed-ozone baseline.
+- **LU: ✗dev** — inadvertently used CMIP5-era cropland/pasture fractions (Miller et al. 2014) instead of LUH2 (Hurtt 2020 / UofMD-landState-2-1-h). Departures from CMIP6 protocol documented by Ito et al. 2020. Post-2005 land use held constant. Authors explicitly acknowledge this as an error.
 
 ### Notes on CMIP5 lineage
 - CMIP5 GISS-E2-R used the interactive TCADI/OMA scheme (O=＋exc). CMIP6 E2-1-G reverted to NINT (prescribed OMA-derived), matching the GFDL-CM4 pattern of downgrading to prescribed despite interactive capability.
@@ -50,8 +51,10 @@
 
 ## Open questions
 1. ~~**VL**: RESOLVED — Thomason et al. 2018 confirmed in Kelley 2020 §3.2~~
-2. **G/LU/SO**: Kelley 2020 says these were "specified using a mix of approaches (Miller et al., 2020)"; confirm UoM-CMIP-1-2-0 (G), UofMD-landState-2-1-h (LU), SOLARIS-HEPPA-3-2 (SO) via Miller 2020 (doi:10.1029/2019MS002034)
-3. **G/H forcing identity**: Confirm atmospheric forcings identical between G and H variants (expected yes)
+2. ~~**G/LU/SO**: RESOLVED — Miller et al. 2021 §3.1/§3.4/§3.7 confirms G=Meinshausen 2017 (✓std), SO=Matthes 2017 (✓std), LU=CMIP5 data (✗dev, inadvertent deviation)~~
+3. ~~**G/H forcing identity**: Miller et al. 2021 §3 confirms E2.1-G and E2.1-H share the same AGCM and atmospheric forcings; "forcing in the E2.1-G and E2.1-H configurations is expected to be similar, due to their common AGCM"~~
+
+All forcing components now resolved. No open questions remain.
 
 ## Provenance
 - WCRP-CMIP CVs source_id: GISS-E2-1-G confirmed
@@ -70,6 +73,16 @@ CMIP5 GISS-E2 forcing datasets (for lineage reference):
 - **SS**: Included in NINT offline aerosol package alongside dust/sulfate/BC/OC — center-specific; not separately referenced to any CMIP6 standard dataset.
 
 All six target unknowns (G, MD, SS, LU, SO, VL) remain **?** — CMIP5 papers document E2-R/E2-H predecessors only; explicit CMIP6 confirmation requires Kelley et al. 2020 or supplementary CMIP6 documentation.
+
+### Notes — Stage 9 third pass CMIP6 (2026-06-27)
+Miller et al. 2021 JAMES (doi:10.1029/2019MS002034) read in full (1637 lines). All three remaining target unknowns resolved:
+
+- **G = ✓std CONFIRMED**: §3.1 (line 454): "concentrations of GHGs are annual averages of values taken from Meinshausen et al. (2017). We use Option 2 from that study." Standard CMIP6 UoM-CMIP-1-2-0 dataset confirmed.
+- **SO = ✓std CONFIRMED**: §3.4 (line 581-583): "Incoming solar radiation at TOA is derived from the annual average of the spectrally resolved flux at 1 AU compiled by Matthes et al. (2017)." Standard CMIP6 SOLARIS-HEPPA-3-2 dataset confirmed.
+- **LU = ✗dev CONFIRMED**: §3.7 (line 661-664): "We inadvertently implemented land use in GISS-E2.1 using the same areal fractions of cropland and pasture as prescribed for the GISS CMIP5 model (Miller et al., 2014). Departures from the CMIP6 protocol are described by Ito et al. (2020). After 2005, the end of the CMIP5 historical period, land use is held constant." NOT LUH2 (Hurtt 2020); CMIP5-era cropland/pasture fractions used. Authors explicitly flag this as inadvertent. Unmanaged rangeland included in pasture category nearly doubles simulated land use area. Full analysis of departures in Ito et al. 2020 (not in /resources/).
+- **G/H forcing identity**: §3 intro confirms: "Forcing in the E2.1-G and E2.1-H configurations is expected to be similar, due to their common AGCM." G/LU/SO verdicts apply equally to GISS-E2-1-G-CC and GISS-E2-1-H.
+
+Miller et al. 2021 reference: Miller et al. (2021), "CMIP6 Historical Simulations (1850–2014) With GISS-E2.1", JAMES 13, e2019MS002034, doi:10.1029/2019MS002034. Note: paper published 2021 (accepted Oct 2020), cited as [miller_giss_2021].
 
 ### Notes — Stage 9 second pass CMIP6 (2026-06-27)
 Kelley et al. 2020 JAMES (doi:10.1029/2019MS002025) read in full (1827 lines). Key findings for target unknowns:
