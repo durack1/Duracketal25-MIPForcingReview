@@ -1,0 +1,17 @@
+{
+  "_comment": "CMIP6 stage automation state. Updated after each stage launch/complete.",
+  "current_stage": 17,
+  "current_stage_status": "complete",
+  "run_id": "wf_7ae34d09-4e8",
+  "batch_count": 3,
+  "batch_limit": 4,
+  "batch_start_iso": "2026-06-27T01:30:00Z",
+  "token_wait_hours": 5.0,
+  "status": "complete",
+  "total_stages": 17,
+  "next_stage": 18,
+  "lean_script": "/home/duro/.claude/projects/-home-duro-git-Duracketal25-MIPForcingReview-research-models/1d50b049-f316-40c3-80be-a997612ce472/workflows/scripts/deep-research-lean.js",
+  "configs_path": "/home/duro/git/Duracketal25-MIPForcingReview/research/cmip6/automation/stage-configs.json",
+  "prompts_dir": "/home/duro/git/Duracketal25-MIPForcingReview/research/cmip6/automation/prompts",
+  "schedule_note": "Batch 2 (Stages 15-17): cron 01:30 Sat 27-Jun-2026. ALL 17 STAGES COMPLETE. First pass finished 2026-06-27."
+}

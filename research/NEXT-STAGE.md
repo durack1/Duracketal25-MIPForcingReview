@@ -186,19 +186,119 @@ Model files written: `research/cmip6/models/EC-Earth-Consortium__EC-Earth3.md`, 
 
 ---
 
-## CMIP6 Stage 10 (EC-Earth-Consortium 2: EC-Earth3-ESM-1, EC-Earth3-Veg, EC-Earth3-Veg-LR) — IN PROGRESS ▶ (wf_a7a69943-dee; 2026-06-23)
+## CMIP6 Stage 10 (EC-Earth-Consortium 2: EC-Earth3-ESM-1, EC-Earth3-Veg, EC-Earth3-Veg-LR) — COMPLETE ✓ (2026-06-26; wf_c0deb3a6-6f8; 31 agents; 11/14 confirmed, 3 killed)
 
-Model files seeded: `research/cmip6/models/EC-Earth-Consortium__EC-Earth3-ESM-1.md`, `EC-Earth-Consortium__EC-Earth3-Veg.md`, `EC-Earth-Consortium__EC-Earth3-Veg-LR.md`
-Lean harness script (reuse): `/home/duro/.claude/projects/-home-duro-git-Duracketal25-MIPForcingReview-research-models/1d50b049-f316-40c3-80be-a997612ce472/workflows/scripts/deep-research-lean.js`
+Model files written: `research/cmip6/models/EC-Earth-Consortium__EC-Earth3-ESM-1.md`, `EC-Earth-Consortium__EC-Earth3-Veg.md`, `EC-Earth-Consortium__EC-Earth3-Veg-LR.md`; CSV rows 32-34 updated.
 
-**Prior EC-Earth3 context (Stage 9 — COMPLETE):**
-- EC-Earth3 base: O=✓std (CCMI), SD/BC/OC/SI=✓std (MACv2-SP), MD/SS=FXc (TM5 PI), LU=✓std (LUH2 indirect via EC-Earth3-Veg precomputed), G=✓std, SO=✓std, VL=~
-- EC-Earth3-Veg is the DIRECT PROVIDER of the vegetation fields that EC-Earth3/CC ingest: Döscher 2022 verbatim: "This happens automatically in the EC-Earth3-Veg configuration... but for all other configurations the required vegetation cover and type need to be precomputed"
-- EC-Earth3-ESM-1 adds PISCES-v2 ocean BGC (replaces HAMOCC); may add TOPAZ; check N-dep for PISCES
+**Key findings (Stage 10):**
+- EC-Earth3-Veg: LU=✓std DIRECT LUH2 ingestion via LPJ-GUESS v4; Döscher 2022 verbatim: "The atmospheric tuning for EC-Earth3 and EC-Earth3-Veg is the same" → ALL atmospheric forcing (O/SD/BC/OC/SI/MD/SS/G/SO/VL) confirmed identical to EC-Earth3 base. N-dep source_id for LPJ-GUESS UNCONFIRMED (Hegglin 2021 REFUTED; NCAR-CCMI-2-0 not confirmed)
+- EC-Earth3-Veg-LR: TL159/L62 (top 5 hPa); all forcing identical to EC-Earth3-Veg confirmed. Model top difference (5 hPa vs 0.01 hPa) limits stratospheric resolution but doesn't change prescribed datasets
+- EC-Earth3-ESM-1: PISCES v2 ocean BGC CONFIRMED (WDC-Climate verbatim: "ocnBgchem: PISCES v2"). CRITICAL: EC-Earth3-ESM-1 is NOT in Döscher 2022 (Table 1 covers 5 configs only; ESM-1 absent). All atmospheric forcing verdicts remain ? (inferred from shared IFS, not confirmed from a source naming ESM-1). LU mechanism, land BGC version, N-dep, Fe deposition, CO2-mode all UNKNOWN.
+- VL=~ confirmed for all Stage 10 models: IACETH-SAGE3lambda-3-0-0 formally registered (doi:10.22033/ESGF/input4MIPs.1681) but NOT named in Döscher 2022.
 
-**CMIP5 context:**
-- EC-EARTH CMIP5: O=✓std (Cionni 2011 prescribed); SD/BC/OC=✗dev (ECMWF/MACC offline aerosol climatology); LU=✗dev (excluded); SO/VL=unresolved.
-- EC-Earth3-Veg is new — CMIP6 LPJmL dynamic vegetation + LUH2 direct ingestion.
+---
+
+## CMIP6 Stage 11 (MOHC + NIMS-KMA: HadGEM3-GC31-LL, HadGEM3-GC31-MM, UKESM1-0-LL, UKESM1-1-LL, KACE-1-0-G) — COMPLETE ✓ (2026-06-26; wf_205a78ae-659; 28 agents; 11/14 confirmed, 3 killed)
+
+Model files written: `research/cmip6/models/MOHC__HadGEM3-GC31-LL.md`, `MOHC__HadGEM3-GC31-MM.md`, `MOHC__UKESM1-0-LL.md`, `MOHC__UKESM1-1-LL.md`, `NIMS-KMA__KACE-1-0-G.md`; CSV rows 35-39 updated.
+
+**Key findings (Stage 11):**
+- **All 5 models — G=✓std**: Meinshausen 2017; Sellar 2019 verbatim confirmed.
+- **All 5 — aerosols (SD/BC/OC/SI/SS)=✓std (GLOMAP-mode CEDS+BB4CMIP6)**: NOT MACv2-SP for historical — MACv2-SP is HighResMIP only (Roberts 2019 verbatim). GLOMAP-mode interactive prognostic scheme consuming CEDS + BB4CMIP6. BC/OC biomass burning scaled ×2 per Johnson et al. 2016.
+- **All 5 — LU=✓std**: LUH2 v2.1h via JULES (medium confidence).
+- **All 5 — SO=✓std**: Matthes 2017; Roberts 2019 verbatim.
+- **All 5 — VL=✓std**: IACETH-SAGE3lambda-3-0-0 lineage; Sellar 2019 verbatim (Thomason 2018 + Arfeuille 2014 description uniquely identifies IACETH dataset); confirmed for both families by Mulcahy 2020.
+- **HadGEM3-GC31-LL/-MM + KACE — O=✓std**: CCMI prescribed (Hegglin 2016 / UReading-CCMI-1-0); Roberts 2019 verbatim. GC3.1 ozone-redistribution scheme applied.
+- **UKESM1-0-LL/-1-LL — O=＋exc**: UKCA StratTrop fully interactive chemistry; Keeble 2021 6-model list confirmed; Archibald et al. 2020 = description paper.
+- **UKESM1-0-LL/-1-LL — N-dep=✓std**: NCAR-CCMI-2-0 CONFIRMED from Sellar 2019 Appendix Table A5 verbatim (first explicit N-dep source_id in CMIP6 review).
+- **Open items**: UKESM1 Fe-dep (MEDUSA2); UKESM1 CO2-mode; MD=? all 5 (GA7.1 GLOMAP species list does not include dust explicitly).
+- **Citation corrections**: GA7.0/7.1 = Walters et al. 2019 (doi:10.5194/gmd-12-1909-2019) NOT Williams 2018; HadGEM3-GC31 primary = Roberts et al. 2019 GMD (doi:10.5194/gmd-12-4999-2019) NOT JAMES doi.
+- Sources: Roberts 2019 (gmd-12-4999-2019); Walters 2019 (gmd-12-1909-2019); Mulcahy 2020 (gmd-13-6383-2020); Sellar 2019 (doi:10.1029/2019MS001739); Keeble 2021 (acp-21-5015-2021); Archibald 2020 (gmd-13-1223-2020)
+
+---
+
+## CMIP6 Stage 12 (MIROC + MRI: MIROC6, MIROC-ES2L, MIROC-ES2H, MRI-ESM2-0) — COMPLETE ✓ (2026-06-26; wf_3d781646-4df; 30 agents; 12/14 confirmed, 2 killed)
+
+Model files: `research/cmip6/models/MIROC__MIROC6.md`, `MIROC__MIROC-ES2L.md`, `MIROC__MIROC-ES2H.md`, `MRI__MRI-ESM2-0.md`
+
+**Key findings:**
+- **MIROC6**: All forcing ✓std. SPRINTARS interactive aerosols with CEDS+BB4CMIP6. O=✓std (CCMI prescribed; Tatebe 2019 verbatim "Hegglin et al. 2019"). VL=✓std (Thomason 2019 SAD = CMIP6 standard; deviation claim refuted 0-1). LU=✓std inferred (LUH1 claim refuted 0-1).
+- **MIROC-ES2L**: All forcing ✓std; SPRINTARS6.0 interactive aerosols confirmed. Hajima 2020 verbatim: "CMIP6 official forcing datasets (version 6.2.1)". CO2-mode=concentration-driven (verbatim). N-dep=✓std (NCAR-CCMI-2-0; WDC-Climate verbatim). Appendix C (per-forcing source_ids) not retrieved. Fe-dep=?.
+- **MIROC-ES2H**: All forcing inferred from shared ES2L components (VISIT-e, OECO2, SPRINTARS). Watanabe 2021 primary paper not retrieved.
+- **MRI-ESM2-0**: O=＋exc confirmed (MRI-CCM2.1 interactive trop+strat; Keeble 2021 verbatim). All other forcing unconfirmed — Yukimoto 2019 not successfully retrieved.
+- **CMIP5 → CMIP6 transition**: MIROC-ESM-CHEM had O=＋exc (CHASER interactive) → MIROC-ES2L switched to prescribed CCMI (O=✓std). MRI-CGCM3 all unresolved → MRI-ESM2-0 confirms O=＋exc (MRI-CCM2.1).
+
+---
+
+## CMIP6 Stage 13 (NCC + CMCC: NorESM2-LM, NorESM2-MM, CMCC-CM2-SR5, CMCC-ESM2) — COMPLETE ✓ (2026-06-26; wf Session 3)
+
+Model files: `research/cmip6/models/NCC__NorESM2-LM.md`, `NCC__NorESM2-MM.md`, `CMCC__CMCC-CM2-SR5.md`, `CMCC__CMCC-ESM2.md`; CSV rows 44-47 updated.
+
+**Key findings:**
+- **NorESM2-LM/MM — O=✗dev**: WACCM6-derived ozone confirmed (Keeble 2021 verbatim + Seland 2020 verbatim; 5-0 vote). Same source as CESM2/FV2 (Stage 3). All other forcing ✓std.
+- **NorESM2 VL=✓std (CRITICAL distinction from CESM2)**: Seland 2020 verbatim: "monthly distributions of stratospheric sulfate aerosols follow now the CMIP6 recommendations (Thomason et al., 2018)." NorESM2 uses SEPARATE input streams for ozone and strataero — NOT bundled as in CESM2. VL=✓std despite O=✗dev.
+- **CMCC-CM2-SR5/ESM2**: Not covered in Stage 13 research. All verdicts ? pending targeted second pass. Lovato 2022 (ESM2) and Cherchi 2019 (CM2-SR5) not retrieved.
+
+---
+
+## CMIP6 Stage 14 (CSIRO + CSIRO-ARCCSS: ACCESS-CM2, ACCESS-ESM1-5) — COMPLETE ✓ (2026-06-26; wf_915f8ce0-f07)
+
+Model files: `research/cmip6/models/CSIRO-ARCCSS__ACCESS-CM2.md`, `CSIRO__ACCESS-ESM1-5.md`; CSV rows 48-49 updated.
+
+**Key findings:**
+- **ACCESS-CM2 aerosols confirmed**: UKCA-GLOMAP-mode confirmed (Fiddes 2025 ACP verbatim + WDC-Climate + WCRP CVs). Shares full GA7.1 aerosol stack with HadGEM3-GC31-LL: CEDS+BB4CMIP6 BC/OC ×2 per Johnson 2016. GA7.1 atmosphere byte-identical to HadGEM3-GC31-LL (1-0 confirmed). G/O/LU/SO/VL inferred from byte-identical MetUM-HadGEM3-GA7.1 (not directly verified for ACCESS-CM2). MD=? as with HadGEM3.
+- **ACCESS-ESM1-5 scheme split confirmed**: CLASSIC v1.0 aerosol confirmed (WDC-Climate verbatim; Fiddes 2025 ACP explicitly contrasts CLASSIC vs GLOMAP). HadGAM2 r1.1 (N96L38, top ~39km) atmosphere confirmed — older GA1.0 era, markedly lower top than GA7.1. All forcing datasets unverified; requires Ziehn 2020 targeted pass.
+- **Refuted claim**: ACCESS-AM2 biomass burning = GFED4s (0-1; GFED4s is HighResMIP only, not CMIP6 historical).
+
+---
+
+## CMIP6 Stage 15 (AWI + INM: AWI-CM-1-1-LR, -MR, AWI-ESM-1-REcoM, INM-CM4-8, INM-CM5-0) — COMPLETE ✓ (2026-06-27; wf_75e312c8-82e)
+
+Model files: `research/cmip6/models/AWI__AWI-CM-1-1-LR.md`, `AWI__AWI-CM-1-1-MR.md`, `AWI__AWI-ESM-1-REcoM.md`, `INM__INM-CM4-8.md`, `INM__INM-CM5-0.md`; CSV rows 50-54 updated.
+
+**Key findings:**
+- **AWI-CM-1-1-LR/MR**: All forcing INFERRED from ECHAM6.3.04p1+JSBACH3.20 = MPI-ESM1-2-LR lineage. O=✓std (CCMI), aerosols=✓std (MACv2-SP), MD/SS=FXc (Kinne 2013), LU=✓std (LUH2), SO=✓std (Matthes 2017), VL=✓std (IACETH). WDC-Climate C6CMAWAWMhi has no forcing dataset list; Semmler 2020 not extracted. AWI-specific ozone claim refuted (0-1). All verdicts medium confidence by inheritance.
+- **AWI-ESM-1-REcoM**: Atmospheric forcing identical to AWI-CM-1-1-LR (inferred). ESM inputs (N-dep, Fe-dep, CO2-mode) all ?; Lacroix 2021 not extracted.
+- **INM-CM5-0**: G=✓std, O=✓std, SO=✓std, VL=✓std (Volodin & Gritsun 2018 ESD verbatim: "prescribed as recommended for the historical run of CMIP6"). SD/BC/OC/SI=✗dev (INM-AER1: 10-species interactive block computing aerosol concentrations from CMIP6 emissions, NOT MACv2-SP; only first indirect effect). LU=?, MD/SS=? (interactive in AER1).
+- **INM-CM4-8**: All ? (Volodin et al. 2018 JAMES not extracted). Aerosol scheme unconfirmed — do NOT assume same as INM-CM5-0. Low model top L21 ~10 hPa.
+
+---
+
+## CMIP6 Stage 16 (CAS + FIO-QLNM + NUIST: CAS-ESM2-0, FGOALS-f3-L, FGOALS-g3, FIO-ESM-2-0, NESM3) — COMPLETE ✓ (2026-06-27; wf_dcf6412c-ee4)
+
+Model files: `research/cmip6/models/CAS__CAS-ESM2-0.md`, `CAS__FGOALS-f3-L.md`, `CAS__FGOALS-g3.md`, `FIO-QLNM__FIO-ESM-2-0.md`, `NUIST__NESM3.md`; CSV rows 55-59 updated.
+
+**Key findings:**
+- **FGOALS-f3-L**: G=✓std (Meinshausen 2017), O=✓std (CCMI), SO=✓std (Matthes 2017) from *Adv. Atmos. Sci.* verbatim. SD/BC/OC=✓std (summary-level "full CMIP6 forcing" only). MD/SS/LU/VL=?.
+- **FGOALS-g3**: O=✓std (Keeble 2021 verbatim: no interactive chemistry, prescribed in stratosphere AND troposphere following CMIP6 recommendations; despite L26 ~36km low top, no deviation). All other forcing ?.
+- **CAS-ESM2-0**: Aerosol = IAP AACM (centre-specific integrated aerosol+atmospheric-chemistry module; Wei 2019 ACP + WDCC C6CMCASCE0hi). SD/BC/OC/SI=~ (centre-specific interactive, inputs unconfirmed). G/O/SO/VL/LU all ?.
+- **FIO-ESM-2-0**: Zero verified findings. Bao 2020 not retrieved. CAM5.3 lineage suggests CEDS+BB4CMIP6 but unconfirmed. All ?.
+- **NESM3**: All forcing INFERRED from ECHAM6.3+JSBACH3.1 = MPI-ESM1-2-LR. **Architecture correction**: land = JSBACH v3.1 (NOT CLM4.5 as in stage-configs); confirmed by WDCC C6CMNUINEShi. O=✓std inferred; MACv2-SP/Kinne2013/LUH2/Matthes2017/IACETH all inferred (medium confidence).
+
+---
+
+## CMIP6 Stage 17 (THU + SNU + AS-RCEC + KIOST + CCCR-IITM + UA: CIESM, SAM0-UNICON, TaiESM1, KIOST-ESM, IITM-ESM, MCM-UA-1-0) — COMPLETE ✓ (2026-06-27; wf_7ae34d09-4e8; 32 agents; 11/14 confirmed, 3 killed)
+
+Model files: `research/cmip6/models/THU__CIESM.md`, `SNU__SAM0-UNICON.md`, `AS-RCEC__TaiESM1.md`, `KIOST__KIOST-ESM.md`, `CCCR-IITM__IITM-ESM.md`, `UA__MCM-UA-1-0.md`; CSV rows 60-65 updated.
+
+**Key findings:**
+- **KIOST-ESM — CRITICAL ARCHITECTURE CORRECTION**: GFDL-lineage (GFDL-AM2.0 C48/32L/top 2 hPa + GFDL-MOM5.0 + GFDL-SIS + NCAR-CLM4), NOT HadGEM2-AO/NEMO3.6/TOPAZ4 as in stage-configs. Confirmed Pak et al. 2021 JAMES doi:10.1029/2020MS002212 + WDC-Climate. Aerosol CV='none'; atmosChem='Simple carbon aerosol model (emission type)' (250 km) — SD/BC/OC/SI=✗dev. G/O/LU/SO/VL all ?.
+- **IITM-ESM — ARCHITECTURE CORRECTION**: IITM-GFSv1 T62L64 (192×94, 64L, top 0.2 mb), NOT SPEEDY T30L18. GFS-based atmosphere confirmed by WDC-Climate verbatim. MACv2-SP aerosol claim REFUTED (0-1). All forcing ?.
+- **TaiESM1**: Aerosol = SNAP (Statistical-Numerical Aerosol Parameterization; Chen et al. 2013) — proprietary bulk-modal scheme, NOT CAM5 MAM3. Lee et al. 2020 GMD doi:10.5194/gmd-13-3887-2020 (NOT the JAMES doi in stage-configs) names NO specific CMIP6 forcing datasets. SD/BC/OC/SI/MD/SS=~. G/O/LU/SO/VL=?.
+- **CIESM (THU), SAM0-UNICON (SNU), MCM-UA-1-0 (UA)**: No confirmed findings. All forcing ?.
+
+**SESSION 4 (Stages 15–17) — COMPLETE ✓ (2026-06-27)**
+**ALL 17 STAGES COMPLETE — CMIP6 FIRST PASS COMPLETE ✓**
+
+Second-pass priorities (unresolved questions requiring targeted paper retrieval):
+- MRI-ESM2-0: all forcing except O=＋exc unverified; requires Yukimoto 2019
+- MIROC-ES2H: all forcing inferred from ES2L; requires Watanabe 2021
+- CMCC-CM2-SR5/ESM2: all ? pending Cherchi 2019 + Lovato 2022
+- ACCESS-ESM1-5: all forcing unverified; requires Ziehn 2020
+- INM-CM4-8: all ? requires Volodin et al. 2018 JAMES
+- CIESM, SAM0-UNICON, MCM-UA-1-0: all ? requires primary paper extractions
+- TaiESM1: actual CMIP6 1850–2014 forcing undocumented (Lee 2020 describes 1850–2005 only)
+- KIOST-ESM/IITM-ESM ESM inputs (N-dep, Fe-dep, CO2-mode): all ?
 
 ### Stage 9 workflow prompt (archived):
 

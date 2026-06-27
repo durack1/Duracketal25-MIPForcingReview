@@ -1,26 +1,37 @@
-<!-- CMIP6 forcing record — EC-Earth3-Veg-LR (EC-Earth-Consortium). Stage 10 seed. -->
+<!-- CMIP6 forcing record — EC-Earth3-Veg-LR (EC-Earth-Consortium). Stage 10 workflow: wf_c0deb3a6-6f8 (2026-06-26) -->
 
 # EC-Earth3-Veg-LR — EC-Earth-Consortium (Pan-European)
 
 - **CMIP phase:** CMIP6 (historical, 1850–2014)
-- **Model family / lineage:** EC-Earth3-Veg at lower horizontal resolution (T95L91, ~1.87°, vs T255L91 ~0.7° for standard EC-Earth3-Veg). All forcing expected identical to EC-Earth3-Veg.
-- **Primary documentation paper(s):** Döscher et al. 2022, *GMD* doi:10.5194/gmd-15-2973-2022
+- **Model family / lineage:** Lower-resolution variant of EC-Earth3-Veg. IFS cy36r4 at TL159/L62 (~1.25°, 62 levels, **top 5 hPa**) vs TL255/L91 (top 0.01 hPa) for EC-Earth3-Veg. All component structure and forcing datasets confirmed identical to EC-Earth3-Veg.
+- **Atmosphere / ocean components:** IFS cy36r4 (TL159/L62, top 5 hPa) / NEMO3.6 (ORCA1, 1°) + LIM3; land = HTESSEL + LPJ-GUESS v4
+- **Primary documentation paper(s):** Döscher et al. 2022, *GMD* doi:10.5194/gmd-15-2973-2022 [doscher_ecearth3_2022]
 
-## Forcing — STUB (Stage 10 pending)
+**Resolution caveat for stratospheric forcing**: The TL159/L62 configuration has a model top at 5 hPa (vs 0.01 hPa for EC-Earth3-Veg) — a much shallower stratosphere. Prescribed VL (volcanic aerosol), SO (solar), and O (ozone) datasets are ingested at the same source_id as EC-Earth3-Veg, but the lower-model-top means less of the stratospheric signal is resolved. Verdict codes are the same as EC-Earth3-Veg (the prescribed datasets are unchanged), but this difference should be noted in synthesis.
 
-All forcing expected identical to EC-Earth3-Veg (lower resolution only). To be confirmed by Stage 10 workflow.
+## Forcing datasets — all identical to EC-Earth3-Veg
 
-| Key | Verdict | Notes |
-|-----|---------|-------|
-| G  | ? | As EC-Earth3-Veg expected |
-| O  | ? | As EC-Earth3-Veg expected |
-| SD | ? | As EC-Earth3-Veg expected |
-| SI | ? | As EC-Earth3-Veg expected |
-| BC | ? | As EC-Earth3-Veg expected |
-| OC | ? | As EC-Earth3-Veg expected |
-| MD | ? | As EC-Earth3-Veg expected |
-| SS | ? | As EC-Earth3-Veg expected |
-| LU | ? | As EC-Earth3-Veg expected (direct LUH2 ingestion) |
-| SO | ? | As EC-Earth3-Veg expected |
-| VL | ? | As EC-Earth3-Veg expected |
-| FC | n/a | |
+Döscher 2022 verbatim: "The atmospheric tuning for EC-Earth3 and EC-Earth3-Veg is the same, **as is the case for EC-Earth3-LR and EC-Earth3-Veg-LR**." WDC-Climate confirms component structure: HTESSEL + LPJ-GUESS v4 land; same NEMO3.6/ORCA1 ocean as EC-Earth3-Veg.
+
+| Key | Verdict | Temporal | Notes |
+|-----|---------|----------|-------|
+| G  | ✓std | TV | As EC-Earth3-Veg (Meinshausen 2017/2020) |
+| O  | ✓std | TV | As EC-Earth3-Veg (CCMI prescribed) |
+| SD | ✓std | TV | As EC-Earth3-Veg (MACv2-SP prescribed) |
+| SI | ✓std | TV | As EC-Earth3-Veg (MACv2-SP) |
+| BC | ✓std | TV | As EC-Earth3-Veg (MACv2-SP) |
+| OC | ✓std | TV | As EC-Earth3-Veg (MACv2-SP) |
+| MD | FXc | FXc | As EC-Earth3-Veg (TM5 PI natural background) |
+| SS | FXc | FXc | As EC-Earth3-Veg (TM5 PI natural background) |
+| LU | ✓std | TV | As EC-Earth3-Veg (direct LUH2 ingestion via LPJ-GUESS v4) |
+| SO | ✓std | TV | As EC-Earth3-Veg (Matthes 2017) |
+| VL | ~ | TV | As EC-Earth3-Veg (CMIP6 strat aerosol, IACETH inferred). NOTE: 5 hPa model top limits stratospheric resolution. |
+| FC | n/a | n/a | |
+
+## ESM-specific inputs (LPJ-GUESS)
+- N-dep: ? (same caveat as EC-Earth3-Veg — N cycling active, source_id unconfirmed)
+- CO2-mode: ? (concentration-driven expected, not confirmed)
+
+## Provenance
+- Stage 10 workflow run ID: wf_c0deb3a6-6f8 (2026-06-26)
+- Key sources: Döscher et al. 2022 (doi:10.5194/gmd-15-2973-2022); WDC-Climate CMIP6 (wdc-climate.de)

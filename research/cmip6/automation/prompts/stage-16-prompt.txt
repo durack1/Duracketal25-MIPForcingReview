@@ -1,0 +1,53 @@
+Document the climate forcing datasets used in five CMIP6 models — CAS-ESM2-0 (CAS), FGOALS-f3-L (CAS), FGOALS-g3 (CAS), FIO-ESM-2-0 (FIO-QLNM), and NESM3 (NUIST) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 16 of 17, Session 4 of 4.
+
+KEY ARCHITECTURE:
+- CAS-ESM2-0: IAP AGCM5 atmosphere (T85, ~1.4°, L35, top ~2.2hPa) + CoLM4 land + LICOM3 ocean (1°×0.5°) + CICE4. Chinese Academy of Sciences. Primary paper: Zhang et al. 2020 (JAMES doi:10.1029/2020MS002210).
+- FGOALS-f3-L: FAMIL3 atmosphere (C96, ~100km, L32, top ~2.16hPa) + CoLM land + LICOM3 ocean + CICE6. CAS/LASG. Primary paper: He et al. 2021 (JAMES doi:10.1029/2020MS002144).
+- FGOALS-g3: GAMIL3 atmosphere (2°, L26, top ~36km) + CLM4 land + LICOM3 ocean + CICE6. CAS/LASG. Lower top than FGOALS-f3-L. Primary paper: Li et al. 2020 (JAMES doi:10.1029/2019MS002010).
+- FIO-ESM-2-0: FOAM atmosphere (based on CAM5.3, T85L32) + POP2 ocean + MASNUM wave model + CICE5 + CLM4.5 land BGC. Chinese First Institute of Oceanography. ESM with ocean BGC and surface wave effects on mixing. Primary paper: Bao et al. 2020 (JAMES doi:10.1029/2019MS002014).
+- NESM3: ECHAM6.3 atmosphere (T63L47, ~190km, top ~0.01hPa) + CLM4.5 land + NEMO3.4 ocean + CICE4.1. Nanjing University. **ECHAM6.3 = same atmospheric model as MPI-ESM1-2-LR (Stage 8) and AWI-CM (Stage 15).** Primary paper: Cao et al. 2018 (GMD doi:10.5194/gmd-11-2975-2018) — may need updated CMIP6 paper.
+
+CRITICAL PRIOR-STAGE FINDING — NESM3 / MPI ECHAM6.3 CONNECTION:
+MPI-ESM1-2-LR (Stage 8) uses ECHAM6.3 and was confirmed:
+- O=✓std: CCMI prescribed; Keeble 2021 Table 1 verbatim
+- Aerosols=✓std: MACv2-SP prescribed (Stevens 2017); Mauritsen 2019 verbatim
+- SO=✓std: Matthes 2017; VL=✓std: IACETH-SAGE3lambda
+AWI-CM (Stage 15) uses same ECHAM6.3 and was expected to inherit this stack. NESM3 also uses ECHAM6.3, so it may share this forcing — but NESM3 is built by a different institution (NUIST) and may configure forcing differently even with the same atmospheric code.
+
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–15):
+- ECHAM6.3 lineage (MPI-ESM, AWI-CM): O=CCMI-std (✓std), MACv2-SP aerosols (✓std)
+- CAM5.3 lineage (CMCC-CM2-SR5): CEDS+BB4CMIP6 aerosols (✓std expected)
+- Chinese models limited literature: Often primary paper lacks detailed forcing table — check ES-DOC
+- O=✗dev: GISS, CESM2/FV2, NorESM2 (WACCM-derived)
+- O=✓std most models (CCMI prescribed)
+
+CMIP6 STANDARD PROTOCOL (Eyring 2016):
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
+- SD/BC/OC: CEDS (Hoesly 2018) + BB4CMIP6 (van Marle 2017) interactive; OR MACv2-SP (Stevens 2017) prescribed — both ✓std
+- LU: Hurtt et al. 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes et al. 2017 SOLARIS-HEPPA (SOLARIS-HEPPA-3-2)
+- VL: IACETH-SAGE3lambda-3-0-0
+
+PRIMARY SOURCES:
+- CAS-ESM2-0: Zhang et al. 2020 (JAMES doi:10.1029/2020MS002210) — key forcing section
+- FGOALS-f3-L: He et al. 2021 (JAMES doi:10.1029/2020MS002144) — key forcing section
+- FGOALS-g3: Li et al. 2020 (JAMES doi:10.1029/2019MS002010) — key forcing section
+- FIO-ESM-2-0: Bao et al. 2020 (JAMES doi:10.1029/2019MS002014) — CAM5.3-based: CEDS+BB4CMIP6?
+- NESM3: Cao et al. 2018 (GMD doi:10.5194/gmd-11-2975-2018) — also check if CMIP6 paper exists
+- Keeble et al. 2021 (ACP doi:10.5194/acp-21-5015-2021) — check Table 1 for any of these models
+- ES-DOC simulation documents for all 5 models (Chinese models may lack detailed primary literature)
+
+KEY QUESTIONS:
+1. NESM3 O: Confirms ECHAM6.3 → CCMI-std (✓std)? Is NESM3 listed in Keeble 2021?
+2. NESM3 aerosols: MACv2-SP as in MPI-ESM1-2-LR? Or CEDS+BB4CMIP6? Does NUIST configuration inherit MPI aerosol scheme?
+3. FGOALS-g3 O: Lower model top (L26, ~36km) — standard CCMI ozone still used, or different treatment? Any evidence of deviation?
+4. CAS-ESM2-0 aerosol scheme: IAP AGCM5 — what aerosol module is used? CEDS+BB4CMIP6 or different?
+5. FIO-ESM-2-0 aerosols: CAM5.3 with MAM3 → likely CEDS+BB4CMIP6; confirm from Bao 2020.
+6. FIO-ESM-2-0 ESM inputs: CLM4.5 with BGC — N-dep? CO2-mode? What ocean BGC scheme?
+7. LU all five: LUH2 v2.1h standard? Check He 2021 for FGOALS-f3-L and Li 2020 for FGOALS-g3.
+8. Any deviations in SO or VL for Chinese models?
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk). For FIO-ESM-2-0, include ESM inputs. Note NESM3 ECHAM6.3 lineage connection. Flag any models with incomplete literature and rely on ES-DOC where primary papers lack detail.

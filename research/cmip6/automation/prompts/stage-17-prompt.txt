@@ -1,0 +1,53 @@
+Document the climate forcing datasets used in six CMIP6 models — CIESM (THU), SAM0-UNICON (SNU), TaiESM1 (AS-RCEC), KIOST-ESM (KIOST), IITM-ESM (CCCR-IITM), and MCM-UA-1-0 (UA) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 17 of 17 — FINAL STAGE. Session 4 of 4.
+
+KEY ARCHITECTURE:
+- CIESM: CIESM atmosphere (based on CAM5 with modifications, T85L30, top ~3hPa) + MOM6 ocean + CICE6 + CLM4.5 land. Tsinghua University, China. Primary paper: Lin et al. 2020 (JAMES doi:10.1029/2019MS002035).
+- SAM0-UNICON: CAM5-UniCon atmosphere (T85L30, top ~3hPa, replaces CAM5 boundary layer with unified convection scheme) + POP2 ocean + CICE4 + CLM4.5 land. Seoul National University. Based on CESM1.3 framework. Primary paper: Park et al. 2019 (JAMES doi:10.1029/2018MS001519).
+- TaiESM1: TaiESM1 atmosphere (based on CAM5.3/CESM1.3, T85L30, top ~3hPa, modified microphysics) + POP2 ocean + CICE4 + CLM4 land. Academia Sinica, Taiwan. Primary paper: Lee et al. 2020 (JAMES doi:10.1029/2020MS002198). Also Wang et al. 2021.
+- KIOST-ESM: KIOST atmosphere (based on HadGEM2-AO, N96L38, top ~39km — OLD UM GA1 family, NOT GA7.1) + NEMO3.6 ocean + TOPAZ4 ocean BGC. Korea Institute of Ocean Science and Technology. ESM with ocean BGC. Primary paper: Pak et al. 2021 (JAMES doi:10.1029/2020MS002212).
+- IITM-ESM: IITM atmosphere (based on SPEEDY T30L18 — COARSE, very simple spectral model, top ~10hPa) + MOM4p1 ocean + TOPAZ2 ocean BGC + CLM land. Indian Institute of Tropical Meteorology. ESM. Very simple/coarse model — simplified forcing expected. Primary paper: Swapna et al. 2018 (BAMS doi:10.1175/BAMS-D-14-00034.1); also Swapna et al. 2015.
+- MCM-UA-1-0: MCM atmosphere (Minimum Complexity Model, T21L20 — VERY SIMPLE, spectral, 20 levels, top ~3hPa) + MOM5 ocean. University of Arizona. Highly simplified model — may use fixed or idealized forcings, not standard CMIP6 datasets. Primary paper: Stouffer et al. 2017 (J. Climate doi:10.1175/JCLI-D-17-0007.1) or Pollard & Reusch 2002.
+
+CRITICAL PRIOR-STAGE FINDING — KIOST-ESM / HadGEM2 vs HadGEM3 DISTINCTION:
+KIOST-ESM uses HadGEM2-AO atmospheric framework (old UK MetOffice GA1 lineage, L38, top ~39km), NOT UM GA7.1. This is a fundamentally different architecture from:
+- HadGEM3-GC31-LL (Stage 11): UM GA7.1, L85, GLOMAP-mode, IACETH-SAGE3lambda (confirmed ✓std)
+- ACCESS-CM2 (Stage 14): UM GA7.1, CABLE2.0 (confirmed/expected ✓std)
+HadGEM2-AO ancestry means KIOST-ESM may use CLASSIC aerosol scheme (not GLOMAP-mode) and likely lacks the full CMIP6 aerosol-forcing infrastructure of GA7.1. CMIP5 HadGEM2 deviations included non-standard aerosol forcing — was this fixed for CMIP6 in KIOST-ESM?
+
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–16):
+- CAM5/CESM lineage (CIESM, SAM0-UNICON, TaiESM1): typically CEDS+BB4CMIP6 aerosols, CCMI ozone — but verify (CESM2 used WACCM-derived O; these are CESM1-based forks)
+- Old UM GA1 family (KIOST-ESM, ACCESS-ESM1-5): lower model top, CLASSIC aerosol — different from GA7.1
+- Very simple models (IITM-ESM, MCM-UA-1-0): may use fixed/simplified forcing rather than standard CMIP6 datasets
+
+CMIP6 STANDARD PROTOCOL (Eyring 2016):
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
+- SD/BC/OC: CEDS (Hoesly 2018) + BB4CMIP6 (van Marle 2017) interactive; OR MACv2-SP (Stevens 2017) prescribed — both ✓std
+- LU: Hurtt et al. 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes et al. 2017 SOLARIS-HEPPA (SOLARIS-HEPPA-3-2)
+- VL: IACETH-SAGE3lambda-3-0-0
+
+PRIMARY SOURCES:
+- CIESM: Lin et al. 2020 (JAMES doi:10.1029/2019MS002035) — check CAM5-based forcing
+- SAM0-UNICON: Park et al. 2019 (JAMES doi:10.1029/2018MS001519) — CESM1.3 framework forcing
+- TaiESM1: Lee et al. 2020 (JAMES doi:10.1029/2020MS002198) and Wang et al. 2021 — CAM5.3-based
+- KIOST-ESM: Pak et al. 2021 (JAMES doi:10.1029/2020MS002212) — HadGEM2-based aerosol/ozone
+- IITM-ESM: Swapna et al. 2018 (BAMS doi:10.1175/BAMS-D-14-00034.1) — look for forcing datasets
+- MCM-UA-1-0: Stouffer et al. 2017 (J. Climate doi:10.1175/JCLI-D-17-0007.1) — simple model forcing
+- Keeble et al. 2021 (ACP doi:10.5194/acp-21-5015-2021) — check Table 1 for any Stage 17 models
+- ES-DOC simulation documents for historical runs
+
+KEY QUESTIONS:
+1. CIESM/SAM0-UNICON/TaiESM1 O: CESM1-based forks — standard CCMI (✓std)? These are CESM1 not CESM2, so no WACCM-derived ozone deviation expected. Confirm from primary papers.
+2. CIESM/SAM0-UNICON/TaiESM1 aerosols: CAM5 with MAM3 → CEDS+BB4CMIP6? Or earlier fixed aerosol dataset?
+3. KIOST-ESM O: HadGEM2-AO based, lower top (39km) — standard CCMI (✓std)? Or older product?
+4. KIOST-ESM aerosols: CLASSIC (old UM) or GLOMAP-mode? What emissions if CLASSIC?
+5. KIOST-ESM ESM inputs (TOPAZ4): N-dep? Fe-dep? CO2-mode?
+6. IITM-ESM O: Very simple model — standard CCMI or simplified/fixed ozone?
+7. IITM-ESM aerosols: SPEEDY-based simple model — prescribed simple aerosol? CEDS+BB4CMIP6?
+8. MCM-UA-1-0: Is it capable of reading full CMIP6 forcing datasets? Or uses idealized/constant forcing? This is the simplest model in the entire CMIP6 review — document what it actually does, even if non-standard.
+9. LU for all models: LUH2 v2.1h standard? Simple models (IITM, MCM) may not process land transitions.
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk). For KIOST-ESM and IITM-ESM, include ESM inputs. Flag MCM-UA-1-0 simplified forcing explicitly. This is the FINAL stage — note if any forcing questions remain unresolved after Stage 17 that require cross-cutting synthesis.

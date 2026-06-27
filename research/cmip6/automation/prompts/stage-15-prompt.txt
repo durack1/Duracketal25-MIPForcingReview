@@ -1,0 +1,47 @@
+Document the climate forcing datasets used in five CMIP6 models — AWI-CM-1-1-LR (AWI), AWI-CM-1-1-MR (AWI), AWI-ESM-1-REcoM (AWI), INM-CM4-8 (INM), and INM-CM5-0 (INM) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 15 of 17, Session 4 of 4.
+
+KEY ARCHITECTURE:
+- AWI-CM-1-1-LR: ECHAM6.3 atmosphere (T63L47, ~190km, 47 levels, top ~0.01 hPa) + FESOM2.0 ocean (unstructured mesh, ~120km avg). AOGCM. **ECHAM6.3 is the same atmospheric model as MPI-ESM1-2-LR (Stage 8).** Primary paper: Semmler et al. 2020 (JAMES doi:10.1029/2019MS002009).
+- AWI-CM-1-1-MR: As AWI-CM-1-1-LR but with finer FESOM2.0 resolution (~25km avg). Atmosphere identical. All forcing expected IDENTICAL to LR.
+- AWI-ESM-1-REcoM: AWI-CM-1-1 base (same ECHAM6.3 atmosphere) + REcoM2 ocean BGC (Regulated Ecosystem Model v2; includes Fe cycling). ESM with ocean BGC only. Primary paper: Lacroix et al. 2021 (JAMES doi:10.1029/2020MS002544).
+- INM-CM4-8: INM atmosphere (2°×1.5°, L21, top ~10 hPa — LOW MODEL TOP) + INMOM ocean (0.5°). AOGCM. Russian Institute for Numerical Mathematics. Low top precludes good stratospheric resolution. Primary paper: Volodin et al. 2018 (JAMES doi:10.1029/2017MS001065) or Volodin et al. 2019.
+- INM-CM5-0: INM atmosphere (2°×1.5°, L73, top ~0.2 hPa — HIGHER MODEL TOP than CM4-8, 73 levels) + INMOM ocean (0.5°). Same horizontal resolution as CM4-8 but greatly improved vertical resolution. Primary paper: Volodin et al. 2021.
+
+CRITICAL PRIOR-STAGE FINDING — AWI-CM / MPI-ESM1-2-LR SHARED ATMOSPHERE:
+MPI-ESM1-2-LR (Stage 8) uses ECHAM6.3 and was confirmed:
+- O=✓std: CCMI prescribed on all levels; Keeble 2021 verbatim
+- SD/BC/OC/SI=✓std: MACv2-SP prescribed aerosol (Stevens 2017); Mauritsen 2019 verbatim
+- MD/SS=FXc: Kinne et al. 2013 fixed natural background
+- LU=✓std: LUH2v2h (dynamic transitions)
+AWI-CM likely inherits this forcing stack from ECHAM6.3. Test: does Semmler 2020 explicitly list the same CMIP6 forcing datasets?
+
+CMIP6 STANDARD PROTOCOL (Eyring 2016):
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
+- SD/BC/OC: CEDS (Hoesly 2018) + BB4CMIP6 (van Marle 2017) interactive; OR MACv2-SP (Stevens 2017) prescribed — both ✓std
+- LU: Hurtt et al. 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes et al. 2017 SOLARIS-HEPPA (SOLARIS-HEPPA-3-2)
+- VL: IACETH-SAGE3lambda-3-0-0
+
+PRIMARY SOURCES:
+- AWI-CM: Semmler et al. 2020 (JAMES doi:10.1029/2019MS002009) — look for CMIP6 forcing section
+- AWI-ESM: Lacroix et al. 2021 (JAMES doi:10.1029/2020MS002544) — ESM inputs (Fe-dep, CO2-mode)
+- INM-CM4-8: Volodin et al. 2018 (JAMES doi:10.1029/2017MS001065) and possibly Volodin et al. 2019 (J. Adv. Model. Earth Syst.)
+- INM-CM5-0: Volodin et al. 2021 (locate exact citation) — check if forcing updated vs CM4-8
+- Keeble et al. 2021 (ACP doi:10.5194/acp-21-5015-2021) — check for AWI/INM entries in ozone table
+- ES-DOC / WDC-Climate for model component listings
+
+KEY QUESTIONS:
+1. AWI-CM O: ECHAM6.3 → standard CCMI prescribed (✓std as MPI-ESM1-2-LR)? Confirm from Semmler 2020.
+2. AWI-CM aerosols: MACv2-SP prescribed (as MPI-ESM1-2-LR)? Or does AWI use a different aerosol scheme for FESOM configuration?
+3. AWI-CM LU: Same LUH2v2h (as MPI-ESM1-2-LR)?
+4. AWI-ESM-1-REcoM Fe-dep: REcoM2 includes Fe limitation — what dataset provides Fe deposition? N-dep? CO2-mode?
+5. INM-CM4-8 O: Low model top (L21, 10hPa) — uses standard CCMI ozone, or a simpler ozone treatment? Not in Keeble 2021 interactive list.
+6. INM-CM5-0 O: Higher top (L73, 0.2hPa) — same ozone as CM4-8, or updated treatment?
+7. INM aerosols: What aerosol scheme? CEDS+BB4CMIP6 or Russian-specific dataset?
+8. INM SO/VL: Standard Matthes 2017 and IACETH-SAGE3lambda? Or alternative Russian datasets?
+9. AWI-CM-1-1-LR vs -MR: Confirm all forcing datasets identical (ocean resolution only).
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk). For AWI-ESM-1-REcoM, include ESM inputs. Note AWI-CM shared forcing across LR/MR/ESM. Note any INM deviations from standard protocol.

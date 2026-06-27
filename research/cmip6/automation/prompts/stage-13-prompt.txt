@@ -1,0 +1,48 @@
+Document the climate forcing datasets used in four CMIP6 models — NorESM2-LM (NCC), NorESM2-MM (NCC), CMCC-CM2-SR5 (CMCC), and CMCC-ESM2 (CMCC) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 13 of 17, Session 3 of 4.
+
+KEY ARCHITECTURE:
+- NorESM2-LM: CAM6-Nor atmosphere (T85L32, ~2°) + CLM5 land + MICOM ocean (isopycnal) + CICE5. AOGCM. Forked from CESM2.1 code. Key aerosol: OsloAero6 interactive scheme. CMIP5 predecessor: NorESM1-ME.
+- NorESM2-MM: As NorESM2-LM but higher horizontal resolution (~1°). All forcing expected IDENTICAL to NorESM2-LM.
+- CMCC-CM2-SR5: CAM5.3 atmosphere (T85L46, ~1°) + NEMO3.6 ocean + CICE4 + CLM4.5 land. AOGCM. No interactive chemistry. Primary paper: Cherchi et al. 2019 (JAMES doi:10.1029/2019MS001892).
+- CMCC-ESM2: CMCC-CM2-SR5 base + CLM5 land BGC (active C-N) + COBALT v2 ocean BGC. Full ESM. Primary paper: Lovato et al. 2022 (JAMES doi:10.1029/2021MS002814).
+
+CRITICAL PRIOR-STAGE FINDING — NorESM2 OZONE:
+Keeble et al. 2021 (ACP doi:10.5194/acp-21-5015-2021) Table 1, confirmed at Stage 3: "Most models prescribing stratospheric ozone use the CMIP6 dataset (Checa-Garcia, 2018b), except CESM2, CESM2-FV2, and NorESM2, which prescribe ozone values from simulations performed with the CESM2-WACCM model." This means NorESM2-LM and NorESM2-MM likely use the same WACCM6-derived bundled ozone+strataero file as CESM2 (O=✗dev). Confirm: is the specific file the same `ozone_strataero_WACCM_L70_zm5day_18500101-20150103_CMIP6ensAvg_c180923.nc` as CESM2, or a different WACCM-derived file? Does NorESM2 also inherit VL=✗dev from the bundled file?
+
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–12):
+- O=✗dev: GISS-E2.1-NINT (OMA-derived), CESM2/FV2 (WACCM6-derived bundle)
+- O=~: E3SM-1-0/1-1 (O3v1 trop-CCMI+strat-Linoz2), CNRM-CM6-1 (linearized strat+CCMI trop)
+- O=＋exc (Keeble 2021): GFDL-ESM4, CESM2-WACCM, CNRM-ESM2-1, MRI-ESM2-0, UKESM1-0-LL. Plus EC-Earth3-AerChem (not in Keeble list; van Noije 2021)
+- O=✓std: GFDL-CM4, CanESM5 family, BCC-CSM2-MR, IPSL-CM6A-LR, MPI-ESM1-2-LR/HR, EC-Earth3 family (non-AerChem), HadGEM3-GC31-LL/MM, KACE, MIROC6 (expected)
+- MACv2-SP aerosols (✓std prescribed): BCC-CSM2-MR, MPI-ESM1-2-LR/HR, EC-Earth3 (non-AerChem)
+- GLOMAP-mode CEDS+BB4CMIP6 (✓std): HadGEM3-GC31-LL/MM, UKESM1-0-LL/-1-LL, KACE
+- Interactive CEDS+BB4CMIP6 (✓std): CanESM5 family, GFDL-CM4/ESM4, E3SM family
+
+CMIP6 STANDARD PROTOCOL (Eyring 2016):
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0) — standard
+- SD/BC/OC: CEDS (Hoesly 2018, CEDS-2017-05-18) + BB4CMIP6 (van Marle 2017, VUA-CMIP-BB4CMIP6-1-2) interactive; OR MACv2-SP (Stevens 2017, MPI-M-MACv2-SP-1-0) prescribed — both ✓std
+- LU: Hurtt et al. 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes et al. 2017 SOLARIS-HEPPA (SOLARIS-HEPPA-3-2)
+- VL: IACETH-SAGE3lambda-3-0-0 (doi:10.22033/ESGF/input4MIPs.1681)
+- N-dep (ESMs): NCAR-CCMI-2-0 (Hegglin et al. 2016)
+
+PRIMARY SOURCES:
+- NorESM2: Seland et al. 2020 (GMD doi:10.5194/gmd-13-6165-2020) — primary; section on CMIP6 forcing datasets and aerosol. Also check OsloAero6 description papers.
+- NorESM2 ozone: Keeble et al. 2021 (ACP doi:10.5194/acp-21-5015-2021) Table 1 — already confirmed NorESM2 uses WACCM-derived ozone.
+- CMCC-CM2-SR5: Cherchi et al. 2019 (JAMES doi:10.1029/2019MS001892)
+- CMCC-ESM2: Lovato et al. 2022 (JAMES doi:10.1029/2021MS002814) — check for CMIP6 forcing table
+
+KEY QUESTIONS:
+1. NorESM2 O: Keeble 2021 says WACCM-derived (O=✗dev). Confirm from Seland 2020. Same file as CESM2, or different WACCM run?
+2. NorESM2 VL: Does the bundled WACCM ozone file also include stratospheric aerosol (as in CESM2), making VL=✗dev too? Or is VL handled separately (IACETH-SAGE3lambda)?
+3. NorESM2 aerosols: OsloAero6 interactive scheme — does it consume CEDS+BB4CMIP6 emissions (✓std)? Or a NorESM-specific emission dataset?
+4. CMCC-CM2-SR5 O: Standard CCMI prescribed (✓std expected)? Not in Keeble 2021 interactive list.
+5. CMCC aerosols: CAM5.3 with MAM3 — does it use CEDS+BB4CMIP6?
+6. CMCC-ESM2 N-dep (CLM5 C-N cycle): NCAR-CCMI-2-0? Fe-dep for COBALT? CO2-mode for historical?
+7. NorESM2-LM vs NorESM2-MM: Confirm all forcing identical (resolution only).
+8. LU all four: LUH2 v2.1h standard?
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk). For CMCC-ESM2, include ESM inputs. Note NorESM2 ozone deviation clearly. Note NorESM2-LM/MM sharing.

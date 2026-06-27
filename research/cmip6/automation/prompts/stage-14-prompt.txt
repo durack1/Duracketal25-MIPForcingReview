@@ -1,0 +1,46 @@
+Document the climate forcing datasets used in two Australian CMIP6 models — ACCESS-CM2 (CSIRO-ARCCSS) and ACCESS-ESM1-5 (CSIRO) — for their CMIP6 `historical` experiment (1850–2014).
+
+CONTEXT: Part of a forcing review of 64 CMIP6 models against the Eyring et al. 2016 (GMD doi:10.5194/gmd-9-1937-2016) standard protocol. Stage 14 of 17, Session 3 of 4.
+
+KEY ARCHITECTURE:
+- ACCESS-CM2: UM GA7.1 atmosphere (N96L85, 85 levels, top ~85km, ~135km) + NEMO3.6/ACCESS-OM2 ocean (1°) + CICE5.1 + CABLE2.0 land. AOGCM. **Uses UM GA7.1 = same atmospheric framework as HadGEM3-GC31-LL (Stage 11).** Primary paper: Bi et al. 2020 (JAMES doi:10.1029/2020MS002138).
+- ACCESS-ESM1-5: UM GA1.0 atmosphere (N96L38, 38 levels, lower top ~40km, ~135km) + NEMO3.2 ocean (1°) + CICE5 + CABLE2.4-CN land BGC (active C-N cycle) + WOMBAT ocean BGC. Full ESM. **Older UM GA1.0, different from GA7.1.** Primary paper: Ziehn et al. 2020 (JAMES doi:10.1029/2019MS001829).
+
+CRITICAL PRIOR-STAGE FINDING — ACCESS-CM2 / HadGEM3-GC31-LL SHARED ATMOSPHERE:
+HadGEM3-GC31-LL (Stage 11) uses UM GA7.1 and was confirmed:
+- O=✓std: CCMI prescribed (Hegglin 2016/UReading-CCMI-1-0) + GC3.1 ozone-redistribution scheme; Roberts 2019 verbatim
+- Aerosols=✓std: GLOMAP-mode CEDS+BB4CMIP6 (NOT MACv2-SP — that is HighResMIP only); Mulcahy 2020 verbatim
+- BC/OC=BB4CMIP6 ×2 per Johnson 2016 (published calibration)
+- SO=✓std: Matthes 2017; VL=✓std: IACETH-SAGE3lambda (Thomason 2018 + Arfeuille 2014 lineage)
+ACCESS-CM2 likely inherits this same forcing stack from UM GA7.1. Key question: does ACCESS-CM2 use the same GLOMAP-mode setup, or a different aerosol scheme (some ACCESS versions used CLASSIC aerosol)?
+
+PRIOR-STAGE CROSS-CUTTING PATTERNS (Stages 1–13):
+- UM GA7.1 forcing stack (HadGEM3-GC31-LL/-MM, KACE-1-0-G): O=✓std(CCMI+redistribution), GLOMAP-mode CEDS+BB4CMIP6 aerosols, Matthes 2017, IACETH-SAGE3lambda VL
+- UM GA1 (old UKESM1-predecessor era): different aerosol scheme (CLASSIC), lower model top — different forcing dataset choices possible
+- N-dep confirmed: NCAR-CCMI-2-0 for UKESM1 (Sellar 2019 Table A5 verbatim) — similar expected for ACCESS-ESM1-5 CABLE2.4-CN
+
+CMIP6 STANDARD PROTOCOL (Eyring 2016):
+- G: Meinshausen et al. 2017 (UoM-CMIP-1-2-0)
+- O: Checa-Garcia et al. 2018 CCMI (UReading-CCMI-1-0)
+- SD/BC/OC: CEDS (Hoesly 2018) + BB4CMIP6 (van Marle 2017) interactive; OR MACv2-SP (Stevens 2017) prescribed — both ✓std
+- LU: Hurtt et al. 2020 LUH2 v2.1h (UofMD-landState-2-1-h)
+- SO: Matthes et al. 2017 SOLARIS-HEPPA (SOLARIS-HEPPA-3-2)
+- VL: IACETH-SAGE3lambda-3-0-0
+
+PRIMARY SOURCES:
+- ACCESS-CM2: Bi et al. 2020 (JAMES doi:10.1029/2020MS002138) — check for CMIP6 forcing section; also Walters 2019 (UM GA7.1 doi:10.5194/gmd-12-1909-2019) for shared atmosphere
+- ACCESS-ESM1-5: Ziehn et al. 2020 (JAMES doi:10.1029/2019MS001829) — check for forcing table; also Law et al. 2017 for CABLE2.4-CN
+- Mulcahy et al. 2020 (GMD doi:10.5194/gmd-13-6383-2020) — covers GLOMAP-mode for HadGEM3/UKESM1; does Mulcahy mention ACCESS?
+- ACCESS-NRI documentation or ES-DOC simulation document for ACCESS-CM2 and ACCESS-ESM1-5 historical
+
+KEY QUESTIONS:
+1. ACCESS-CM2 aerosols: GLOMAP-mode CEDS+BB4CMIP6 (as HadGEM3-GC31-LL)? Or CLASSIC aerosol scheme? Is BC/OC ×2 scaling also applied in ACCESS-CM2?
+2. ACCESS-CM2 O: Standard CCMI prescribed with UM GA7.1 ozone-redistribution scheme (as HadGEM3-GC31-LL)?
+3. ACCESS-CM2 land model: CABLE2.0 (not JULES) — does this affect LU treatment? Same LUH2 v2.1h standard?
+4. ACCESS-ESM1-5 atmosphere UM GA1.0: What ozone dataset? CCMI standard or older product? Does lower model top (L38, 40km) affect which ozone dataset is used?
+5. ACCESS-ESM1-5 aerosols: UM GA1 era used CLASSIC aerosol scheme — different from GLOMAP-mode. What emissions does CLASSIC use in CMIP6?
+6. ACCESS-ESM1-5 ESM inputs: N-dep for CABLE2.4-CN (NCAR-CCMI-2-0?)? Fe-dep for WOMBAT (WOMBAT has Fe limitation?)? CO2-mode for historical?
+7. SO/VL both models: Matthes 2017 and IACETH-SAGE3lambda-3-0-0?
+8. CMIP5 ACCESS predecessor: What deviations existed in ACCESS1-0/-1-3? Are they corrected in CMIP6?
+
+DELIVERABLE: Per forcing per model — verdict (✓std/＋exc/✗dev/~/?) and temporal (TV/FXc/FXk). For ACCESS-ESM1-5, include ESM inputs. Flag whether ACCESS-CM2 shares the full HadGEM3-GC31-LL forcing stack. Note any differences from HadGEM3-GC31-LL (the prior confirmed GA7.1 model).

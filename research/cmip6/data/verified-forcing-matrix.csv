@@ -29,37 +29,37 @@ MPI-ESM1-2-LR,MPI-M+AWI+DKRZ+DWD,?,✓std,✓std,✓std,✓std,✓std,FXc,FXc,�
 EC-Earth3,EC-Earth-Consortium,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,~,n/a,,O=✓std(CCMI-prescribed-inferred-from-AerChem-CCMI-nudge-target) SD/BC/OC/SI=✓std(MACv2-SP-prescribed-TM5-PI-1850-clim+MACv2-SP-anthropogenic-Doscher2022-CMIP5-MACC-corrected) MD/SS=FXc(TM5-PI-1850-natural-bg) LU=✓std(LUH2-Hurtt2020-indirect-via-EC-Earth3-Veg-precomputed-CMIP5-LU-exclusion-corrected) G=✓std(Meinshausen2017-2020) SO=✓std(Matthes2017) VL=~(CMIP6-strat-aerosol-prescribed-source-id-unconfirmed)
 EC-Earth3-AerChem,EC-Earth-Consortium,✓std,＋exc,＋exc,＋exc,＋exc,＋exc,＋exc,＋exc,✓std,✓std,~,n/a,NOT-in-Keeble2021-6-model-list,O=＋exc(TM5-MP-interactive-trop-ozone-methane+CCMI-strat-nudge-vanNoije2021-doi:10.5194/gmd-14-5637-2021-NOT-5079) SD/BC/OC/SI/MD/SS=＋exc(TM5-MP-M7-interactive-CEDS-BB4CMIP6-confirmed) LU=✓std(LUH2-indirect-as-EC-Earth3) G=✓std SO=✓std VL=~
 EC-Earth3-CC,EC-Earth-Consortium,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,~,n/a,N-dep=? CO2-mode=?,All-atmospheric-forcing-INFERRED-identical-to-EC-Earth3(shared-IFS-no-CC-specific-primary-source); LPJG active-C N-dep/CO2-mode unconfirmed
-EC-Earth3-ESM-1,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
-EC-Earth3-Veg,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
-EC-Earth3-Veg-LR,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,?,?,
-HadGEM3-GC31-LL,MOHC+NERC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-HadGEM3-GC31-MM,MOHC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-KACE-1-0-G,NIMS-KMA,?,?,?,?,?,?,?,?,?,?,?,?,?,
-UKESM1-0-LL,MOHC+NERC+NIMS-KMA+NIWA,?,?,?,?,?,?,?,?,?,?,?,?,?,
-UKESM1-1-LL,MOHC+NERC+NIMS-KMA+NIWA,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MIROC-ES2H,MIROC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MIROC-ES2L,MIROC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MIROC6,MIROC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MRI-ESM2-0,MRI,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CMCC-CM2-SR5,CMCC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CMCC-ESM2,CMCC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-NorESM2-LM,NCC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-NorESM2-MM,NCC,?,?,?,?,?,?,?,?,?,?,?,?,?,
-ACCESS-CM2,CSIRO-ARCCSS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-ACCESS-ESM1-5,CSIRO,?,?,?,?,?,?,?,?,?,?,?,?,?,
-AWI-CM-1-1-LR,AWI,?,?,?,?,?,?,?,?,?,?,?,?,?,
-AWI-CM-1-1-MR,AWI,?,?,?,?,?,?,?,?,?,?,?,?,?,
-AWI-ESM-1-REcoM,AWI,?,?,?,?,?,?,?,?,?,?,?,?,?,
-INM-CM4-8,INM,?,?,?,?,?,?,?,?,?,?,?,?,?,
-INM-CM5-0,INM,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CAS-ESM2-0,CAS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-FGOALS-f3-L,CAS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-FGOALS-g3,CAS,?,?,?,?,?,?,?,?,?,?,?,?,?,
-FIO-ESM-2-0,FIO-QLNM,?,?,?,?,?,?,?,?,?,?,?,?,?,
-NESM3,NUIST,?,?,?,?,?,?,?,?,?,?,?,?,?,
-CIESM,THU,?,?,?,?,?,?,?,?,?,?,?,?,?,
-IITM-ESM,CCCR-IITM,?,?,?,?,?,?,?,?,?,?,?,?,?,
-KIOST-ESM,KIOST,?,?,?,?,?,?,?,?,?,?,?,?,?,
-MCM-UA-1-0,UA,?,?,?,?,?,?,?,?,?,?,?,?,?,
-SAM0-UNICON,SNU,?,?,?,?,?,?,?,?,?,?,?,?,?,
-TaiESM1,AS-RCEC,?,?,?,?,?,?,?,?,?,?,?,?,?,
+EC-Earth3-ESM-1,EC-Earth-Consortium,?,?,?,?,?,?,?,?,?,?,?,n/a,ocean-BGC=PISCES-v2-confirmed; land-BGC=? N-dep=? Fe-dep=? CO2-mode=? LU-mech=?,All-atmospheric-forcing-INFERRED-as-EC-Earth3-base(shared-IFS-NOT-confirmed-ESM-1-absent-from-Doscher2022); PISCES-v2-ocean-BGC-confirmed-WDC-Climate
+EC-Earth3-Veg,EC-Earth-Consortium,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,~,n/a,N-dep=? CO2-mode=?,LU=✓std-DIRECT-LUH2-ingestion-via-LPJ-GUESS-v4(upstream-provider-for-EC-Earth3-CC-vegetation-fields); Doscher2022-verbatim-all-atm-forcing-identical-to-EC-Earth3-base; N-dep-source-id-unconfirmed
+EC-Earth3-Veg-LR,EC-Earth-Consortium,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,~,n/a,N-dep=? CO2-mode=?,All-forcing-identical-to-EC-Earth3-Veg(TL159-L62-top-5hPa-lower-resolution-only); Doscher2022-verbatim: atmospheric-tuning-same-for-EC-Earth3-LR-and-EC-Earth3-Veg-LR
+HadGEM3-GC31-LL,MOHC+NERC,✓std,✓std,✓std,✓std,✓std,✓std,?,✓std,✓std,✓std,✓std,n/a,,O=✓std(CCMI-Hegglin2016=UReading-CCMI-1-0-expected+GC31-ozone-redistribution-scheme) SD/BC/OC/SI/SS=✓std(GLOMAP-mode-CEDS+BB4CMIP6-NOT-MACv2-SP) BC/OC=BB4CMIP6-x2-Johnson2016 MD=?(GA7.1-dust-uncertain) LU=✓std(LUH2v2.1h-via-JULES-medium-confidence) VL=✓std(IACETH-SAGE3lambda-lineage-Thomason2018+Arfeuille2014-Sellar2019-verbatim) Sources:Roberts2019(gmd-12-4999-2019) Walters2019(gmd-12-1909-2019) Mulcahy2020(gmd-13-6383-2020)
+HadGEM3-GC31-MM,MOHC,✓std,✓std,✓std,✓std,✓std,✓std,?,✓std,✓std,✓std,✓std,n/a,,All-forcing-identical-to-HadGEM3-GC31-LL(N216L85-ORCA025-higher-resolution-only-Roberts2019-doi:10.5194/gmd-12-4999-2019)
+KACE-1-0-G,NIMS-KMA,✓std,✓std,✓std,✓std,✓std,✓std,?,✓std,✓std,✓std,✓std,n/a,,All-atmospheric-forcing-identical-to-HadGEM3-GC31-LL(NIMS-KMA-fork-shared-MOHC-UM-JULES-atmosphere-Lee2020-doi:10.1029/2019MS001895-paywalled-no-Korean-modifications-confirmed)
+UKESM1-0-LL,MOHC+NERC+NIMS-KMA+NIWA,✓std,＋exc,✓std,✓std,✓std,✓std,?,✓std,✓std,✓std,✓std,n/a,N-dep=✓std(NCAR-CCMI-2-0-Sellar2019-TableA5-verbatim) Fe-dep=? CO2-mode=?(conc-driven-assumed),O=＋exc(UKCA-StratTrop-interactive-Archibald2020-doi:10.5194/gmd-13-1223-2020-Keeble2021-6-model-list) SD/BC/OC=✓std(GLOMAP-mode-CEDS+BB4CMIP6-UKCA-coupled-oxidants) BC/OC=BB4CMIP6-x2-Johnson2016 VL=✓std(IACETH-SAGE3lambda-Sellar2019-verbatim-Thomason2018+Arfeuille2014)
+UKESM1-1-LL,MOHC+NERC+NIMS-KMA+NIWA,✓std,＋exc,✓std,✓std,✓std,✓std,?,✓std,✓std,✓std,✓std,n/a,N-dep=✓std(NCAR-CCMI-2-0-as-UKESM1-0-LL) Fe-dep=? CO2-mode=?(conc-driven-assumed),All-forcing-identical-to-UKESM1-0-LL(bug-fix-variant-not-separately-listed-in-Keeble2021)
+MIROC-ES2H,MIROC,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,n/a,N-dep=✓std(NCAR-CCMI-2-0-inferred-from-shared-VISIT-e) Fe-dep=? CO2-mode=✓std(conc-driven),All-forcing-inferred-from-MIROC-ES2L-shared-ESM-components(Watanabe2021-not-retrieved)
+MIROC-ES2L,MIROC,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,n/a,N-dep=✓std(NCAR-CCMI-2-0 doi:10.22033/ESGF/input4MIPs.1125) Fe-dep=? CO2-mode=✓std(conc-driven),All-from-CMIP6-official-forcing-v6.2.1(Hajima2020-verbatim)-AppendixC-not-retrieved
+MIROC6,MIROC,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,n/a,,SPRINTARS-interactive-CEDS+BB4CMIP6-aerosols;VL=Thomason2019-SAD(deviation-claim-refuted-0-1;maps-to-CMIP6-SAD-standard)
+MRI-ESM2-0,MRI,?,＋exc,?,?,?,?,?,?,?,?,?,n/a,N-dep=? Fe-dep=? CO2-mode=?,O=＋exc(Keeble2021-verbatim-MRI-CCM2.1-interactive-trop+strat);all-other-forcings-unconfirmed-Yukimoto2019-not-retrieved
+CMCC-CM2-SR5,CMCC,?,?,?,?,?,?,?,?,?,?,?,n/a,,CMCC-not-covered-in-Stage13-Cherchi2019-not-retrieved
+CMCC-ESM2,CMCC,?,?,?,?,?,?,?,?,?,?,?,n/a,N-dep=? Fe-dep=? CO2-mode=?,CMCC-not-covered-in-Stage13-Lovato2022-not-retrieved
+NorESM2-LM,NCC,✓std,✗dev,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,n/a,,O=✗dev(Keeble2021+Seland2020-verbatim-WACCM6-derived-NOT-CCMI);VL=✓std-SEPARATE-stream-NOT-bundled(unlike-CESM2)
+NorESM2-MM,NCC,✓std,✗dev,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,✓std,n/a,,All-forcing-identical-to-NorESM2-LM(Seland2020-verbatim)
+ACCESS-CM2,CSIRO-ARCCSS,✓std,✓std,✓std,✓std,✓std,✓std,?,✓std,✓std,✓std,✓std,n/a,,G/O/LU/SO/VL=inferred-GA7.1-byte-identical;SD/SI/BC/OC/SS=confirmed-GLOMAP-mode;BC/OC=CEDS+BB4CMIP6-x2(Johnson2016);MD=?
+ACCESS-ESM1-5,CSIRO,?,?,?,?,?,?,?,?,?,?,?,n/a,N-dep=? Fe-dep=? CO2-mode=?,aerosol=CLASSIC-v1.0(confirmed-NOT-GLOMAP-mode);atmos=HadGAM2-r1.1-N96L38-top39km;all-forcing-datasets-unconfirmed-requires-Ziehn2020
+AWI-CM-1-1-LR,AWI,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,✓std,n/a,,ALL-INFERRED-from-ECHAM6.3+JSBACH3.20=MPI-ESM1-2-LR;WDC-Climate-no-forcing-list;Semmler2020-not-extracted;O=CCMI(Keeble2021-via-MPI-ESM)
+AWI-CM-1-1-MR,AWI,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,✓std,n/a,,ALL-inferred-identical-to-AWI-CM-1-1-LR;higher-FESOM2-ocean-resolution-only
+AWI-ESM-1-REcoM,AWI,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,✓std,n/a,N-dep=? Fe-dep=? CO2-mode=?,Atm-forcing-inferred-from-ECHAM6.3-lineage;ESM-inputs-unconfirmed
+INM-CM4-8,INM,?,?,?,?,?,?,?,?,?,?,?,n/a,,All-?-Volodin2018-not-extracted;low-model-top-L21-10hPa;aerosol-scheme-unconfirmed-do-NOT-assume-same-as-CM5-0
+INM-CM5-0,INM,✓std,✓std,✗dev,✗dev,✗dev,✗dev,?,?,?,✓std,✓std,n/a,,G/O/SO/VL=✓std(Volodin+Gritsun2018-verbatim);SD/BC/OC/SI=✗dev(INM-AER1-interactive-10sp-not-MACv2SP);LU=?;MD/SS-interactive-in-AER1
+CAS-ESM2-0,CAS,?,?,~,~,~,~,?,?,?,?,?,n/a,,aerosol=IAP-AACM-interactive-module(not-prescribed-CMIP6-product);G/O/SO/VL/LU=?;inputs-unconfirmed
+FGOALS-f3-L,CAS,✓std,✓std,✓std,✓std,✓std,✓std,?,?,?,✓std,?,n/a,,G/O/SO=✓std(Adv-Atmos-Sci-verbatim);SD/BC/OC=summary-level-CMIP6-std-only;MD/SS/LU/VL=?
+FGOALS-g3,CAS,?,✓std,?,?,?,?,?,?,?,?,?,n/a,,O=✓std(Keeble2021-verbatim-no-interactive-chem);all-other-forcings-?
+FIO-ESM-2-0,FIO-QLNM,?,?,?,?,?,?,?,?,?,?,?,n/a,N-dep=? Fe-dep=? CO2-mode=?,Zero-verified-findings-Bao2020-not-extracted;CAM5.3-lineage-suggests-CEDS+BB4CMIP6
+NESM3,NUIST,✓std,✓std,✓std,✓std,✓std,✓std,FXc,FXc,✓std,✓std,✓std,n/a,,ALL-INFERRED-ECHAM6.3+JSBACH3.1=MPI-ESM1-2-LR;land=JSBACH-v3.1(NOT-CLM4.5);WDCC-no-forcing-list
+CIESM,THU,?,?,?,?,?,?,?,?,?,?,?,n/a,,All-?-Lin2020-not-extracted;CAM5-lineage-suggests-CCMI-ozone-CEDS+BB4CMIP6
+SAM0-UNICON,SNU,?,?,?,?,?,?,?,?,?,?,?,n/a,,All-?-Park2019-not-extracted;CESM1.3-CAM5-lineage
+TaiESM1,AS-RCEC,?,?,~,~,~,~,~,~,?,?,?,n/a,,aerosol=SNAP(Chen2013-NOT-MAM3)(Lee2020-GMD-gmd-13-3887-2020);no-CMIP6-forcing-datasets-named;G/O/LU/SO/VL=?
+KIOST-ESM,KIOST,?,?,✗dev,✗dev,✗dev,✗dev,?,?,?,?,?,n/a,N-dep=? Fe-dep=? CO2-mode=?,ARCH-CORRECTION:GFDL-AM2.0(C48-32L-top2hPa)+MOM5.0(NOT-HadGEM2-AO+NEMO3.6);aerosol-CV=none+simple-carbon-model(Pak2021-JAMES);SD/BC/OC/SI=✗dev
+IITM-ESM,CCCR-IITM,?,?,?,?,?,?,?,?,?,?,?,n/a,N-dep=? Fe-dep=? CO2-mode=?,ARCH-CORRECTION:IITM-GFSv1-T62L64-top0.2mb(NOT-SPEEDY-T30L18);aerosol=?-MACv2SP-refuted;all-forcing-unverified
+MCM-UA-1-0,UA,?,?,?,?,?,?,?,?,?,?,?,n/a,,All-?-Stouffer2017-not-extracted;simple-T21L20-model-may-use-idealized-forcing
