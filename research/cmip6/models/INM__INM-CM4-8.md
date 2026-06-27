@@ -5,7 +5,7 @@
 - **CMIP phase:** CMIP6 (historical, 1850–2014)
 - **Model family / lineage:** INM atmosphere (INM-AM4-8, 2°×1.5°, **L21 top ~10 hPa — LOW MODEL TOP**) + INMOM ocean (0.5°). AOGCM. Russian Institute for Numerical Mathematics. Low top (21 levels, sigma=0.01 ~10 hPa) limits stratospheric resolution. Same INM family as INM-CM5-0 but with older shallow atmosphere. Primary paper: Volodin et al. 2018 (*JAMES* doi:10.1029/2017MS001065).
 - **CMIP5 predecessor:** INM-CM4 (CMIP5)
-- **Primary documentation paper(s):** Volodin et al. 2018 (*JAMES* doi:10.1029/2017MS001065)
+- **Primary documentation paper(s):** Volodin et al. 2018 (*Russian Journal of Numerical Analysis and Mathematical Modelling* 33(6):367–374 doi:10.1515/rnam-2018-0032) — **PAYWALLED; not extracted**. NOTE: doi:10.1029/2017MS001065 is the INM-CM5-0 paper (Volodin & Gritsun 2018 JAMES), NOT the INM-CM4-8 paper.
 
 ## Forcing datasets used (historical 1850–2014) — verified against Eyring et al. 2016 protocol
 
@@ -25,8 +25,11 @@
 | FC | Flux corrections | n/a | n/a | None | | |
 
 ### Deviations from Eyring 2016 standard protocol
-- **All verdicts ?**: Primary source (Volodin et al. 2018) not successfully extracted in Stage 15. INM-CM4-8 should not be assumed identical to INM-CM5-0 — aerosol treatment in particular should be confirmed separately.
+- **All verdicts ?**: Primary source (Volodin et al. 2018 Russian Journal) is paywalled and cannot be extracted. INM-CM4-8 should not be assumed identical to INM-CM5-0 — aerosol treatment in particular should be confirmed separately.
 - **Low model top**: L21 top ~10 hPa may affect ozone dataset compatibility and volcanic aerosol treatment.
+
+### Status: UNRESOLVABLE without paywalled primary paper (confirmed 2026-06-27)
+The only primary documentation paper for INM-CM4-8 is Volodin et al. 2018 (*Russian Journal of Numerical Analysis and Mathematical Modelling* doi:10.1515/rnam-2018-0032), which is paywalled. All forcing verdicts remain ? — no further action possible without access to this paper.
 
 ## Provenance
 - Stage 15 workflow run ID: wf_75e312c8-82e (2026-06-27); no confirmed findings for CM4-8 (Volodin 2018 not extracted)

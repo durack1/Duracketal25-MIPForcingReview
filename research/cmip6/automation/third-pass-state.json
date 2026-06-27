@@ -97,10 +97,10 @@
       "label": "GFDL-ESM4 (LU/VL/N-dep) + GFDL-CM4 (LU/VL) + CAMS-CSM1-0 (aerosols/LU)",
       "models": ["GFDL-CM4", "GFDL-ESM4", "CAMS-CSM1-0"],
       "model_files": ["NOAA-GFDL__GFDL-CM4.md", "NOAA-GFDL__GFDL-ESM4.md", "CAMS__CAMS-CSM1-0.md"],
-      "pdfs": ["Heldetal19JAMES-GFDL-CM4-StructureAndPerformance.pdf", "Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics.pdf", "Rongetal21AdvAtmosSc-CAMS-CSM1-0-CMIP6Historical.pdf"],
+      "pdfs": ["Heldetal19JAMES-GFDL-CM4-StructureAndPerformance.pdf", "Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics_sml.pdf", "Rongetal21AdvAtmosSc-CAMS-CSM1-0-CMIP6Historical.pdf"],
       "per_model_pdfs": {
-        "GFDL-CM4":    ["Heldetal19JAMES-GFDL-CM4-StructureAndPerformance.pdf", "Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics.pdf"],
-        "GFDL-ESM4":   ["Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics.pdf"],
+        "GFDL-CM4":    ["Heldetal19JAMES-GFDL-CM4-StructureAndPerformance.pdf", "Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics_sml.pdf"],
+        "GFDL-ESM4":   ["Dunneetal20JAMES-GFDL-ESM4-1-DescriptionAndSimulationCharacteristics_sml.pdf"],
         "CAMS-CSM1-0": ["Rongetal21AdvAtmosSc-CAMS-CSM1-0-CMIP6Historical.pdf"]
       },
       "target_unknowns": {

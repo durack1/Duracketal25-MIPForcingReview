@@ -22,9 +22,9 @@
 | OC | ✓std | TV | As E3SM-1-0 |
 | MD | ~ | TV | MAM4 interactive |
 | SS | ~ | TV | MAM4 interactive |
-| LU | ? | | As E3SM-1-0 — unconfirmed |
-| SO | ? | | As E3SM-1-0 — unconfirmed |
-| VL | ? | | As E3SM-1-0 — unconfirmed |
+| LU | ✓std | TV | As E3SM-1-0 — LUH2 v2.1h (Hurtt et al. 2017), confirmed Golaz 2019 App. B.6 |
+| SO | ✓std | TV | As E3SM-1-0 — SOLARIS-HEPPA v3.2 input4MIPs, confirmed Golaz 2019 App. B.8 |
+| VL | ✓std | TV | As E3SM-1-0 — IACETH SAGE3λ v3; spectral interpolation to model radiation bands is standard practice (Golaz 2019 App. B.4; corrected 2026-06-27) |
 | FC | n/a | n/a | |
 
 ## Provenance

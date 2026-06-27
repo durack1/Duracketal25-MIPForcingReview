@@ -20,9 +20,9 @@
 | OC | Organic carbon | CEDS + BB4CMIP6 | `CEDS-2017-05-18` + `VUA-CMIP-BB4CMIP6-1-2` | ✓std | TV | File: `cmip6_mam4_pom_a4_elev_1850-2014_c180205.nc` (POM = particulate organic matter / OC) | Golaz et al. 2019; E3SM docs | golaz_e3sm_2019 | |
 | MD | Mineral dust | — | — | ~ | TV | Interactive in MAM4 | | | |
 | SS | Sea salt | — | — | ~ | TV | Interactive in MAM4 | | | |
-| LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | `UofMD-landState-2-1-h` | ? | | | | | CLM4.5 land — LUH2 v2.1h expected but unconfirmed |
-| SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | `SOLARIS-HEPPA-3-2` | ? | | | | | CESM1 used Wang+Lean 2005 — confirm E3SM upgraded or carried forward |
-| VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | `IACETH-SAGE3lambda-3-0-0` | ? | | | | | Both center-specific candidates refuted (CMIP_DOE-ACME_radiation file 0-1; GloSSAC v1 0-1). Standard IACETH unconfirmed. Leave open. |
+| LU | Land-use change | Hurtt et al. 2017 LUH2 v2.1h | `UofMD-landState-2-1-h` | ✓std | TV | input4MIPs LUH2 v2.1h regridded to E3SM ne30 grid by G. Hurtt and R. Sahajpal (private communication, March 2017–Jan 2018). Golaz 2019 Appendix B.6: "using v2.1h of the input4MIPs land use data (Hurtt et al., 2017)." | Golaz et al. 2019 Appendix B.6 | golaz_e3sm_2019 | Confirmed standard dataset. |
+| SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA v3.2 | `SOLARIS-HEPPA-3-2` | ✓std | TV | input4MIPs solar irradiance v3.2, specified monthly. Golaz 2019 Appendix B.8: "Solar irradiances came from v3.2 of the solar irradiance data set from input4MIPs (Matthes, Funke, Kruschke, et al., 2017; Matthes, Funke, Andersson, et al., 2017). The data were specified monthly." | Golaz et al. 2019 Appendix B.8 | golaz_e3sm_2019 | Confirmed standard dataset; note cite uses both Matthes 2017 references (GMD paper + input4MIPs dataset). |
+| VL | Volcanic aerosols | IACETH SAGE3λ v3 | `IACETH-SAGE3lambda-3-0-0` | ✓std | TV | Standard IACETH SAGE3λ v3 dataset, spectrally interpolated to match EAMv1 radiation wavelength bands. Golaz 2019 Appendix B.4: "We used version 3 of the data set, which was created to exactly match the E3SMv1 radiation wavelength ranges by one of the data set creators, B. Luo (private communication, June-Sept 2017)." Spectral interpolation to model radiation bands is standard practice applied by all CMIP6 models receiving this dataset — not a deviation. | Golaz et al. 2019 Appendix B.4 | golaz_e3sm_2019 | |
 | FC | Flux corrections | Not expected | — | n/a | n/a | None | — | — | |
 
 ### Supplemental / non-input4MIPs forcings
@@ -32,10 +32,12 @@
 | O (strat) | Stratospheric ozone | Linoz v2 interactive chemistry | Replaces prescribed CCMI strat | Linoz v2 coefficient table `linoz1850-2015_2010JPL_CMIP6_10deg_58km_c20171109.nc` is chemistry parameters, NOT a prescribed ozone dataset |
 
 ## Open questions
-1. VL: standard IACETH-SAGE3lambda-3-0-0 or other? Both refuted candidates leave this genuinely unresolved.
-2. SO: SOLARIS-HEPPA-3-2 or CESM1-era Wang+Lean 2005?
-3. LU: Hurtt 2020 LUH2 v2.1h confirmed for CLM4.5?
-4. O3v1: Confirm O3v1 was the module used in archived historical DECK submission (Tang 2021 evaluates the modules but does not explicitly confirm the submission version).
+1. O3v1: Confirm O3v1 was the module used in archived historical DECK submission (Tang 2021 evaluates the modules but does not explicitly confirm the submission version).
+
+*Resolved 2026-06-27 from Golaz et al. 2019 Appendix B:*
+- *LU: ✓std confirmed — LUH2 v2.1h (Hurtt et al. 2017) via G. Hurtt + R. Sahajpal private communication (Appendix B.6)*
+- *SO: ✓std confirmed — SOLARIS-HEPPA v3.2 input4MIPs, monthly (Appendix B.8)*
+- *VL: ✓std confirmed — IACETH SAGE3λ v3; spectral interpolation to EAMv1 radiation bands is standard practice, not a deviation (Appendix B.4; corrected 2026-06-27)*
 
 ## Provenance
 - Stage 4 workflow run ID: wf_29f9e93f-7df (8 confirmed, 6 killed of 14 verified)

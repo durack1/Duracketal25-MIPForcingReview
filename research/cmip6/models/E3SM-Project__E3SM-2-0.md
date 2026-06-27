@@ -20,9 +20,9 @@
 | OC | Organic carbon | CEDS + BB4CMIP6 | `CEDS-2017-05-18` + `VUA-CMIP-BB4CMIP6-1-2` | ✓std | TV | As SD | Golaz et al. 2022 | golaz_e3smv2_2022 | |
 | MD | Mineral dust | — | — | ~ | TV | Interactive in MAM4 | | | |
 | SS | Sea salt | — | — | ~ | TV | Interactive in MAM4 | | | |
-| LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | `UofMD-landState-2-1-h` | ? | | | | | ELMv2 land — LUH2 v2.1h unconfirmed |
-| SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | `SOLARIS-HEPPA-3-2` | ? | | | | | |
-| VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | `IACETH-SAGE3lambda-3-0-0` | ? | | | | | Both VL candidate claims refuted: center-specific DOE-ACME file (0-1) AND GloSSAC v1 (0-1). Standard IACETH unconfirmed. Genuinely open. |
+| LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | `UofMD-landState-2-1-h` | ✓std | TV | Same boundary files as E3SMv1. Golaz 2022 §4: "All simulations were configured to adhere to the CMIP6 specifications as closely as possible and rely on the same boundary files as E3SMv1 (Golaz et al., 2019)." LUH2 v2.1h confirmed for E3SMv1 (Golaz 2019 App. B.6). | Golaz et al. 2022 §4 | golaz_e3smv2_2022 | |
+| SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA v3.2 | `SOLARIS-HEPPA-3-2` | ✓std | TV | Same boundary files as E3SMv1. SOLARIS-HEPPA v3.2 confirmed for E3SMv1 (Golaz 2019 App. B.8). | Golaz et al. 2022 §4 | golaz_e3smv2_2022 | |
+| VL | Volcanic aerosols | IACETH SAGE3λ v3 | `IACETH-SAGE3lambda-3-0-0` | ✓std | TV | Same boundary files as E3SMv1. IACETH SAGE3λ v3 confirmed for E3SMv1 (Golaz 2019 App. B.4); spectral interpolation to model radiation bands is standard practice. | Golaz et al. 2022 §4 | golaz_e3smv2_2022 | |
 | FC | Flux corrections | Not expected | — | n/a | n/a | None | — | — | |
 
 ### ESM-specific forcing inputs (ELMv2 active biogeochemistry)
@@ -48,10 +48,12 @@
 | Overall verdict | ~ (trop std + strat interactive) | ~ (trop passive + strat interactive; further from std) |
 
 ## Open questions
-1. VL: both candidate claims refuted — leave open; needs direct read of EAMv2 namelist
-2. SO: SOLARIS-HEPPA-3-2 or CESM1-era dataset?
-3. LU: Hurtt 2020 LUH2 v2.1h for ELMv2?
-4. N-dep for ELMv2 BGC
+1. N-dep for ELMv2 BGC — source unconfirmed
+
+*Resolved 2026-06-27 from Golaz et al. 2022 §4:*
+- *LU: ✓std confirmed — same boundary files as E3SMv1 (= LUH2 v2.1h Hurtt 2017)*
+- *SO: ✓std confirmed — same boundary files as E3SMv1 (= SOLARIS-HEPPA v3.2)*
+- *VL: ✓std confirmed — same boundary files as E3SMv1 (= IACETH SAGE3λ v3); spectral interpolation is standard practice*
 
 ## Provenance
 - Stage 4 workflow run ID: wf_29f9e93f-7df (8 confirmed, 6 killed of 14 verified)
