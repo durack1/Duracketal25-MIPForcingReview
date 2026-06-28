@@ -18,7 +18,7 @@
 | OC | Organic carbon | ✓std | TV | MACv2-SP anthropogenic optical properties (OC included in plume) |
 | MD | Mineral dust | ✗dev | FXk | 1850 annual-cycling CMIP5 natural aerosol climatology (non-standard background) |
 | SS | Sea salt | ✗dev | FXk | 1850 annual-cycling CMIP5 natural aerosol climatology (non-standard background) |
-| LU | Land-use change | ? | ? | — |
+| LU | Land-use change | ~ | TV *(likely)* | **Dataset not named in Bao 2020.** UofMD-landState-2-1-h (LUH2 v2.1h) is the only standard CMIP6 historical land-state dataset in input4MIPs. FIO-ESM-2-0 uses CLM4.0 — the CMIP5-era land model (CESM1 used CLM4.0 with LUH1 for CMIP5). CLM5 (CMIP6 CESM2) was updated to LUH2; CLM4.0 was not. Architecture inference: likely LUH1 (✗dev), similar to GFDL-CM4 (confirmed ✗dev, LM4.0 + LUH1). Not confirmed from paper. | Bao et al. 2020; ESGF input4MIPs catalog 2026-06-28 | **Architecture inference only**: CLM4.0 is CMIP5-era, not updated for LUH2. Likely ✗dev but requires direct confirmation. |
 | SO | Solar irradiance | ✓std | TV | Matthes 2017 / SOLARIS-HEPPA TSI (historical time-varying) |
 | VL | Volcanic aerosols | ✓std | TV | CMIP6 stratospheric aerosol data (Thomason 2018 / IACETH); ext coeff + SSA + g all bands |
 

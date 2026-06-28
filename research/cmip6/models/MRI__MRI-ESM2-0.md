@@ -21,7 +21,7 @@
 | SS — Sea salt | Online interactive — MASINGAR mk-2r4c (2-mode accumulation + coarse) | ＋exc | TV |
 | LU — Land use | LUH2 (Lawrence et al. 2016 / Hurtt 2020) | ✓std | TV |
 | SO — Solar | Matthes et al. 2017 / SOLARIS-HEPPA (incl. EPP particle forcing implemented in MRI-CCM2.1) | ✓std | TV |
-| VL — Volcanic | Thomason et al. 2018 (IACETH stratospheric AOD) + interactive MASINGAR mk-2r4c for continuous eruptions | ~ | TV |
+| VL — Volcanic | Thomason et al. 2018 (IACETH stratospheric AOD) — primary prescribed forcing for historical; MASINGAR mk-2r4c also calculates sulfuric acid aerosol interactively for continuous eruptions (additive, not replacing IACETH) | ✓std | TV |
 | FC — Fixed composition | n/a (ESM) | n/a | — |
 
 ## ESM-specific inputs
@@ -48,7 +48,7 @@
 - Yukimoto et al. 2019 (JMSJ) fully retrieved and read; Section 3.3 (Historical experiment) confirms all major forcing datasets explicitly
 - G=✓std: "greenhouse gas concentrations ... compiled by Meinshausen et al. (2017)" (Sec. 3.3)
 - SO=✓std: "solar radiative and particle forcings were compiled by ... Matthes et al. (2017)"; EPP implemented in MRI-CCM2.1 following Matthes et al. 2017 Appendices D and E
-- VL=~: "stratospheric aerosol dataset used in the CMIP6 experiments (Thomason et al. 2018)" PLUS "sulfuric acid aerosol concentrations interactively calculated by MASINGAR mk-2r4c" for continuous eruptions — hybrid approach
+- VL=✓std: "stratospheric aerosol dataset used in the CMIP6 experiments (Thomason et al. 2018)" is the PRIMARY prescribed dataset for historical forcing; MASINGAR mk-2r4c additionally calculates sulfuric acid aerosol interactively for continuous eruptions. Standard IACETH dataset IS used for historical forcing — MASINGAR supplements it for small continuous eruptions. Verdict upgraded from ~ to ✓std (second-pass 2026-06-28).
 - LU=✓std: "Land-Use Harmonization (LUH2) dataset provided by the CMIP6 land-use group (Lawrence et al. 2016)"
 - SD/SI/BC/OC=✓std: "emissions of anthropogenic short-lived climate forcers, open biomass burning emissions ... compiled by Hoesly et al. (2018) [CEDS], van Marle et al. (2017) [BB4CMIP6]"; MASINGAR mk-2r4c treats sulfate, BC, OC, sea salt, mineral dust, precursor gases
 - MD=＋exc: MASINGAR mk-2r4c treats mineral dust online interactively (10-bin size-resolved, 0.1–10 µm)

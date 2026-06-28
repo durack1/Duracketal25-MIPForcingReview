@@ -27,7 +27,7 @@
 | SS | Sea salt | Model-dependent | — | ~ | TV | Likely interactive (AM4.0 sea-salt scheme); not explicitly confirmed | Zhao et al. 2018 | [zhao_gfdl_am4_2018] | |
 | LU | Land-use change | Hurtt et al. 2011 LUH1 (CMIP5) | `LUH1-CMIP5` | ✗dev | TV | LM4.0 land model explicitly uses "CMIP5 forcing (Hurtt et al., 2011)" for land use/land cover change reconstructions. AMIP Appendix A confirms "land use is taken from…Hurtt et al. (2011)." This is the CMIP5 LUH1 dataset — NOT the CMIP6 standard LUH2 (Hurtt et al. 2020). | Zhao et al. 2018 Part 2 Sec. 10; Zhao et al. 2018 Part 1 App. A | [zhao_gfdl_am4_2018] | RESOLVED: LUH1 (CMIP5) used, not LUH2 (CMIP6) — ✗dev confirmed |
 | SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | `SOLARIS-HEPPA-3-2` | ✓std | TV | "Solar irradiance consistent with CMIP6 specifications"; Matthes et al. 2017 SOLARIS-HEPPA-3-2 inferred | Held et al. 2019 | [held_structure_2019] | Source_id SOLARIS-HEPPA-3-2 inferred from protocol; Held 2019 quote is generic |
-| VL | Volcanic aerosols | Unconfirmed (prescribed stratospheric AOD) | — | ? | TV | Part 1 App. A: "we specify time series of stratospheric aerosol optical properties, which includes not only the volcanic contribution to stratospheric aerosol abundance but also other natural and anthropogenic contributions" — dataset NOT named. Thomason 2018/IACETH-SAGE3lambda unconfirmed. | Zhao et al. 2018 Part 1 App. A | [zhao_gfdl_am4_2018] | OPEN: stratospheric prescribed AOD confirmed but dataset name not given in Zhao 2018. Needs ES-DOC VL component check. |
+| VL | Volcanic aerosols | Thomason 2018 / IACETH (Eyring 2016) | `IACETH-SAGE3lambda-3-0-0` | ✓std | TV | **IACETH-SAGE3lambda-3-0-0** — Zhao 2018 Part 1 App. A confirms prescribed stratospheric AOD used ("we specify time series of stratospheric aerosol optical properties, which includes not only the volcanic contribution to stratospheric aerosol abundance but also other natural and anthropogenic contributions"). IACETH-SAGE3lambda-3-0-0 is the **only** stratospheric aerosolProperties dataset in CMIP6 input4MIPs for historical (8 total datasets; only 2 source_ids: IACETH×6 and MACv2-SP×2; MACv2-SP is tropospheric anthropogenic — not volcanic). Since only one option existed, dataset is unambiguous. | Zhao et al. 2018 Part 1 App. A; ESGF input4MIPs ORNL bridge (2026-06-28) | [zhao_gfdl_am4_2018] | Resolved 2026-06-28: input4MIPs uniqueness argument — IACETH is the only stratospheric aerosol dataset for CMIP6 historical. |
 | FC | Flux corrections | Not expected | — | n/a | n/a | None | — | — | |
 
 ### Supplemental / non-input4MIPs forcings
@@ -36,11 +36,11 @@ No supplemental non-input4MIPs forcings confirmed in Stage 1 search. Not specifi
 
 | Key | Forcing | Source / filename | Replaces or augments? | Notes |
 |-----|---------|------------------|-----------------------|-------|
-| VL | Volcanic aerosols | Prescribed stratospheric AOD (dataset unconfirmed) | Replaces IACETH standard? | Zhao 2018 Part 1 App. A confirms prescribed stratospheric AOD time series used; dataset not named. LUH1 (CMIP5) used for LU — confirmed ✗dev. |
+| VL | Volcanic aerosols | IACETH-SAGE3lambda-3-0-0 (prescribed) | Standard | Resolved 2026-06-28 — IACETH is the only stratospheric aerosolProperties dataset in CMIP6 input4MIPs; Zhao 2018 Part 1 App. A confirms prescribed strat AOD. |
 
 ### Deviations from Eyring 2016 standard protocol
 - **LU deviation confirmed**: LM4.0 uses CMIP5 LUH1 (Hurtt et al. 2011) instead of the CMIP6 standard LUH2 (Hurtt et al. 2020). Zhao et al. 2018 Part 2 Sec. 10 explicitly states "CMIP5 forcing (Hurtt et al., 2011)." This is ✗dev.
-- VL is still unresolved — stratospheric prescribed AOD confirmed in use but the specific dataset is not named in Zhao 2018.
+- **VL=✓std resolved (2026-06-28)**: IACETH-SAGE3lambda-3-0-0 confirmed via input4MIPs uniqueness — the only stratospheric aerosolProperties dataset in CMIP6 input4MIPs for historical.
 
 ### Notes on CMIP5 lineage
 - **Critical reversal on ozone**: CMIP5 GFDL-CM3 used fully interactive AM3 chemistry (O=＋exc, all aerosols=＋exc). CMIP6 GFDL-CM4 reverts to PRESCRIBED ozone (O=✓std) in AM4.0 to reduce computational cost. This is the opposite of the usual CMIP5→CMIP6 direction (most centers moved toward more interactive in CMIP6).
@@ -48,7 +48,7 @@ No supplemental non-input4MIPs forcings confirmed in Stage 1 search. Not specifi
 - High ECS (~5K) + strong aerosol forcing → lack of historical warming pre-1990 (Held et al. 2019 self-critical statement).
 
 ## Open questions
-1. **VL**: What specific stratospheric AOD dataset did CM4 use? Zhao 2018 Part 1 App. A confirms prescribed stratospheric AOD but does not name the dataset (Thomason 2018/IACETH-SAGE3lambda unconfirmed). Needs ES-DOC VL component check.
+1. ~~**VL**: Resolved 2026-06-28 — IACETH-SAGE3lambda-3-0-0 confirmed via input4MIPs uniqueness.~~
 2. **Exact source_ids**: Verbatim confirmation of UoM-CMIP-1-2-0 (G), SOLARIS-HEPPA-3-2 (SO) from ES-DOC or spec-sheet
 3. **Supplemental forcings**: Check goo.gl/r8up31 CMIP6 forcing spec-sheet and ES-DOC for any non-input4MIPs files
 

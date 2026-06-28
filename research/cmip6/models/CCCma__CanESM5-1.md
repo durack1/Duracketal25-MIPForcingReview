@@ -6,7 +6,7 @@
 - **CMIP5 predecessor:** As CanESM5 (CanESM2 lineage)
 - **Model family / lineage:** Incremental physics update of CanESM5. CanAM5.0.3 atmosphere (minor updates vs CanAM5.0.0) + CLASSIC land + CanOM4 ocean + CICE6. All atmospheric forcing expected identical to CanESM5 except solar (Matthes 2017 confirmed for CanAM5.0.3).
 - **Atmosphere / ocean components:** CanAM5.0.3 / CanOM4 + CICE6
-- **Primary documentation paper(s):** Cole et al. 2023, *GMD* 16:5427, doi:10.5194/gmd-16-5427-2023 [cole_canesm5_2023]; Swart et al. 2019, *JAMES* doi:10.1029/2019MS001751 [swart_canesm5_2019]
+- **Primary documentation paper(s):** Cole et al. 2023, *GMD* 16:5427, doi:10.5194/gmd-16-5427-2023 [cole_canesm5_2023]; Swart et al. 2019, *GMD* 12:4823, doi:10.5194/gmd-12-4823-2019 [swart_canesm5_2019]
 - **Forcing-specific reference(s):** Rieger et al. 2020, *GMD* 13:4831, doi:10.5194/gmd-13-4831-2020 [rieger_iaceth_2020]
 
 ## Forcing datasets used (historical 1850–2014) — see CCCma__CanESM5.md for full evidence
@@ -15,7 +15,7 @@ CanESM5-1 is a minor incremental update (CanAM5.0.3) of CanESM5 (CanAM5.0.0). Al
 
 | Key | Verdict | Temporal | Notes |
 |-----|---------|----------|-------|
-| G  | ? | TV | As CanESM5; not confirmed. Expected ✓std. |
+| G  | ✓std | TV | As CanESM5. input4MIPs uniqueness: UoM-CMIP-1-2-0 is the only CMIP6 historical GHG dataset; resolved 2026-06-28. |
 | O  | ✓std | TV | As CanESM5. Checa-Garcia 2018 / UReading-CCMI-1-0. |
 | SD | ✓std | TV | As CanESM5. Interactive prognostic, CEDS+BB4CMIP6 emissions. |
 | SI | ✓std | TV | As CanESM5. Indirect effects included. |
@@ -42,3 +42,4 @@ CanESM5-1 is a minor incremental update (CanAM5.0.3) of CanESM5 (CanAM5.0.0). Al
 ## Provenance
 - Stage 5 workflow run ID: wf_743d4a9c-430 (2026-06-22)
 - Primary source for SO confirmation: Cole et al. 2023 doi:10.5194/gmd-16-5427-2023
+- Eighth-pass update (2026-06-28): (1) Primary paper DOI corrected — Swart 2019 is GMD 12:4823, doi:10.5194/gmd-12-4823-2019 (NOT JAMES doi:10.1029/2019MS001751). (2) G resolved to ✓std via input4MIPs uniqueness (UoM-CMIP-1-2-0 only CMIP6 historical GHG dataset; same argument as CanESM5 resolved same date).

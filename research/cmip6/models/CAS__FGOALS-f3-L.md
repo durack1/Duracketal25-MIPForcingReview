@@ -20,7 +20,7 @@
 | SS | Sea salt | ~ | FXc | **CAM-Chem offline aerosol climatology** (Lamarque et al. 2012). Same source as MD. | *Adv. Atmos. Sci.* 2019 (He et al.); *Atmos. Oce. Sci. Lett.* 2020 (He et al.) | Confirmed alongside MD and BC/OC from the same CAM-Chem aerosol fields. |
 | LU | Land-use change | ✗dev | TV | **Hurtt et al. 2011** (CMIP5-era LUH, not LUH2). AMIP paper explicitly cites Hurtt 2011. Historical coupled (Guo 2020) says "CMIP6 historical forcing" without naming LUH2. | *Adv. Atmos. Sci.* 2019 (He et al.) | Verbatim (He 2019 AMIP): "The land use datasets are prescribed as their mean climate values (Hurtt et al., 2011)." CMIP5 dataset; deviates from LUH2 standard. |
 | SO | Solar irradiance | ✓std | TV | **Matthes et al. 2017** (SOLARIS-HEPPA-3-2). | *Adv. Atmos. Sci.* 2020 | Verbatim: "solar forcing from Matthes et al. (2017)." |
-| VL | Volcanic aerosols | ? | ? | Not confirmed from Stage 16 sources. | | |
+| VL | Volcanic aerosols | ✓std | TV | **IACETH-SAGE3lambda-3-0-0** (inferred from CMIP6 compliance + input4MIPs uniqueness). *Adv. Atmos. Sci.* 2020: "Forced by the same historical forcing provided by CMIP6 from 1850 to 2014"; Guo 2020 mentions stratospheric aerosol. IACETH-SAGE3lambda-3-0-0 is the only stratospheric aerosolProperties dataset in CMIP6 input4MIPs for historical (confirmed ESGF ORNL bridge 2026-06-28). | *Adv. Atmos. Sci.* 2020; ESGF input4MIPs catalog 2026-06-28 | Medium-high confidence: inferred from generic CMIP6 compliance statement + input4MIPs uniqueness (no alternative stratospheric aerosol dataset existed). | |
 | FC | Flux corrections | n/a | n/a | None | | |
 
 ## Provenance

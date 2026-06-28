@@ -22,15 +22,16 @@
 | SS | Sea salt | — | — | FXc | FXc | As MD — TM5 PI monthly climatology (fixed 1850 natural background). | Döscher et al. 2022 | |
 | LU | Land-use change | Hurtt et al. 2020 LUH2 v2.1h | `UofMD-landState-2-1-h` | ✓std | TV | **LUH2 (Hurtt et al. 2020) applied indirectly**: HTESSEL cannot directly ingest LUH2 data, so time-varying vegetation cover and type precomputed offline from EC-Earth3-Veg dynamic-vegetation runs (which ingest LUH2 directly) and prescribed into EC-Earth3. Corrects CMIP5 EC-EARTH LU exclusion (✗dev). | Döscher et al. 2022 | Döscher 2022 verbatim: "The land use forcing dataset (LUH2) from CMIP6 (Hurtt et al., 2020) cannot be used directly as input to IFS... This happens automatically in the EC-Earth3-Veg configuration... but for all other configurations the required vegetation cover and type need to be precomputed." Year-to-year 1850-2014 variation. |
 | SO | Solar irradiance | Matthes et al. 2017 SOLARIS-HEPPA-3-2 | `SOLARIS-HEPPA-3-2` | ✓std | TV | **Matthes et al. 2017** (SOLARIS-HEPPA standard). Confirmed via AerChem cross-reference. | van Noije et al. 2021; Döscher et al. 2022 | van Noije 2021: "solar forcing (Matthes et al., 2017)" listed among CMIP6 forcings for the IFS; identical between EC-Earth3 and AerChem. |
-| VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | `IACETH-SAGE3lambda-3-0-0` | ~ | TV | **"Stratospheric aerosol radiative properties prescribed from the CMIP6 dataset"** — IACETH-SAGE3lambda-3-0-0 is the only standard CMIP6 stratospheric aerosol dataset; the source_id was not explicitly named in Stage 9 sources. | van Noije et al. 2021 | van Noije 2021: "stratospheric aerosol radiative properties" listed as CMIP6 prescribed forcings. IACETH source_id expected but not confirmed. |
+| VL | Volcanic aerosols | IACETH SAGE3λ v3.0.0 | `IACETH-SAGE3lambda-3-0-0` | ✓std | TV | **IACETH-SAGE3lambda-3-0-0 v3.0.0 confirmed**. Döscher 2022 Table 13: "Stratospheric aerosols \| 3.0.0 \| Thomason et al. (2018)" — explicit version and reference naming the IACETH CMIP6 dataset. | Döscher et al. 2022 Table 13 | Doscher 2022 Table 13 verbatim: "Stratospheric aerosols \| 3.0.0 \| Thomason et al. (2018)." Thomason 2018 = IACETH-SAGE3lambda-3-0-0 v3.0.0. Eighth-pass confirmation 2026-06-28. |
 | FC | Flux corrections | Not expected | — | n/a | n/a | None | — | |
 
 ### Deviations from Eyring 2016 standard protocol
 - **SD/BC/OC = ✓std (CMIP5 deviation CORRECTED)**: CMIP5 EC-EARTH used offline ECMWF/MACC aerosol climatology (✗dev). CMIP6 EC-Earth3 adopts MACv2-SP prescribed path (✓std).
 - **LU = ✓std (CMIP5 deviation CORRECTED)**: CMIP5 EC-EARTH excluded LU (✗dev). CMIP6 EC-Earth3 includes LUH2 indirectly.
 - **MD/SS = FXc**: Natural aerosol from TM5 PI (1850) climatology — fixed background. Not time-varying in EC-Earth3 base.
-- **VL = ~**: Expected ✓std (IACETH SAGE3λ) but source_id not explicitly confirmed.
+- **VL = ✓std**: Döscher 2022 Table 13 explicitly names "Stratospheric aerosols \| 3.0.0 \| Thomason et al. (2018)" — IACETH-SAGE3lambda-3-0-0 v3.0.0 confirmed (eighth-pass 2026-06-28).
 
 ## Provenance
 - Stage 9 workflow run ID: wf_1fb84fb8-c26 (2026-06-23); 27 agents; 13/14 confirmed, 1 killed
 - Key sources: Döscher et al. 2022 (doi:10.5194/gmd-15-2973-2022); van Noije et al. 2021 (doi:10.5194/gmd-14-5637-2021); Stevens et al. 2017 (doi:10.5194/gmd-10-433-2017)
+- Eighth-pass update (2026-06-28): VL confirmed ✓std from Döscher 2022 Table 13 verbatim: "Stratospheric aerosols \| 3.0.0 \| Thomason et al. (2018)" — IACETH-SAGE3lambda-3-0-0 v3.0.0. All 12 forcing cells now resolved.

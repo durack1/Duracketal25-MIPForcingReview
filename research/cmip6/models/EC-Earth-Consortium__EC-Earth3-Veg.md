@@ -23,16 +23,17 @@
 | SS | Sea salt | FXc | FXc | TM5 PI 1850 natural background — identical to EC-Earth3 base. | Döscher et al. 2022 | |
 | LU | Land-use change | ✓std | TV | **LUH2 v2.1h (Hurtt et al. 2020) DIRECTLY ingested by LPJ-GUESS v4**. Different mechanism from EC-Earth3/CC which receive precomputed vegetation fields from EC-Earth3-Veg runs. | Döscher et al. 2022 | Döscher 2022 (verbatim): "The land use forcing dataset (LUH2) from CMIP6 (Hurtt et al., 2020) cannot be used directly as input to IFS... the dynamic vegetation model, which uses the LUH2 dataset as an input, is active [in EC-Earth3-Veg]." LPJ-GUESS: "globally simulating vegetation dynamics, land use and land management following the LUH2 dataset (Hurtt et al., 2020), and both carbon (C) and nitrogen (N) cycling." |
 | SO | Solar irradiance | ✓std | TV | **Matthes 2017** — identical to EC-Earth3 base (same IFS). | Döscher et al. 2022 | |
-| VL | Volcanic aerosols | ~ | TV | CMIP6 stratospheric aerosol prescribed (IACETH-SAGE3lambda-3-0-0 expected; doi:10.22033/ESGF/input4MIPs.1681 formally registered). Source_id NOT named in Döscher 2022 for any EC-Earth3 config. | Döscher et al. 2022 | As EC-Earth3. IACETH dataset confirmed as the CMIP6 standard but link to EC-Earth3 ingestion inferred. |
+| VL | Volcanic aerosols | ✓std | TV | **IACETH-SAGE3lambda-3-0-0 v3.0.0 confirmed**. Döscher 2022 Table 13: "Stratospheric aerosols \| 3.0.0 \| Thomason et al. (2018)." All EC-Earth3 configurations share the same IFS atmosphere and stratospheric aerosol prescription. | Döscher et al. 2022 Table 13 | Eighth-pass confirmation 2026-06-28. |
 | FC | Flux corrections | n/a | n/a | None | | |
 
 ## ESM-specific inputs (LPJ-GUESS active land C/N)
 
 | ESM input | Verdict | Notes |
 |-----------|---------|-------|
-| N-deposition | ? | LPJ-GUESS performs active N cycling — N-dep input required. Source_id NOT named in Döscher 2022. Hegglin et al. 2021 attribution REFUTED by workflow verification. NCAR-CCMI-2-0 (canonical CMIP6 N-dep) NOT confirmed. |
+| N-deposition | ✓std | **NCAR-CCMI-2-0 confirmed**. Döscher 2022 Table 13: "Nitrogen deposition \| v2.0 \| Hegglin et al. (2021) — Used only in combination with dynamic vegetation model." CCMI N-dep v2.0 = NCAR-CCMI-2-0. Eighth-pass 2026-06-28. |
 | CO2-mode | ? | Concentration-driven for historical expected (LPJ-GUESS receives atmospheric CO2 from Meinshausen 2017 expected but not explicitly confirmed in Döscher 2022). |
 
 ## Provenance
 - Stage 10 workflow run ID: wf_c0deb3a6-6f8 (2026-06-26); 31 agents; 11/14 confirmed, 3 killed
 - Key sources: Döscher et al. 2022 (doi:10.5194/gmd-15-2973-2022); WDC-Climate CMIP6 (wdc-climate.de); van Noije et al. 2021 (doi:10.5194/gmd-14-5637-2021)
+- Eighth-pass update (2026-06-28): VL confirmed ✓std and N-dep confirmed ✓std from Döscher 2022 Table 13. Table 13 verbatim: "Stratospheric aerosols \| 3.0.0 \| Thomason et al. (2018)" (VL=IACETH-SAGE3lambda-3-0-0 v3.0.0); "Nitrogen deposition \| v2.0 \| Hegglin et al. (2021) — Used only in combination with dynamic vegetation model" (N-dep=NCAR-CCMI-2-0). All 12 standard forcing cells now resolved.

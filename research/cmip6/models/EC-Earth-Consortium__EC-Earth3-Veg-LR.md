@@ -25,11 +25,11 @@ Döscher 2022 verbatim: "The atmospheric tuning for EC-Earth3 and EC-Earth3-Veg 
 | SS | FXc | FXc | As EC-Earth3-Veg (TM5 PI natural background) |
 | LU | ✓std | TV | As EC-Earth3-Veg (direct LUH2 ingestion via LPJ-GUESS v4) |
 | SO | ✓std | TV | As EC-Earth3-Veg (Matthes 2017) |
-| VL | ~ | TV | As EC-Earth3-Veg (CMIP6 strat aerosol, IACETH inferred). NOTE: 5 hPa model top limits stratospheric resolution. |
+| VL | ✓std | TV | As EC-Earth3-Veg. Döscher 2022 Table 13: "Stratospheric aerosols \| 3.0.0 \| Thomason et al. (2018)" — IACETH-SAGE3lambda-3-0-0 v3.0.0 confirmed. NOTE: 5 hPa model top limits stratospheric resolution. Eighth-pass 2026-06-28. |
 | FC | n/a | n/a | |
 
 ## ESM-specific inputs (LPJ-GUESS)
-- N-dep: ? (same caveat as EC-Earth3-Veg — N cycling active, source_id unconfirmed)
+- N-dep: ✓std (Döscher 2022 Table 13: NCAR-CCMI-2-0 v2.0, Hegglin et al. 2021 — used only with dynamic vegetation model; confirmed eighth-pass 2026-06-28)
 - CO2-mode: ? (concentration-driven expected, not confirmed)
 
 ## Provenance

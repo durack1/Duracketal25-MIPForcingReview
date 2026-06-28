@@ -15,7 +15,7 @@ All atmospheric forcing confirmed identical to MPI-ESM1-2-LR — same ECHAM6.3 s
 
 | Key | Verdict | Notes |
 |-----|---------|-------|
-| G  | ? | As MPI-ESM1-2-LR |
+| G  | ✓std/TV | As MPI-ESM1-2-LR — input4MIPs uniqueness (UoM-CMIP-1-2-0 only option; resolved 2026-06-28) |
 | O  | ✓std/TV | As MPI-ESM1-2-LR — CCMI prescribed on all levels (Keeble 2021 verbatim: "For both configurations") |
 | SD | ✓std/TV | As MPI-ESM1-2-LR — MACv2-SP prescribed |
 | SI | ✓std/TV | As MPI-ESM1-2-LR — MACv2-SP Twomey effect |
@@ -24,8 +24,8 @@ All atmospheric forcing confirmed identical to MPI-ESM1-2-LR — same ECHAM6.3 s
 | MD | FXc | As MPI-ESM1-2-LR — Kinne 2013 natural background |
 | SS | FXc | As MPI-ESM1-2-LR — Kinne 2013 natural background |
 | LU | ✓std/TV | LUH2v2h (same source as LR; HR ingests via prescribed maps not dynamic transitions) |
-| SO | ? | As MPI-ESM1-2-LR |
-| VL | ? | As MPI-ESM1-2-LR |
+| SO | ✓std/TV | As MPI-ESM1-2-LR — input4MIPs uniqueness (SOLARIS-HEPPA-3-2 only option; resolved 2026-06-28) |
+| VL | ✓std/TV | As MPI-ESM1-2-LR — input4MIPs uniqueness + Mauritsen 2019 §8.2 prescribed (resolved 2026-06-28) |
 | FC | n/a | |
 
 Mauritsen 2019 verbatim on LR vs HR: "While for MPI-ESM1.2-HR the vegetation distribution is prescribed by a map, it is dynamically computed in MPI-ESM1.2-LR. Likewise, in historical and scenario simulations, in MPI-ESM1.2-HR land use change [is] prescribed by a sequence of maps, while in MPI-ESM1.2-LR land use is computed from a sequence of land use transitions." Both derive from LUH2v2h.
@@ -40,5 +40,6 @@ Mauritsen 2019 verbatim on LR vs HR: "While for MPI-ESM1.2-HR the vegetation dis
 ## Provenance
 - Stage 8 workflow run ID: wf_f9ea73ac-462 (2026-06-23)
 - Stage 9 pass (2026-06-27): Giorgetta 2013, Stevens 2013, Schmidt 2013, Manzini 2006 reviewed — all CMIP5; no new CMIP6 forcing evidence found; G/SO/VL remain ?
-- Stage 9 second pass (2026-06-27): Mauritsen et al. 2019 (doi:10.1029/2018MS001400) read in full; no explicit naming of Meinshausen 2017, Matthes 2017/SOLARIS-HEPPA, or Thomason 2018/IACETH SAGE3λ; G/SO/VL remain ?
+- Stage 9 second pass (2026-06-27): Mauritsen et al. 2019 (doi:10.1029/2018MS001400) read in full; no explicit naming of Meinshausen 2017, Matthes 2017/SOLARIS-HEPPA, or Thomason 2018/IACETH SAGE3λ.
+- Seventh-pass update (2026-06-28): G, SO, VL resolved to ✓std via input4MIPs uniqueness (same argument as MPI-ESM1-2-LR). VL further corroborated by Mauritsen 2019 §8.2.
 - See MPI-M__MPI-ESM1-2-LR.md for full citations
