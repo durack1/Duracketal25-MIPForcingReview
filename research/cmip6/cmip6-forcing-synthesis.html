@@ -1,0 +1,863 @@
+<title>CMIP6 Forcing Review — Synthesis</title>
+<meta name="description" content="Verification of historical forcing datasets across 64 CMIP6 climate models against the CMIP6 standard protocol">
+<style>
+  :root {
+    --ground:     #0D1B2A;
+    --surface:    #122234;
+    --surface-alt:#162A3E;
+    --border:     #1C3248;
+    --text:       #D2E6F0;
+    --text-muted: #6A90AC;
+    --accent:     #28A87E;
+    --v-std:      #2A9E68;
+    --v-dev:      #C87028;
+    --v-exc:      #7A50C0;
+    --v-hyb:      #968A28;
+    --v-unk:      #3A5870;
+    --v-na:       #1C3248;
+    --v-fxc:      #4A7898;
+
+    --v-std-bg:   #0d2b1e;
+    --v-dev-bg:   #2b1a08;
+    --v-exc-bg:   #1e1530;
+    --v-hyb-bg:   #252108;
+    --v-unk-bg:   #101e29;
+    --v-na-bg:    transparent;
+    --v-fxc-bg:   #0e2030;
+
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --font-mono: "SF Mono", "Cascadia Code", "Fira Code", ui-monospace, monospace;
+
+    --radius: 3px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 14px; }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Page shell ── */
+  .page {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    padding: 28px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .site-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .site-header .subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ── Stats row ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-card .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .stat-card.stat-std  .stat-value { color: var(--v-std); }
+  .stat-card.stat-dev  .stat-value { color: var(--v-dev); }
+  .stat-card.stat-exc  .stat-value { color: var(--v-exc); }
+  .stat-card.stat-unk  .stat-value { color: var(--v-unk); }
+
+  /* ── Legend ── */
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 4px 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .legend-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .legend-divider {
+    width: 1px;
+    height: 14px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  /* ── Filters ── */
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .filter-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 4px 9px;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+    line-height: 1.4;
+  }
+
+  .filter-btn:hover {
+    background: var(--surface-alt);
+    color: var(--text);
+  }
+
+  .filter-btn.active {
+    background: #0d2b1e;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .filter-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .esm-filter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 8px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .esm-filter input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+  }
+
+  .esm-filter:hover { color: var(--text); }
+
+  /* ── Table ── */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    /* Force hardware layer for smooth sticky scroll */
+    will-change: transform;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    table-layout: fixed;
+  }
+
+  colgroup .col-model { width: 188px; }
+  colgroup .col-inst  { width: 148px; }
+  colgroup .col-data  { width: 48px; }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  thead tr {
+    background: var(--surface-alt);
+  }
+
+  th {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 9px 6px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+  }
+
+  th.col-head-model {
+    text-align: left;
+    padding-left: 12px;
+    position: sticky;
+    left: 0;
+    z-index: 11;
+    background: var(--surface-alt);
+    border-right: 2px solid var(--border);
+  }
+
+  th.col-head-inst {
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  th:last-child { border-right: none; }
+
+  /* Sticky first column */
+  td.col-model {
+    position: sticky;
+    left: 0;
+    background: var(--surface);
+    z-index: 2;
+    border-right: 2px solid var(--border);
+  }
+
+  tr:nth-child(even) td.col-model {
+    background: var(--surface-alt);
+  }
+
+  /* Row zebra */
+  tbody tr:nth-child(even) { background: var(--surface-alt); }
+  tbody tr:nth-child(odd)  { background: var(--surface); }
+
+  tbody tr:hover td {
+    background: #1a2f44 !important;
+  }
+
+  tbody tr:hover td.col-model {
+    background: #1a2f44 !important;
+  }
+
+  td {
+    padding: 5px 4px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+
+  td:last-child { border-right: none; }
+  tr:last-child td { border-bottom: none; }
+
+  td.col-model {
+    text-align: left;
+    padding: 5px 8px 5px 12px;
+  }
+
+  td.col-inst {
+    text-align: left;
+    padding: 5px 6px 5px 10px;
+  }
+
+  .model-id {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .esm-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-left: 5px;
+    vertical-align: middle;
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+
+  .inst-id {
+    font-size: 0.71rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 20px;
+    border-radius: 2px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0 4px;
+    font-family: var(--font-mono);
+  }
+
+  .badge-std { background: var(--v-std-bg); color: var(--v-std); border: 1px solid rgba(42,158,104,0.3); }
+  .badge-dev { background: var(--v-dev-bg); color: var(--v-dev); border: 1px solid rgba(200,112,40,0.3); }
+  .badge-exc { background: var(--v-exc-bg); color: var(--v-exc); border: 1px solid rgba(122,80,192,0.3); }
+  .badge-hyb { background: var(--v-hyb-bg); color: var(--v-hyb); border: 1px solid rgba(150,138,40,0.3); }
+  .badge-unk { background: var(--v-unk-bg); color: var(--v-unk); border: 1px solid rgba(58,88,112,0.35); }
+  .badge-na  { background: transparent;     color: #2A3F52;      border: 1px solid transparent; }
+  .badge-fxc { background: var(--v-fxc-bg); color: var(--v-fxc); border: 1px solid rgba(74,120,152,0.3); }
+
+  /* Legend badge (slightly larger) */
+  .legend-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 20px;
+    border-radius: 2px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0 5px;
+    font-family: var(--font-mono);
+  }
+
+  /* ── Reference section ── */
+  .reference-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .reference-block .ref-title {
+    font-size: 0.67rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .reference-block .ref-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 0;
+  }
+
+  .ref-item {
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+    padding: 3px 10px 3px 0;
+    border-right: 1px solid var(--border);
+    margin-right: 10px;
+  }
+
+  .ref-item:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+
+  .ref-key {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .ref-val {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* ── Findings ── */
+  .findings-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+
+  .findings-block .findings-title {
+    font-size: 0.67rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .findings-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .findings-list li {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--text);
+    line-height: 1.55;
+    align-items: start;
+  }
+
+  .findings-list li::before {
+    content: "–";
+    color: var(--accent);
+    font-weight: 700;
+    margin-top: 0.05em;
+  }
+
+  .findings-list em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ── Footer ── */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── Hidden rows ── */
+  tr.hidden { display: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .site-header { flex-direction: column; gap: 4px; }
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1>CMIP6 Forcing Review</h1>
+    <span class="subtitle">Historical 1850–2014 &middot; 64 Models &middot; Eyring et al. 2016 Protocol</span>
+  </header>
+
+  <!-- Stats row (computed by JS) -->
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card stat-std">
+      <div class="stat-value" id="statAllStd">—</div>
+      <div class="stat-label">All-Standard Models</div>
+    </div>
+    <div class="stat-card stat-dev">
+      <div class="stat-value" id="statDev">—</div>
+      <div class="stat-label">Deviation Cells</div>
+    </div>
+    <div class="stat-card stat-exc">
+      <div class="stat-value" id="statExc">—</div>
+      <div class="stat-label">Exceeds Standard</div>
+    </div>
+    <div class="stat-card stat-unk">
+      <div class="stat-value" id="statUnk">—</div>
+      <div class="stat-label">Unverified Cells</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend-row" role="note" aria-label="Verdict key">
+    <span class="legend-label">Key</span>
+    <span class="legend-item">
+      <span class="legend-badge badge-std">Std</span> Standard protocol
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-dev">Dev</span> Deviation from standard
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-exc">Exc</span> Exceeds standard
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-hyb">Hyb</span> Hybrid / partial
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-fxc">FXc</span> Fixed climatological background
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-unk">Unk</span> Unverified / unknown
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-na">n/a</span> Not applicable
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="esm-dot" style="display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;vertical-align:middle;"></span>&nbsp;ESM flag
+    </span>
+  </div>
+
+  <!-- Filter controls -->
+  <div class="filter-row" role="toolbar" aria-label="Filter by institution">
+    <span class="filter-label">Institution</span>
+    <button class="filter-btn active" data-inst="ALL" onclick="filterInst(this)">All</button>
+    <button class="filter-btn" data-inst="NOAA-GFDL"          onclick="filterInst(this)">NOAA-GFDL</button>
+    <button class="filter-btn" data-inst="NASA-GISS"          onclick="filterInst(this)">NASA-GISS</button>
+    <button class="filter-btn" data-inst="NCAR"               onclick="filterInst(this)">NCAR</button>
+    <button class="filter-btn" data-inst="E3SM-Project"       onclick="filterInst(this)">E3SM-Project</button>
+    <button class="filter-btn" data-inst="CCCma"              onclick="filterInst(this)">CCCma</button>
+    <button class="filter-btn" data-inst="BCC"                onclick="filterInst(this)">BCC</button>
+    <button class="filter-btn" data-inst="CAMS"               onclick="filterInst(this)">CAMS</button>
+    <button class="filter-btn" data-inst="CNRM-CERFACS"       onclick="filterInst(this)">CNRM-CERFACS</button>
+    <button class="filter-btn" data-inst="IPSL"               onclick="filterInst(this)">IPSL</button>
+    <button class="filter-btn" data-inst="HAMMOZ-Consortium"  onclick="filterInst(this)">HAMMOZ-Consortium</button>
+    <button class="filter-btn" data-inst="MPI-M"              onclick="filterInst(this)">MPI-M</button>
+    <button class="filter-btn" data-inst="EC-Earth-Consortium" onclick="filterInst(this)">EC-Earth-Consortium</button>
+    <button class="filter-btn" data-inst="MOHC"               onclick="filterInst(this)">MOHC</button>
+    <button class="filter-btn" data-inst="NIMS-KMA"           onclick="filterInst(this)">NIMS-KMA</button>
+    <button class="filter-btn" data-inst="MIROC"              onclick="filterInst(this)">MIROC</button>
+    <button class="filter-btn" data-inst="MRI"                onclick="filterInst(this)">MRI</button>
+    <button class="filter-btn" data-inst="CMCC"               onclick="filterInst(this)">CMCC</button>
+    <button class="filter-btn" data-inst="NCC"                onclick="filterInst(this)">NCC</button>
+    <button class="filter-btn" data-inst="CSIRO-ARCCSS"       onclick="filterInst(this)">CSIRO-ARCCSS</button>
+    <button class="filter-btn" data-inst="CSIRO"              onclick="filterInst(this)">CSIRO</button>
+    <button class="filter-btn" data-inst="AWI"                onclick="filterInst(this)">AWI</button>
+    <button class="filter-btn" data-inst="INM"                onclick="filterInst(this)">INM</button>
+    <button class="filter-btn" data-inst="CAS"                onclick="filterInst(this)">CAS</button>
+    <button class="filter-btn" data-inst="FIO-QLNM"           onclick="filterInst(this)">FIO-QLNM</button>
+    <button class="filter-btn" data-inst="NUIST"              onclick="filterInst(this)">NUIST</button>
+    <button class="filter-btn" data-inst="THU"                onclick="filterInst(this)">THU</button>
+    <button class="filter-btn" data-inst="SNU"                onclick="filterInst(this)">SNU</button>
+    <button class="filter-btn" data-inst="AS-RCEC"            onclick="filterInst(this)">AS-RCEC</button>
+    <button class="filter-btn" data-inst="KIOST"              onclick="filterInst(this)">KIOST</button>
+    <button class="filter-btn" data-inst="CCCR-IITM"          onclick="filterInst(this)">CCCR-IITM</button>
+    <button class="filter-btn" data-inst="UA"                 onclick="filterInst(this)">UA</button>
+    <label class="esm-filter">
+      <input type="checkbox" id="esmFilter" onchange="applyFilters()"> ESM only
+    </label>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap" role="region" aria-label="Forcing verification table">
+    <table id="forcingTable">
+      <colgroup>
+        <col class="col-model">
+        <col class="col-inst">
+        <col class="col-data"><!-- G -->
+        <col class="col-data"><!-- O -->
+        <col class="col-data"><!-- SD -->
+        <col class="col-data"><!-- SI -->
+        <col class="col-data"><!-- BC -->
+        <col class="col-data"><!-- OC -->
+        <col class="col-data"><!-- MD -->
+        <col class="col-data"><!-- SS -->
+        <col class="col-data"><!-- LU -->
+        <col class="col-data"><!-- SO -->
+        <col class="col-data"><!-- VL -->
+        <col class="col-data"><!-- FC -->
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="col-head-model" scope="col">Model</th>
+          <th class="col-head-inst" scope="col">Institution</th>
+          <th scope="col" title="Greenhouse Gases">G</th>
+          <th scope="col" title="Ozone">O</th>
+          <th scope="col" title="Stratospheric Dust (SD)">SD</th>
+          <th scope="col" title="Stratospheric Indirect (SI)">SI</th>
+          <th scope="col" title="Black Carbon">BC</th>
+          <th scope="col" title="Organic Carbon">OC</th>
+          <th scope="col" title="Mineral Dust">MD</th>
+          <th scope="col" title="Sea Salt">SS</th>
+          <th scope="col" title="Land Use">LU</th>
+          <th scope="col" title="Solar">SO</th>
+          <th scope="col" title="Volcanic">VL</th>
+          <th scope="col" title="Forcing Concentrations">FC</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Standard reference -->
+  <div class="reference-block">
+    <div class="ref-title">CMIP6 Standard Datasets</div>
+    <div class="ref-items">
+      <div class="ref-item"><span class="ref-key">G</span><span class="ref-val">Meinshausen et al. (2017)</span></div>
+      <div class="ref-item"><span class="ref-key">O</span><span class="ref-val">Checa-Garcia et al. (2018) — CCMI</span></div>
+      <div class="ref-item"><span class="ref-key">SD/SI/BC/OC</span><span class="ref-val">MACv2-SP (Stevens et al. 2017) or CEDS + BB4CMIP6</span></div>
+      <div class="ref-item"><span class="ref-key">LU</span><span class="ref-val">LUH2 (Hurtt et al. 2017/2020)</span></div>
+      <div class="ref-item"><span class="ref-key">SO</span><span class="ref-val">Matthes et al. (2017) SOLARIS-HEPPA</span></div>
+      <div class="ref-item"><span class="ref-key">VL</span><span class="ref-val">Thomason et al. (2018) IACETH-SAGE3λ</span></div>
+    </div>
+  </div>
+
+  <!-- Key findings -->
+  <div class="findings-block">
+    <div class="findings-title">Key Findings</div>
+    <ul class="findings-list">
+      <li><span><em>MIROC6</em>, <em>MIROC-ES2L</em>, and <em>MIROC-ES2H</em> are fully standard across all 11 forcing categories — highest confidence in any CMIP6 model family.</span></li>
+      <li><span><em>GISS E2-1 family</em>: LU inadvertently used CMIP5 cropland/pasture fractions (not LUH2) — discovered post-publication; ozone from GISS OMA offline chemistry (not CCMI).</span></li>
+      <li><span><em>CESM2/WACCM</em>: ozone and volcanic aerosol bundled in a single file from the WACCM6 simulation (not CCMI ozone; VL not IACETH-SAGE3λ).</span></li>
+      <li><span><em>CNRM-CM6-1/HR</em>: aerosols from TACTIC_v2 offline bundle (not MACv2-SP/Kinne 2013); LU from fixed ECOCLIMAP-II PD land cover — explicit rejection of LUH2.</span></li>
+      <li><span><em>ACCESS-ESM1-5</em>: solar forcing carries +4.9 W m⁻² piControl offset; volcanic aerosol collapsed to 4 lat-bands with uniform AOD offset — both arise from CMIP5-era piControl mismatch carried into CMIP6.</span></li>
+      <li><span>13 models have fully unknown (?) greenhouse gas status; 16 unknown solar; 14 unknown volcanic — documentation gaps concentrated in smaller modelling groups.</span></li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span>Durack et al. (2025) MIP Forcing Review</span>
+    <span>CMIP6 five passes complete 2026-06-27–28</span>
+  </footer>
+
+</div>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────
+// Format: [model_id, institution_id, G, O, SD, SI, BC, OC, MD, SS, LU, SO, VL, FC, esm_flag]
+const MODELS6 = [
+  ['GFDL-CM4','NOAA-GFDL','std','std','std','std','std','std','hyb','hyb','dev','std','unk','na',false],
+  ['GFDL-ESM4','NOAA-GFDL','std','exc','std','std','std','std','hyb','hyb','std','std','std','na',true],
+  ['GISS-E2-1-G','NASA-GISS','std','dev','hyb','hyb','hyb','hyb','hyb','hyb','dev','std','std','na',false],
+  ['GISS-E2-1-G-CC','NASA-GISS','std','dev','hyb','hyb','hyb','hyb','hyb','hyb','dev','std','std','na',true],
+  ['GISS-E2-1-H','NASA-GISS','std','dev','hyb','hyb','hyb','hyb','hyb','hyb','dev','std','std','na',false],
+  ['GISS-E2-2-G','NASA-GISS','unk','dev','hyb','hyb','hyb','hyb','hyb','hyb','unk','unk','unk','na',false],
+  ['GISS-E2-2-H','NASA-GISS','unk','dev','hyb','hyb','hyb','hyb','hyb','hyb','unk','unk','unk','na',false],
+  ['GISS-E3-G','NASA-GISS','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','na',false],
+  ['CESM2','NCAR','hyb','dev','std','hyb','std','std','hyb','hyb','hyb','hyb','dev','na',false],
+  ['CESM2-FV2','NCAR','hyb','dev','std','hyb','std','std','hyb','hyb','hyb','hyb','dev','na',false],
+  ['CESM2-WACCM','NCAR','hyb','exc','std','hyb','std','std','hyb','hyb','hyb','hyb','exc','na',false],
+  ['E3SM-1-0','E3SM-Project','std','hyb','std','hyb','std','std','hyb','hyb','std','std','std','na',false],
+  ['E3SM-1-1','E3SM-Project','std','hyb','std','hyb','std','std','hyb','hyb','std','std','std','na',false],
+  ['E3SM-1-1-ECA','E3SM-Project','std','hyb','std','hyb','std','std','hyb','hyb','std','std','std','na',true],
+  ['E3SM-2-0','E3SM-Project','std','hyb','std','hyb','std','std','hyb','hyb','std','std','std','na',false],
+  ['CanESM5','CCCma','unk','std','std','std','std','std','std','std','std','unk','std','na',true],
+  ['CanESM5-1','CCCma','unk','std','std','std','std','std','std','std','std','std','std','na',true],
+  ['CanESM5-CanOE','CCCma','unk','std','std','std','std','std','std','std','std','unk','std','na',true],
+  ['BCC-CSM2-MR','BCC','std','std','std','dev','std','std','dev','dev','std','std','std','na',false],
+  ['CAMS-CSM1-0','CAMS','std','std','std','std','std','std','unk','unk','dev','std','std','na',false],
+  ['CNRM-CM6-1','CNRM-CERFACS','std','hyb','dev','dev','dev','dev','dev','dev','dev','std','std','na',false],
+  ['CNRM-CM6-1-HR','CNRM-CERFACS','std','hyb','dev','dev','dev','dev','dev','dev','dev','std','std','na',false],
+  ['CNRM-ESM2-1','CNRM-CERFACS','std','exc','std','std','std','std','exc','exc','std','std','std','na',true],
+  ['IPSL-CM6A-LR','IPSL','std','std','hyb','hyb','hyb','hyb','hyb','hyb','std','unk','std','na',true],
+  ['MPI-ESM-1-2-HAM','HAMMOZ-Consortium','unk','std','hyb','hyb','hyb','hyb','hyb','hyb','std','unk','unk','na',true],
+  ['MPI-ESM1-2-HR','MPI-M','unk','std','std','std','std','std','fxc','fxc','std','unk','unk','na',true],
+  ['MPI-ESM1-2-LR','MPI-M','unk','std','std','std','std','std','fxc','fxc','std','unk','unk','na',true],
+  ['EC-Earth3','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',false],
+  ['EC-Earth3-AerChem','EC-Earth-Consortium','std','exc','exc','exc','exc','exc','exc','exc','std','std','hyb','na',false],
+  ['EC-Earth3-CC','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',true],
+  ['EC-Earth3-ESM-1','EC-Earth-Consortium','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','na',true],
+  ['EC-Earth3-Veg','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',true],
+  ['EC-Earth3-Veg-LR','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',true],
+  ['HadGEM3-GC31-LL','MOHC','std','std','std','std','std','std','unk','std','std','std','std','na',false],
+  ['HadGEM3-GC31-MM','MOHC','std','std','std','std','std','std','unk','std','std','std','std','na',false],
+  ['KACE-1-0-G','NIMS-KMA','std','std','std','std','std','std','unk','std','std','std','std','na',false],
+  ['UKESM1-0-LL','MOHC','std','exc','std','std','std','std','unk','std','std','std','std','na',true],
+  ['UKESM1-1-LL','MOHC','std','exc','std','std','std','std','unk','std','std','std','std','na',true],
+  ['MIROC-ES2H','MIROC','std','std','std','std','std','std','std','std','std','std','std','na',true],
+  ['MIROC-ES2L','MIROC','std','std','std','std','std','std','std','std','std','std','std','na',true],
+  ['MIROC6','MIROC','std','std','std','std','std','std','std','std','std','std','std','na',false],
+  ['MRI-ESM2-0','MRI','std','exc','std','std','std','std','exc','exc','std','std','hyb','na',true],
+  ['CMCC-CM2-SR5','CMCC','std','std','exc','exc','exc','exc','exc','exc','std','std','std','na',false],
+  ['CMCC-ESM2','CMCC','std','std','exc','exc','exc','exc','exc','exc','std','std','std','na',true],
+  ['NorESM2-LM','NCC','std','dev','std','std','std','std','std','std','std','std','std','na',false],
+  ['NorESM2-MM','NCC','std','dev','std','std','std','std','std','std','std','std','std','na',false],
+  ['ACCESS-CM2','CSIRO-ARCCSS','std','std','std','std','std','std','exc','std','std','std','std','na',false],
+  ['ACCESS-ESM1-5','CSIRO','std','std','hyb','hyb','hyb','hyb','hyb','hyb','std','dev','dev','na',true],
+  ['AWI-CM-1-1-LR','AWI','std','std','std','std','std','std','fxc','fxc','std','std','std','na',false],
+  ['AWI-CM-1-1-MR','AWI','std','std','std','std','std','std','fxc','fxc','std','std','std','na',false],
+  ['AWI-ESM-1-REcoM','AWI','std','std','std','std','std','std','fxc','fxc','std','std','std','na',true],
+  ['INM-CM4-8','INM','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','na',false],
+  ['INM-CM5-0','INM','std','std','dev','dev','dev','dev','dev','dev','unk','std','std','na',false],
+  ['CAS-ESM2-0','CAS','std','std','hyb','hyb','hyb','hyb','exc','exc','unk','std','std','na',true],
+  ['FGOALS-f3-L','CAS','std','std','std','std','std','std','hyb','hyb','dev','std','unk','na',false],
+  ['FGOALS-g3','CAS','std','std','std','std','std','std','dev','dev','std','std','std','na',false],
+  ['FIO-ESM-2-0','FIO-QLNM','std','std','std','std','std','std','dev','dev','unk','std','std','na',true],
+  ['NESM3','NUIST','std','std','std','std','std','std','fxc','fxc','std','std','std','na',false],
+  ['CIESM','THU','hyb','unk','std','std','std','std','unk','unk','unk','unk','dev','na',false],
+  ['SAM0-UNICON','SNU','std','unk','std','std','std','std','exc','exc','dev','unk','unk','na',false],
+  ['TaiESM1','AS-RCEC','unk','unk','hyb','hyb','hyb','hyb','hyb','hyb','unk','unk','unk','na',false],
+  ['KIOST-ESM','KIOST','std','unk','dev','dev','dev','dev','unk','unk','unk','unk','unk','na',true],
+  ['IITM-ESM','CCCR-IITM','std','unk','std','std','std','std','std','std','std','unk','unk','na',true],
+  ['MCM-UA-1-0','UA','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','na',false],
+];
+
+// Columns: G O SD SI BC OC MD SS LU SO VL FC
+const COL_KEYS = ['G','O','SD','SI','BC','OC','MD','SS','LU','SO','VL','FC'];
+// indices into each row: 0=model,1=inst,2=G,3=O,...,13=FC,14=esm
+const VERDICT_OFFSET = 2;
+
+// ── Badge rendering ──────────────────────────────────────────────────────
+const BADGE_CONFIG = {
+  std: { cls: 'badge-std', label: 'Std' },
+  dev: { cls: 'badge-dev', label: 'Dev' },
+  exc: { cls: 'badge-exc', label: 'Exc' },
+  hyb: { cls: 'badge-hyb', label: 'Hyb' },
+  unk: { cls: 'badge-unk', label: '?' },
+  na:  { cls: 'badge-na',  label: 'n/a' },
+  fxc: { cls: 'badge-fxc', label: 'FXc' },
+};
+
+function makeBadge(verdict) {
+  const cfg = BADGE_CONFIG[verdict] || BADGE_CONFIG['unk'];
+  return `<span class="badge ${cfg.cls}" title="${verdict}">${cfg.label}</span>`;
+}
+
+// ── Build table ──────────────────────────────────────────────────────────
+function buildTable() {
+  const tbody = document.getElementById('tableBody');
+  const rows = MODELS6.map((row, i) => {
+    const [model, inst, ...rest] = row;
+    const verdicts = rest.slice(0, 12); // G through FC
+    const esm = rest[12]; // index 14 - VERDICT_OFFSET + VERDICT_OFFSET = row[14]
+
+    const esmDot = esm ? '<span class="esm-dot" title="Earth System Model"></span>' : '';
+    const cells = verdicts.map(v => `<td>${makeBadge(v)}</td>`).join('');
+
+    return `<tr data-inst="${inst}" data-esm="${esm ? '1' : '0'}">
+      <td class="col-model"><span class="model-id">${model}</span>${esmDot}</td>
+      <td class="col-inst"><span class="inst-id">${inst}</span></td>
+      ${cells}
+    </tr>`;
+  });
+  tbody.innerHTML = rows.join('');
+}
+
+// ── Compute stats ────────────────────────────────────────────────────────
+function computeStats() {
+  let allStd = 0, devCount = 0, excCount = 0, unkCount = 0;
+
+  MODELS6.forEach(row => {
+    const verdicts = row.slice(VERDICT_OFFSET, VERDICT_OFFSET + 12);
+    // All-standard: no dev and no unk (fxc, hyb, exc, na are ok)
+    const hasDevOrUnk = verdicts.some(v => v === 'dev' || v === 'unk');
+    if (!hasDevOrUnk) allStd++;
+    verdicts.forEach(v => {
+      if (v === 'dev') devCount++;
+      if (v === 'exc') excCount++;
+      if (v === 'unk') unkCount++;
+    });
+  });
+
+  document.getElementById('statAllStd').textContent = allStd;
+  document.getElementById('statDev').textContent = devCount;
+  document.getElementById('statExc').textContent = excCount;
+  document.getElementById('statUnk').textContent = unkCount;
+}
+
+// ── Filters ──────────────────────────────────────────────────────────────
+let activeInst = 'ALL';
+
+function filterInst(btn) {
+  activeInst = btn.dataset.inst;
+  document.querySelectorAll('.filter-btn[data-inst]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const esmOnly = document.getElementById('esmFilter').checked;
+  document.querySelectorAll('#tableBody tr').forEach(tr => {
+    const inst = tr.dataset.inst;
+    const esm  = tr.dataset.esm === '1';
+    const instMatch = activeInst === 'ALL' || inst === activeInst;
+    const esmMatch  = !esmOnly || esm;
+    tr.classList.toggle('hidden', !(instMatch && esmMatch));
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────
+buildTable();
+computeStats();
+</script>

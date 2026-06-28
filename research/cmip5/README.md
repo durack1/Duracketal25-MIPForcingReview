@@ -150,15 +150,16 @@ CMIP5 introduced the first generation of Earth System Models (ESMs) with active 
 - **MIROC-ESM prescribed ozone is NOT Cionni2011**: MIROC-ESM prescribes ozone from a custom offline computation (Kawase et al. 2011), not Cionni2011 by name. This custom ozone "includes effects of historical evolution of tropospheric ozone precursors and halogen species destroying the stratospheric ozone, but effects of the solar cycle and QBO on the ozone concentration are neglected." Verdict: ~std (close alignment but not standard dataset). The prescribed ozone field was generated from MIROC-ESM-CHEM companion offline chemistry runs — so MIROC-ESM implicitly uses CHASER-derived ozone, not the Taylor2012 AC&C/SPARC Cionni2011 dataset.
 - **MIROC-ESM-CHEM / MIROC-ESM: interactive vs prescribed ozone pair**: MIROC-ESM-CHEM runs CHASER interactive chemistry online; MIROC-ESM prescribes ozone from a pre-computed CHASER run. This means MIROC-ESM is the prescribed-ozone companion to the interactive MIROC-ESM-CHEM — an unusual architecture where the prescribed ozone field itself is a coupled model output.
 - **Solar UNRESOLVED across all four MIROC CMIP5 models**: Claim that MIROC uses Lean2005 (deviation) was adversarially refuted (0-1). Wang2005 standard NOT confirmed. Solar dataset is genuinely unknown for the entire MIROC CMIP5 family — likely the most consequential confirmed gap for Stage 9.
-- **MIROC4h/MIROC5 — primary-paper scope limitation**: Sakamoto et al. 2012 (MIROC4h primary, JMSJ) documents a 1950 present-day control run and does not describe CMIP5 historical forcing protocol. Watanabe M. et al. 2010 (MIROC5 primary, J. Climate) characterises mean-state and climate sensitivity, not per-forcing CMIP5 protocol. Neither primary paper enables per-cell verdicts. All 12 forcing cells remain "?" for MIROC4h and MIROC5. Recommended path: ES-DOC experiment metadata for MIROC4h/MIROC5 historical runs, or PCMDI CMIP5 simulation pages.
+- **MIROC4h/MIROC5 — primary-paper scope limitation resolved in second pass**: Sakamoto et al. 2012 (MIROC4h primary, JMSJ) documents a 1950 present-day control run at Stage 9, but §3.1 "External forcing in MIROC4h" (p. 331) contains a full CMIP5 historical forcing inventory — found in second-pass targeted re-read. Watanabe M. et al. 2010 §2e "Control experiment" similarly contains explicit CMIP5 forcing boundary condition statements. All 11 active cells are resolved for both models (second pass 2026-06-21): G=Meinshausen2011 ✓std; O=✗dev (CHASER/Sudo2002); aerosols=sSPRINTARS/SPRINTARS exc; LU=Hurtt2009/2011 ✓std; VL=Sato1993 ✓std. Only SO remains ~unclear (Lean2005 SolarPhys 230 citation vs Wang2005 ApJ — same underlying TSI reconstruction, citation ambiguity genuine).
 - **VL=✓std confirmed for MIROC-ESM/CHEM**: Sato et al. 1993 + subsequent updates; post-1998 optical depth exponentially reduced with 1-year relaxation time. Watanabe2011 GMD verbatim confirmed 1-0. This matches the standard Taylor2012 VL protocol. MIROC-ESM/CHEM VL treatment is identical to MIROC3.2 CMIP3 (Sato-updated), confirming no regression in volcanic forcing.
 - **SPRINTARS indirect aerosol effects included (SI=exc)**: SPRINTARS is "coupled to radiation and cloud/precipitation for direct/semi-direct/indirect effects" (Watanabe2011 verbatim). This makes MIROC-ESM/CHEM one of the richest aerosol suites in the CMIP5 review — all species interactive with indirect effects, comparable to CESM1-CAM5 (MAM3) and CSIRO-Mk3.6.0 (Rotstayn2010).
 
-## Status — first + second pass complete (2026-06-22)
+## Status — first + second pass complete (2026-06-22); fourth pass (2026-06-28) ACCESS paper parse
 
 **First pass (Stages 1–11):** ALL COMPLETE ✓  
 **Second pass (Stages A/A2/B/C/D/E):** ALL COMPLETE ✓  
-All 47 models documented; verified-forcing-matrix.csv fully populated.
+**Third pass (2026-06-28):** MIROC4h/5 stale deferred-table entries removed; ACCESS1-0/1-3 G/LU/SO/VL correctly retained as ? (HadGEM2-A inheritance hypothesis rejected as unsupported inference).  
+**Fourth pass (2026-06-28):** 6 ACCESS documentation papers parsed (Bi2013, Bi2020, Bodman2020, Law2017, Ziehn2017, Ziehn2020). **Resolved: LU=✗dev** (CABLE2 no transient LU; Bodman2020+Ziehn2017+Bi2020 consistent). **Resolved: SO=✓std** (Bodman 2020 explicit: "previously 1365.65 W m⁻² in CMIP5 ACCESS" = Wang 2005 standard). **Partially resolved: VL=~std** (Ziehn 2017: Sato 2002 in 4 equal-area lat bands, inheriting from CMIP5 ACCESS via Dix et al. 2013; no Thomason floor). **G still ?**: requires Dix et al. (2013) *AMOJ* 63:83–99 — the definitive ACCESS CMIP5 forcing reference cited by both Bi 2013 and Ziehn 2017.
 
 ### Deferred / still-open items (literature exhausted or paywalled)
 
@@ -173,8 +174,6 @@ Items below cannot be resolved from currently available PDFs. Grouped by require
 | CMCC-CMS | G O SD SI BC OC MD SS LU SO VL | No accessible primary source; Manzini 2006 covers MAECHAM5 dynamics only; O=? (hitop C1modB inferred but absent from Eyring 2013 Table 1). |
 | CMCC-CESM | All 12 + ESM inputs | Fogli 2009 grey-lit RP0061 + Vichi 2011 both read; 35/36 forcing cells unconfirmed. Most documentation-sparse centre in the review. |
 | HadCM3 | G O SD BC OC LU SO VL (8) | Stage 8 workflow confirmed HadGEM2-ES only; HadCM3 CMIP5-specific forcing not documented in any available paper. Whether CMIP3 datasets (Lean1995 solar, IPCC-TAR GHG) were updated for CMIP5 is unconfirmed. |
-| MIROC4h | All 12 | Sakamoto 2012 covers 1950 control run only — no CMIP5 historical forcing detail. |
-| MIROC5 | All 12 | Watanabe M. 2010 covers mean-state; no CMIP5 historical forcing table. |
 | MIROC-ESM, MIROC-ESM-CHEM | SO | Solar dataset unresolved across all four MIROC CMIP5 models; Lean 2005 hypothesis refuted, Wang 2005 not confirmed. |
 | EC-EARTH | G O LU SO VL | Explicitly deferred by user (awaiting CMIP6 cross-reference pass). SI=✗dev confirmed. Aerosols=~std confirmed. |
 | CanESM2, CanCM4 | LU | AMIP-GLC2000 confirmed for AMIP runs; coupled-historical Hurtt2011 not confirmed in vonSalzen 2013. |
@@ -186,12 +185,17 @@ Items below cannot be resolved from currently available PDFs. Grouped by require
 | CNRM-CM5 | SO | Solar dataset unnamed in Voldoire 2013; Ammann 2007 volcanic confirmed (✗dev). |
 | IPSL-CM5A/B | LU | ORCHIDEE land model confirmed but LUH1 Hurtt 2011 not explicitly named in Dufresne 2013. |
 
-**Likely resolvable from ES-DOC (no PDF needed):**
+**Resolved from second-pass targeted reads:**
+
+| Model(s) | Previously open | Resolution |
+|----------|----------------|------------|
+| MIROC4h, MIROC5 | All 12 | ✓ Resolved second pass (2026-06-21) — Sakamoto 2012 §3.1 + Watanabe 2010 §2e both have dedicated CMIP5 forcing sections found in targeted re-read. All 11 cells resolved; SO=~ (Lean2005 SolarPhys citation ambiguity). |
+
+**Still open — requires Dix et al. 2013 or group contact:**
 
 | Model(s) | Open cells | Action |
 |----------|-----------|--------|
-| MIROC4h, MIROC5 | All 12 | ES-DOC CMIP5 experiment metadata for historical runs should name forcing datasets; Sakamoto 2012 / Watanabe 2010 are scope-limited primary papers |
-| ACCESS1-0, ACCESS1-3 | SD BC OC MD SS LU SO VL | Bi 2013 confirms O=✓std; aerosol/LU/SO/VL unconfirmed from primary source — cross-check HadGEM2-A via Collins 2011 / Martin 2011 supported but not directly confirmed |
+| ACCESS1-0, ACCESS1-3 | G only | LU=✗dev, SO=✓std, VL=~std resolved (fourth pass, 2026-06-28). **G still ?**: neither Bi 2013 nor Ziehn 2017 names Meinshausen 2011 — both defer explicitly to **Dix et al. (2013)** (*AMOJ* 63:83–99) as the ACCESS CMIP5 forcing reference. Dix 2013 not yet in /resources; obtaining it would likely confirm G=✓std and definitively resolve VL. Alternative: ES-DOC or direct contact (David Bi / Martin Dix, CSIRO). |
 
 ## Cross-cutting findings (Stage 8 — UKMO: HadCM3, HadGEM2-AO/CC/ES)
 
@@ -202,7 +206,8 @@ Items below cannot be resolved from currently available PDFs. Grouped by require
 - **Solar evolution across UKMO generations**: HadCM3 (CMIP3) → Lean1995 LBB95 (Maunder-to-modern +2.95 W/m²); HadGEM1 (CMIP3) → Solanki & Krivova 2003 (SK03, +2.73 W/m²); HadGEM2 (CMIP5) → Lean2009/Wang2005 CMIP5-recommended (+1.11 W/m²). Jones2011 Fig.13 documents this inter-generation solar forcing evolution verbatim.
 - **HadCM3 CMIP5 dataset updates unresolved**: The Stage 8 workflow confirmed all 14 findings for HadGEM2-ES only — HadCM3 is not covered by surviving claims. Whether GHGs were updated from CMIP3-era to Meinshausen2011, ozone to Cionni2011, solar to Wang2005, and whether BC/OC/LU were added, are all genuinely open. CMIP3 HadCM3 used Lean1995 solar (+2.95 W/m² Maunder-to-modern).
 - **HadGEM2-AO/CC inferred from family papers**: Collins2011 and Martin2011 document the HadGEM2-A atmosphere and CLASSIC scheme for the full family, supporting the inference that HadGEM2-AO uses prescribed Cionni2011 (O=std; no UKCA) and HadGEM2-CC uses UKCA (O=exc). Neither model was directly verified.
-- **ACCESS cross-check: CLASSIC family confirmed inferentially**: Collins2011 + Martin2011 document the HadGEM2-A atmosphere with CLASSIC from Lamarque2010 emissions — the same atmosphere inherited by ACCESS1-0/1-3 (Stage 5). This is the strongest available support for the Stage 5 ACCESS aerosol inference, though no ACCESS-specific primary source was confirmed.
+- **ACCESS cross-check: CLASSIC family confirmed inferentially**: Collins2011 + Martin2011 document the HadGEM2-A atmosphere with CLASSIC from Lamarque2010 emissions — the same atmosphere inherited by ACCESS1-0/1-3 (Stage 5). Aerosol scheme is baked into the atmospheric code and therefore confirmed by inheritance; G/LU/SO/VL are external run-time files and are NOT confirmed — CSIRO/BOM operates independently of UKMO and made these dataset choices independently. HadGEM2-A code-sharing confirms the aerosol architecture, not the forcing dataset choices.
+- **ACCESS LU/SO/VL partially resolved from CSIRO documentation (fourth pass 2026-06-28)**: LU=✗dev (CABLE2 no transient LU; Bodman 2020 §2.2, Ziehn 2017 §2.2, Bi 2020 §2.2 all confirm). SO=✓std (Bodman 2020 §2.2 explicit: "previously set at 1365.65 W m⁻² in the CMIP5 versions of ACCESS" = Wang 2005 standard). VL=~std (Ziehn 2017 §2.2: "Sato et al. 2002, 4 equal-area latitude zones, as in HadGEM, with forcing as used in previous ACCESS versions (Dix et al., 2013)"; no Thomason floor mentioned — distinct from HadGEM2-ES ✗dev). G still ?: both Bi 2013 and Ziehn 2017 explicitly defer to **Dix et al. (2013)** (*AMOJ* 63:83–99) for CMIP5 ACCESS forcing specifications; Dix 2013 not in /resources.
 
 ## Cross-cutting findings (Stage 7 — MPI + EC-EARTH)
 

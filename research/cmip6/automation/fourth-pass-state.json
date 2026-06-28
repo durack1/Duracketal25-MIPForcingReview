@@ -1,0 +1,66 @@
+{
+  "_comment": "CMIP6 fourth-pass PDF extraction. 6 new PDFs added 2026-06-27. Targets residual unknowns from third pass. Run with args: {batch_id: N, state_path: '<this file>'}.",
+  "current_batch": 4,
+  "current_batch_status": "all-complete",
+  "last_run_id": "wf_c20f397d-d83",
+  "total_batches": 3,
+  "completed_batches": [1, 2, 3],
+  "_ghost_reference_note": "Winton et al. 2020 JAMES doi:10.1029/2019MS001819 is a ghost reference that does not exist. Replaced by Zhao et al. 2018 JAMES Parts 1+2 which describe AM4.0/LM4.0 — the atmospheric/land components of GFDL-CM4.",
+  "_ec_earth_esm1_note": "EC-Earth3-ESM-1 confirmed permanently unresolvable (no primary paper exists; EC-Earth3-ESM-1-1 planned for CMIP7). Not included in fourth pass.",
+  "base_path": "/home/duro/git/Duracketal25-MIPForcingReview",
+  "batch_script": "/home/duro/git/Duracketal25-MIPForcingReview/research/cmip6/automation/pdf-extract-batch.js",
+  "batches": [
+    {
+      "id": 1,
+      "label": "GISS-E2-1 family (G/LU/SO via Miller 2020)",
+      "models": ["GISS-E2-1-G", "GISS-E2-1-G-CC", "GISS-E2-1-H"],
+      "model_files": ["NASA-GISS__GISS-E2-1-G.md", "NASA-GISS__GISS-E2-1-G-CC.md", "NASA-GISS__GISS-E2-1-H.md"],
+      "pdfs": ["Milleretal20JAMES-GISS-E2-1-HistoricalSimulations1850To2014.pdf"],
+      "per_model_pdfs": {
+        "GISS-E2-1-G":    ["Milleretal20JAMES-GISS-E2-1-HistoricalSimulations1850To2014.pdf"],
+        "GISS-E2-1-G-CC": ["Milleretal20JAMES-GISS-E2-1-HistoricalSimulations1850To2014.pdf"],
+        "GISS-E2-1-H":    ["Milleretal20JAMES-GISS-E2-1-HistoricalSimulations1850To2014.pdf"]
+      },
+      "target_unknowns": {
+        "GISS-E2-1-G":    ["G", "LU", "SO"],
+        "GISS-E2-1-G-CC": ["G", "MD", "SS", "LU", "SO", "VL"],
+        "GISS-E2-1-H":    ["G", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Miller et al. 2020 JAMES doi:10.1029/2019MS002034 is the definitive ModelE2.1 CMIP6 historical simulations paper (1850-2014). Already confirmed for E2-1-G: O=✗dev(GISS-OMA), VL=✓std(Thomason2018 Kelley2020§3.2), MD/SS=~(OMA offline module). Already confirmed for -G-CC and -H: O=✗dev, SD/SI/BC/OC=~(as E2-1-G). Do NOT change these confirmed verdicts. The paper covers all three NINT-mode configurations: ModelE2.1-G (Cartesian grid), ModelE2.1-G-CC (carbon cycle), ModelE2.1-H (Hybrid coordinates). Look carefully for: GHG forcing dataset (Meinshausen 2017?), land-use dataset (LUH2?), solar irradiance dataset (Matthes 2017?). If a section covers external forcings or experimental design for the historical simulations, extract those dataset citations verbatim.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 2,
+      "label": "GISS-E3-G (all components via Russotto 2021 + Cesana papers)",
+      "models": ["GISS-E3-G"],
+      "model_files": ["NASA-GISS__GISS-E3-G.md"],
+      "pdfs": ["Russottoetal21JAMES-GISS-E3-TropicalCycloneProperyEvolution.pdf", "Cesanaetal21GRL-GISS-E3-SnowReconcilesCloudPhasePartitioningIncreasingCloudFeedback.pdf", "Cesanaetal19AtmosChemPhys-GISS-E3-EvaluatingTropicalLowCloudsToSSTForcings.pdf", "Lietal23ERL-GISS-E3-TropicalPacificComparisonsOfSimulatedRadiationSurfaceWindStressAndSST.pdf"],
+      "per_model_pdfs": {
+        "GISS-E3-G": ["Russottoetal21JAMES-GISS-E3-TropicalCycloneProperyEvolution.pdf", "Cesanaetal21GRL-GISS-E3-SnowReconcilesCloudPhasePartitioningIncreasingCloudFeedback.pdf", "Cesanaetal19AtmosChemPhys-GISS-E3-EvaluatingTropicalLowCloudsToSSTForcings.pdf", "Lietal23ERL-GISS-E3-TropicalPacificComparisonsOfSimulatedRadiationSurfaceWindStressAndSST.pdf"]
+      },
+      "target_unknowns": {
+        "GISS-E3-G": ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Russotto et al. 2021 JAMES doi:10.1029/2021MS002601 is confirmed by the data provider as the definitive GISS-E3 CMIP6 documentation paper — despite the 'tropical cyclone' title, it contains the full ModelE3/GISS-E3-G CMIP6 historical forcing description. Previous batch agent reported it as a 'development runs paper with no forcing info' — RE-READ the ENTIRE paper including all supplementary/appendix sections. Look specifically for model configuration tables, external forcings section, experimental design, appendices. Also search Cesana 2021 GRL (doi:10.1029/2021GL094876), Cesana 2019 ACP (doi:10.5194/acp-19-2813-2019), and Li 2023 ERL (doi:10.1029/2022EF003326 or similar) for any mention of which CMIP6 forcing datasets were used. All 11 components currently ?. ModelE3 cubed-sphere atmosphere; aerosol scheme unknown but expected GISS-OMA or successor. Any confirmed dataset name (even for a single component) is a finding.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 3,
+      "label": "GFDL-CM4 (LU/VL via Zhao 2018 AM4.0/LM4.0)",
+      "models": ["GFDL-CM4"],
+      "model_files": ["NOAA-GFDL__GFDL-CM4.md"],
+      "pdfs": ["Zhaoetal18JAMES-GFDL-AM-LM4-Part1AMIPCharacteristics.pdf", "Zhaoetal18JAMES-GFDL-AM-LM4-Part2ModelDescriptionSensitivityStudiesAndTuningStrategies.pdf"],
+      "per_model_pdfs": {
+        "GFDL-CM4": ["Zhaoetal18JAMES-GFDL-AM-LM4-Part1AMIPCharacteristics.pdf", "Zhaoetal18JAMES-GFDL-AM-LM4-Part2ModelDescriptionSensitivityStudiesAndTuningStrategies.pdf"]
+      },
+      "target_unknowns": {
+        "GFDL-CM4": ["LU", "VL"]
+      },
+      "note": "Zhao et al. 2018 JAMES Part 1 doi:10.1002/2017MS001208 = AM4.0/LM4.0 AMIP description. Part 2 doi:10.1002/2017MS001209 = AM4.0/LM4.0 model description, sensitivity studies, and tuning strategies. Note: Winton et al. 2020 JAMES doi:10.1029/2019MS001819 is a ghost reference that does not exist — these Zhao 2018 papers are the correct AM4.0/LM4.0 documentation. Zhao 2018 describes AMIP (atmosphere+land only) runs. For LU: the LM4.0 land model component handles land-use; look for any description of land-use change forcing or LUH2 dataset citation. For VL: look for stratospheric aerosol forcing description (the atmospheric radiation scheme). Already confirmed for CM4: G/O/SD/SI/BC/OC=✓std, SO=✓std, MD/SS=~. Do NOT change these. Note that Zhao 2018 predates CMIP6 final protocol (2018 vs 2022 Held 2019) — they may use AMIP-era forcing datasets rather than CMIP6 historical. If the AMIP papers don't name LUH2 or Thomason2018 explicitly, return ? for those components and note this clearly.",
+      "status": "pending",
+      "run_id": null
+    }
+  ]
+}

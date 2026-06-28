@@ -1,0 +1,93 @@
+{
+  "_comment": "CMIP6 fifth-pass PDF extraction. 5 new PDFs added 2026-06-27. Targets 5 models whose primary papers were previously unavailable. Batches run sequentially to avoid CSV write conflicts.",
+  "current_batch": 6,
+  "current_batch_status": "all-complete",
+  "last_run_id": "wf_54d36177-ea8",
+  "total_batches": 5,
+  "completed_batches": [1, 2, 3, 4, 5],
+  "_paywalled_note": "INM-CM4-8 primary paper (Volodin et al. 2018, Russian Journal of Numerical Analysis, doi:10.1515/rnam-2018-0032) is paywalled — NOT included in fifth pass. MCM-UA-1-0 is CMIP1-vintage with no CMIP6 configuration paper — permanently closed. Krishnan et al. 2019 Springer book chapter (doi:10.1007/978-981-13-3396-5_9, IITM-ESM) is paywalled — NOT included.",
+  "base_path": "/home/duro/git/Duracketal25-MIPForcingReview",
+  "batch_script": "/home/duro/git/Duracketal25-MIPForcingReview/research/cmip6/automation/pdf-extract-batch.js",
+  "batches": [
+    {
+      "id": 1,
+      "label": "CAS-ESM2-0 (full model description via Zhang 2020 JAMES)",
+      "models": ["CAS-ESM2-0"],
+      "model_files": ["CAS__CAS-ESM2-0.md"],
+      "pdfs": ["Zhangetal20JAMES-CAS-ESM2-0-DescriptionAndSimulationPerformance.pdf"],
+      "per_model_pdfs": {
+        "CAS-ESM2-0": ["Zhangetal20JAMES-CAS-ESM2-0-DescriptionAndSimulationPerformance.pdf"]
+      },
+      "target_unknowns": {
+        "CAS-ESM2-0": ["G", "O", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Zhang et al. 2020 JAMES doi:10.1029/2020MS002210 is 'Description and Simulation Performance of the CAS-ESM Version 2'. Architecture: IAP AGCM 5.0 atmosphere (T85, L35) + CoLM land + LICOM2.0 ocean + IAP AACM integrated aerosol-chemistry module. ALREADY CONFIRMED: SD/SI/BC/OC = ~ (IAP AACM interactive, not a CMIP6-prescribed aerosol product). DO NOT change these. Look for: (1) GHG forcing — is Meinshausen 2017 / UoM-CMIP-1-2-0 cited? (2) Ozone — is IAP AACM chemistry interactive for ozone (which would make O = ＋exc), or is prescribed CCMI/Checa-Garcia 2018 used? (3) Mineral dust and sea salt — are these simulated interactively via IAP AACM (making MD/SS = ＋exc) or prescribed? (4) Land use — CoLM land model; is LUH2 (Hurtt 2020) cited? (5) Solar irradiance — Matthes 2017 / SOLARIS-HEPPA-3-2? (6) Volcanic aerosols — any named CMIP6 stratospheric aerosol dataset? Report the exact Chinese-language institutions if needed and look in model configuration/forcing tables/appendix sections. Any confirmed dataset name is a finding.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 2,
+      "label": "CIESM (full model description via Lin 2020 JAMES)",
+      "models": ["CIESM"],
+      "model_files": ["THU__CIESM.md"],
+      "pdfs": ["Linetal20JAMES-CIESM-DescriptionAndEvaluation.pdf"],
+      "per_model_pdfs": {
+        "CIESM": ["Linetal20JAMES-CIESM-DescriptionAndEvaluation.pdf"]
+      },
+      "target_unknowns": {
+        "CIESM": ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Lin et al. 2020 JAMES doi:10.1029/2019MS002036 is 'CIESM: The Chinese Community Earth System Model and Its Performance'. Architecture: CAM5-based atmosphere (T85L30, top ~3 hPa) + MOM6 ocean + CICE6 + CLM4.5 land. Tsinghua University. All 11 components currently ?. CAM5 lineage suggests: CCMI ozone (prescribed, Checa-Garcia 2018) for O; MAM3 aerosol module for SD/BC/OC/SI (which takes CEDS+BB4CMIP6 emissions); CLM4.5 land likely uses LUH2. However, CIESM is a Chinese adaptation — confirm whether CMIP6 standard forcing packages were adopted (CEDS+BB4CMIP6, Matthes 2017, IACETH SAGE3λ) or if centre-specific alternatives were used. Look for: (1) Experimental design section for historical runs 1850–2014; (2) Forcing protocol description — does it follow Eyring 2016 recommendations? (3) GHG forcing dataset; (4) Aerosol emissions source; (5) Ozone prescribed or interactive?; (6) Land-use dataset (LUH2?); (7) Solar irradiance (Matthes 2017?); (8) Volcanic aerosols (IACETH SAGE3λ?). Also check supplementary/appendix for forcing dataset tables.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 3,
+      "label": "SAM0-UNICON (CESM1.3/CAM5-based model via Park 2019 JCL)",
+      "models": ["SAM0-UNICON"],
+      "model_files": ["SNU__SAM0-UNICON.md"],
+      "pdfs": ["Parketal19JCL-SAM0-UNICON.pdf"],
+      "per_model_pdfs": {
+        "SAM0-UNICON": ["Parketal19JCL-SAM0-UNICON.pdf"]
+      },
+      "target_unknowns": {
+        "SAM0-UNICON": ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Park et al. 2019 Journal of Climate doi:10.1175/JCLI-D-18-0796.1. SAM0-UNICON = CESM1.3 with CAM5 atmosphere replaced by CAM5-UniCon (unified convection scheme). Seoul National University. Architecture: CAM5-UniCon (T85L30, top ~3 hPa) + POP2 ocean + CICE4 + CLM4.5 land. All 11 components currently ?. IMPORTANT: This is a Journal of Climate paper, which is more likely to be a climate evaluation paper than a detailed model configuration/forcing description paper. If the paper does not contain a dedicated forcing section, it may not resolve these unknowns — return ? for unconfirmed components and note clearly if forcing details are absent. Look for: (1) Any forcing or boundary condition description for the historical run; (2) GHG dataset; (3) Aerosol treatment — does CESM1.3/CAM5 use MAM3 with CEDS emissions? Or does SAM0 use a different scheme?; (4) Ozone — CCMI prescribed or interactive?; (5) Land-use dataset (LUH2 or LUH1?); (6) Solar irradiance; (7) Volcanic aerosols. Note that CESM1.3 predates CMIP6 — the forcing datasets used may be CMIP5-era (LUH1, Cionni ozone, etc.) rather than CMIP6 standard. This is a critical distinction.",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 4,
+      "label": "IITM-ESM (IITM-GFSv1/CLM/MOM4p1/TOPAZ2 via Swapna 2018 JAMES)",
+      "models": ["IITM-ESM"],
+      "model_files": ["CCCR-IITM__IITM-ESM.md"],
+      "pdfs": ["Swapnaetal18JAMES-IITM‐ESMv2.pdf"],
+      "per_model_pdfs": {
+        "IITM-ESM": ["Swapnaetal18JAMES-IITM‐ESMv2.pdf"]
+      },
+      "target_unknowns": {
+        "IITM-ESM": ["G", "O", "SD", "SI", "BC", "OC", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Swapna et al. 2018 JAMES doi:10.1029/2017MS001262 is the IITM-ESM v2 description paper (NOTE: filename has a Unicode hyphen U+2010 between IITM and ESMv2 — the glob pattern in this script replaces it with *). Architecture confirmed via WDC-Climate: IITM-GFSv1 atmosphere (T62L64, top 0.2 mb — HIGH MODEL TOP, adequate for stratospheric forcing), MOM4p1 ocean, CLM land, TOPAZ2 ocean BGC. All 11 components currently ?. MACv2-SP aerosol claim was previously REFUTED (0-1 vote). The IITM-GFSv1 is based on NOAA GFS (Global Forecast System) — its CMIP6 aerosol treatment is genuinely unknown. Krishnan et al. 2019 Springer book chapter is paywalled and unavailable. Look for: (1) Experimental design / forcing protocol for historical 1850–2014 simulations; (2) GHG forcing (Meinshausen 2017?); (3) Aerosol treatment — what scheme does IITM-GFSv1 use? Is it interactive or prescribed?; (4) Ozone (prescribed CCMI or interactive?); (5) Land-use forcing (LUH2 via CLM?); (6) Solar irradiance (Matthes 2017?); (7) Volcanic aerosols; (8) ESM inputs — N-dep (TOPAZ2 ocean BGC may need N-dep), Fe-dep, CO2-mode (concentration vs. emissions driven).",
+      "status": "pending",
+      "run_id": null
+    },
+    {
+      "id": 5,
+      "label": "KIOST-ESM (GFDL-AM2.0-based model via Pak 2021 Ocean Science)",
+      "models": ["KIOST-ESM"],
+      "model_files": ["KIOST__KIOST-ESM.md"],
+      "pdfs": ["Paketal21OceSc-KIOST-ESM.pdf"],
+      "per_model_pdfs": {
+        "KIOST-ESM": ["Paketal21OceSc-KIOST-ESM.pdf"]
+      },
+      "target_unknowns": {
+        "KIOST-ESM": ["G", "O", "MD", "SS", "LU", "SO", "VL"]
+      },
+      "note": "Pak et al. 2021 Ocean Science doi:10.1007/s12601-021-00001-7 (Korean journal). NOTE: This is DIFFERENT from Pak et al. 2021 JAMES doi:10.1029/2020MS002212 which was the architecture paper already processed. Architecture confirmed: GFDL-AM2.0 (cubed sphere C48) + GFDL-MOM5.0 + GFDL-SIS + NCAR-CLM4 + TOPAZ4 ocean BGC. ALREADY CONFIRMED: SD/SI/BC/OC = ✗dev (simple carbon aerosol model, 250 km emission-type scheme — NOT CMIP6 standard). DO NOT change these. Remaining unknowns: G, O, MD, SS, LU, SO, VL. The GFDL-AM2.0 atmosphere (C48-32L) has a low model top (~2 hPa actually) which is adequate. Look for: (1) GHG forcing — Meinshausen 2017? (2) Ozone — GFDL-AM2.0 likely uses prescribed ozone; which dataset? (3) Mineral dust and sea salt — separate from the simple carbon aerosol module; any prescribed climatology? (4) Land use — CLM4 + TOPAZ4; LUH2 or LUH1? (5) Solar irradiance — Matthes 2017? (6) Volcanic aerosols — IACETH or other? (7) ESM inputs for TOPAZ4 ocean BGC (N-dep, Fe-dep, CO2-mode). This paper may focus on ocean model performance rather than forcing description — if forcing details are absent, return ? and note clearly.",
+      "status": "pending",
+      "run_id": null
+    }
+  ]
+}

@@ -1,0 +1,870 @@
+<title>CMIP3 Forcing Review — Synthesis</title>
+<meta name="description" content="Temporal treatment of historical forcing datasets across 24 CMIP3 climate models">
+
+<style>
+  :root {
+    --ground:     #0D1B2A;
+    --surface:    #122234;
+    --surface-alt:#162A3E;
+    --border:     #1C3248;
+    --text:       #D2E6F0;
+    --text-muted: #6A90AC;
+    --accent:     #CA8832;
+    --v-tv:       #2A9E68;
+    --v-fxc:      #3E7AAA;
+    --v-fxk:      #5A80A0;
+    --v-dev:      #C87028;
+    --v-unk:      #3A5870;
+    --v-na:       #1C3248;
+
+    --mono: 'SF Mono', ui-monospace, 'Cascadia Code', 'Courier New', monospace;
+    --sans: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+    --col-model: 168px;
+    --col-centre: 112px;
+    --col-forcing: 68px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 14px; }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── Page shell ── */
+  .page-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px 24px 48px;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+  .page-subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── Stats strip ── */
+  .stats-strip {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .stat-cell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    border-right: 1px solid var(--border);
+    min-width: 0;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-value {
+    font-size: 22px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+    text-align: center;
+  }
+  .stat-tv    .stat-value { color: var(--v-tv); }
+  .stat-fx    .stat-value { color: var(--v-fxc); }
+  .stat-dev   .stat-value { color: var(--v-dev); }
+  .stat-unk   .stat-value { color: #7AACCC; }
+  .stat-total .stat-value { color: var(--text); }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin-bottom: 16px;
+    padding: 10px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 11px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+  }
+  .legend-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: var(--mono);
+    padding: 1px 5px;
+    border-radius: 2px;
+    letter-spacing: 0;
+    color: #fff;
+    min-width: 28px;
+  }
+  .lb-tv   { background: var(--v-tv); }
+  .lb-fxc  { background: var(--v-fxc); }
+  .lb-fxk  { background: var(--v-fxk); }
+  .lb-dev  { background: var(--v-dev); }
+  .lb-unk  { background: var(--v-unk); }
+  .lb-na   { background: var(--v-na); border: 1px solid #243D52; color: var(--text-muted); }
+
+  .legend-sep {
+    width: 1px;
+    height: 18px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 12px;
+    align-items: center;
+  }
+  .filter-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-right: 4px;
+  }
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+    letter-spacing: 0.02em;
+  }
+  .filter-btn:hover {
+    background: var(--surface-alt);
+    border-color: #2A4A66;
+    color: var(--text);
+  }
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0D1B2A;
+    font-weight: 600;
+  }
+  .filter-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Table wrapper ── */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    /* Firefox custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--surface);
+  }
+  .table-wrap::-webkit-scrollbar { height: 6px; }
+  .table-wrap::-webkit-scrollbar-track { background: var(--surface); }
+  .table-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── Main table ── */
+  table {
+    border-collapse: collapse;
+    width: max-content;
+    min-width: 100%;
+    font-size: 12px;
+  }
+
+  /* Sticky header */
+  thead tr th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--surface-alt);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 8px 6px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+    white-space: nowrap;
+  }
+  thead tr th:nth-child(1),
+  thead tr th:nth-child(2) {
+    text-align: left;
+  }
+
+  /* Sticky first column */
+  th:nth-child(1),
+  td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--surface);
+  }
+  thead th:nth-child(1) {
+    z-index: 4;
+    background: var(--surface-alt);
+  }
+
+  /* Second sticky column */
+  th:nth-child(2),
+  td:nth-child(2) {
+    position: sticky;
+    left: var(--col-model);
+    z-index: 2;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+  }
+  thead th:nth-child(2) {
+    z-index: 4;
+    background: var(--surface-alt);
+  }
+
+  /* Column widths */
+  th:nth-child(1), td:nth-child(1) { width: var(--col-model); min-width: var(--col-model); }
+  th:nth-child(2), td:nth-child(2) { width: var(--col-centre); min-width: var(--col-centre); }
+  th:nth-child(n+3), td:nth-child(n+3) { width: var(--col-forcing); min-width: var(--col-forcing); }
+
+  /* Data rows */
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.08s;
+  }
+  tbody tr:hover td {
+    background: var(--surface-alt) !important;
+  }
+  tbody tr.hidden { display: none; }
+
+  td {
+    padding: 5px 6px;
+    vertical-align: middle;
+    text-align: center;
+  }
+  td:nth-child(1) {
+    text-align: left;
+    padding-left: 10px;
+  }
+  td:nth-child(2) {
+    text-align: left;
+    padding-left: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* Model ID */
+  .model-id {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Cell badges ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: 2px;
+    padding: 2px 4px;
+    line-height: 1.2;
+    white-space: nowrap;
+    max-width: 62px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+  .badge-tv   { background: #1A5C3E; color: #5ECFA0; }
+  .badge-fxc  { background: #1A3A5C; color: #7AACCC; }
+  .badge-fxk  { background: #243048; color: #7090A8; }
+  .badge-dev  { background: #4A2B10; color: #F0A060; }
+  .badge-unk  { background: #1A2E3E; color: #5A8AA8; }
+  .badge-na   { background: transparent; color: #2E4D65; border: 1px solid #1C3248; }
+
+  /* Tooltip-style title for long cell annotations */
+  .badge[title] { cursor: default; }
+
+  /* ── Key Findings ── */
+  .findings {
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .findings-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .findings-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .findings-list li {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+  }
+  .findings-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 1px;
+    background: var(--text-muted);
+  }
+  .findings-list strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .conflict-mark {
+    display: inline-block;
+    color: #F0A060;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    background: #4A2B10;
+    padding: 0px 3px;
+    border-radius: 2px;
+    margin: 0 1px;
+    vertical-align: 1px;
+  }
+
+  /* ── Footer ── */
+  .page-footer {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="page-wrap">
+
+  <!-- Header -->
+  <header class="page-header">
+    <h1 class="page-title">CMIP3 Forcing Review</h1>
+    <p class="page-subtitle">20C3M Historical Simulations &middot; 24 Models &middot; 12 Forcing Categories</p>
+  </header>
+
+  <!-- Stats strip -->
+  <div class="stats-strip" role="region" aria-label="Summary statistics">
+    <div class="stat-cell stat-total">
+      <span class="stat-value">24</span>
+      <span class="stat-label">Models</span>
+    </div>
+    <div class="stat-cell stat-total">
+      <span class="stat-value">12</span>
+      <span class="stat-label">Forcings</span>
+    </div>
+    <div class="stat-cell stat-tv">
+      <span class="stat-value" id="count-tv">—</span>
+      <span class="stat-label">TV cells</span>
+    </div>
+    <div class="stat-cell stat-fx">
+      <span class="stat-value" id="count-fx">—</span>
+      <span class="stat-label">FXc / FXk</span>
+    </div>
+    <div class="stat-cell stat-dev">
+      <span class="stat-value" id="count-dev">—</span>
+      <span class="stat-label">Conflicts *</span>
+    </div>
+    <div class="stat-cell stat-unk">
+      <span class="stat-value" id="count-unk">—</span>
+      <span class="stat-label">Unknown ?</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value" id="count-na">—</span>
+      <span class="stat-label">Not applied</span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend" role="note" aria-label="Cell code legend">
+    <div class="legend-item"><span class="legend-badge lb-tv">TV</span> Time-varying (confirmed)</div>
+    <div class="legend-item"><span class="legend-badge lb-fxc">FXc</span> Fixed climatology</div>
+    <div class="legend-item"><span class="legend-badge lb-fxk">FXk</span> Fixed constant</div>
+    <div class="legend-item"><span class="legend-badge lb-na">na</span> Not applied</div>
+    <div class="legend-item"><span class="legend-badge lb-unk">?</span> Unknown</div>
+    <div class="legend-sep" role="separator"></div>
+    <div class="legend-item"><span class="legend-badge lb-dev">TV*</span> Conflict with Table S1 (claimed Y, actual differs)</div>
+    <div class="legend-item"><span class="legend-badge lb-dev">FX*</span> Conflict (claimed Y but fixed)</div>
+    <div class="legend-item" style="color:var(--text-muted); font-size:10.5px;">~ = interactive/diagnosed (SPRINTARS)</div>
+  </div>
+
+  <!-- Centre filter -->
+  <div class="filter-bar" role="toolbar" aria-label="Filter by centre">
+    <span class="filter-label">Centre</span>
+    <button class="filter-btn active" data-centre="all" onclick="filterCentre(this, 'all')">All</button>
+    <button class="filter-btn" data-centre="BCCR" onclick="filterCentre(this, 'BCCR')">BCCR</button>
+    <button class="filter-btn" data-centre="CCCma" onclick="filterCentre(this, 'CCCma')">CCCma</button>
+    <button class="filter-btn" data-centre="CNRM" onclick="filterCentre(this, 'CNRM')">CNRM</button>
+    <button class="filter-btn" data-centre="CSIRO" onclick="filterCentre(this, 'CSIRO')">CSIRO</button>
+    <button class="filter-btn" data-centre="NOAA-GFDL" onclick="filterCentre(this, 'NOAA-GFDL')">NOAA-GFDL</button>
+    <button class="filter-btn" data-centre="NASA-GISS" onclick="filterCentre(this, 'NASA-GISS')">NASA-GISS</button>
+    <button class="filter-btn" data-centre="IAP" onclick="filterCentre(this, 'IAP')">IAP</button>
+    <button class="filter-btn" data-centre="INGV" onclick="filterCentre(this, 'INGV')">INGV</button>
+    <button class="filter-btn" data-centre="IPSL" onclick="filterCentre(this, 'IPSL')">IPSL</button>
+    <button class="filter-btn" data-centre="CCSR/NIES/FRCGC" onclick="filterCentre(this, 'CCSR/NIES/FRCGC')">CCSR/NIES/FRCGC</button>
+    <button class="filter-btn" data-centre="MIUB" onclick="filterCentre(this, 'MIUB')">MIUB</button>
+    <button class="filter-btn" data-centre="MPI-M" onclick="filterCentre(this, 'MPI-M')">MPI-M</button>
+    <button class="filter-btn" data-centre="MRI" onclick="filterCentre(this, 'MRI')">MRI</button>
+    <button class="filter-btn" data-centre="NCAR" onclick="filterCentre(this, 'NCAR')">NCAR</button>
+    <button class="filter-btn" data-centre="UKMO" onclick="filterCentre(this, 'UKMO')">UKMO</button>
+    <button class="filter-btn" data-centre="INM" onclick="filterCentre(this, 'INM')">INM</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap" role="region" aria-label="CMIP3 forcing data table">
+    <table id="forcing-table">
+      <thead>
+        <tr>
+          <th scope="col">Model</th>
+          <th scope="col">Centre</th>
+          <th scope="col" title="Greenhouse gases">G</th>
+          <th scope="col" title="Ozone">O</th>
+          <th scope="col" title="Sulphate direct">SD</th>
+          <th scope="col" title="Sulphate indirect">SI</th>
+          <th scope="col" title="Black carbon">BC</th>
+          <th scope="col" title="Organic carbon">OC</th>
+          <th scope="col" title="Mineral dust">MD</th>
+          <th scope="col" title="Sea salt">SS</th>
+          <th scope="col" title="Land use">LU</th>
+          <th scope="col" title="Solar">SO</th>
+          <th scope="col" title="Volcanic">VL</th>
+          <th scope="col" title="Flux correction">FC</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Rows injected by JS -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Key Findings -->
+  <section class="findings" aria-labelledby="findings-head">
+    <h2 class="findings-title" id="findings-head">Key Findings</h2>
+    <ul class="findings-list">
+      <li><strong>GFDL CM2.0 and CM2.1</strong> and <strong>GISS ModelE-H/R</strong> used fixed climatology for mineral dust (MD) and sea salt (SS) despite Table&nbsp;S1 recording Y (time-varying) for both; all four models carry <span class="conflict-mark">*</span> conflicts on MD and SS.</li>
+      <li><strong>CCCma CGCM3.1 T47 and T63</strong> applied fixed scalar values for BC, OC, MD, and SS — not time-varying aerosol datasets as implied by Table&nbsp;S1 — with concentrations held constant at 1850–2000 mean values throughout the 20C3M period.</li>
+      <li><strong>CNRM-CM3</strong> (1370&thinsp;W&thinsp;m<sup>&minus;2</sup>) and <strong>IPSL-CM4</strong> (1365&thinsp;W&thinsp;m<sup>&minus;2</sup>) used a fixed solar constant rather than a time-varying reconstruction, conflicting with the Table&nbsp;S1 Y&nbsp;claim for SO.</li>
+      <li><strong>MIUB ECHO-G</strong> applied flux corrections to both heat and freshwater fluxes (<span class="conflict-mark">FXc*</span>); Table&nbsp;S1 listed only F (freshwater), making the heat-flux correction an undocumented departure from the metadata record.</li>
+      <li><strong>MIROC3.2 HiRes and MedRes</strong> treated MD and SS as time-varying but via SPRINTARS interactive aerosol diagnostics (<span style="font-family:var(--mono);font-size:10px;">TV~</span>), not prescribed external datasets — a methodological distinction not captured in the original binary table.</li>
+      <li><strong>MPI-ECHAM5</strong> omitted BC, OC, and LU from 20C3M forcing despite Table&nbsp;S1 Y claims on all three, running a sulphate-only anthropogenic aerosol configuration; these three cells carry <span class="conflict-mark">*</span> conflicts.</li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    Durack et al. (2025) MIP Forcing Review &ensp;|&ensp; Compiled 2026-06-28 &ensp;|&ensp; CMIP3 = PCMDI 20C3M
+  </footer>
+
+</div><!-- .page-wrap -->
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────
+// Each forcing cell: { code, conflict, tilde, note }
+// code: 'TV' | 'FXc' | 'FXk' | 'na' | '?'
+// conflict: true = * suffix
+// tilde: true = ~ suffix (SPRINTARS)
+// note: optional tooltip string
+
+function cell(code, conflict, tilde, note) {
+  return { code, conflict: !!conflict, tilde: !!tilde, note: note || '' };
+}
+
+const TV   = (note) => cell('TV',  false, false, note);
+const TVx  = (note) => cell('TV',  true,  false, note);  // TV conflict
+const TVt  = (note) => cell('TV',  false, true,  note);  // TV~ (SPRINTARS)
+const TVq  = (note) => cell('?TV', false, false, note);  // uncertain TV
+const FXc  = (note) => cell('FXc', false, false, note);
+const FXcx = (note) => cell('FXc', true,  false, note);  // FXc conflict
+const FXk  = (note) => cell('FXk', false, false, note);
+const FXkx = (note) => cell('FXk', true,  false, note);  // FXk conflict
+const NA   = ()     => cell('na',  false, false, '');
+const NAx  = (note) => cell('na',  true,  false, note);  // na conflict
+const UNK  = (note) => cell('?',   false, false, note);
+const UNKx = (note) => cell('?',   true,  false, note);  // ? conflict
+
+// Columns: G  O  SD  SI  BC  OC  MD  SS  LU  SO  VL  FC
+const MODELS = [
+  {
+    id: 'bccr_bcm2.0', centre: 'BCCR',
+    G:  TV(),   O:  NA(),    SD: UNK(),  SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),   SO: FXk('Fixed solar constant: 1368 W m⁻²'),
+    VL: NA(),   FC: NA()
+  },
+  {
+    id: 'cccma_cgcm3_1_t47', centre: 'CCCma',
+    G:  TV(),   O:  FXc(),   SD: TV(),   SI: NA(),
+    BC: FXk('Fixed: 0.2 mg m⁻² soot'),
+    OC: FXk('Fixed: 2.55/0.263 mg m⁻²'),
+    MD: FXk('Fixed: 57.71 mg m⁻²'),
+    SS: FXk('Fixed: 18.82 mg m⁻²'),
+    LU: NA(),   SO: NA(),    VL: NA(),
+    FC: FXc('Fixed: heat + freshwater flux correction')
+  },
+  {
+    id: 'cccma_cgcm3_1_t63', centre: 'CCCma',
+    G:  TV(),   O:  FXc(),   SD: TV(),   SI: NA(),
+    BC: FXk('Fixed: 0.2 mg m⁻² soot'),
+    OC: FXk('Fixed: 2.55/0.263 mg m⁻²'),
+    MD: FXk('Fixed: 57.71 mg m⁻²'),
+    SS: FXk('Fixed: 18.82 mg m⁻²'),
+    LU: NA(),   SO: NA(),    VL: NA(),
+    FC: FXc('Fixed: heat + freshwater flux correction')
+  },
+  {
+    id: 'cnrm_cm3', centre: 'CNRM',
+    G:  TV(),   O:  UNK('FXc or omitted — not confirmed'),
+    SD: TV(),   SI: NAx('Table S1 claimed Y; appears not applied'),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),   SO: FXkx('Table S1 Y; actual fixed 1370 W m⁻²'),
+    VL: NA(),   FC: NA()
+  },
+  {
+    id: 'csiro_mk3_0', centre: 'CSIRO',
+    G:  TV('Equivalent-CO₂ approach'), O: FXc('Wang 1995 climatology'),
+    SD: TV('Penner 1994 dataset'), SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),   SO: UNK('Uncertain — not confirmed'),
+    VL: NA(),   FC: NA()
+  },
+  {
+    id: 'csiro_mk3_5', centre: 'CSIRO',
+    G:  TV('Equivalent-CO₂ approach'), O: FXc('Wang 1995 climatology'),
+    SD: TV('Penner 1994 dataset'), SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),   SO: UNK('Uncertain — not confirmed'),
+    VL: NA(),   FC: NA()
+  },
+  {
+    id: 'gfdl_cm2_0', centre: 'NOAA-GFDL',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: NA(),
+    BC: TV(),   OC: TV(),
+    MD: FXcx('Table S1 Y; actual fixed climatology'),
+    SS: FXcx('Table S1 Y; actual fixed climatology'),
+    LU: TV(),   SO: TV(),    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'gfdl_cm2_1', centre: 'NOAA-GFDL',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: NA(),
+    BC: TV(),   OC: TV(),
+    MD: FXcx('Table S1 Y; actual fixed climatology'),
+    SS: FXcx('Table S1 Y; actual fixed climatology'),
+    LU: TV(),   SO: TV(),    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'giss_aom', centre: 'NASA-GISS',
+    G:  TVq('Likely TV; not fully confirmed'), O: NA(),
+    SD: TV(),   SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),
+    SS: cell('FXc', false, false, 'Fixed climatology; uncertain'),
+    LU: NA(),   SO: FXk('Fixed: 1367 W m⁻²'),
+    VL: NA(),   FC: NA()
+  },
+  {
+    id: 'giss_model_e_h', centre: 'NASA-GISS',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
+    BC: TV(),   OC: TV(),
+    MD: FXcx('Table S1 Y; actual fixed climatology'),
+    SS: FXcx('Table S1 Y; actual fixed climatology'),
+    LU: TV(),   SO: TV(),    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'giss_model_e_r', centre: 'NASA-GISS',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
+    BC: TV(),   OC: TV(),
+    MD: FXcx('Table S1 Y; actual fixed climatology'),
+    SS: FXcx('Table S1 Y; actual fixed climatology'),
+    LU: TV(),   SO: TV(),    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'iap_fgoals1_0', centre: 'IAP',
+    G:  TV(),   O:  FXc(),   SD: TV(),   SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),   SO: UNK(),   VL: UNK(),  FC: NA()
+  },
+  {
+    id: 'ingv_echam4', centre: 'INGV',
+    G:  TV(),
+    O:  FXcx('Table S1 Y; appears FXc'),
+    SD: TV(),   SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),
+    SO: NAx('Table S1 Y; actual not applied'),
+    VL: NAx('Table S1 Y; actual not applied'),
+    FC: NA()
+  },
+  {
+    id: 'ipsl_cm4', centre: 'IPSL',
+    G:  TV(),
+    O:  UNK('Unconfirmed — possibly FXc'),
+    SD: TV(),   SI: TV(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),
+    SO: FXkx('Table S1 Y; actual fixed 1365 W m⁻²'),
+    VL: NA(),   FC: NA()
+  },
+  {
+    id: 'miroc3_2_hires', centre: 'CCSR/NIES/FRCGC',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
+    BC: TV(),   OC: TV(),
+    MD: TVt('SPRINTARS interactive aerosol — TV but internally diagnosed'),
+    SS: TVt('SPRINTARS interactive aerosol — TV but internally diagnosed'),
+    LU: TV(),   SO: TV(),    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'miroc3_2_medres', centre: 'CCSR/NIES/FRCGC',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
+    BC: TV(),   OC: TV(),
+    MD: TVt('SPRINTARS interactive aerosol — TV but internally diagnosed'),
+    SS: TVt('SPRINTARS interactive aerosol — TV but internally diagnosed'),
+    LU: TV(),   SO: TV(),    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'miub_echo_g', centre: 'MIUB',
+    G:  TV(),
+    O:  FXcx('Table S1 Y; actual FXc'),
+    SD: TV(),
+    SI: TVx('Table S1 Y; uncertain application'),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),
+    SO: TV('Crowley 2000 reconstruction'),
+    VL: TV('Crowley 2000 reconstruction'),
+    FC: FXcx('Table S1 listed F (freshwater) only; actual = heat + water')
+  },
+  {
+    id: 'mpi_echam5', centre: 'MPI-M',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
+    BC: NAx('Table S1 Y; actual not applied (sulphate-only config)'),
+    OC: NAx('Table S1 Y; actual not applied (sulphate-only config)'),
+    MD: NA(),   SS: NA(),
+    LU: NAx('Table S1 Y; actual not applied'),
+    SO: UNKx('Table S1 likely na; uncertain'),
+    VL: UNKx('Table S1 likely na; uncertain'),
+    FC: NA()
+  },
+  {
+    id: 'mri_cgcm2_3_2a', centre: 'MRI',
+    G:  TV(),
+    O:  UNKx('Table S1 uncertain; status unresolved'),
+    SD: TV(),   SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),
+    SO: TV('Lean 1995 reconstruction'),
+    VL: TV(),
+    FC: FXc('Fixed: heat + water flux correction')
+  },
+  {
+    id: 'ncar_ccsm3_0', centre: 'NCAR',
+    G:  UNK(),  O:  UNK(),   SD: UNK(),  SI: NA(),
+    BC: UNK(),  OC: UNK(),
+    MD: FXc('Fixed climatology — confirmed'),
+    SS: FXc('Fixed climatology — confirmed'),
+    LU: UNK(),  SO: UNK(),
+    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'ncar_pcm1', centre: 'NCAR',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),   SO: TV(),    VL: TV(),   FC: NA()
+  },
+  {
+    id: 'ukmo_hadcm3', centre: 'UKMO',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),
+    SO: TV('Lean 1995 reconstruction'),
+    VL: TV('Sato 1993 reconstruction'),
+    FC: NA()
+  },
+  {
+    id: 'ukmo_hadgem1', centre: 'UKMO',
+    G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
+    BC: TV(),   OC: TV(),
+    MD: NAx('Table S1 Y; appears not applied'),
+    SS: UNK('TV inferred but not confirmed'),
+    LU: UNKx('Table S1 Y; possibly Goldewijk dataset'),
+    SO: TV('Solanki reconstruction'),
+    VL: TV('Sato 1993 updated reconstruction'),
+    FC: NA()
+  },
+  {
+    id: 'inmcm3_0', centre: 'INM',
+    G:  TV(),   O:  FXc(),   SD: TV(),   SI: NA(),
+    BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
+    LU: NA(),   SO: TV(),
+    VL: UNK('Status unclear'),
+    FC: UNK('Unknown — possibly FXc or na')
+  }
+];
+
+const FORCING_COLS = ['G','O','SD','SI','BC','OC','MD','SS','LU','SO','VL','FC'];
+
+// ── Badge renderer ─────────────────────────────────────────────────────────
+function renderBadge(c) {
+  const isConflict = c.conflict;
+  const isTilde    = c.tilde;
+  const code       = c.code;
+
+  let cls, label;
+  if (code === 'na') {
+    cls   = 'badge badge-na';
+    label = 'na';
+  } else if (code === '?TV') {
+    cls   = 'badge badge-unk';
+    label = '?TV';
+  } else if (code === '?') {
+    cls   = isConflict ? 'badge badge-dev' : 'badge badge-unk';
+    label = isConflict ? '?*' : '?';
+  } else if (code === 'TV') {
+    if (isConflict) {
+      cls   = 'badge badge-dev';
+      label = 'TV*';
+    } else if (isTilde) {
+      cls   = 'badge badge-tv';
+      label = 'TV~';
+    } else {
+      cls   = 'badge badge-tv';
+      label = 'TV';
+    }
+  } else if (code === 'FXc') {
+    cls   = isConflict ? 'badge badge-dev' : 'badge badge-fxc';
+    label = isConflict ? 'FXc*' : 'FXc';
+  } else if (code === 'FXk') {
+    cls   = isConflict ? 'badge badge-dev' : 'badge badge-fxk';
+    label = isConflict ? 'FXk*' : 'FXk';
+  } else {
+    cls   = 'badge badge-unk';
+    label = code;
+  }
+
+  const titleAttr = c.note ? ` title="${c.note.replace(/"/g,'&quot;')}"` : '';
+  return `<span class="${cls}"${titleAttr}>${label}</span>`;
+}
+
+// ── Build rows ─────────────────────────────────────────────────────────────
+function buildRows() {
+  const tbody = document.getElementById('table-body');
+  let html = '';
+  for (const m of MODELS) {
+    html += `<tr data-centre="${m.centre}"><td><span class="model-id">${m.id}</span></td><td>${m.centre}</td>`;
+    for (const col of FORCING_COLS) {
+      html += `<td>${renderBadge(m[col])}</td>`;
+    }
+    html += '</tr>';
+  }
+  tbody.innerHTML = html;
+}
+
+// ── Stats counter ──────────────────────────────────────────────────────────
+function computeStats() {
+  let tv = 0, fx = 0, dev = 0, unk = 0, na = 0;
+  for (const m of MODELS) {
+    for (const col of FORCING_COLS) {
+      const c = m[col];
+      if (c.code === 'na') { na++; continue; }
+      if (c.conflict) { dev++; continue; }
+      if (c.code === 'TV' || c.code === '?TV') { tv++; continue; }
+      if (c.code === 'FXc' || c.code === 'FXk') { fx++; continue; }
+      if (c.code === '?') { unk++; continue; }
+    }
+  }
+  document.getElementById('count-tv').textContent  = tv;
+  document.getElementById('count-fx').textContent  = fx;
+  document.getElementById('count-dev').textContent = dev;
+  document.getElementById('count-unk').textContent = unk;
+  document.getElementById('count-na').textContent  = na;
+}
+
+// ── Filter ─────────────────────────────────────────────────────────────────
+function filterCentre(btn, centre) {
+  // Toggle buttons
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Toggle rows
+  document.querySelectorAll('#table-body tr').forEach(row => {
+    if (centre === 'all') {
+      row.classList.remove('hidden');
+    } else {
+      const rowCentre = row.getAttribute('data-centre');
+      row.classList.toggle('hidden', rowCentre !== centre);
+    }
+  });
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+buildRows();
+computeStats();
+</script>

@@ -147,17 +147,19 @@ Legend: ☐ not started · ◐ in progress · ☑ complete
 
 **All 24 CMIP3 model files pre-seeded** in `cmip3/models/<CENTER>__<model>.md` with their Table S1 rows in the augmented schema (Verdict/Temporal/Dataset blank, ready to fill). Stages 3–10 now just populate existing files — no setup per stage. INM-CM3.0's row is all "?" (built from primary literature, not in Table S1).
 
-## Project status — all phases (as of 2026-06-27)
+## Project status — all phases (as of 2026-06-28)
 
 | Phase | Models | Passes complete | Fully resolved | Partial / deferred | Permanently closed | Next action |
 |-------|--------|-----------------|---------------|-------------------|-------------------|-------------|
 | CMIP3 | 24 | 1 | 21 | 3 (AOM/CCSM3/Mk3.5) | 0 | Second pass: 8 targeted open questions (see below) |
-| CMIP5 | 47 | 2 | ~30 | ~17 (deferred — see `cmip5/README.md`) | 0 | Modelling group contact for paywalled/silent centres |
+| CMIP5 | 47 | 2+housekeeping+4th | ~30 | ~15 (deferred — see `cmip5/README.md`) | 0 | Dix et al. 2013 upload for ACCESS G; modelling group contact for BCC/CMCC/HadCM3 |
 | CMIP6 | 64 | 5 | 35 | 25 | 4 | Modelling group contact (Priority 1/2 table in `cmip6/README.md`) |
+
+Fourth pass (2026-06-28): 6 ACCESS documentation papers parsed. ACCESS1-0/1-3 LU=✗dev (CABLE2 no transient LU; Bodman 2020 + Ziehn 2017 + Bi 2020 consistent), SO=✓std (Bodman 2020 §2.2 explicit: CMIP5 ACCESS TSI = 1365.65 W m⁻² = Wang 2005), VL=~std (Ziehn 2017: Sato 2002 in 4 lat bands inherited from CMIP5 ACCESS via Dix et al. 2013; no Thomason floor). G still ?: Dix et al. (2013) *AMOJ* 63:83–99 is the definitive CMIP5 ACCESS forcing reference (explicitly cited by Bi 2013 and Ziehn 2017); not yet in /resources.
 
 **Recommended work order:**
 1. **CMIP3 second pass** — 8 targeted questions; mostly single-component gaps or Table S1 conflict resolutions. Highest leverage per effort: directly affects synthesis paper claims about Table S1 accuracy.
-2. **CMIP5 deferred items** — mix of paywalled papers and silent primary sources. Priority: BCC (4 unknowns × 2 models), MIROC4h/5 (all cells, needs ES-DOC), CMCC-CM/CMS (paywalled).
+2. **CMIP5 deferred items** — mix of paywalled papers and silent primary sources. Priority: BCC (4 unknowns × 2 models), CMCC-CM/CMS (paywalled).
 3. **CMIP6 Priority 1 follow-up** — 8 models where one email resolves the model completely (GFDL-CM4 VL, FGOALS-f3-L VL, etc.).
 4. **CMIP6 Priority 2 follow-up** — 10 model clusters needing broader group contact.
 
