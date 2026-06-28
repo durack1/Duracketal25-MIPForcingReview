@@ -33,16 +33,9 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { font-size: 14px; }
+  html { background: var(--ground); color: var(--text); font-family: var(--font-sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 
-  body {
-    background: var(--ground);
-    color: var(--text);
-    font-family: var(--font-sans);
-    line-height: 1.5;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { min-height: 100vh; padding: 0 0 48px; }
 
   /* ── Page shell ── */
   .page {
@@ -53,13 +46,16 @@
 
   /* ── Header ── */
   .site-header {
-    padding: 28px 0 24px;
+    margin: 0 -24px 24px;
+    padding: 28px 24px 24px;
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
-    margin-bottom: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
-    align-items: baseline;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .site-header h1 {
@@ -121,10 +117,6 @@
     gap: 4px 14px;
     flex-wrap: wrap;
     margin-bottom: 16px;
-    padding: 10px 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
   }
 
   .legend-label {
@@ -552,42 +544,6 @@
     </div>
   </div>
 
-  <!-- Legend -->
-  <div class="legend-row" role="note" aria-label="Verdict key">
-    <span class="legend-label">Key</span>
-    <span class="legend-item">
-      <span class="legend-badge badge-std">Std</span> Standard protocol
-    </span>
-    <span class="legend-divider"></span>
-    <span class="legend-item">
-      <span class="legend-badge badge-dev">Dev</span> Deviation from standard
-    </span>
-    <span class="legend-divider"></span>
-    <span class="legend-item">
-      <span class="legend-badge badge-exc">Exc</span> Exceeds standard
-    </span>
-    <span class="legend-divider"></span>
-    <span class="legend-item">
-      <span class="legend-badge badge-hyb">Hyb</span> Hybrid / partial
-    </span>
-    <span class="legend-divider"></span>
-    <span class="legend-item">
-      <span class="legend-badge badge-fxc">FXc</span> Fixed climatological background
-    </span>
-    <span class="legend-divider"></span>
-    <span class="legend-item">
-      <span class="legend-badge badge-unk">Unk</span> Unverified / unknown
-    </span>
-    <span class="legend-divider"></span>
-    <span class="legend-item">
-      <span class="legend-badge badge-na">n/a</span> Not applicable
-    </span>
-    <span class="legend-divider"></span>
-    <span class="legend-item">
-      <span class="esm-dot" style="display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;vertical-align:middle;"></span>&nbsp;ESM flag
-    </span>
-  </div>
-
   <!-- Filter controls -->
   <div class="filter-row" role="toolbar" aria-label="Filter by institution">
     <span class="filter-label">Institution</span>
@@ -626,6 +582,42 @@
     <label class="esm-filter">
       <input type="checkbox" id="esmFilter" onchange="applyFilters()"> ESM only
     </label>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend-row" role="note" aria-label="Verdict key">
+    <span class="legend-label">Key</span>
+    <span class="legend-item">
+      <span class="legend-badge badge-std">Std</span> Standard protocol
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-dev">Dev</span> Deviation from standard
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-exc">Exc</span> Exceeds standard
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-hyb">Hyb</span> Hybrid / partial
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-fxc">FXc</span> Fixed climatological background
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-unk">?</span> Unverified
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="legend-badge badge-na">n/a</span> Not applicable
+    </span>
+    <span class="legend-divider"></span>
+    <span class="legend-item">
+      <span class="esm-dot" style="display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;vertical-align:middle;"></span>&nbsp;ESM flag
+    </span>
   </div>
 
   <!-- Table -->
@@ -707,7 +699,7 @@
 // ── Data ──────────────────────────────────────────────────────────────────
 // Format: [model_id, institution_id, G, O, SD, SI, BC, OC, MD, SS, LU, SO, VL, FC, esm_flag]
 const MODELS6 = [
-  ['GFDL-CM4','NOAA-GFDL','std','std','std','std','std','std','hyb','hyb','dev','std','unk','na',false],
+  ['GFDL-CM4','NOAA-GFDL','std','std','std','std','std','std','hyb','hyb','dev','std','std','na',false],
   ['GFDL-ESM4','NOAA-GFDL','std','exc','std','std','std','std','hyb','hyb','std','std','std','na',true],
   ['GISS-E2-1-G','NASA-GISS','std','dev','hyb','hyb','hyb','hyb','hyb','hyb','dev','std','std','na',false],
   ['GISS-E2-1-G-CC','NASA-GISS','std','dev','hyb','hyb','hyb','hyb','hyb','hyb','dev','std','std','na',true],
@@ -722,24 +714,24 @@ const MODELS6 = [
   ['E3SM-1-1','E3SM-Project','std','hyb','std','hyb','std','std','hyb','hyb','std','std','std','na',false],
   ['E3SM-1-1-ECA','E3SM-Project','std','hyb','std','hyb','std','std','hyb','hyb','std','std','std','na',true],
   ['E3SM-2-0','E3SM-Project','std','hyb','std','hyb','std','std','hyb','hyb','std','std','std','na',false],
-  ['CanESM5','CCCma','unk','std','std','std','std','std','std','std','std','unk','std','na',true],
-  ['CanESM5-1','CCCma','unk','std','std','std','std','std','std','std','std','std','std','na',true],
-  ['CanESM5-CanOE','CCCma','unk','std','std','std','std','std','std','std','std','unk','std','na',true],
+  ['CanESM5','CCCma','std','std','std','std','std','std','std','std','std','hyb','std','na',true],
+  ['CanESM5-1','CCCma','std','std','std','std','std','std','std','std','std','std','std','na',true],
+  ['CanESM5-CanOE','CCCma','std','std','std','std','std','std','std','std','std','hyb','std','na',true],
   ['BCC-CSM2-MR','BCC','std','std','std','dev','std','std','dev','dev','std','std','std','na',false],
   ['CAMS-CSM1-0','CAMS','std','std','std','std','std','std','unk','unk','dev','std','std','na',false],
   ['CNRM-CM6-1','CNRM-CERFACS','std','hyb','dev','dev','dev','dev','dev','dev','dev','std','std','na',false],
   ['CNRM-CM6-1-HR','CNRM-CERFACS','std','hyb','dev','dev','dev','dev','dev','dev','dev','std','std','na',false],
   ['CNRM-ESM2-1','CNRM-CERFACS','std','exc','std','std','std','std','exc','exc','std','std','std','na',true],
-  ['IPSL-CM6A-LR','IPSL','std','std','hyb','hyb','hyb','hyb','hyb','hyb','std','unk','std','na',true],
-  ['MPI-ESM-1-2-HAM','HAMMOZ-Consortium','unk','std','hyb','hyb','hyb','hyb','hyb','hyb','std','unk','unk','na',true],
-  ['MPI-ESM1-2-HR','MPI-M','unk','std','std','std','std','std','fxc','fxc','std','unk','unk','na',true],
-  ['MPI-ESM1-2-LR','MPI-M','unk','std','std','std','std','std','fxc','fxc','std','unk','unk','na',true],
-  ['EC-Earth3','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',false],
-  ['EC-Earth3-AerChem','EC-Earth-Consortium','std','exc','exc','exc','exc','exc','exc','exc','std','std','hyb','na',false],
-  ['EC-Earth3-CC','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',true],
+  ['IPSL-CM6A-LR','IPSL','std','std','hyb','hyb','hyb','hyb','hyb','hyb','std','std','std','na',true],
+  ['MPI-ESM-1-2-HAM','HAMMOZ-Consortium','std','std','hyb','hyb','hyb','hyb','hyb','hyb','std','std','std','na',true],
+  ['MPI-ESM1-2-HR','MPI-M','std','std','std','std','std','std','fxc','fxc','std','std','std','na',true],
+  ['MPI-ESM1-2-LR','MPI-M','std','std','std','std','std','std','fxc','fxc','std','std','std','na',true],
+  ['EC-Earth3','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','std','na',false],
+  ['EC-Earth3-AerChem','EC-Earth-Consortium','std','exc','exc','exc','exc','exc','exc','exc','std','std','std','na',false],
+  ['EC-Earth3-CC','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','std','na',true],
   ['EC-Earth3-ESM-1','EC-Earth-Consortium','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','na',true],
-  ['EC-Earth3-Veg','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',true],
-  ['EC-Earth3-Veg-LR','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','hyb','na',true],
+  ['EC-Earth3-Veg','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','std','na',true],
+  ['EC-Earth3-Veg-LR','EC-Earth-Consortium','std','std','std','std','std','std','fxc','fxc','std','std','std','na',true],
   ['HadGEM3-GC31-LL','MOHC','std','std','std','std','std','std','unk','std','std','std','std','na',false],
   ['HadGEM3-GC31-MM','MOHC','std','std','std','std','std','std','unk','std','std','std','std','na',false],
   ['KACE-1-0-G','NIMS-KMA','std','std','std','std','std','std','unk','std','std','std','std','na',false],
@@ -761,7 +753,7 @@ const MODELS6 = [
   ['INM-CM4-8','INM','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','unk','na',false],
   ['INM-CM5-0','INM','std','std','dev','dev','dev','dev','dev','dev','unk','std','std','na',false],
   ['CAS-ESM2-0','CAS','std','std','hyb','hyb','hyb','hyb','exc','exc','unk','std','std','na',true],
-  ['FGOALS-f3-L','CAS','std','std','std','std','std','std','hyb','hyb','dev','std','unk','na',false],
+  ['FGOALS-f3-L','CAS','std','std','std','std','std','std','hyb','hyb','dev','std','std','na',false],
   ['FGOALS-g3','CAS','std','std','std','std','std','std','dev','dev','std','std','std','na',false],
   ['FIO-ESM-2-0','FIO-QLNM','std','std','std','std','std','std','dev','dev','unk','std','std','na',true],
   ['NESM3','NUIST','std','std','std','std','std','std','fxc','fxc','std','std','std','na',false],
@@ -858,6 +850,7 @@ function applyFilters() {
 }
 
 // ── Init ─────────────────────────────────────────────────────────────────
+MODELS6.sort((a, b) => a[0].localeCompare(b[0], undefined, {sensitivity: 'base'}));
 buildTable();
 computeStats();
 </script>

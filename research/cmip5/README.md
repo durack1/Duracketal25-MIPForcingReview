@@ -154,12 +154,14 @@ CMIP5 introduced the first generation of Earth System Models (ESMs) with active 
 - **VL=✓std confirmed for MIROC-ESM/CHEM**: Sato et al. 1993 + subsequent updates; post-1998 optical depth exponentially reduced with 1-year relaxation time. Watanabe2011 GMD verbatim confirmed 1-0. This matches the standard Taylor2012 VL protocol. MIROC-ESM/CHEM VL treatment is identical to MIROC3.2 CMIP3 (Sato-updated), confirming no regression in volcanic forcing.
 - **SPRINTARS indirect aerosol effects included (SI=exc)**: SPRINTARS is "coupled to radiation and cloud/precipitation for direct/semi-direct/indirect effects" (Watanabe2011 verbatim). This makes MIROC-ESM/CHEM one of the richest aerosol suites in the CMIP5 review — all species interactive with indirect effects, comparable to CESM1-CAM5 (MAM3) and CSIRO-Mk3.6.0 (Rotstayn2010).
 
-## Status — first + second pass complete (2026-06-22); fourth pass (2026-06-28) ACCESS paper parse
+## Status — first + second pass complete (2026-06-22); eleventh pass (2026-06-28) ACCESS+CanESM2 fully resolved
 
 **First pass (Stages 1–11):** ALL COMPLETE ✓  
 **Second pass (Stages A/A2/B/C/D/E):** ALL COMPLETE ✓  
 **Third pass (2026-06-28):** MIROC4h/5 stale deferred-table entries removed; ACCESS1-0/1-3 G/LU/SO/VL correctly retained as ? (HadGEM2-A inheritance hypothesis rejected as unsupported inference).  
-**Fourth pass (2026-06-28):** 6 ACCESS documentation papers parsed (Bi2013, Bi2020, Bodman2020, Law2017, Ziehn2017, Ziehn2020). **Resolved: LU=✗dev** (CABLE2 no transient LU; Bodman2020+Ziehn2017+Bi2020 consistent). **Resolved: SO=✓std** (Bodman 2020 explicit: "previously 1365.65 W m⁻² in CMIP5 ACCESS" = Wang 2005 standard). **Partially resolved: VL=~std** (Ziehn 2017: Sato 2002 in 4 equal-area lat bands, inheriting from CMIP5 ACCESS via Dix et al. 2013; no Thomason floor). **G still ?**: requires Dix et al. (2013) *AMOJ* 63:83–99 — the definitive ACCESS CMIP5 forcing reference cited by both Bi 2013 and Ziehn 2017.
+**Fourth pass (2026-06-28):** 6 ACCESS documentation papers parsed (Bi2013, Bi2020, Bodman2020, Law2017, Ziehn2017, Ziehn2020). **Resolved: LU=✗dev** (CABLE2 no transient LU; Bodman2020+Ziehn2017+Bi2020 consistent). **Resolved: SO=✓std** (Bodman 2020 explicit: "previously 1365.65 W m⁻² in CMIP5 ACCESS" = Wang 2005 standard). **Partially resolved: VL=~std** (Ziehn 2017: Sato 2002 in 4 equal-area lat bands; no Thomason floor).  
+**Fifth pass (2026-06-28):** BCC VL corrected to ✗dev (Ammann2003 CCSM3/CMIP3 era; Xin2013 explicit); BCC O/SO resolved ✓std (Xin2013 "CMIP5 website").  
+**Sixth pass (2026-06-28):** Read Dix et al. 2013 (*AMOJ* 63:83–99) + Christian 2014 + Scoccimarro 2011 + Vichi 2011. **Resolved: ACCESS G=✓std** (Dix2013 p.84-85: "MAGICC model...Meinshausen et al. 2011a"). **Resolved: CanESM2 DIC-init=~n/a** (CMOC 6000-yr offline spinup; GLODAP validation only; Christian2014 confirms). **CMCC-CM/CMS confirmed unresolvable**: Scoccimarro 2011 = CMCC_MED (CMIP3), Vichi 2011 = CMCC-CESM (CMIP3/ENSEMBLES) — neither documents CMIP5 historical.
 
 ### Deferred / still-open items (literature exhausted or paywalled)
 
@@ -169,21 +171,21 @@ Items below cannot be resolved from currently available PDFs. Grouped by require
 
 | Model(s) | Open cells | Status / root cause |
 |----------|-----------|---------------------|
-| bcc-csm1-1, bcc-csm1-1-m | G O SO VL | Wu 2014 + Wu 2010 + Cionni 2011 + Eyring 2013 all read; no English-language source names any of these four datasets for BCC. Chinese-language primary source may exist. |
+| ~~bcc-csm1-1, bcc-csm1-1-m~~ | ~~G O SO VL~~ | **RESOLVED (ninth/tenth pass 2026-06-28)**: G=✓std (Wu 2013 §2; Meinshausen2011), O=✓std (Xin 2013 §2; "CMIP5 website"), SO=✓std (Xin 2013 §2; "CMIP5 website"), **VL=✗dev** (Xin 2013 §2 p.22 explicit: Ammann 2003 CCSM3/CMIP3 volcanic). N-dep remains ?. |
 | CMCC-CM | G SD SI BC OC MD SS LU SO VL | Scoccimarro 2011 paywalled (doi:10.1175/2011JCLI4104.1); only O=✓std confirmed (Cionni2011 C1modB via Eyring 2013). |
 | CMCC-CMS | G O SD SI BC OC MD SS LU SO VL | No accessible primary source; Manzini 2006 covers MAECHAM5 dynamics only; O=? (hitop C1modB inferred but absent from Eyring 2013 Table 1). |
 | CMCC-CESM | All 12 + ESM inputs | Fogli 2009 grey-lit RP0061 + Vichi 2011 both read; 35/36 forcing cells unconfirmed. Most documentation-sparse centre in the review. |
-| HadCM3 | G O SD BC OC LU SO VL (8) | Stage 8 workflow confirmed HadGEM2-ES only; HadCM3 CMIP5-specific forcing not documented in any available paper. Whether CMIP3 datasets (Lean1995 solar, IPCC-TAR GHG) were updated for CMIP5 is unconfirmed. |
+| HadCM3 | G=~, SI=~ (2 uncertain) | Second pass (2026-06-22) resolved: O=✗dev (Li&Shine1995+STOCHEM+SAGE), SD=＋exc (interactive sulphate), BC/OC/MD/SS/LU=✗dev (all absent), SO=✗dev (Lean1995 LBB95; NOT Wang2005), VL=✓std (Sato1993). **G=~** (IPCC1995 in Johns2003; CMIP5 Meinshausen2011 update unconfirmed). **SI=~** (offline calibrated cloud-albedo; neither Lamarque2010 standard nor fully interactive). |
 | MIROC-ESM, MIROC-ESM-CHEM | SO | Solar dataset unresolved across all four MIROC CMIP5 models; Lean 2005 hypothesis refuted, Wang 2005 not confirmed. |
 | EC-EARTH | G O LU SO VL | Explicitly deferred by user (awaiting CMIP6 cross-reference pass). SI=✗dev confirmed. Aerosols=~std confirmed. |
-| CanESM2, CanCM4 | LU | AMIP-GLC2000 confirmed for AMIP runs; coupled-historical Hurtt2011 not confirmed in vonSalzen 2013. |
-| CanESM2 | N-dep DIC-init | ESM-specific inputs; Arora 2011 + vonSalzen 2013 + Christian 2014 all read; Arora & Boer 2010 terrestrial BGC paper needed for N-dep. |
+| ~~CanESM2, CanCM4~~ | ~~LU~~ | **RESOLVED**: LU=✓std (Hurtt2011; Arora 2011). Both models fully resolved. |
+| CanESM2 | N-dep | **DIC-init RESOLVED (sixth-pass 2026-06-28)**: DIC-init=~n/a (CMOC 6000-yr offline spinup; GLODAP=validation-only; Christian 2014 *PLOS ONE* confirms). N-dep still ?: CTEM has no explicit nitrogen cycle (empirical N-limitation only); Arora & Boer 2010 terrestrial BGC paper still needed to confirm no external N-dep dataset used. |
 | CESM1-FASTCHEM | MD SS + most cells | Treatment largely unresolved; interactive-O and Lamarque2010-emis-aerosol claims both refuted; likely CAM4-like but unconfirmed. |
 | CESM1-WACCM | MD SS | Aerosol scheme specifics unresolved; WACCM chemistry confirmed as ＋exc but aerosol details open. |
 | GISS-E2-R | MD SS | Physics-version dependent; MD/SS specific to p1 NINT configuration — needs rundecks or Schmidt 2014 p1 detailed supplement. |
-| MPI-ESM-LR/MR/P | SO VL ESM-inputs | SO/VL: Giorgetta 2013 paywalled during Stage 7; confirmed O/G/LU/aerosol but not solar or volcanic. ESM inputs (N-dep, CO2-mode, HAMOCC-iron) unresolved. |
+| MPI-ESM-LR/MR/P | ESM-inputs | **SO/VL CONFIRMED**: SO=✗dev (Stenchikov1998 PADS extended pers. comm. 2010; Giorgetta 2013 S4.7), VL=✗dev (same; NOT Sato1993-updated). ESM inputs (N-dep, CO2-mode, HAMOCC-iron) remain unresolved. |
 | CNRM-CM5 | SO | Solar dataset unnamed in Voldoire 2013; Ammann 2007 volcanic confirmed (✗dev). |
-| IPSL-CM5A/B | LU | ORCHIDEE land model confirmed but LUH1 Hurtt 2011 not explicitly named in Dufresne 2013. |
+| ~~IPSL-CM5A/B~~ | ~~LU~~ | **RESOLVED**: LU=✓std (Hurtt2011; CSV confirms). |
 
 **Resolved from second-pass targeted reads:**
 
@@ -191,11 +193,12 @@ Items below cannot be resolved from currently available PDFs. Grouped by require
 |----------|----------------|------------|
 | MIROC4h, MIROC5 | All 12 | ✓ Resolved second pass (2026-06-21) — Sakamoto 2012 §3.1 + Watanabe 2010 §2e both have dedicated CMIP5 forcing sections found in targeted re-read. All 11 cells resolved; SO=~ (Lean2005 SolarPhys citation ambiguity). |
 
-**Still open — requires Dix et al. 2013 or group contact:**
+**Resolved from sixth-pass targeted reads (2026-06-28):**
 
-| Model(s) | Open cells | Action |
-|----------|-----------|--------|
-| ACCESS1-0, ACCESS1-3 | G only | LU=✗dev, SO=✓std, VL=~std resolved (fourth pass, 2026-06-28). **G still ?**: neither Bi 2013 nor Ziehn 2017 names Meinshausen 2011 — both defer explicitly to **Dix et al. (2013)** (*AMOJ* 63:83–99) as the ACCESS CMIP5 forcing reference. Dix 2013 not yet in /resources; obtaining it would likely confirm G=✓std and definitively resolve VL. Alternative: ES-DOC or direct contact (David Bi / Martin Dix, CSIRO). |
+| Model(s) | Previously open | Resolution |
+|----------|----------------|------------|
+| ACCESS1-0, ACCESS1-3 | G only | ✓ **G=✓std RESOLVED** (sixth pass 2026-06-28) — Dix et al. 2013 (*AMOJ* 63:83–99, `resources/Dixetal13AMOJ-*.pdf`) p.84-85 verbatim: "MAGICC model was used to derive a consistent set of GHG concentrations from the RCP emissions (Meinshausen et al. 2011a)." All 12 cells for ACCESS1-0 and ACCESS1-3 now fully resolved. |
+| CanESM2 | DIC-init | ✓ **DIC-init=~n/a RESOLVED** (sixth pass 2026-06-28) — CMOC 6000-yr offline spinup (Zahariev 2008 protocol); GLODAP (Key 2004) used for diagnostic validation only (Christian 2014 *PLOS ONE*). |
 
 ## Cross-cutting findings (Stage 8 — UKMO: HadCM3, HadGEM2-AO/CC/ES)
 

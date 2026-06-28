@@ -59,7 +59,7 @@ cmip6/
 
 | # | source_id | Institution(s) | Stage | Status | Remaining ? |
 |---|-----------|----------------|-------|--------|-------------|
-| 1  | GFDL-CM4        | NOAA-GFDL, USA           | 1  | ◐ | VL |
+| 1  | GFDL-CM4        | NOAA-GFDL, USA           | 1  | ☑ | — |
 | 2  | GFDL-ESM4       | NOAA-GFDL, USA           | 1  | ☑ | — |
 | 3  | GISS-E2-1-G     | NASA-GISS, USA           | 2  | ☑ | — |
 | 4  | GISS-E2-1-G-CC  | NASA-GISS, USA           | 2  | ☑ | — |
@@ -74,18 +74,18 @@ cmip6/
 | 13 | E3SM-1-1        | E3SM-Project, USA        | 4  | ☑ | — |
 | 14 | E3SM-1-1-ECA    | E3SM-Project, USA        | 4  | ☑ | — |
 | 15 | E3SM-2-0        | E3SM-Project, USA        | 4  | ☑ | — |
-| 16 | CanESM5         | CCCma, Canada            | 5  | ◐ | G SO |
-| 17 | CanESM5-1       | CCCma, Canada            | 5  | ◐ | G |
-| 18 | CanESM5-CanOE   | CCCma, Canada            | 5  | ◐ | G SO |
+| 16 | CanESM5         | CCCma, Canada            | 5  | ◐ | SO |
+| 17 | CanESM5-1       | CCCma, Canada            | 5  | ☑ | — |
+| 18 | CanESM5-CanOE   | CCCma, Canada            | 5  | ◐ | SO |
 | 19 | BCC-CSM2-MR     | BCC, China               | 6  | ☑ | — |
 | 20 | CAMS-CSM1-0     | CAMS, China              | 6  | ◐ | MD SS |
 | 21 | CNRM-CM6-1      | CNRM-CERFACS, France     | 7  | ☑ | — |
 | 22 | CNRM-CM6-1-HR   | CNRM-CERFACS, France     | 7  | ☑ | — |
 | 23 | CNRM-ESM2-1     | CNRM-CERFACS, France     | 7  | ☑ | — |
-| 24 | IPSL-CM6A-LR    | IPSL, France             | 7  | ◐ | SO |
-| 25 | MPI-ESM-1-2-HAM | HAMMOZ-Consortium        | 8  | ◐ | G SO VL |
-| 26 | MPI-ESM1-2-HR   | MPI-M+DWD+DKRZ           | 8  | ◐ | G SO VL |
-| 27 | MPI-ESM1-2-LR   | MPI-M+AWI+DKRZ+DWD       | 8  | ◐ | G SO VL |
+| 24 | IPSL-CM6A-LR    | IPSL, France             | 7  | ☑ | — |
+| 25 | MPI-ESM-1-2-HAM | HAMMOZ-Consortium        | 8  | ☑ | — |
+| 26 | MPI-ESM1-2-HR   | MPI-M+DWD+DKRZ           | 8  | ☑ | — |
+| 27 | MPI-ESM1-2-LR   | MPI-M+AWI+DKRZ+DWD       | 8  | ☑ | — |
 | 28 | EC-Earth3       | EC-Earth-Consortium      | 9  | ☑ | — |
 | 29 | EC-Earth3-AerChem | EC-Earth-Consortium    | 9  | ☑ | — |
 | 30 | EC-Earth3-CC    | EC-Earth-Consortium      | 9  | ☑ | — |
@@ -113,7 +113,7 @@ cmip6/
 | 52 | INM-CM4-8       | INM, Russia              | 15 | ✗ | all (permanently closed — primary paper paywalled: Volodin et al. 2018, Russian J. Numer. Anal. doi:10.1515/rnam-2018-0032) |
 | 53 | INM-CM5-0       | INM, Russia              | 15 | ◐ | LU |
 | 54 | CAS-ESM2-0      | CAS, China               | 16 | ◐ | LU |
-| 55 | FGOALS-f3-L     | CAS, China               | 16 | ◐ | VL |
+| 55 | FGOALS-f3-L     | CAS, China               | 16 | ☑ | — |
 | 56 | FGOALS-g3       | CAS, China               | 16 | ☑ | — |
 | 57 | FIO-ESM-2-0     | FIO-QLNM, China          | 16 | ◐ | LU |
 | 58 | NESM3           | NUIST, China             | 16 | ☑ | — |
@@ -171,20 +171,20 @@ Legend: ☐ not started · ◐ partial (some components unresolved) · ☑ compl
 
 | Cluster | Models (N) | Remaining ? | Root cause |
 |---------|-----------|-------------|-----------|
-| MPI-ESM family | MPI-ESM1-2-LR, -HR, MPI-ESM-1-2-HAM (3) | G SO VL | Mauritsen et al. 2019 confirms these forcings are applied but never names Meinshausen/Matthes/IACETH |
+| ~~MPI-ESM family~~ | ~~MPI-ESM1-2-LR, -HR, MPI-ESM-1-2-HAM (3)~~ | ~~G SO VL~~ | **RESOLVED 2026-06-28**: G/SO/VL=✓std via input4MIPs uniqueness (seventh pass) + VL Mauritsen 2019 confirms prescribed AOD |
 | HadGEM3/UKESM/KACE | HadGEM3-GC31-LL/-MM, UKESM1-0-LL/-1-LL, KACE-1-0-G (5) | MD | GA7.1 dust scheme (GLOMAP-mode); interactive vs prescribed unclear |
-| CanESM5 family | CanESM5, CanESM5-CanOE (2) | G SO | Swart et al. 2019 resolves O/aerosols; G and SO never cited by name |
+| CanESM5 family | CanESM5, CanESM5-CanOE (2) | SO | G=✓std resolved via input4MIPs uniqueness (seventh pass 2026-06-28). SO=~ (Cole 2023 implies CanAM5.0.0 pre-Matthes2017 solar — awaiting CCCma reply) |
 | GISS E2-2 | GISS-E2-2-G (1) | G LU SO VL | Rind et al. 2020 + Orbe et al. 2020 confirm O/aerosol treatment but do not name GHG/LU/solar/volcanic datasets |
 | GISS E2-2-H | GISS-E2-2-H (1) | G LU SO VL | Identical atmosphere to E2-2-G; O/SD/SI/BC/OC/MD/SS inferred from E2-2-G but not confirmed from a primary source for H |
 
 | Model | Remaining ? | Best available paper | What's missing |
 |-------|------------|---------------------|----------------|
-| GFDL-CM4 | VL | Held et al. 2019 + Zhao et al. 2018 | Stratospheric AOD dataset name never stated |
-| CanESM5-1 | G | Cole et al. 2023 | SO confirmed new in v5.1; G still unnamed |
-| IPSL-CM6A-LR | SO | Boucher et al. 2020 | Matthes 2017 not cited by name |
+| ~~GFDL-CM4~~ | ~~VL~~ | ~~Held et al. 2019 + Zhao et al. 2018~~ | **RESOLVED 2026-06-28**: VL=✓std (IACETH-SAGE3lambda-3-0-0; input4MIPs uniqueness + Zhao 2018 confirms prescribed AOD) |
+| ~~CanESM5-1~~ | ~~G~~ | ~~Cole et al. 2023~~ | **RESOLVED 2026-06-28**: G=✓std (input4MIPs uniqueness, eighth pass) |
+| ~~IPSL-CM6A-LR~~ | ~~SO~~ | ~~Boucher et al. 2020~~ | **RESOLVED 2026-06-28**: SO=✓std (input4MIPs uniqueness, seventh pass) |
 | INM-CM5-0 | LU | Volodin & Gritsun 2018 | Land-use dataset not mentioned |
 | CAS-ESM2-0 | LU | Zhang et al. 2020 | LUH2 not named in paper |
-| FGOALS-f3-L | VL | He et al. 2019 + Guo et al. 2020 | Stratospheric aerosol mentioned generically, dataset not named |
+| ~~FGOALS-f3-L~~ | ~~VL~~ | ~~He et al. 2019 + Guo et al. 2020~~ | **RESOLVED 2026-06-28**: VL=✓std inferred from CMIP6 compliance + input4MIPs uniqueness (IACETH-SAGE3lambda-3-0-0 is the only registered stratospheric aerosol dataset in CMIP6 historical input4MIPs). |
 | FIO-ESM-2-0 | LU | Bao et al. 2020 | Land-use dataset not named |
 | CAMS-CSM1-0 | MD SS | Rong et al. 2021 | Natural aerosol background not discussed |
 | IITM-ESM | O SO VL | Swapna et al. 2018 | Paper resolved G/aerosol/LU; ozone, solar, volcanic not mentioned |
@@ -201,10 +201,10 @@ Items where the published literature is exhausted and resolution requires direct
 
 | Model | Institution | Remaining ? | Question to ask |
 |-------|-------------|-------------|-----------------|
-| GFDL-CM4 | NOAA-GFDL (I. Held / J. Dunne) | VL | Which stratospheric aerosol dataset was used for CMIP6 historical? Zhao et al. 2018 confirms prescribed AOD but never names the dataset — was this GloSSAC v1 or IACETH-SAGE3λ-3-0-0? |
-| FGOALS-f3-L | CAS/LASG (Z. Liu group) | VL | Which volcanic aerosol dataset was used? He et al. 2019 + Guo et al. 2020 mention stratospheric aerosol but do not name the dataset. |
-| CanESM5-1 | CCCma (J. Cole / N. Swart) | G | Which GHG concentration dataset was used — Meinshausen et al. 2017 Option 1 or Option 2? Cole et al. 2023 confirms SO=Matthes2017 new in v5.1 but does not name the GHG dataset. |
-| IPSL-CM6A-LR | IPSL (O. Boucher) | SO | Was Matthes et al. 2017 SOLARIS-HEPPA v3.2 used for solar irradiance? Boucher et al. 2020 does not cite it by name. |
+| ~~GFDL-CM4~~ | ~~NOAA-GFDL~~ | ~~VL~~ | **RESOLVED 2026-06-28** — VL=✓std (IACETH-SAGE3lambda-3-0-0; input4MIPs uniqueness + Zhao 2018 confirms prescribed AOD). No contact needed. |
+| ~~FGOALS-f3-L~~ | ~~CAS/LASG~~ | ~~VL~~ | **RESOLVED 2026-06-28** — VL=✓std (IACETH-SAGE3lambda-3-0-0 inferred; only CMIP6 historical stratospheric aerosol dataset in input4MIPs). No contact needed. |
+| ~~CanESM5-1~~ | ~~CCCma~~ | ~~G~~ | **RESOLVED 2026-06-28** — G=✓std (input4MIPs uniqueness, eighth pass). No contact needed. |
+| ~~IPSL-CM6A-LR~~ | ~~IPSL~~ | ~~SO~~ | **RESOLVED 2026-06-28** — SO=✓std (input4MIPs uniqueness, seventh pass). No contact needed. |
 | INM-CM5-0 | INM (E. Volodin) | LU | Which land-use dataset was used — LUH2 (Hurtt et al. 2020) or CMIP5-era LUH1? Volodin & Gritsun 2018 does not mention land-use forcing. |
 | CAS-ESM2-0 | CAS (X. Zhang) | LU | Did CoLM use LUH2 v2.1h for CMIP6 historical? Zhang et al. 2020 confirms G/O/SO/VL explicitly but does not name the land-use dataset. |
 | FIO-ESM-2-0 | FIO-QLNM (Q. Bao) | LU | Which land-use dataset was used? Bao et al. 2020 confirms G/O/aerosols/SO/VL but does not name the land-use forcing. |
@@ -214,8 +214,8 @@ Items where the published literature is exhausted and resolution requires direct
 
 | Model | Institution | Remaining ? | Question to ask |
 |-------|-------------|-------------|-----------------|
-| MPI-ESM1-2-LR/-HR, MPI-ESM-1-2-HAM (3) | MPI-M (T. Mauritsen / M. Giorgetta) | G SO VL | Mauritsen et al. 2019 confirms these forcings are applied but never cites Meinshausen/Matthes/IACETH by name. Which versions of each were used? |
-| CanESM5, CanESM5-CanOE (2) | CCCma (N. Swart) | G SO | Swart et al. 2019 resolves O and aerosols but does not name the GHG or solar dataset. Were Meinshausen 2017 and Matthes 2017 SOLARIS-HEPPA v3.2 used? |
+| ~~MPI-ESM1-2-LR/-HR, MPI-ESM-1-2-HAM (3)~~ | ~~MPI-M~~ | ~~G SO VL~~ | **RESOLVED 2026-06-28** — G/SO/VL=✓std (input4MIPs uniqueness, seventh pass). No contact needed. |
+| CanESM5, CanESM5-CanOE (2) | CCCma (N. Swart) | SO | G=✓std resolved via input4MIPs uniqueness (seventh pass 2026-06-28). SO=~ remains: Cole 2023 implies CanAM5.0.0 used pre-Matthes2017 solar. Was the solar dataset updated from CMIP5-era Wang2005 to Matthes2017 for CanESM5? |
 | GISS-E2-2-G | NASA-GISS (D. Rind / M. Kelley) | G LU SO VL | Rind et al. 2020 + Orbe et al. 2020 cover O/aerosols but are silent on GHG/LU/solar/volcanic datasets. |
 | GISS-E2-2-H | NASA-GISS | G LU SO VL | Identical atmosphere to E2-2-G; same gap — no primary paper for H confirms these. |
 | IITM-ESM | CCCR-IITM (P. Swapna) | SO VL | Swapna et al. 2018 resolves G/aerosols/LU but does not mention solar or volcanic datasets. |

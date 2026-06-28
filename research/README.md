@@ -152,15 +152,15 @@ Legend: ☐ not started · ◐ in progress · ☑ complete
 | Phase | Models | Passes complete | Fully resolved | Partial / deferred | Permanently closed | Next action |
 |-------|--------|-----------------|---------------|-------------------|-------------------|-------------|
 | CMIP3 | 24 | 1 | 21 | 3 (AOM/CCSM3/Mk3.5) | 0 | Second pass: 8 targeted open questions (see below) |
-| CMIP5 | 47 | 2+housekeeping+4th | ~30 | ~15 (deferred — see `cmip5/README.md`) | 0 | Dix et al. 2013 upload for ACCESS G; modelling group contact for BCC/CMCC/HadCM3 |
-| CMIP6 | 64 | 5 | 35 | 25 | 4 | Modelling group contact (Priority 1/2 table in `cmip6/README.md`) |
+| CMIP5 | 47 | 11 (2026-06-28) | ~32 | ~13 (deferred — see `cmip5/README.md`) | 0 | Modelling group contact for BCC/CMCC/HadCM3; Arora & Boer 2010 for CanESM2 N-dep |
+| CMIP6 | 64 | 9 (2026-06-28) | 36 | 24 | 4 | Modelling group contact (Priority 1/2 table in `cmip6/README.md`) |
 
-Fourth pass (2026-06-28): 6 ACCESS documentation papers parsed. ACCESS1-0/1-3 LU=✗dev (CABLE2 no transient LU; Bodman 2020 + Ziehn 2017 + Bi 2020 consistent), SO=✓std (Bodman 2020 §2.2 explicit: CMIP5 ACCESS TSI = 1365.65 W m⁻² = Wang 2005), VL=~std (Ziehn 2017: Sato 2002 in 4 lat bands inherited from CMIP5 ACCESS via Dix et al. 2013; no Thomason floor). G still ?: Dix et al. (2013) *AMOJ* 63:83–99 is the definitive CMIP5 ACCESS forcing reference (explicitly cited by Bi 2013 and Ziehn 2017); not yet in /resources.
+Sixth pass (2026-06-28): Dix et al. 2013 (*AMOJ* 63:83–99) read → ACCESS1-0/1-3 **G=✓std** (Meinshausen2011; all 12 cells now fully resolved). Christian 2014 (*PLOS ONE*) + Christian 2010 → CanESM2 **DIC-init=~n/a** (CMOC offline spinup; GLODAP=validation only). Scoccimarro 2011 + Vichi 2011 confirm **CMCC-CM/CMS remain unresolvable** (both papers describe CMIP3-era runs, not CMIP5 historical). FGOALS-f3-L VL corrected to ✓std in CMIP6 HTML (IACETH-SAGE3lambda-3-0-0 inferred; input4MIPs uniqueness).
 
 **Recommended work order:**
 1. **CMIP3 second pass** — 8 targeted questions; mostly single-component gaps or Table S1 conflict resolutions. Highest leverage per effort: directly affects synthesis paper claims about Table S1 accuracy.
-2. **CMIP5 deferred items** — mix of paywalled papers and silent primary sources. Priority: BCC (4 unknowns × 2 models), CMCC-CM/CMS (paywalled).
-3. **CMIP6 Priority 1 follow-up** — 8 models where one email resolves the model completely (GFDL-CM4 VL, FGOALS-f3-L VL, etc.).
+2. **CMIP5 deferred items** — mix of paywalled papers and silent primary sources. Priority: BCC (O/SO unknowns × 2 models), CMCC-CM/CMS (no primary paper exists for CMIP5).
+3. **CMIP6 Priority 1 follow-up** — 7 models where one email resolves the model completely (GFDL-CM4 VL, CanESM5-1 G, IPSL-CM6A-LR SO, etc.).
 4. **CMIP6 Priority 2 follow-up** — 10 model clusters needing broader group contact.
 
 ## Open items for CMIP3 second pass

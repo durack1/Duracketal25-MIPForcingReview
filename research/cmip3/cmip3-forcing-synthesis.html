@@ -27,15 +27,9 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { font-size: 14px; }
+  html { background: var(--ground); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.5; }
 
-  body {
-    background: var(--ground);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.5;
-    min-height: 100vh;
-  }
+  body { min-height: 100vh; }
 
   /* ── Page shell ── */
   .page-wrap {
@@ -49,9 +43,13 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    margin: -28px -24px 20px;
+    padding: 20px 24px 16px;
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
   .page-title {
     font-size: 22px;
@@ -114,10 +112,6 @@
     flex-wrap: wrap;
     gap: 6px 16px;
     margin-bottom: 16px;
-    padding: 10px 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
     font-size: 11px;
   }
   .legend-item {
@@ -146,6 +140,15 @@
   .lb-unk  { background: var(--v-unk); }
   .lb-na   { background: var(--v-na); border: 1px solid #243D52; color: var(--text-muted); }
 
+  .legend-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-right: 2px;
+    font-weight: 600;
+    align-self: center;
+  }
   .legend-sep {
     width: 1px;
     height: 18px;
@@ -283,6 +286,7 @@
   tbody tr.hidden { display: none; }
 
   td {
+    background: var(--ground);
     padding: 5px 6px;
     vertical-align: middle;
     text-align: center;
@@ -438,7 +442,7 @@
     </div>
     <div class="stat-cell stat-unk">
       <span class="stat-value" id="count-unk">—</span>
-      <span class="stat-label">Unknown ?</span>
+      <span class="stat-label">Unverified ?</span>
     </div>
     <div class="stat-cell">
       <span class="stat-value" id="count-na">—</span>
@@ -446,22 +450,9 @@
     </div>
   </div>
 
-  <!-- Legend -->
-  <div class="legend" role="note" aria-label="Cell code legend">
-    <div class="legend-item"><span class="legend-badge lb-tv">TV</span> Time-varying (confirmed)</div>
-    <div class="legend-item"><span class="legend-badge lb-fxc">FXc</span> Fixed climatology</div>
-    <div class="legend-item"><span class="legend-badge lb-fxk">FXk</span> Fixed constant</div>
-    <div class="legend-item"><span class="legend-badge lb-na">na</span> Not applied</div>
-    <div class="legend-item"><span class="legend-badge lb-unk">?</span> Unknown</div>
-    <div class="legend-sep" role="separator"></div>
-    <div class="legend-item"><span class="legend-badge lb-dev">TV*</span> Conflict with Table S1 (claimed Y, actual differs)</div>
-    <div class="legend-item"><span class="legend-badge lb-dev">FX*</span> Conflict (claimed Y but fixed)</div>
-    <div class="legend-item" style="color:var(--text-muted); font-size:10.5px;">~ = interactive/diagnosed (SPRINTARS)</div>
-  </div>
-
-  <!-- Centre filter -->
-  <div class="filter-bar" role="toolbar" aria-label="Filter by centre">
-    <span class="filter-label">Centre</span>
+  <!-- Institution filter -->
+  <div class="filter-bar" role="toolbar" aria-label="Filter by institution">
+    <span class="filter-label">Institution</span>
     <button class="filter-btn active" data-centre="all" onclick="filterCentre(this, 'all')">All</button>
     <button class="filter-btn" data-centre="BCCR" onclick="filterCentre(this, 'BCCR')">BCCR</button>
     <button class="filter-btn" data-centre="CCCma" onclick="filterCentre(this, 'CCCma')">CCCma</button>
@@ -481,13 +472,27 @@
     <button class="filter-btn" data-centre="INM" onclick="filterCentre(this, 'INM')">INM</button>
   </div>
 
+  <!-- Legend -->
+  <div class="legend" role="note" aria-label="Cell code legend">
+    <span class="legend-label">Key</span>
+    <div class="legend-item"><span class="legend-badge lb-tv">TV</span> Time-varying (confirmed)</div>
+    <div class="legend-item"><span class="legend-badge lb-fxc">FXc</span> Fixed climatology</div>
+    <div class="legend-item"><span class="legend-badge lb-fxk">FXk</span> Fixed constant</div>
+    <div class="legend-item"><span class="legend-badge lb-na">na</span> Not applied</div>
+    <div class="legend-item"><span class="legend-badge lb-unk">?</span> Unverified</div>
+    <div class="legend-sep" role="separator"></div>
+    <div class="legend-item"><span class="legend-badge lb-dev">TV*</span> Conflict with Table S1 (claimed Y, actual differs)</div>
+    <div class="legend-item"><span class="legend-badge lb-dev">FX*</span> Conflict (claimed Y but fixed)</div>
+    <div class="legend-item" style="color:var(--text-muted); font-size:10.5px;">~ = interactive/diagnosed (SPRINTARS)</div>
+  </div>
+
   <!-- Table -->
   <div class="table-wrap" role="region" aria-label="CMIP3 forcing data table">
     <table id="forcing-table">
       <thead>
         <tr>
           <th scope="col">Model</th>
-          <th scope="col">Centre</th>
+          <th scope="col">Institution</th>
           <th scope="col" title="Greenhouse gases">G</th>
           <th scope="col" title="Ozone">O</th>
           <th scope="col" title="Sulphate direct">SD</th>
@@ -865,6 +870,7 @@ function filterCentre(btn, centre) {
 }
 
 // ── Init ───────────────────────────────────────────────────────────────────
+MODELS.sort((a, b) => a.id.localeCompare(b.id, undefined, {sensitivity: 'base'}));
 buildRows();
 computeStats();
 </script>

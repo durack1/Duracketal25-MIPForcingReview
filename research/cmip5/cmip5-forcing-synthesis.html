@@ -407,7 +407,7 @@
   </div>
 
   <div class="controls" id="filterBar">
-    <span class="controls-label">Centre</span>
+    <span class="controls-label">Institution</span>
     <!-- buttons injected by JS -->
     <label class="esm-toggle" id="esmToggle">
       <input type="checkbox" id="esmCheck"> ESM only
@@ -435,7 +435,7 @@
       <thead>
         <tr>
           <th class="col-h-model">Model</th>
-          <th class="col-h-centre">Centre</th>
+          <th class="col-h-centre">Institution</th>
           <th title="Earth System Model flag">ESM</th>
           <th title="Greenhouse gases — Meinshausen 2011">G</th>
           <th title="Ozone — Cionni 2011">O</th>
@@ -583,6 +583,8 @@
   // G O SD SI BC OC MD SS LU SO VL FC  → indices 2..13
   const FORCING_COLS = 12;
   const VERDICT_COLS_FOR_STATS = 11; // exclude FC (index 13, which is index 11 in forcing array)
+
+  MODELS5.sort((a, b) => a[0].localeCompare(b[0], undefined, {sensitivity: 'base'}));
 
   // Build centre list preserving insertion order
   const centreOrder = [];
