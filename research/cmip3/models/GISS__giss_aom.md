@@ -15,7 +15,7 @@ Single source available (PCMDI); only SO=− is firmly established. PCMDI: "othe
 
 | Key | Forcing | Table S1 | Verdict | Temporal | Dataset / source (time-varying series or fixed field) | Citation | bib key | Notes / evidence |
 |-----|---------|----------|---------|----------|-------------------------------------------------------|----------|---------|------------------|
-| G  | Well-mixed GHGs | Y | ~ unverified | ? (likely TV) | WMGHGs applied (per PCMDI); specific concentration series not pinned | PCMDI CMIP3 doc | | **Open:** does AOM's GHG series match ModelE (Hansen & Sato 2004) or a different CMIP3 dataset? |
+| G  | Well-mixed GHGs | Y | ✓ supports | TV | **GHG URL confirmed** — PCMDI PDF §V 20C3M: *"Greenhouse gases: http://aom.giss.nasa.gov/IN/GHGA1B.LP"* — a time-varying observed GHG concentration file. G=TV confirmed. | PCMDI GISS-AOM.pdf §V (verbatim) | | G=Y confirmed TV; GHGA1B.LP is the time-varying GHG dataset used in AOM 20C3M |
 | O  | Ozone (tropo + strato) | - | ~ consistent | n/a | Not applied | PCMDI CMIP3 doc | | Consistent with "-"; not independently verified |
 | SD | Sulphate aerosol — direct | Y | ＋ supports *(distinct dataset)* | **TV** | **Boucher time-varying sulphate burden (1850–2000)** — DIFFERS from ModelE's model-generated Koch sulphate | PCMDI CMIP3 doc | | The one explicitly time-varying agent listed for AOM 20C3M |
 | SI | Sulphate aerosol — indirect | - | ~ consistent | n/a | Not applied | PCMDI CMIP3 doc | | |
@@ -34,7 +34,8 @@ Single source available (PCMDI); only SO=− is firmly established. PCMDI: "othe
 ## Notes, uncertainties, and open questions
 - **FC=n/a confirmed** (Russell et al. 1995): Abstract states "Flux adjustments are not used"; Table 5: "No surface flux corrections … No ocean restoring forces." Independent of PCMDI.
 - **SO=FXk corroborated** (Russell et al. 1995): model uses fixed solar constant; Discussion (p.727) notes a "small solar constant reduction" as a future improvement, meaning the control uses a fixed value. Consistent with PCMDI's 1367 W m⁻².
-- **G and SS remain open**: Russell 1995 documents control climate + 1%/yr CO₂ IPCC experiment only (NOT the 20C3M historical run). GHG concentration series and sea salt aerosol treatment for 20C3M are undocumented in this paper. A dedicated 20C3M-era AOM paper (if one exists) or PCMDI supplementary documentation would be required to resolve these.
+- **G confirmed TV** (PCMDI PDF §V): GHG URL `http://aom.giss.nasa.gov/IN/GHGA1B.LP` confirms a time-varying GHG concentration file was used for 20C3M. G=Y supported.
+- **SS still open**: PCMDI PDF §V describes "other forcing agents have monthly changes, but no annual changes" (FX-clim), and §II.C describes only the Boucher sulfate aerosol — sea salt not named as a separate forcing agent. Whether SS was applied as a distinct aerosol forcing or is absent remains unclear. FX-clim is the most likely treatment if applied.
 
 ## Provenance
 - Table S1 inclusion row: G Y · O - · SD Y · SI - · BC - · OC - · MD - · SS Y · LU - · SO - · VL - · FC -

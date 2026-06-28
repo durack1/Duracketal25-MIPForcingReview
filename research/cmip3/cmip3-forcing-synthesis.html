@@ -523,6 +523,11 @@
       <li><strong>MIUB ECHO-G</strong> applied flux corrections to both heat and freshwater fluxes (<span class="conflict-mark">FXc*</span>); Table&nbsp;S1 listed only F (freshwater), making the heat-flux correction an undocumented departure from the metadata record.</li>
       <li><strong>MIROC3.2 HiRes and MedRes</strong> treated MD and SS as time-varying but via SPRINTARS interactive aerosol diagnostics (<span style="font-family:var(--mono);font-size:10px;">TV~</span>), not prescribed external datasets — a methodological distinction not captured in the original binary table.</li>
       <li><strong>MPI-ECHAM5</strong> omitted BC, OC, and LU from 20C3M forcing despite Table&nbsp;S1 Y claims on all three, running a sulphate-only anthropogenic aerosol configuration; these three cells carry <span class="conflict-mark">*</span> conflicts.</li>
+      <li><strong>HadGEM1</strong> carries two confirmed Table&nbsp;S1 errors: MD=Y is wrong (mineral dust absent from the CLASSIC aerosol scheme, added only in HadGEM2), and LU=&#x2212; is wrong (Goldewijk 2001 HYDE land-use change was included in Run&nbsp;1 per PCMDI PDF §V verbatim).</li>
+      <li><strong>MRI-CGCM2.3.2a</strong> O=Y is a strong candidate error: PCMDI model documentation states <em>"atmospheric chemistry: Not included"</em> and ozone is absent from the model's explicit four-agent 20C3M forcing list (GHGs, sulphate direct, volcanic, solar); definitive confirmation requires Yukimoto et al. (2001) §radiation.</li>
+      <li><strong>NCAR CCSM3</strong> forcing fully resolved from Meehl et al. (2006) §2a: SD is time-varying via a prognostic sulfur cycle (Smith 2001/2004 SO₂ emissions), not a prescribed climatology; BC is time-varying (population-scaled); mineral dust and sea salt are fixed at year-2000 values (FXk) as is land use; OC remains unconfirmed pending Collins (2006b).</li>
+      <li><strong>CSIRO Mk3.0 and Mk3.5</strong> SD was reclassified: the Penner et al. (1994) sulphate dataset is a single-year emissions inventory providing a fixed seasonal climatology (FXc), not a time-varying transient dataset as originally coded.</li>
+      <li><strong>IPSL-CM4</strong> O=Y is a confirmed Table&nbsp;S1 error: the PCMDI PDF §V 20C3M section closes with <em>"All other variables are kept constant. There are no natural forcings"</em> — ozone is held at a fixed climatological value throughout the 20C3M run, contradicting the Y claim.</li>
     </ul>
   </section>
 
@@ -562,7 +567,7 @@ const UNKx = (note) => cell('?',   true,  false, note);  // ? conflict
 const MODELS = [
   {
     id: 'bccr_bcm2.0', centre: 'BCCR',
-    G:  TV(),   O:  NA(),    SD: UNK(),  SI: NA(),
+    G:  TV(),   O:  NA(),    SD: TV('Boucher & Pham 2002; time-varying sulfate burden 1850–2000 (PCMDI PDF §II.C verbatim)'),  SI: NA(),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
     LU: NA(),   SO: FXk('Fixed solar constant: 1368 W m⁻²'),
     VL: NA(),   FC: NA()
@@ -589,7 +594,7 @@ const MODELS = [
   },
   {
     id: 'cnrm_cm3', centre: 'CNRM',
-    G:  TV(),   O:  UNK('FXc or omitted — not confirmed'),
+    G:  TV(),   O:  FXc('Cariolle–Déqué (1986) linearised parameterisation from fixed ozone reference climatology — not a prescribed transient forcing (Salas-Mélia 2005 §2.1)'),
     SD: TV(),   SI: NAx('Table S1 claimed Y; appears not applied'),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
     LU: NA(),   SO: FXkx('Table S1 Y; actual fixed 1370 W m⁻²'),
@@ -598,17 +603,19 @@ const MODELS = [
   {
     id: 'csiro_mk3_0', centre: 'CSIRO',
     G:  TV('Equivalent-CO₂ approach'), O: FXc('Wang 1995 climatology'),
-    SD: TV('Penner 1994 dataset'), SI: NA(),
+    SD: FXc('Penner 1994 — fixed seasonal climatology (not time-varying; single-year emissions inventory)'), SI: NA(),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
-    LU: NA(),   SO: UNK('Uncertain — not confirmed'),
+    LU: NA(),
+    SO: cell('na', false, false, 'Table S1 SO=-; no solar variability in any primary source (Gordon 2002 silent; PCMDI doc blank); related Mk3L uses fixed 1365 W m⁻² (Phipps 2011)'),
     VL: NA(),   FC: NA()
   },
   {
     id: 'csiro_mk3_5', centre: 'CSIRO',
     G:  TV('Equivalent-CO₂ approach'), O: FXc('Wang 1995 climatology'),
-    SD: TV('Penner 1994 dataset'), SI: NA(),
+    SD: FXc('Penner 1994 — fixed seasonal climatology (not time-varying; single-year emissions inventory)'), SI: NA(),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
-    LU: NA(),   SO: UNK('Uncertain — not confirmed'),
+    LU: NA(),
+    SO: cell('na', false, false, 'Table S1 SO=-; no solar variability in any primary source (Gordon 2002 silent; PCMDI doc blank); related Mk3L uses fixed 1365 W m⁻² (Phipps 2011)'),
     VL: NA(),   FC: NA()
   },
   {
@@ -629,7 +636,7 @@ const MODELS = [
   },
   {
     id: 'giss_aom', centre: 'NASA-GISS',
-    G:  TVq('Likely TV; not fully confirmed'), O: NA(),
+    G:  TV('Confirmed TV — GHGA1B.LP dataset (PCMDI PDF §V 20C3M)'), O: NA(),
     SD: TV(),   SI: NA(),
     BC: NA(),   OC: NA(),    MD: NA(),
     SS: cell('FXc', false, false, 'Fixed climatology; uncertain'),
@@ -656,7 +663,10 @@ const MODELS = [
     id: 'iap_fgoals1_0', centre: 'IAP',
     G:  TV(),   O:  FXc(),   SD: TV(),   SI: NA(),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
-    LU: NA(),   SO: UNK(),   VL: UNK(),  FC: NA()
+    LU: NA(),
+    SO: cell('na', false, false, 'Fixed solar constant 1367 W m⁻² (PCMDI PDF picntrl §V.A); absent from complete 20C3M forcing list — list is exhaustive by PCMDI template design (PCMDI PDF §V.C)'),
+    VL: cell('na', false, false, 'Absent from exhaustive 20C3M forcing list: GHGs + ozone + sulphate only; no volcanic dataset cited anywhere in document (PCMDI PDF §V.C)'),
+    FC: NA()
   },
   {
     id: 'ingv_echam4', centre: 'INGV',
@@ -672,7 +682,7 @@ const MODELS = [
   {
     id: 'ipsl_cm4', centre: 'IPSL',
     G:  TV(),
-    O:  UNK('Unconfirmed — possibly FXc'),
+    O:  FXcx('Table S1 O=Y; PCMDI PDF §V: "All other variables are kept constant. There are no natural forcings." — ozone fixed at climatological value, not time-varying'),
     SD: TV(),   SI: TV(),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
     LU: NA(),
@@ -721,7 +731,7 @@ const MODELS = [
   {
     id: 'mri_cgcm2_3_2a', centre: 'MRI',
     G:  TV(),
-    O:  UNKx('Table S1 uncertain; status unresolved'),
+    O:  NAx('Table S1 Y; strong candidate error — PCMDI PDF §II.A: "atmospheric chemistry: Not included"; absent from four-agent forcing list'),
     SD: TV(),   SI: NA(),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
     LU: NA(),
@@ -731,12 +741,18 @@ const MODELS = [
   },
   {
     id: 'ncar_ccsm3_0', centre: 'NCAR',
-    G:  UNK(),  O:  UNK(),   SD: UNK(),  SI: NA(),
-    BC: UNK(),  OC: UNK(),
-    MD: FXc('Fixed climatology — confirmed'),
-    SS: FXc('Fixed climatology — confirmed'),
-    LU: UNK(),  SO: UNK(),
-    VL: TV(),   FC: NA()
+    G:  TV('IPCC TAR CO₂ via ISAM; Dai 2001 halocarbons (Meehl 2006 §2a)'),
+    O:  TV('MOZART tropospheric snapshots (every 20 yr 1890–1990) + NOAA stratospheric Kiehl 1999 (Meehl 2006)'),
+    SD: TV('Prognostic sulfur cycle; Smith 2001/2004 SO₂ emissions (Meehl 2006 §2a)'),
+    SI: NA(),
+    BC: TV('Population-scaled time-evolving; fixed spatial pattern (Meehl 2006 §2a)'),
+    OC: UNK('Collins 2006 default = prescribed distribution from 3D assimilation (FXc/FXk); Meehl 2006 made BC TV but did not mention OC — 20C3M treatment unconfirmed'),
+    MD: FXk('Fixed at year 2000 values throughout 20C3M (Meehl 2006 §2a)'),
+    SS: FXk('Fixed at year 2000 values throughout 20C3M (Meehl 2006 §2a)'),
+    LU: FXk('Fixed present-day land cover throughout 20C3M (Meehl 2006 §2a)'),
+    SO: TV('Lean 1995 reconstruction (Meehl 2006 §2a)'),
+    VL: TV('Ammann 2003 reconstruction (Meehl 2006 §2a)'),
+    FC: NA()
   },
   {
     id: 'ncar_pcm1', centre: 'NCAR',
@@ -758,8 +774,8 @@ const MODELS = [
     G:  TV(),   O:  TV(),    SD: TV(),   SI: TV(),
     BC: TV(),   OC: TV(),
     MD: NAx('Table S1 Y; appears not applied'),
-    SS: UNK('TV inferred but not confirmed'),
-    LU: UNKx('Table S1 Y; possibly Goldewijk dataset'),
+    SS: TV('Interactive wind-speed + height diagnostic scheme (Jones and Roberts 2004); TV confirmed — Martin et al. 2006 §2b, Table 3'),
+    LU: TVx('Table S1 LU=-; confirmed error — Goldewijk 2001 HYDE land-use applied in Run 1 (PCMDI PDF §V verbatim)'),
     SO: TV('Solanki reconstruction'),
     VL: TV('Sato 1993 updated reconstruction'),
     FC: NA()
@@ -769,8 +785,8 @@ const MODELS = [
     G:  TV(),   O:  FXc(),   SD: TV(),   SI: NA(),
     BC: NA(),   OC: NA(),    MD: NA(),   SS: NA(),
     LU: NA(),   SO: TV(),
-    VL: UNK('Status unclear'),
-    FC: UNK('Unknown — possibly FXc or na')
+    VL: TV('pcm_volcanic_1890-2000_T42.nc; linear interpolation in time (PCMDI PDF §V.1)'),
+    FC: FXc('Annual mean water-only; GIN/Barents/Kara seas only; no heat or momentum (PCMDI PDF §IV.E.4)')
   }
 ];
 

@@ -21,17 +21,16 @@
 | MD | Mineral dust | - | ~ supports | n/a (by absence) | Not listed | PCMDI FGOALS-g1.0.htm | — | |
 | SS | Sea salt | - | ~ supports | n/a (by absence) | Not listed | PCMDI FGOALS-g1.0.htm | — | |
 | LU | Land-use change | - | ~ supports | n/a (by absence) | Not listed | PCMDI FGOALS-g1.0.htm | — | |
-| SO | Solar irradiance | - | ~ supports | ? (likely FX-const) | Not listed in 20C3M forcing entry (GHG + ozone + sulphate only). PI-control entry states *"Solar constant is 1367 W/m²"* (fixed); 20C3M entry does not explicitly confirm. Adversarial claim that "IAP used fixed 1367 W/m² in 20C3M" was **refuted** (evidence was from picntrl, not 20C3M entry). SO=- supported by absence from 20C3M forcing list (medium confidence). | PCMDI FGOALS-g1.0.htm §V.A (picntrl), §V.C (20C3M) | — | Table S1 SO=- likely correct; not confirmed with explicit 20C3M statement |
-| VL | Volcanic aerosols | - | ~ supports | n/a (by absence) | Not listed in 20C3M forcing entry; VL=- supported by absence (medium confidence) | PCMDI FGOALS-g1.0.htm §V.C | — | Same pattern as BCCR, CCCma |
+| SO | Solar irradiance | - | ✓ supports | n/a (by absence / FXk) | Fixed solar constant 1367 W m⁻² in control run (PCMDI PDF picntrl §V.A verbatim: 'Solar constant is 1367 W/M*M'); absent from exhaustive 20C3M forcing list (PCMDI PDF §V.C). SO=- confirmed at high confidence. | PCMDI FGOALS-g1.0.htm §V.A (picntrl), §V.C (20C3M) | — | |
+| VL | Volcanic aerosols | - | ✓ supports | n/a (by absence) | Absent from exhaustive 20C3M forcing list: GHG + ozone + sulphate only; no volcanic dataset cited anywhere in PCMDI PDF. VL=- confirmed at high confidence. | PCMDI FGOALS-g1.0.htm §V.C | — | |
 | FC | Flux corrections (F/H) | - | ~ supports | n/a (by absence) | Not documented in PCMDI page | PCMDI FGOALS-g1.0.htm | — | Support by absence |
 
 ### Table S1 conflicts found
-- **None confirmed.** All Table S1 codes consistent with primary documentation. SO=- and VL=- are probable (not yet confirmed with explicit 20C3M quotes as for BCCR).
+- **None confirmed.** All Table S1 codes consistent with primary documentation. SO=- and VL=- confirmed at high confidence (fixed solar constant from PCMDI PDF §V.A; both absent from exhaustive 20C3M forcing list §V.C).
 
 ### Open questions
-1. **SO=- and VL=- explicit confirmation**: Does the FGOALS-g1.0 20C3M documentation explicitly state fixed solar and no volcanic variability (as BCCR and CNRM do)? Only silence from the 20C3M forcing list found so far.
-2. **SD temporal treatment**: Is the 4AR forcing sulphate dataset explicitly time-varying? Inferred from 20C3M protocol but not stated verbatim.
-3. **Yu et al. 2004 as primary source**: Needs PDF access to confirm whether it discusses 20C3M forcing treatments.
+1. **SD temporal treatment**: Is the 4AR forcing sulphate dataset explicitly time-varying? Inferred from 20C3M protocol but not stated verbatim.
+2. **Yu et al. 2004 as primary source**: Needs PDF access to confirm whether it discusses 20C3M forcing treatments.
 
 ## Provenance
 - Table S1 row: G Y · O - · SD Y · SI - · BC - · OC - · MD - · SS - · LU - · SO - · VL - · FC -

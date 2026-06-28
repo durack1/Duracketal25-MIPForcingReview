@@ -76,7 +76,7 @@ Filled as stages complete; seed citations from the project notes are marked *(gi
 | 10 | csiro_mk3_0 | CSIRO, Australia | Gordon et al. 2002 CSIRO Tech Paper No. 60 (gordon_2002a.pdf) | gordon_csiro_2002 *(add)* | ◐ (SD=Penner1994 TV confirmed; FC=na confirmed; O=Y ambiguous; SO/VL/G/LU unverified — Stage 5 partial) |
 | 11 | csiro_mk3_5 | CSIRO, Australia | Gordon et al. 2002 (inferred); Mk3.5 primary paper not located (Gordon 2010?) | gordon_csiro_2002 *(inferred)* | ◐ (all cells inferred from Mk3.0; PCMDI docs blank; needs Mk3.5-specific primary source) |
 | 12 | cnrm_cm3 | CNRM, France | Salas-Mélia et al. 2005 (*Note de Centre CNRM/GMGEC no. 103*); Boucher & Pham 2002 (GRL doi:10.1029/2001GL014048, aerosol) | salas_melia_2005 *(add)*; boucher_pham_2002 *(add)* | ☑ **3 conflicts**: SI=Y (direct-only, no indirect), SO=Y (fixed 1370 W m⁻²), VL=Y (no volcanic). |
-| 13 | ipsl_cm4 | IPSL, France | Marti et al. 2010 (*Clim. Dyn.* doi:10.1007/s00382-009-0598-2); Boucher & Pham 2002 (GRL, aerosol) | marti_new_2010 *(add)*; boucher_pham_2002 *(add)* | ☑ **2 confirmed conflicts**: SO=Y (fixed 1365 W m⁻²), VL=Y (no natural forcings). O=Y open. |
+| 13 | ipsl_cm4 | IPSL, France | Marti et al. 2010 (*Clim. Dyn.* doi:10.1007/s00382-009-0598-2); Boucher & Pham 2002 (GRL, aerosol) | marti_new_2010 *(add)*; boucher_pham_2002 *(add)* | ☑ **3 confirmed conflicts**: SO=Y (fixed 1365 W m⁻²), VL=Y (no natural forcings), **O=Y (confirmed 2026-06-28 — PCMDI PDF §V.C: "All other variables are kept constant. There are no natural forcings.")** |
 | 14 | mpi_echam5 | MPI-M, Germany | Jungclaus et al. 2006 (*J. Climate* doi:10.1175/JCLI3827.1); Boucher & Pham 2002 (LOA sulphate) | jungclaus_ocean_2006 *(add)*; boucher_pham_2002 | ☑ **3–5 conflicts**: BC=Y, OC=Y, LU=Y (all UNSUPPORTED — only sulphate in forcing list); SO=Y, VL=Y likely conflicts ("only anthropogenic forcings") |
 | 15 | ingv_echam4 | INGV, Italy | PCMDI INGV-SXG doc 2006; Gualdi et al. 2008. Note: model registered as INGV-SXG (SINTEX-G) not "INGV-ECHAM4" | gualdi_tropical_2008 *(add)* | ☑ **3 conflicts**: O=Y (ECHAM4 FX-clim), SO=Y (not documented), VL=Y (not documented) |
 | 16 | miub_echo_g | MIUB/METRI/M&D, Germany/Korea | Legutke & Voss 1999 (DKRZ Tech Report 18); Crowley 2000 (solar+volcanic forcing) | legutke_voss_1999 *(add)*; crowley_causes_2000 *(add)* | ☑ **2 conflicts**: SI=- (first indirect IS applied), FC=H (heat+water both applied, not heat only). SO=Y/VL=Y correct-but-bundled (Crowley 2000 solar constant). |
@@ -85,7 +85,7 @@ Filled as stages complete; seed citations from the project notes are marked *(gi
 | 19 | miroc3_2_hires | CCSR/NIES/FRCGC, Japan | K-1 Model Developers (Hasumi & Emori, eds.) 2004, K-1 Tech Report 1 | hasumi_emori_2004 *(add)* | ☑ No conflicts; MD=Y/SS=Y nuance (SPRINTARS-diagnosed, not externally prescribed). SO/VL=Y confirmed genuine. |
 | 20 | miroc3_2_medres | CCSR/NIES/FRCGC, Japan | K-1 Model Developers (Hasumi & Emori, eds.) 2004, K-1 Tech Report 1 — identical forcing to hires | hasumi_emori_2004 *(add)* | ☑ Identical forcing to hires — same PCMDI description verbatim. |
 | 21 | mri_cgcm2_3_2a | MRI, Japan | Yukimoto et al. 2001 (*Pap. Met. Geophys.* 51(2)); Yukimoto et al. 2006 (*J. Meteor. Soc. Japan*) | yukimoto_mri_2001 *(add)*; yukimoto_mri_2006 *(add)* | ☑ **1 candidate conflict**: O=Y may be error (four-agent PCMDI list omits ozone). SO=TV(Lean 1995) and VL=TV confirmed; FC=F,H confirmed (heat+water global + equatorial momentum). |
-| 22 | bccr_bcm2.0 | BCCR, Norway | Furevik et al. 2003 (*Clim. Dyn.* doi:10.1007/s00382-003-0317-5) — **note: control run only; 20C3M forcing from PCMDI** | furevik_description_2003 *(add)* | ☑ SO=VL=- confirmed verbatim; SD=Y dataset unknown (Boucher & Pham 2002 hypothesis refuted); G=TV(ENSEMBLES); no conflicts |
+| 22 | bccr_bcm2.0 | BCCR, Norway | Furevik et al. 2003 (*Clim. Dyn.* doi:10.1007/s00382-003-0317-5) — **note: control run only; 20C3M forcing from PCMDI** | furevik_description_2003 *(add)* | ☑ SO=VL=- confirmed verbatim; **SD=TV(Boucher & Pham 2002) CONFIRMED (2026-06-28** — PCMDI PDF §II.C names dataset explicitly; prior refutation was wrong); G=TV(ENSEMBLES); no conflicts |
 | 23 | iap_fgoals1_0 | IAP, China | Yu et al. 2004 (*Adv. Atmos. Sci.* doi:10.1007/BF02915723) | yu_flexible_2004 *(add)* | ☑ G/O/SD confirmed from PCMDI verbatim quote; SO/VL=- supported by absence; no confirmed conflicts |
 | 24 | inmcm3_0 | INM, Russia | Volodin & Diansky 2004 (*Russian Met. & Hydrology* 12, 5–14) | volodin_elnino_2004 *(add)* | ☑ NOT in Table S1. G=TV(CO2/CH4/N2O; no CFCs); O=FXc(AMIP-II Wang 1995); SD=TV(2-D 4ARForcing); SO=TV(PCM1_A1.nc); VL=~ unclear; FC=~ unclear |
 
@@ -112,7 +112,7 @@ Patterns that Table S1's binary Y/− obscures, surfacing as stages complete:
 - **ECHAM4-lineage models (INGV-SXG and MIUB-ECHO-G) diverge at the coupled-model level.** Both use ECHAM4.6 atmosphere, but INGV-SXG applies GHGs + sulphate direct only (no natural forcings), while MIUB-ECHO-G adds natural forcings (solar+volcanic via Crowley 2000) and sulphate first indirect effect. Two models from the same atmospheric code base but with substantially different 20C3M forcing sets.
 - **MPI-ECHAM5's CMIP3 20C3M is simpler than its capability.** The ECHAM5-HAM configuration (Stier et al. 2005) supports interactive BC, OC, dust, sea salt, and two-moment cloud microphysics — but the CMIP3 20C3M runs used prescribed sulphate only ("only sulfate aerosol is prescribed, direct and first indirect effect"). Table S1 BC=Y, OC=Y, LU=Y for MPI appear to be errors — these capabilities were not used for 20C3M.
 - **Two UKMO CMIP3 models use DIFFERENT solar reconstructions within the same centre.** HadCM3 uses Lean et al. 1995 (*GRL*); HadGEM1 uses Solanki & Krivova 2003 (*JGR*). Both are time-varying TSI series but from different research groups with different variance estimates — the first documented intra-centre divergence in solar forcing choice.
-- **HadGEM1 MD=Y is a confirmed Table S1 error.** Mineral dust is absent from the HadGEM1 CLASSIC aerosol scheme (sulphate + sea salt + BC + biomass-burning only); interactive dust was added only in HadGEM2/HiGEM. HadGEM1 LU=- is also questionable — PCMDI Run 1 documents Goldewijk (2001) land-use changes as an applied forcing. HadCM3 VL=Y remains unverified — adversarial refute; volcanic in CEDA all-forcings ensemble but not confirmed for the archived 20C3M submission.
+- **HadGEM1 MD=Y is a confirmed Table S1 error.** Mineral dust is absent from the HadGEM1 CLASSIC aerosol scheme (sulphate + sea salt + BC + biomass-burning only); interactive dust was added only in HadGEM2/HiGEM. **HadGEM1 LU=- is a CONFIRMED Table S1 error (2026-06-28)** — PCMDI PDF §V Run 1 verbatim: *"Land use changes following Goldewijk (2001)."* HadCM3 VL=Y remains unverified — adversarial refute; volcanic in CEDA all-forcings ensemble but not confirmed for the archived 20C3M submission.
 - **HadGEM1 SI=Y is the most complete indirect aerosol scheme documented so far.** CLASSIC: all aerosol species except BC contribute to first AND second indirect effects (cloud albedo + precipitation efficiency). Contrast with HadCM3 sulphate-only delta-albedo (prescribed, not interactive), IPSL sulphate-only first-indirect, MIUB first-indirect only.
 
 - **MIROC3.2 has the most complete aerosol forcing of any model in this review.** Both hires and medres applied time-varying prescribed emissions for sulphate (fossil fuel), BC (fossil fuel + agricultural waste + fuelwood + forest fires), and OC (same sources), processed interactively through the SPRINTARS aerosol-transport scheme. The PCMDI three-category forcing list is unusually detailed: (a) prescribed agents (GHGs, ozone, solar, volcanic, land use), (b) prescribed emissions (sulphate/BC/OC), (c) diagnosed fields (soil dust, sea salt, DMS-sulphate). This is the richest documented 20C3M forcing suite in the CMIP3 review.
@@ -127,21 +127,21 @@ Patterns that Table S1's binary Y/− obscures, surfacing as stages complete:
 - **PCMDI/LLNL 4ARForcing FTP (sprite.llnl.gov) shared by two Stage 10 models: IAP-FGOALS1.0 and INM-CM3.0.** Both explicitly cite `ftp://sprite.llnl.gov/pub/covey/IPCC_4AR_Forcing/` for their sulphate aerosol datasets (IAP) and for GHG+solar time series (INM, using file `PCM1_A1.nc`). This is a distinct provenance path from the Boucher LOA sulphate used by European centres (CCCma, CNRM, IPSL, INGV, MPI). Two dataset lineages now mapped for CMIP3 sulphate: LOA/Boucher (European) vs. PCMDI/4ARForcing (Chinese, Russian, and possibly others).
 - **Wang et al. 1995 AMIP II ozone climatology confirmed at a THIRD centre (INM-CM3.0) as FX-clim.** INM verbatim: "Ozone monthly climatology was prescribed as for AMIP II (Wang et al, 1995)." Joins CCCma (Scinocca 2008 confirmed) and CSIRO (inferred) using the same ozone baseline. This dataset is emerging as the dominant shared ozone climatology across CMIP3 models that did not apply time-varying ozone.
 - **INM-CM3.0 excluded CFC-11 and CFC-12 from its GHG forcing — a unique feature among the 24 CMIP3 models documented.** All other models with confirmed G=Y applied at least the major CFC species. INM relied on CO2, CH4, and N2O from the PCM1_A1.nc file, explicitly stating "CFC11, CFC-12 are not taken into account." This means INM's GHG radiative forcing is weaker (missing ~20-30% of the non-CO2 GHG forcing from CFCs) than most CMIP3 models.
-- **BCCR's sulphate aerosol dataset remains unidentified after Stage 10.** The hypothesis that BCCR inherited the Boucher & Pham 2002 LOA dataset from its shared ARPEGE atmosphere (same as CNRM-CM3) was explicitly refuted — the Furevik 2003 documentation covers a control run and says nothing about 20C3M aerosol forcing. The PCMDI page confirms sulphate was applied but names no source. BCCR SD=Y is confirmed but is the only Stage 10 model with an unresolved dataset provenance.
+- **BCCR's sulphate aerosol dataset RESOLVED in second pass (2026-06-28).** PCMDI PDF §II.C names the dataset verbatim: **Boucher & Pham (2002)**. The prior Stage 10 adversarial refutation of this hypothesis was wrong — it was based only on the HTML page (Furevik 2003 does not mention it); the PDF explicitly confirms it. SD=TV (time-varying 1850–2000 burden). Also noted: urban aerosols "vary according to estimates between 1850 and 2000" (possible BC/OC-like component, classification unclear).
 
 ## Staging plan — grouped by modeling centre (CMIP3 first pass)
 | Stage | Centre(s) / country | CMIP3 models | Status |
 |-------|---------------------|--------------|--------|
 | 1 | GFDL (USA) | gfdl_cm2_0, gfdl_cm2_1 | ☑ complete — Table S1 fully supported; 1 ozone nuance open |
 | 2 | GISS (USA) | giss_aom, giss_model_e_h, giss_model_e_r | ☑ ModelE-H/R complete; AOM partial (needs primary source). Found: MD/SS fixed-not-transient; SI=cloud-cover proxy |
-| 3 | NCAR (USA) | ncar_ccsm3_0, ncar_pcm1 | ☑ PCM1 complete (all 12 confirmed); CCSM3 partial (VL/SI/FC/MD/SS confirmed; BC/OC/SD temporal treatment open) |
+| 3 | NCAR (USA) | ncar_ccsm3_0, ncar_pcm1 | ☑ PCM1 complete (all 12 confirmed); CCSM3 **fully resolved (2026-06-28)** from Meehl 2006 §2a: SD=TV (Smith SO₂ prognostic), BC=TV (population-scaled), O=TV (MOZART+NOAA), SO=TV (Lean 1995), SS/MD/LU=FX-const; OC likely TV pending Collins 2006b |
 | 4 | CCCma (Canada) | cccma_cgcm3_1_t47, cccma_cgcm3_1_t63 | ☑ FC=F,H confirmed; SO/VL/LU by documented silence; no conflicts. Flato 2000 = CGCM1 control only. Boer et al. 2000 (doi:10.1007/s003820050337) recommended for explicit SO/VL/LU statements. |
 | 5 | CSIRO (Australia) | csiro_mk3_0, csiro_mk3_5 | ☑ G=TV equiv-CO2; SD/FC confirmed; O=Y **candidate conflict** (Wang 1995 AMIPII baseline but TV capability exists — 20C3M docs silent); SO/VL=- by absence; CTR_021 (Mk3.5) defers 20C3M details "elsewhere" |
-| 6 | CNRM + IPSL (France) | cnrm_cm3, ipsl_cm4 | ☑ CNRM: 3 conflicts (SI/SO/VL); IPSL: 2 conflicts (SO/VL) + O=Y open. Both used Boucher & Pham 2002 LOA sulphate; neither applied natural forcings. |
+| 6 | CNRM + IPSL (France) | cnrm_cm3, ipsl_cm4 | ☑ CNRM: 3 conflicts (SI/SO/VL); **IPSL: 3 conflicts (SO/VL/O — all confirmed, O=Y resolved 2026-06-28)**. Both used Boucher & Pham 2002 LOA sulphate; neither applied natural forcings. |
 | 7 | MPI + INGV + MIUB (Germany/Italy) | mpi_echam5, ingv_echam4, miub_echo_g | ☑ MPI: 3–5 conflicts (BC/OC/LU unsupported; SO/VL likely absent). INGV: 3 conflicts (O/SO/VL). MIUB: 2 conflicts (SI=- wrong; FC=H wrong). MIUB SO/VL bundled via Crowley 2000 solar constant. |
-| 8 | UKMO (UK) | ukmo_hadcm3, ukmo_hadgem1 | ☑ HadCM3: all confirmed except VL=Y unverified. HadGEM1: 1 conflict (MD=Y wrong — mineral dust absent); LU=- questionable; SO/VL=Y confirmed (different solar from HadCM3: Solanki & Krivova 2003 vs Lean 1995). |
-| 9 | MIROC + MRI (Japan) | miroc3_2_hires, miroc3_2_medres, mri_cgcm2_3_2a | ☑ MIROC3.2: no hard conflicts (MD/SS diagnosed-not-prescribed nuance); SO/VL=Y confirmed. MRI: 1 candidate conflict (O=Y, medium confidence); SO=TV(Lean 1995), VL=TV, FC=F,H all confirmed. |
-| 10 | BCCR + IAP + INM (Norway/China/Russia) | bccr_bcm2.0, iap_fgoals1_0, inmcm3_0 | ☑ BCCR: SO=VL=- confirmed; SD dataset unknown. IAP: G/O/SD confirmed; SO/VL=- by absence. INM (not in Table S1): G/O/SD/SO confirmed; VL=~ unclear; CFCs excluded from GHG. |
+| 8 | UKMO (UK) | ukmo_hadcm3, ukmo_hadgem1 | ☑ HadCM3: all confirmed except VL=Y unverified. HadGEM1: 2 confirmed conflicts (MD=Y wrong — mineral dust absent; **LU=- wrong — Goldewijk 2001 confirmed in Run 1 (2026-06-28)**); SO/VL=Y confirmed (Run 2 only). |
+| 9 | MIROC + MRI (Japan) | miroc3_2_hires, miroc3_2_medres, mri_cgcm2_3_2a | ☑ MIROC3.2: no hard conflicts (MD/SS diagnosed-not-prescribed nuance); SO/VL=Y confirmed. MRI: 1 **strong candidate conflict** (O=Y, upgraded 2026-06-28 — PCMDI PDF §II.A "atmospheric chemistry: Not included" + four-agent list both exclude ozone); SO=TV(Lean 1995), VL=TV, FC=F,H all confirmed. |
+| 10 | BCCR + IAP + INM (Norway/China/Russia) | bccr_bcm2.0, iap_fgoals1_0, inmcm3_0 | ☑ BCCR: SO=VL=- confirmed; **SD dataset RESOLVED (2026-06-28): Boucher & Pham (2002), TV**. IAP: G/O/SD confirmed; SO/VL=- by absence. INM (not in Table S1): G/O/SD/SO/VL confirmed; CFCs excluded from GHG. |
 
 Legend: ☐ not started · ◐ in progress · ☑ complete
 
@@ -151,33 +151,44 @@ Legend: ☐ not started · ◐ in progress · ☑ complete
 
 | Phase | Models | Passes complete | Fully resolved | Partial / deferred | Permanently closed | Next action |
 |-------|--------|-----------------|---------------|-------------------|-------------------|-------------|
-| CMIP3 | 24 | 1 | 21 | 3 (AOM/CCSM3/Mk3.5) | 0 | Second pass: 8 targeted open questions (see below) |
+| CMIP3 | 24 | **2** (first + second, 2026-06-28) | 24 (all documented; 5 cells remain uncertain) | 0 | 0 | Complete — 5 residual items (see `cmip3/README.md`) |
 | CMIP5 | 47 | 11 (2026-06-28) | ~32 | ~13 (deferred — see `cmip5/README.md`) | 0 | Modelling group contact for BCC/CMCC/HadCM3; Arora & Boer 2010 for CanESM2 N-dep |
 | CMIP6 | 64 | 9 (2026-06-28) | 36 | 24 | 4 | Modelling group contact (Priority 1/2 table in `cmip6/README.md`) |
 
 Sixth pass (2026-06-28): Dix et al. 2013 (*AMOJ* 63:83–99) read → ACCESS1-0/1-3 **G=✓std** (Meinshausen2011; all 12 cells now fully resolved). Christian 2014 (*PLOS ONE*) + Christian 2010 → CanESM2 **DIC-init=~n/a** (CMOC offline spinup; GLODAP=validation only). Scoccimarro 2011 + Vichi 2011 confirm **CMCC-CM/CMS remain unresolvable** (both papers describe CMIP3-era runs, not CMIP5 historical). FGOALS-f3-L VL corrected to ✓std in CMIP6 HTML (IACETH-SAGE3lambda-3-0-0 inferred; input4MIPs uniqueness).
 
 **Recommended work order:**
-1. **CMIP3 second pass** — 8 targeted questions; mostly single-component gaps or Table S1 conflict resolutions. Highest leverage per effort: directly affects synthesis paper claims about Table S1 accuracy.
-2. **CMIP5 deferred items** — mix of paywalled papers and silent primary sources. Priority: BCC (O/SO unknowns × 2 models), CMCC-CM/CMS (no primary paper exists for CMIP5).
-3. **CMIP6 Priority 1 follow-up** — 7 models where one email resolves the model completely (GFDL-CM4 VL, CanESM5-1 G, IPSL-CM6A-LR SO, etc.).
-4. **CMIP6 Priority 2 follow-up** — 10 model clusters needing broader group contact.
+1. **CMIP5 deferred items** — mix of paywalled papers and silent primary sources. Priority: BCC (O/SO unknowns × 2 models), CMCC-CM/CMS (no primary paper exists for CMIP5), EC-EARTH G/O/LU/SO/VL (explicitly deferred).
+2. **CMIP6 Priority 1 follow-up** — CanESM5/CanOE SO awaiting CCCma reply; ~7 models solvable with group contact (see `cmip6/README.md`).
+3. **CMIP6 Priority 2 follow-up** — 10 model clusters needing broader group contact.
+4. ~~**CMIP3 second pass**~~ — **COMPLETE (2026-06-28)**. 5 residual cells cannot be resolved from available literature; documented in `cmip3/README.md`.
 
-## Open items for CMIP3 second pass
+## CMIP3 second pass — COMPLETE (2026-06-28)
 
-All 10 stages complete; the following questions remain unresolved from available literature. In priority order:
+All 10 stages + second pass complete. 7 of 8 originally unverified cells resolved; 5 residual items cannot be resolved from available literature. Full details in `cmip3/README.md`.
 
-| # | Model | Component | Table S1 claim | Issue | Required source |
-|---|-------|-----------|----------------|-------|-----------------|
-| 1 | giss_aom | G SD SO | Y Y Y | Russell 1995 PDF uploaded but Appendix B (forcing details) not yet fully extracted | Read Russell 1995 *Atmos.–Ocean* §forcing for G/SD/SO specifics |
-| 2 | ncar_ccsm3_0 | BC OC SD | Y Y Y | All three marked TV in Table S1; FXc claim refuted but TV unconfirmed — temporal treatment genuinely open | Collins et al. 2006 §forcing or PCMDI CCSM3 page for BC/OC/SD temporal treatment |
-| 3 | csiro_mk3_0 | O | Y | Wang 1995 AMIP-II FXc confirmed as baseline; whether TV ozone was applied in 20C3M is undocumented | CSIRO 20C3M run documentation or CTR_021 companion to Gordon 2002 |
-| 4 | csiro_mk3_5 | O + all | Y + ? | All cells inferred from Mk3.0; no Mk3.5-specific primary source located | Gordon 2010 (suspected Mk3.5 primary paper) — not yet uploaded |
-| 5 | ukmo_hadcm3 | VL | Y | Applied in HadCM3-based attribution ensemble (Stott 2000) but 20C3M archived submission unconfirmed | Confirm VL applied in 20C3M specifically (not just attribution); CEDA archive or Jones 2003 |
-| 6 | ukmo_hadgem1 | LU | − | Goldewijk 2001 land-use applied in Run 1 per PCMDI; Table S1 codes LU=− which may be wrong | Confirm whether LU was applied in the 20C3M submission (Table S1 correction candidate) |
-| 7 | mri_cgcm2_3_2a | O | Y | PCMDI 20C3M page lists only 4 forcing agents (GHG/sulphate/volcanic/solar) — ozone conspicuously absent; O=Y may be a Table S1 error | Yukimoto 2001 *Pap. Met. Geophys.* 51(2) radiation section — confirm whether ozone was a transient forcing in 20C3M |
-| 8 | bccr_bcm2.0 | SD | Y | Sulphate applied (Y confirmed) but dataset unidentified; Boucher & Pham 2002 LOA hypothesis explicitly refuted; ARPEGE shared with CNRM but Furevik 2003 is control-only | Need BCCR-specific 20C3M documentation or direct group contact (Helge Drange, BCCR Norway) |
-| — | inmcm3_0 | VL FC | ~ ~ | VL: volcanic file referenced in PDF but claim unresolved. FC: heat+FW corrections suspected but not confirmed | Re-read Volodin & Diansky 2004 §forcing explicitly for VL and FC |
+**Second-pass resolutions (2026-06-28):**
+- **BCCR SD** → TV (Boucher & Pham 2002 confirmed verbatim from PCMDI PDF §II.C; prior refutation was wrong)
+- **GISS-AOM G** → TV (GHGA1B.LP, PCMDI PDF §V 20C3M)
+- **CNRM-CM3 O** → FXc (Cariolle–Déqué 1986 linearised param; Salas-Mélia 2005 §2.1)
+- **IAP FGOALS SO/VL** → na (fixed 1367 W m⁻²; exhaustive 20C3M list: PCMDI PDF §V.C)
+- **IPSL-CM4 O** → FXc* (confirmed Table S1 error — PCMDI PDF §V.C: "All other variables are kept constant. There are no natural forcings.")
+- **HadGEM1 LU** → TV* (confirmed Table S1 error — Goldewijk 2001 HYDE in Run 1; PCMDI PDF §V verbatim)
+- **HadGEM1 SS** → TV (interactive wind-speed diagnostic; Martin et al. 2006 §2b, Table 3)
+- **CSIRO Mk3.0/3.5 SO** → na (Table S1 SO=- confirmed by absence; all sources silent)
+- **INM VL/FC** → TV/FXc (pcm_volcanic_1890-2000_T42.nc; water-only GIN/Barents/Kara seas; PCMDI PDF §V)
+- **MRI O** → na* upgraded to strong conflict (PCMDI PDF §II.A "atmospheric chemistry: Not included")
+- **NCAR CCSM3** → fully resolved from Meehl 2006 §2a (doi:10.1175/JCLI3746.1)
+
+**Residual open items (5 — unresolvable from available literature):**
+
+| Model | Cell | Required source |
+|-------|------|-----------------|
+| csiro_mk3_0 / csiro_mk3_5 | O=Y | 20C3M-specific ozone treatment undocumented; PCMDI PDF blank |
+| ukmo_hadcm3 | VL=Y | Applied in attribution ensemble (Stott 2000) but 20C3M archived submission unconfirmed |
+| mri_cgcm2_3_2a | O=Y* (strong conflict) | Yukimoto 2001 *Pap. Met. Geophys.* 51(2) §radiation |
+| giss_aom | SS=Y | Sea salt not named in PCMDI PDF; treatment unclear |
+| ncar_ccsm3_0 | OC=? | Collins et al. 2006b (*J. Climate* 19:2144) — CAM3 OC treatment in 20C3M |
 
 Later passes (after CMIP3): CMIP5 lineage (e.g. GFDL CM3/ESM2M, GISS-E2-H/R, CCSM4) then CMIP6/input4MIPs.
 
